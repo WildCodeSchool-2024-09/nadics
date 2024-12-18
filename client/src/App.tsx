@@ -1,12 +1,7 @@
 import "./pages/PostRequest.css";
-import PostRequest from "./pages/PostRequest";
 
 function App() {
-  return (
-    <>
-      <PostRequest />;
-    </>
-  );
+  return <></>;
 }
 
 export default App;
