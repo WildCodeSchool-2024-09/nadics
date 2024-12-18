@@ -1,4 +1,4 @@
-import "./App.css";
+import "./pages/PostRequest.css";
 import PostRequest from "./pages/PostRequest";
 
 function App() {

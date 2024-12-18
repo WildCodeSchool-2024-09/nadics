@@ -1,47 +1,5 @@
-.block {
-  display: flex;
-  justify-content: left;
-  align-items: left;
-  flex-direction: column;
-}
-
-form {
-  display: flex;
-  justify-content: left;
-  flex-direction: column;
-  align-items: left;
-  border-radius: 10px;
-}
-
-.buttonSubmit {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 20px;
-  background-color: black;
-  color: whitesmoke;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.roundButton {
-  width: 50px;
-  height: 50px;
-  margin-left: 43%;
-  border-radius: 50%;
-  background-color: grey;
-  color: white;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s ease;
-}
-
-.roundButton:hover {
-  background-color: black;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
