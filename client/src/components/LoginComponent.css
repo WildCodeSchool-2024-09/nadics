@@ -1,0 +1,120 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#entirepage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  height: 100vh;
+  /* background: url("../assets/images/unity.png");
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: lighten;
+  z-index: -1; */
+}
+
+#displaylogintitle {
+  display: flex;
+  justify-content: center;
+}
+
+.display {
+  display: flex;
+  justify-content: center;
+}
+
+.logintitle {
+  color: #000;
+  font-family: "Roboto Serif", serif;
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-transform: uppercase;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+  display: inline;
+}
+
+#loginsubtitle1 {
+  color: #000;
+  font-family: "Roboto Serif", serif;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin: 2rem;
+}
+
+#loginsubtitle2 {
+  color: #000;
+  font-family: "Roboto Serif", serif;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin: 2rem;
+}
+
+#username {
+  width: 323px;
+  height: 64px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #f5f5f5;
+  box-shadow: 10px 10px 14px 0px rgba(0, 0, 0, 0.25);
+  fill: #f5f5f5;
+  filter: drop-shadow(10px 10px 14px rgba(0, 0, 0, 0.25));
+  font-size: 1.2rem;
+}
+
+#password {
+  width: 326px;
+  height: 64px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #f5f5f5;
+  box-shadow: 10px 10px 14px 0px rgba(0, 0, 0, 0.25);
+  fill: #f5f5f5;
+  filter: drop-shadow(10px 10px 14px rgba(0, 0, 0, 0.25));
+  font-size: 1.2rem;
+}
+
+#button {
+  display: flex;
+  width: 326px;
+  height: 62px;
+  min-width: 200px;
+  min-height: 62px;
+  margin: 2rem;
+  font-size: 1.1rem;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+#createaccount {
+  color: #000;
+  font-family: "Roboto Serif", serif;
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+#passwordforgotten {
+  color: #000;
+  font-family: "Roboto Serif", serif;
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin: 0.5rem;
+}

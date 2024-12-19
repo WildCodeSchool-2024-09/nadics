@@ -2,6 +2,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import LoginPage from "./components/LoginComponent";
 
 /* ************************************************************************* */
 
@@ -28,7 +29,11 @@ const router = createBrowserRouter([
         path: "post_request",
         element: <PostRequest />,
       },
-    ], // Renders the App component for the home page
+      {
+        path: "login",
+        element: <LoginPage />,
+      },
+    ],
   },
   // Try adding a new route! For example, "/about" with an About component
 ]);
