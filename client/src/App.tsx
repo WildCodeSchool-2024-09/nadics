@@ -1,12 +1,7 @@
-import "./App.css";
-import Navbar from "./components/Navbar";
+import "./pages/PostRequest.css";
 
 function App() {
-  return (
-    <>
-      <Navbar />
-    </>
-  );
+  return <></>;
 }
 
 export default App;
