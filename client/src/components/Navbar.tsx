@@ -20,8 +20,8 @@ function Navbar() {
       <h3>Smart choise hub </h3>
       <nav>
         <div className={menu_class}>
-          <a href="Browse requests">Home </a>
-          <a href="My requests">My requests </a>
+          <a href="/post_request">Create request</a>
+          <a href="/login">Login</a>
           <a href="Notifictaions">Notifictaions </a>
         </div>
         <div
