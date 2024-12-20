@@ -1,0 +1,82 @@
+.block {
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  flex-direction: column;
+}
+
+form {
+  display: flex;
+  justify-content: left;
+  flex-direction: column;
+  align-items: left;
+  border-radius: 10px;
+}
+
+.buttonSubmit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  background-color: black;
+  color: whitesmoke;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.roundButton {
+  width: 50px;
+  height: 50px;
+  margin-left: 43%;
+  border-radius: 50%;
+  background-color: grey;
+  color: white;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.roundButton:hover {
+  background-color: black;
+}
+
+@media screen and (min-width: 1024px) {
+  .roundButton {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: grey;
+    color: white;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+  }
+
+  .roundButton:hover {
+    background-color: black;
+  }
+
+  .buttonSubmit {
+    width: 50%;
+  }
+
+  form {
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    flex-direction: column;
+  }
+
+  form .buttonSubmit {
+    margin-left: 27%;
+  }
+
+  form .roundButton {
+    margin-left: 50%;
+  }
+}
