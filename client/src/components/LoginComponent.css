@@ -10,11 +10,14 @@
   justify-content: center;
   align-content: center;
   height: 100vh;
-  /* background: url("../assets/images/unity.png");
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.5) /* Couleur blanche avec une opacité de 50% */,
+      rgba(255, 255, 255, 0.5)
+    ), url("../assets/images/unity.png");
   background-size: cover;
   background-position: center;
   background-blend-mode: lighten;
-  z-index: -1; */
+  z-index: -1;
 }
 
 #displaylogintitle {
