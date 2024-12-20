@@ -1,3 +1,4 @@
+import "./PostRequest.css";
 export default function PostRequest() {
   return (
     <>
