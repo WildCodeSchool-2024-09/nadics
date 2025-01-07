@@ -17,7 +17,7 @@ function Navbar() {
   };
   return (
     <header>
-      <h3>Smart choise hub </h3>
+      <h3>Smart choice hub </h3>
       <nav>
         <div className={menu_class}>
           <a href="/login" className="menu_text">
