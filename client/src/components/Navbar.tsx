@@ -1,5 +1,6 @@
 import "./Navbar.css";
 import { useState } from "react";
+import logo from "../assets/images/logo-removebg.png";
 
 function Navbar() {
   const [burger_class, setBurger_class] = useState("burger-bar unClicked");
@@ -17,7 +18,7 @@ function Navbar() {
   };
   return (
     <header>
-      <h3>Smart choise hub </h3>
+      <img src={logo} alt="logo" className="logoImg" />
       <nav>
         <div className={menu_class}>
           <a href="/login" className="menu_text">
