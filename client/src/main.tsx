@@ -8,6 +8,7 @@ import LoginPage from "./components/LoginComponent";
 
 // Import the main app component
 import App from "./App";
+import PasswordRecovery from "./pages/PasswordRecovery";
 import PostRequest from "./pages/PostRequest";
 
 // Import additional components for new routes
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: "login",
         element: <LoginPage />,
+      },
+      {
+        path: "password_recovery",
+        element: <PasswordRecovery />,
       },
     ],
   },
