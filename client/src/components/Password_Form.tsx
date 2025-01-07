@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 export default function Password_Form() {
   return (
-    <div>
+    <FormStyled>
       <h1>Forgot Password</h1>
       <p>
         Please enter the email address you'd like your password reset
@@ -14,6 +15,11 @@ export default function Password_Form() {
       </form>
       <Link to="/login">Back to login</Link>
       <p>Un mail vous a été envoyé pour réinitialiser votre mot de passe.</p>
-    </div>
+    </FormStyled>
   );
 }
+
+const FormStyled = styled.div`
+background-color: red;
+  
+`;
