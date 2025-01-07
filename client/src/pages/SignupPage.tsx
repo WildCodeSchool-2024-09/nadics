@@ -1,11 +1,11 @@
 import SignupComponent from "../components/SignupComponent";
 
 function SignupPage() {
-    return (
-        <>
-        <SignupComponent />
-        </>
-    );
+  return (
+    <>
+      <SignupComponent />
+    </>
+  );
 }
 
-export default SignupPage
+export default SignupPage;
