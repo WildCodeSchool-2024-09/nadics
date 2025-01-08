@@ -1,0 +1,25 @@
+.footer-container {
+  display: flex;
+  padding-bottom: 1rem;
+  padding-top: 0.5rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footer-text {
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  font-style: normal;
+}
+
+.footer-logos {
+  display: flex;
+  gap: 1rem;
+}
+
+.footer-logo {
+  width: 2.3rem;
+}
