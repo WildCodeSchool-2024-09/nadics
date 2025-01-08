@@ -3,7 +3,7 @@
   flex-direction: column;
   align-content: center;
   align-items: center;
-  height: 100vh;a
+  height: 100vh;
   background: linear-gradient(
       rgba(255, 255, 255, 0.5) /* Couleur blanche avec une opacité de 50% */,
       rgba(255, 255, 255, 0.5)
@@ -16,7 +16,7 @@
 
 #signuptitle {
   color: #000;
-  font-family: "Roboto Serif", serif;
+  font-family: "Roboto", sans-serif;
   font-size: 2rem;
   font-style: normal;
   font-weight: 700;
@@ -29,7 +29,7 @@
 
 #signupsubtitle1 {
   color: #000;
-  font-family: "Roboto Serif", serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 700;

@@ -8,7 +8,7 @@ function SignupComponent() {
         <h1 id="signuptitle"> SMART CHOICE HUB </h1>
         <h2 id="signupsubtitle1"> Create your account</h2>
         <label id="email" htmlFor="email">
-          <input type="text" id="email" name="email" placeholder="Email" />
+          <input type="email" id="email" name="email" placeholder="Email" />
         </label>
         <label id="firstname" htmlFor="firstname">
           <input
@@ -26,9 +26,9 @@ function SignupComponent() {
             placeholder="Surname"
           />
         </label>
-        <label id="date-of-birth" htmlFor="date of birth">
+        <label id="date-of-birth" htmlFor="date-of-birth">
           <input
-            type="text"
+            type="date"
             id="date-of-birth"
             name="date of birth"
             placeholder="Date of birth"
@@ -36,7 +36,7 @@ function SignupComponent() {
         </label>
         <label id="password" htmlFor="password">
           <input
-            type="text"
+            type="password"
             id="password"
             name="password"
             placeholder="Password"
