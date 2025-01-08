@@ -2,6 +2,9 @@ import { Link } from "react-router-dom";
 import "./LoginComponent.css";
 
 function LoginComponent() {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+  };
   return (
     <>
       <section id="entirepage">
@@ -11,34 +14,38 @@ function LoginComponent() {
         <section className="display">
           <h2 id="loginsubtitle1">Login</h2>
         </section>
-        <section className="display">
-          <label id="loginusername" htmlFor="loginusername">
-            <input
-              type="text"
-              id="loginusername"
-              name="loginusername"
-              placeholder="Username"
-            />
-          </label>
-        </section>
-        <section className="display">
-          <h2 id="loginsubtitle2">Password</h2>
-        </section>
-        <section className="display">
-          <label id="loginpassword" htmlFor="loginpassword">
-            <input
-              type="text"
-              id="loginpassword"
-              name="loginpassword"
-              placeholder="Password"
-            />
-          </label>
-        </section>
-        <section className="display">
-          <button id="submitbutton" type="submit">
-            Submit
-          </button>
-        </section>
+        <form onSubmit={handleSubmit}>
+          <section className="display">
+            <label htmlFor="loginusername">
+              <input
+                type="text"
+                id="loginusername"
+                name="loginusername"
+                placeholder="Username"
+                required
+              />
+            </label>
+          </section>
+          <section className="display">
+            <h2 id="loginsubtitle2">Password</h2>
+          </section>
+          <section className="display">
+            <label htmlFor="loginpassword">
+              <input
+                type="password"
+                id="loginpassword"
+                name="loginpassword"
+                placeholder="Password"
+                required
+              />
+            </label>
+          </section>
+          <section className="display">
+            <button id="submitbutton" type="submit">
+              Submit
+            </button>
+          </section>
+        </form>
         <section className="display">
           <Link to="/passwordforgotten" id="passwordforgotten">
             Password forgotten ?
