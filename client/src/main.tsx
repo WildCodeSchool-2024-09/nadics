@@ -9,6 +9,7 @@ import SignupPage from "./pages/SignupPage";
 
 // Import the main app component
 import App from "./App";
+import PasswordRecovery from "./pages/PasswordRecovery";
 import PostRequest from "./pages/PostRequest";
 
 // Import additional components for new routes
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: "signup",
         element: <SignupPage />,
+      },
+      {
+        path: "password_recovery",
+        element: <PasswordRecovery />,
       },
     ],
   },
