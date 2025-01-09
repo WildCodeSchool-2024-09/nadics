@@ -1,21 +1,63 @@
-create table user (
-  id int unsigned primary key auto_increment not null,
-  email varchar(255) not null unique,
-  password varchar(255) not null
+CREATE TABLE role (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    rolename VARCHAR(50) NOT NULL
 );
 
-create table item (
-  id int unsigned primary key auto_increment not null,
-  title varchar(255) not null,
-  user_id int unsigned not null,
-  foreign key(user_id) references user(id)
+CREATE TABLE `user` (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    firstname VARCHAR(50) NOT NULL,
+    lastname VARCHAR(50) NOT NULL,
+    email VARCHAR(50) NOT NULL UNIQUE,
+    `password` VARCHAR(50) NOT NULL,
+    role_id INT NOT NULL, 
+    CONSTRAINT fk_user_role     
+        FOREIGN KEY (role_id)             
+        REFERENCES role(id) 
 );
 
-insert into user(id, email, password)
-values
-  (1, "jdoe@mail.com", "123456");
+CREATE TABLE request (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    `date` DATE, 
+    title VARCHAR(50) NOT NULL,
+    theme VARCHAR(50) NOT NULL,
+    details LONGTEXT NOT NULL,
+    user_id INT NOT NULL, 
+    CONSTRAINT fk_request_user  
+        FOREIGN KEY (user_id)           
+        REFERENCES `user`(id)
+);
 
-insert into item(id, title, user_id)
+CREATE TABLE comment (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    details TEXT NOT NULL,
+    `date` DATE,
+    user_id INT NOT NULL,
+    request_id INT NOT NULL,
+    CONSTRAINT fk_comment_user  
+        FOREIGN KEY (user_id)           
+        REFERENCES user(id),
+    CONSTRAINT fk_comment_request  
+        FOREIGN KEY (request_id)           
+        REFERENCES request(id)
+);
+
+
+insert into user(firstname, lastname, email, `password`, role_id)
 values
-  (1, "Stuff", 1),
-  (2, "Doodads", 1);
+  ("Toto", "Tutu", "toto.tutu@mail.com", "123456", 1),
+  ("Tata", "Titi", "tata.titi@mail.com", "78910", 2);
+
+insert into `role`(rolename)
+values 
+  ("admin"),
+  ("visiteur");
+
+insert into request(`date`,title, theme, details, user_id)
+values 
+  (1994.12.24,"titre1", "theme1", "bcp de details1", 1),
+  (1994.11.24,"titre2", "theme2", "bcp de details2", 2);
+
+insert into comment(details, `date`, user_id, request_id)
+values 
+  ("jesuispasdaccord", 1994.11.25, 1, 1),
+  ("jesuisdaccord", 1994.11.26, 2, 2);

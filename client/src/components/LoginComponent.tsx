@@ -12,11 +12,11 @@ function LoginComponent() {
           <h2 id="loginsubtitle1">Login</h2>
         </section>
         <section className="display">
-          <label id="username" htmlFor="username">
+          <label id="loginusername" htmlFor="loginusername">
             <input
               type="text"
-              id="username"
-              name="username"
+              id="loginusername"
+              name="loginusername"
               placeholder="Username"
             />
           </label>
@@ -25,27 +25,27 @@ function LoginComponent() {
           <h2 id="loginsubtitle2">Password</h2>
         </section>
         <section className="display">
-          <label id="password" htmlFor="password">
+          <label id="loginpassword" htmlFor="loginpassword">
             <input
               type="text"
-              id="password"
-              name="password"
+              id="loginpassword"
+              name="loginpassword"
               placeholder="Password"
             />
           </label>
         </section>
         <section className="display">
-          <button id="button" type="submit">
+          <button id="submitbutton" type="submit">
             Submit
           </button>
         </section>
         <section className="display">
-          <Link to="/PaswwordForgotten" id="passwordforgotten">
+          <Link to="/passwordforgotten" id="passwordforgotten">
             Password forgotten ?
           </Link>
         </section>
         <section className="display">
-          <Link to="/CreateAccount" id="createaccount">
+          <Link to="/signup" id="signup">
             Create an account
           </Link>
         </section>
