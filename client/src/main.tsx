@@ -2,6 +2,8 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import DisplayUser from "./pages/DisplayUser";
+import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 
@@ -42,6 +44,14 @@ const router = createBrowserRouter([
       {
         path: "password_recovery",
         element: <PasswordRecovery />,
+      },
+      {
+        path: "display-user/:id",
+        element: <DisplayUser />,
+      },
+      {
+        path: "home",
+        element: <HomePage />,
       },
     ],
   },
