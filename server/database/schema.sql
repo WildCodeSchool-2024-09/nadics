@@ -9,10 +9,10 @@ CREATE TABLE `user` (
     lastname VARCHAR(50) NOT NULL,
     email VARCHAR(50) NOT NULL UNIQUE,
     `password` VARCHAR(50) NOT NULL,
-    role_id INT NOT NULL,
-    CONSTRAINT fk_user_role
-        FOREIGN KEY (role_id)
-        REFERENCES role(id)
+    role_id INT NOT NULL,     
+    CONSTRAINT fk_user_role  
+	      FOREIGN KEY (role_id) 
+        REFERENCES role(id) 
 );
 
 CREATE TABLE request (
@@ -41,22 +41,23 @@ CREATE TABLE comment (
         REFERENCES request(id)
 );
 
-INSERT INTO `role`(rolename)
-VALUES
-  ('admin'),
-  ('visiteur');
 
-INSERT INTO `user`(firstname, lastname, email, `password`, role_id)
-VALUES
-  ('Toto', 'Tutu', 'toto.tutu@mail.com', '123456', 1),
-  ('Tata', 'Titi', 'tata.titi@mail.com', '78910', 2);
+insert into user(firstname, lastname, email, `password`, role_id)
+values
+  ("Toto", "Tutu", "toto.tutu@mail.com", "123456", 1),
+  ("Tata", "Titi", "tata.titi@mail.com", "78910", 2);
 
-INSERT INTO request(`date`, title, theme, details, user_id)
-VALUES
-  ('1994-12-24', 'titre1', 'theme1', 'bcp de details1', 1),
-  ('1994-11-24', 'titre2', 'theme2', 'bcp de details2', 2);
+insert into `role`(rolename)
+values 
+  ("admin"),
+  ("visiteur");
 
-INSERT INTO comment(details, `date`, user_id, request_id)
-VALUES
-  ('jesuispasdaccord', '1994-11-25', 1, 1),
-  ('jesuisdaccord', '1994-11-26', 2, 2);
+insert into request(`date`,title, theme, details, user_id)
+values 
+  (1994.12.24,"titre1", "theme1", "bcp de details1", 1),
+  (1994.11.24,"titre2", "theme2", "bcp de details2", 2);
+
+insert into comment(details, `date`, user_id, request_id)
+values 
+  ("jesuispasdaccord", 1994.11.25, 1, 1),
+  ("jesuisdaccord", 1994.11.26, 2, 2);

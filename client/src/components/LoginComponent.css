@@ -32,7 +32,7 @@
 
 .logintitle {
   color: #000;
-  font-family: "Roboto Serif", serif;
+  font-family: "Roboto", sans-serif;
   font-size: 2rem;
   font-style: normal;
   font-weight: 700;
@@ -45,7 +45,7 @@
 
 #loginsubtitle1 {
   color: #000;
-  font-family: "Roboto Serif", serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 700;
@@ -55,7 +55,7 @@
 
 #loginsubtitle2 {
   color: #000;
-  font-family: "Roboto Serif", serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 700;
@@ -101,7 +101,7 @@
 
 #signup {
   color: #000;
-  font-family: "Roboto Serif", serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1.2rem;
   font-style: normal;
   font-weight: 700;
@@ -112,7 +112,7 @@
 
 #passwordforgotten {
   color: #000;
-  font-family: "Roboto Serif", serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1.2rem;
   font-style: normal;
   font-weight: 700;
