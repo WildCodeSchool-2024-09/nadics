@@ -1,0 +1,191 @@
+/* Application Général */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Conteneur principal */
+main {
+  background-color: #f2f2f2;
+  width: 100%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto; 
+}
+
+
+/* Section */
+section {
+  width: 100%;
+  margin-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+section h3 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 0.5rem; 
+}
+
+/* Réduire la taille des titres h2 */
+h2 {
+  font-size: 1.5rem; 
+  margin-bottom: 0.5rem;
+}
+/* Bouton centré en haut */
+#button {
+  display: block;
+  margin: 0.5rem auto; 
+  padding: 0.8rem 2rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+#button:hover {
+  background-color: #0056b3;
+}
+
+/* Conteneur des cartes */
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  justify-items: center;
+  width: 100%;
+  max-width: 1200px; 
+}
+
+/* Styles généraux des cartes */
+.card {
+  background-color: #FFFFFF;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 300px; 
+  padding: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card h4 {
+  font-size: 1.5rem; 
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-align: center; 
+}
+
+.card .tags {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.card .tag1 {
+  background-color: #22e587;
+  color: rgb(20, 19, 19);
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.875rem;
+}
+
+.card .tag2 {
+  background-color: #ed5faf;
+  color: rgb(13, 13, 13);
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.875rem;
+}
+
+.card .tag3 {
+  background-color: #788de8;
+  color: rgb(13, 13, 13);
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.875rem;
+}
+
+.card .tag4 {
+  background-color: #FFDD00;
+  color: rgb(13, 13, 13);
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.875rem;
+}
+
+.card .tag5 {
+  background-color: #cfeda2;
+  color: rgb(13, 13, 13);
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.875rem;
+}
+.card p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.card-footer img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-footer .name {
+  font-size: 0.875rem;
+  font-weight: bold;
+  color: #000000;
+}
+
+/* Lien "Détails" */
+.card a {
+  text-decoration: none;
+  color: #007bff;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.card a:hover {
+  text-decoration: underline;
+}
+
+/* Adaptation mobile */
+@media (max-width: 768px) {
+  .cards-container {
+    grid-template-columns: 1fr; 
+  }
+}
+
+@media (max-width: 480px) {
+  .cards-container {
+    grid-template-columns: 1fr; 
+  }
+}
