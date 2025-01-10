@@ -11,8 +11,8 @@ import SignupPage from "./pages/SignupPage";
 
 // Import the main app component
 import App from "./App";
+import HomePage from "./pages/HomePage";
 import PasswordRecovery from "./pages/PasswordRecovery";
-import PostRequest from "./pages/PostRequest";
 
 // Import additional components for new routes
 // Try creating these components in the "pages" folder
@@ -30,8 +30,8 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: "post_request",
-        element: <PostRequest />,
+        path: "home",
+        element: <HomePage />,
       },
       {
         path: "login",
