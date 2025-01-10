@@ -2,22 +2,26 @@ import { Link } from "react-router-dom";
 import "./LoginComponent.css";
 
 function LoginComponent() {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+  };
   return (
-    <>
-      <section id="entirepage">
-        <section id="displaylogintitle">
+    <section id="entirepage">
+      {/* <section id="displaylogintitle">
           <h1 className="logintitle">Smart choice</h1>
-        </section>
+        </section> */}
+      <section className="display">
+        <h2 id="loginsubtitle1">Login</h2>
+      </section>
+      <form onSubmit={handleSubmit}>
         <section className="display">
-          <h2 id="loginsubtitle1">Login</h2>
-        </section>
-        <section className="display">
-          <label id="username" htmlFor="username">
+          <label htmlFor="loginusername">
             <input
               type="text"
-              id="username"
-              name="username"
+              id="loginusername"
+              name="loginusername"
               placeholder="Username"
+              required
             />
           </label>
         </section>
@@ -25,32 +29,33 @@ function LoginComponent() {
           <h2 id="loginsubtitle2">Password</h2>
         </section>
         <section className="display">
-          <label id="password" htmlFor="password">
+          <label htmlFor="loginpassword">
             <input
-              type="text"
-              id="password"
-              name="password"
+              type="password"
+              id="loginpassword"
+              name="loginpassword"
               placeholder="Password"
+              required
             />
           </label>
         </section>
         <section className="display">
-          <button id="button" type="submit">
+          <button id="submitbutton" type="submit">
             Submit
           </button>
         </section>
-        <section className="display">
-          <Link to="/PaswwordForgotten" id="passwordforgotten">
-            Password forgotten ?
-          </Link>
-        </section>
-        <section className="display">
-          <Link to="/CreateAccount" id="createaccount">
-            Create an account
-          </Link>
-        </section>
+      </form>
+      <section className="display">
+        <Link to="/passwordforgotten" id="passwordforgotten">
+          Password forgotten ?
+        </Link>
       </section>
-    </>
+      <section className="display">
+        <Link to="/signup" id="signup">
+          Create an account
+        </Link>
+      </section>
+    </section>
   );
 }
 

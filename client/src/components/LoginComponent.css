@@ -32,7 +32,7 @@
 
 .logintitle {
   color: #000;
-  font-family: "Roboto Serif", serif;
+  font-family: "Roboto", sans-serif;
   font-size: 2rem;
   font-style: normal;
   font-weight: 700;
@@ -45,7 +45,7 @@
 
 #loginsubtitle1 {
   color: #000;
-  font-family: "Roboto Serif", serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 700;
@@ -55,7 +55,7 @@
 
 #loginsubtitle2 {
   color: #000;
-  font-family: "Roboto Serif", serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 700;
@@ -63,19 +63,7 @@
   margin: 2rem;
 }
 
-#username {
-  width: 323px;
-  height: 64px;
-  flex-shrink: 0;
-  border-radius: 10px;
-  background: #f5f5f5;
-  box-shadow: 10px 10px 14px 0px rgba(0, 0, 0, 0.25);
-  fill: #f5f5f5;
-  filter: drop-shadow(10px 10px 14px rgba(0, 0, 0, 0.25));
-  font-size: 1.2rem;
-}
-
-#password {
+#loginusername {
   width: 326px;
   height: 64px;
   flex-shrink: 0;
@@ -87,12 +75,22 @@
   font-size: 1.2rem;
 }
 
-#button {
+#loginpassword {
+  width: 326px;
+  height: 64px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #f5f5f5;
+  box-shadow: 10px 10px 14px 0px rgba(0, 0, 0, 0.25);
+  fill: #f5f5f5;
+  filter: drop-shadow(10px 10px 14px rgba(0, 0, 0, 0.25));
+  font-size: 1.2rem;
+}
+
+#submitbutton {
   display: flex;
   width: 326px;
-  height: 62px;
-  min-width: 200px;
-  min-height: 62px;
+  height: 64px;
   margin: 2rem;
   font-size: 1.1rem;
   justify-content: center;
@@ -101,9 +99,9 @@
   flex-shrink: 0;
 }
 
-#createaccount {
+#signup {
   color: #000;
-  font-family: "Roboto Serif", serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1.2rem;
   font-style: normal;
   font-weight: 700;
@@ -114,10 +112,14 @@
 
 #passwordforgotten {
   color: #000;
-  font-family: "Roboto Serif", serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1.2rem;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
   margin: 0.5rem;
+}
+
+#entirepage input {
+  padding-left: 1rem;
 }

@@ -1,0 +1,79 @@
+#displaycolumn {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.5) /* Couleur blanche avec une opacité de 50% */,
+      rgba(255, 255, 255, 0.5)
+    ), url("../assets/images/logo.png");
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: lighten;
+  z-index: -1;
+}
+
+#signuptitle {
+  color: #000;
+  font-family: "Roboto", sans-serif;
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-transform: uppercase;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  display: inline;
+}
+
+#signupsubtitle1 {
+  color: #000;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-bottom: 2rem;
+}
+
+#email,
+#firstname,
+#surname,
+#date-of-birth,
+#password,
+#confirm-password {
+  width: 326px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #f5f5f5;
+  box-shadow: 10px 10px 14px 0px rgba(0, 0, 0, 0.25);
+  fill: #f5f5f5;
+  filter: drop-shadow(10px 10px 14px rgba(0, 0, 0, 0.25));
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+#signupbutton {
+  display: flex;
+  width: 163px;
+  height: 48px;
+  margin: 2rem;
+  font-size: 1.1rem;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  border-radius: 0.3125rem;
+  background: #000;
+  color: #f5f5f5;
+}
+
+#alreadyaccount {
+  margin-bottom: 2rem;
+}
+
+#displaycolumn input {
+  padding-left: 1rem;
+}

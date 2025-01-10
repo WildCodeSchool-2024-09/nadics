@@ -2,12 +2,16 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import LoginPage from "./components/LoginComponent";
+import DisplayUser from "./pages/DisplayUser";
+import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
+import SignupPage from "./pages/SignupPage";
 
 /* ************************************************************************* */
 
 // Import the main app component
 import App from "./App";
+import PasswordRecovery from "./pages/PasswordRecovery";
 import PostRequest from "./pages/PostRequest";
 
 // Import additional components for new routes
@@ -26,12 +30,28 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: "post_request",
-        element: <PostRequest />,
+        path: "home",
+        element: <HomePage />,
       },
       {
         path: "login",
         element: <LoginPage />,
+      },
+      {
+        path: "signup",
+        element: <SignupPage />,
+      },
+      {
+        path: "password_recovery",
+        element: <PasswordRecovery />,
+      },
+      {
+        path: "display-user/:id",
+        element: <DisplayUser />,
+      },
+      {
+        path: "post_request",
+        element: <PostRequest />,
       },
     ],
   },
