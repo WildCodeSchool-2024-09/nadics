@@ -4,12 +4,18 @@ import "./HomePage.css";
 function HomePage() {
   return (
     <div>
-      {/* <Navbar /> */}
-      <button id="button" type="submit">
-        Submit a request
-      </button>
+      <Link to="/post_request">
+        <button id="button" type="submit">
+          Submit a request
+        </button>
+      </Link>
       <main>
         <section>
+          <div>
+            <a href="/display-user/1">Click here to find our first user</a>
+            <br />
+            <a href="/display-user/2">Click here to find our second user</a>
+          </div>
           <h3>Ongoing Requests</h3>
           <p>
             Shows requests or inquiries currently in progress. Click on a card
