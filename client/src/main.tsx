@@ -9,8 +9,8 @@ import SignupPage from "./pages/SignupPage";
 
 // Import the main app component
 import App from "./App";
-import PasswordRecovery from "./pages/PasswordRecovery";
 import HomePage from "./pages/HomePage";
+import PasswordRecovery from "./pages/PasswordRecovery";
 
 // Import additional components for new routes
 // Try creating these components in the "pages" folder
