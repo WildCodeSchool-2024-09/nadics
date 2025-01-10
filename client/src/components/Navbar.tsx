@@ -21,14 +21,17 @@ function Navbar() {
       <img src={logo} alt="logo" className="logoImg" />
       <nav>
         <div className={menu_class}>
+          <a href="/home" className="menu_text">
+            Home
+          </a>
           <a href="/login" className="menu_text">
             Login
           </a>
           <a href="/post_request" className="menu_text">
             Create request
           </a>
-          <a href="Notifictaions" className="menu_text">
-            Notification
+          <a href="signup" className="menu_text">
+            Sign up
           </a>
         </div>
         <div
