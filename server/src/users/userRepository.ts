@@ -6,43 +6,43 @@ type User = {
   id: number;
   firstname: string;
   lastname: string;
+  birthday: string;
   email: string;
   password: string;
-  role_id: number;
 };
 
 class UserRepository {
   // The C of CRUD - Create operation
 
   async create(user: Omit<User, "id">) {
-    // Execute the SQL INSERT query to add a new item to the "item" table
+    // Execute the SQL INSERT query to add a new user to the "user" table
     const [result] = await databaseClient.query<Result>(
-      "insert into item (title, user_id) values (?, ?)",
-      [user.firstname, user.lastname, user.email, user.password, user.role_id],
+      "insert into user (firstname,lastname,birthday,email, password) values ( ?, ?, ?, ?, ?)",
+      [user.firstname, user.lastname, user.birthday, user.email, user.password],
     );
 
-    // Return the ID of the newly inserted item
+    // Return the ID of the newly inserted user
     return result.insertId;
   }
 
   // The Rs of CRUD - Read operations
 
   async read(id: number) {
-    // Execute the SQL SELECT query to retrieve a specific item by its ID
+    // Execute the SQL SELECT query to retrieve a specific user by users ID
     const [rows] = await databaseClient.query<Rows>(
       "select * from user where id = ?",
       [id],
     );
 
-    // Return the first row of the result, which represents the item
+    // Return the first row of the result, which represents the user
     return rows[0] as User;
   }
 
   async readAll() {
-    // Execute the SQL SELECT query to retrieve all items from the "item" table
+    // Execute the SQL SELECT query to retrieve all users from the "user" table
     const [rows] = await databaseClient.query<Rows>("select * from user ");
 
-    // Return the array of items
+    // Return the array of users
     return rows as User[];
   }
 

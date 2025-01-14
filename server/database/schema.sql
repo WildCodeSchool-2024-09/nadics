@@ -7,9 +7,10 @@ CREATE TABLE `user` (
     id INT PRIMARY KEY AUTO_INCREMENT,
     firstname VARCHAR(50) NOT NULL,
     lastname VARCHAR(50) NOT NULL,
+    birthday DATE NOT NULL, 
     email VARCHAR(50) NOT NULL UNIQUE,
     `password` VARCHAR(50) NOT NULL,
-    role_id INT NOT NULL,     
+    role_id INT DEFAULT 2,     
     CONSTRAINT fk_user_role  
 	      FOREIGN KEY (role_id) 
         REFERENCES role(id) 
