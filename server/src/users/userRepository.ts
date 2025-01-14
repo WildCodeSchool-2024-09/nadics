@@ -6,9 +6,9 @@ type User = {
   id: number;
   firstname: string;
   lastname: string;
+  birthday: string;
   email: string;
   password: string;
-  role_id: number;
 };
 
 class UserRepository {
@@ -17,8 +17,8 @@ class UserRepository {
   async create(user: Omit<User, "id">) {
     // Execute the SQL INSERT query to add a new item to the "item" table
     const [result] = await databaseClient.query<Result>(
-      "insert into item (title, user_id) values (?, ?)",
-      [user.firstname, user.lastname, user.email, user.password, user.role_id],
+      "insert into user (firstname,lastname,birthday,email, password) values ( ?, ?, ?, ?, ?)",
+      [user.firstname, user.lastname, user.birthday, user.email, user.password],
     );
 
     // Return the ID of the newly inserted item
