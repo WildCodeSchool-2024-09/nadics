@@ -41,23 +41,22 @@ CREATE TABLE comment (
         REFERENCES request(id)
 );
 
+insert into `role`(rolename)
+values 
+  ("admin"),
+  ("visiteur");
 
 insert into user(firstname, lastname, email, `password`, role_id)
 values
   ("Toto", "Tutu", "toto.tutu@mail.com", "123456", 1),
   ("Tata", "Titi", "tata.titi@mail.com", "78910", 2);
 
-insert into `role`(rolename)
-values 
-  ("admin"),
-  ("visiteur");
-
 insert into request(`date`,title, theme, details, user_id)
 values 
-  (1994.12.24,"titre1", "theme1", "bcp de details1", 1),
-  (1994.11.24,"titre2", "theme2", "bcp de details2", 2);
+  ("1994.12.24","titre1", "theme1", "bcp de details1", 1),
+  ("1994.11.24","titre2", "theme2", "bcp de details2", 2);
 
 insert into comment(details, `date`, user_id, request_id)
 values 
-  ("jesuispasdaccord", 1994.11.25, 1, 1),
-  ("jesuisdaccord", 1994.11.26, 2, 2);
+  ("jesuispasdaccord", "1994.11.25", 1, 1),
+  ("jesuisdaccord", "1994.11.26", 2, 2);
