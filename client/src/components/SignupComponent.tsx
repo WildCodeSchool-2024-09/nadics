@@ -27,10 +27,10 @@ function SignupComponent() {
       );
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.message || "Failed to create program");
+        throw new Error(errorData.message || "Failed to create user");
       }
       if (response.status === 204) {
-        alert("Program created successfully! Redirecting...");
+        alert("User created successfully! Redirecting...");
         navigate("/home");
         return;
       }

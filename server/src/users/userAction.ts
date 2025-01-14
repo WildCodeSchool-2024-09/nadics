@@ -6,10 +6,10 @@ import userRepository from "./userRepository";
 // The B of BREAD - Browse (Read All) operation
 const browse: RequestHandler = async (req, res, next) => {
   try {
-    // Fetch all items
+    // Fetch all users
     const users = await userRepository.readAll();
 
-    // Respond with the items in JSON format
+    // Respond with the users in JSON format
     res.json(users);
   } catch (err) {
     // Pass any errors to the error-handling middleware
@@ -20,12 +20,12 @@ const browse: RequestHandler = async (req, res, next) => {
 // The R of BREAD - Read operation
 const read: RequestHandler = async (req, res, next) => {
   try {
-    // Fetch a specific item based on the provided ID
+    // Fetch a specific user based on the provided ID
     const userId = Number(req.params.id);
     const user = await userRepository.read(userId);
 
-    // If the item is not found, respond with HTTP 404 (Not Found)
-    // Otherwise, respond with the item in JSON format
+    // If the user is not found, respond with HTTP 404 (Not Found)
+    // Otherwise, respond with the user in JSON format
     if (user == null) {
       res.sendStatus(404);
     } else {
@@ -51,10 +51,10 @@ const add: RequestHandler = async (req, res, next) => {
     // Create the user
     const insertId = await userRepository.create(newUser);
 
-    // Respond with HTTP 201 (Created) and the ID of the newly inserted item
     if (!insertId) {
       throw new Error("Failed to create program.");
     }
+    // Respond with HTTP 201 (Created) and the ID of the newly inserted user
     res.status(201).json({ insertId });
   } catch (err) {
     // Pass any errors to the error-handling middleware

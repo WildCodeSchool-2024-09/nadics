@@ -6,7 +6,7 @@ const router = express.Router();
 // Define Your API Routes Here
 /* ************************************************************************* */
 
-// Define item-related routes
+// Define user-related routes
 import requestActions from "./modules/request/requestActions";
 
 import userActions from "./users/userAction";
