@@ -1,43 +1,39 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-// Définir un type pour les propriétés du composant RequestCard
-interface RequestCardProps {
-  requests: Request[]; // Attente d'un tableau d'objets Request
-}
-
-// Définir un type pour les données de chaque demande
+// Définir un type pour les données de chaque demande date`,title, theme, details, user_id
 interface Request {
   id: number;
   title: string;
-  tags: string[];
-  user: string;
+  theme: string;
+  date: string;
   details?: string;
-  imgSrc?: string;
 }
 
-function RequestCard({ requests }: RequestCardProps): JSX.Element {
-  const request = requests[0]; // Utilisation du premier élément du tableau
+function RequestCard(): JSX.Element {
+  const [requests, setRequests] = useState<Request[]>([]); // Utilisation du premier élément du tableau
+
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_URL}/api/request`)
+      .then((response) => response.json())
+      .then((data) => setRequests(data));
+  }, []);
 
   return (
-    <div className="card">
-      <h2>{request.title}</h2>
-
-      <div className="tags">
-        {request.tags.map((tag, index) => (
-          <span key={`${request.id}-${index}`} className={`tag${index + 1}`}>
-            {tag}
-          </span>
-        ))}
-      </div>
-      {request.details && <p>{request.details}</p>}
-      <div className="card-footer">
-        {request.imgSrc && (
-          <img src={request.imgSrc} alt="" className="profile-img" />
-        )}
-        <p className="name">{request.user}</p>
-      </div>
-      <Link to={`/request-details/${request.id}`}>Détails</Link>
-    </div>
+    <>
+      {requests.map((request) => (
+        <Link to={`/request-details/${request.id}`} key={request.id}>
+          <div className="card" key={request.id}>
+            <h2>{request.title}</h2>
+            {request.details && <p>{request.details}</p>}
+            <div className="card-footer">
+              <p className="name">{request.theme}</p>
+              <p className="name">{request.date}</p>
+            </div>
+          </div>
+        </Link>
+      ))}
+    </>
   );
 }
 
