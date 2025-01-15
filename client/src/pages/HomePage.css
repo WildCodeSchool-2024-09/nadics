@@ -150,6 +150,27 @@ h2 {
   width: 100%;
 }
 
+/* Conteneur de l'image de profil */
+.profile-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #ddd; /* Bordure autour de l'image */
+  border-radius: 50%; /* Bordure ronde pour que l'image soit circulaire */
+  width: 50px; /* Taille de l'image */
+  height: 50px;
+  margin-bottom: 0.5rem; /* Espacement entre l'image et le nom */
+  overflow: hidden; /* Couper l'image qui dépasse */
+}
+
+/* Image de profil */
+.profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* S'assurer que l'image remplit bien le cadre */
+  border-radius: 50%; /* Bordure ronde */
+}
+
 .card-footer img {
   width: 40px;
   height: 40px;

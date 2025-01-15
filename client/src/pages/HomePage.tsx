@@ -1,134 +1,84 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import RequestCard from "../components/RequestCard";
 import "./HomePage.css";
 
-function HomePage() {
+interface Request {
+  id: number;
+  title: string;
+  tags: string[];
+  user: string;
+  details?: string;
+  imgSrc?: string;
+}
+
+const simulatedOngoingRequests: Request[] = [
+  {
+    id: 0,
+    title: "Problème de serveur",
+    tags: ["Serveur", "Urgent", "Problème"],
+    user: "Cédric",
+    imgSrc: "/images/cedric.jpg",
+  },
+  {
+    id: 1,
+    title: "Problème réseau",
+    tags: ["Réseau", "Urgent", "Problème"],
+    user: "Amélie",
+    imgSrc: "/images/amelie.jpg",
+  },
+  {
+    id: 2,
+    title: "Problème de sécurité",
+    tags: ["Sécurité", "Urgent"],
+    user: "Xavier",
+    imgSrc: "/images/xavier.jpg",
+  },
+  {
+    id: 3,
+    title: "Problème d'impression",
+    tags: ["Impression", "Matériel", "En attente"],
+    user: "Isabelle",
+    imgSrc: "/images/isabelle.jpg",
+  },
+];
+
+function HomePage(): JSX.Element {
+  const navigate = useNavigate();
+  const [ongoingRequests, setOngoingRequests] = useState<Request[]>([]);
+
+  useEffect(() => {
+    setOngoingRequests(simulatedOngoingRequests);
+  }, []);
+
+  const handleCardClick = (id: number): void => {
+    navigate(`/request-details/${id}`); // Redirige vers la page de détails
+  };
+
   return (
     <div>
-      {/* <Navbar /> */}
-      <button id="button" type="submit">
+      <button id="button" type="button">
         Submit a request
       </button>
       <main>
-        <section>
+        <section id="ongoing-requests">
           <h3>Ongoing Requests</h3>
-          <p>
-            Shows requests or inquiries currently in progress. Click on a card
-            below to view details or updates.
-          </p>
-          <div id="ongoing-requests-container" className="cards-container">
-            <div className="card">
-              <h2>Request #1</h2>
-              <div className="tags">
-                <span className="tag2">Urgent</span>
-                <span className="tag2">High Priority</span>
-              </div>
-              <p>Details about ongoing request 1...</p>
-              <div className="card-footer">
-                <img src="path-to-image1.jpg" alt="" className="profile-img" />
-                <p className="name">Cedric</p>
-              </div>
-              <Link to="/ongoing-request/1">Détails</Link>
-            </div>
-            <div className="card">
-              <h2>Request #2</h2>
-              <div className="tags">
-                <span className="tag3">Low Priority</span>
-                <span className="tag4">Pending</span>
-              </div>
-              <p>Details about ongoing request 2...</p>
-              <div className="card-footer">
-                <img src="path-to-image2.jpg" alt="" className="profile-img" />
-                <p className="name">Nadir</p>
-              </div>
-              <Link to="/ongoing-request/2">Détails</Link>
-            </div>
-            <div className="card">
-              <h2>Request #3</h2>
-              <div className="tags">
-                <span className="tag1">Medium Priority</span>
-                <span className="tag5">In Progress</span>
-              </div>
-              <p>Details about ongoing request 3...</p>
-              <div className="card-footer">
-                <img src="path-to-image3.jpg" alt="" className="profile-img" />
-                <p className="name">Darkhansukh</p>
-              </div>
-              <Link to="/ongoing-request/3">Détails</Link>
-            </div>
-            <div className="card">
-              <h2>Request #4</h2>
-              <div className="tags">
-                <span className="tag2">Urgent</span>
-                <span className="tag2">High Priority</span>
-              </div>
-              <p>Details about ongoing request 4...</p>
-              <div className="card-footer">
-                <img src="path-to-image4.jpg" alt="" className="profile-img" />
-                <p className="name">Alex</p>
-              </div>
-              <Link to="/ongoing-request/4">Détails</Link>
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>Completed Requests</h3>
-          <p>
-            Shows requests that have been finished and resolved. Click on a card
-            below to view the details.
-          </p>
-          <div id="completed-requests-container" className="cards-container">
-            <div className="card">
-              <h2>Request #1</h2>
-              <div className="tags">
-                <span className="tag1">Completed</span>
-                <span className="tag2">Resolved</span>
-              </div>
-              <p>Details about completed request 1...</p>
-              <div className="card-footer">
-                <img src="path-to-image5.jpg" alt="" className="profile-img" />
-                <p className="name">Simeon</p>
-              </div>
-              <Link to="/completed-request/1">Détails</Link>
-            </div>
-            <div className="card">
-              <h2>Request #2</h2>
-              <div className="tags">
-                <span className="tag1">Resolved</span>
-                <span className="tag2">Closed</span>
-              </div>
-              <p>Details about completed request 2...</p>
-              <div className="card-footer">
-                <img src="path-to-image6.jpg" alt="" className="profile-img" />
-                <p className="name">Matthieu</p>
-              </div>
-              <Link to="/completed-request/2">Détails</Link>
-            </div>
-            <div className="card">
-              <h2>Request #3</h2>
-              <div className="tags">
-                <span className="tag1">Completed</span>
-                <span className="tag2">Reviewed</span>
-              </div>
-              <p>Details about completed request 3...</p>
-              <div className="card-footer">
-                <img src="path-to-image7.jpg" alt="" className="profile-img" />
-                <p className="name">David</p>
-              </div>
-              <Link to="/completed-request/3">Détails</Link>
-            </div>
-            <div className="card">
-              <h2>Request #4</h2>
-              <div className="tags">
-                <span className="tag1">Resolved</span>
-                <span className="tag2">Closed</span>
-              </div>
-              <p>Details about completed request 4...</p>
-              <div className="card-footer">
-                <img src="path-to-image8.jpg" alt="" className="profile-img" />
-                <p className="name">Emily</p>
-              </div>
-              <Link to="/completed-request/4">Détails</Link>
-            </div>
+          <div className="cards-container">
+            {ongoingRequests.map((request) => (
+              <button
+                key={request.id}
+                onClick={() => handleCardClick(request.id)}
+                style={{
+                  cursor: "pointer",
+                  background: "none",
+                  border: "none",
+                  padding: 0,
+                }}
+                type="button"
+              >
+                <RequestCard requests={[request]} />
+              </button>
+            ))}
           </div>
         </section>
       </main>
