@@ -19,6 +19,16 @@ class RequestRepository {
     return rows as Request[];
   }
 
+  //Search a request via id
+  async read(id: number) {
+    const [rows] = await databaseClient.query<Rows>(
+      "select * from request where id = ?",
+      [id],
+    );
+
+    return rows[0] as Request;
+  }
+
   async update(request: Request) {
     // Execute the SQL UPDATE query to update an existing category in the "category" table
     const [result] = await databaseClient.query<Result>(

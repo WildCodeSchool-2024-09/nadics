@@ -15,6 +15,7 @@ router.get("/api/users", userActions.browse);
 router.get("/api/users/:id", userActions.read);
 
 router.get("/api/request", requestActions.browse);
+router.get("/api/request/:id", requestActions.read);
 router.put("/api/request/:id", requestActions.edit);
 
 /* ************************************************************************* */
