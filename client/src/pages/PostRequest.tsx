@@ -2,22 +2,58 @@ import styled from "styled-components";
 import backgroundImage from "../assets/images/logo.png";
 
 export default function PostRequest() {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+
+    const requestData = {
+      title: formData.get("title") as string,
+      theme: formData.get("theme") as string,
+      details: formData.get("details") as string,
+    };
+
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/request`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestData),
+        },
+      );
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "request updated cancel");
+      }
+      if (response.status === 204) {
+        alert("Request submitted! Redirecting...");
+        return;
+      }
+    } catch (error) {
+      console.error("Error creating request");
+      alert("An error please try again");
+    }
+  };
+
   return (
-    <PostRequestStyled className="background">
-      <h1>Request creation</h1>
-      <form action="submit">
+    <>
+      <PostRequestStyled className="background" onSubmit={handleSubmit}>
+        <h1>Request creation</h1>
         <div className="block">
           <label htmlFor="">Request title</label>
-          <input type="text" placeholder="title" />
+          <input type="text" name="title" placeholder="title" />
         </div>
         <hr />
         <div className="block">
           <label htmlFor="">Request category</label>
-          <input type="text" placeholder="category" />
+          <input type="text" name="theme" placeholder="category" />
         </div>
         <div className="block">
           <label htmlFor="">Category detail</label>
-          <textarea placeholder="Write your decision here ..." />
+          <textarea name="details" placeholder="Write your decision here ..." />
         </div>
         <p>
           You may add as many categories as you want. Click the Add button
@@ -26,11 +62,11 @@ export default function PostRequest() {
         <button type="button" className="roundButton">
           +
         </button>
-        <button type="button" className="buttonSubmit">
+        <button type="submit" className="buttonSubmit">
           Submit your request
         </button>
-      </form>
-    </PostRequestStyled>
+      </PostRequestStyled>
+    </>
   );
 }
 
