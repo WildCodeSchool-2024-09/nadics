@@ -2,18 +2,18 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import DisplayUser from "./pages/DisplayUser";
-import HomePage from "./pages/HomePage";
-import LoginPage from "./pages/LoginPage";
-import SignupPage from "./pages/SignupPage";
 
 /* ************************************************************************* */
 
 // Import the main app component
 import App from "./App";
+import DisplayUser from "./pages/DisplayUser";
+import HomePage from "./pages/HomePage";
 import LandingPage from "./pages/LandingPage";
+import LoginPage from "./pages/LoginPage";
 import PasswordRecovery from "./pages/PasswordRecovery";
 import PostRequest from "./pages/PostRequest";
+import SignupPage from "./pages/SignupPage";
 
 // Import additional components for new routes
 // Try creating these components in the "pages" folder
