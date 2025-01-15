@@ -3,14 +3,14 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import DisplayUser from "./pages/DisplayUser";
-import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 
 /* ************************************************************************* */
 
-// Import the main app component
 import App from "./App";
+// Import the main app component
+import HomePage from "./pages/HomePage";
 import PasswordRecovery from "./pages/PasswordRecovery";
 import PostRequest from "./pages/PostRequest";
 
