@@ -2,17 +2,18 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import DisplayUser from "./pages/DisplayUser";
-import LoginPage from "./pages/LoginPage";
-import SignupPage from "./pages/SignupPage";
 
 /* ************************************************************************* */
 
-import App from "./App";
 // Import the main app component
+import App from "./App";
+import DisplayUser from "./pages/DisplayUser";
 import HomePage from "./pages/HomePage";
+import LandingPage from "./pages/LandingPage";
+import LoginPage from "./pages/LoginPage";
 import PasswordRecovery from "./pages/PasswordRecovery";
 import PostRequest from "./pages/PostRequest";
+import SignupPage from "./pages/SignupPage";
 
 // Import additional components for new routes
 // Try creating these components in the "pages" folder
@@ -26,7 +27,11 @@ import PostRequest from "./pages/PostRequest";
 // You can add more routes as you build out your app!
 const router = createBrowserRouter([
   {
-    path: "/", // The root path
+    path: "/",
+    element: <LandingPage />,
+  },
+  {
+    path: "/",
     element: <App />,
     children: [
       {
@@ -57,6 +62,47 @@ const router = createBrowserRouter([
   },
   // Try adding a new route! For example, "/about" with an About component
 ]);
+
+/* ************************************************************************* */
+// Original version for backup :
+
+// const router = createBrowserRouter([
+//   {
+//     path: "/", // The root path
+//     element: <App />,
+//     children: [
+//       {
+//         path: "home",
+//         element: <HomePage />,
+//       },
+//       {
+//         path: "login",
+//         element: <LoginPage />,
+//       },
+//       {
+//         path: "signup",
+//         element: <SignupPage />,
+//       },
+//       {
+//         path: "password_recovery",
+//         element: <PasswordRecovery />,
+//       },
+//       {
+//         path: "display-user/:id",
+//         element: <DisplayUser />,
+//       },
+//       {
+//         path: "post_request",
+//         element: <PostRequest />,
+//       },
+//     ],
+//   },
+//   {
+//     path: "landingPage",
+//     element: <LandingPageComponent />,
+//   },
+//   // Try adding a new route! For example, "/about" with an About component
+// ]);
 
 /* ************************************************************************* */
 
