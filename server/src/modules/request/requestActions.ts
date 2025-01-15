@@ -1,4 +1,4 @@
-import type { RequestHandler } from "express";
+import { type RequestHandler, request } from "express";
 import requestRepository from "./requestRepository";
 
 const browse: RequestHandler = async (req, res, next) => {
@@ -6,6 +6,21 @@ const browse: RequestHandler = async (req, res, next) => {
     const request = await requestRepository.readAll();
     res.json(request);
   } catch (err) {
+    next(err);
+  }
+};
+
+const read: RequestHandler = async (req, res, next) => {
+  try {
+    const requestId = Number(req.params.id);
+    const request = await requestRepository.read(requestId);
+    if (request == null) {
+      res.sendStatus(404);
+    } else {
+      res.json(request);
+    }
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
     next(err);
   }
 };
@@ -36,4 +51,4 @@ const edit: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, edit };
+export default { browse, read, edit };
