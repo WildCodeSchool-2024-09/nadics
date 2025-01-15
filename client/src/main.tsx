@@ -6,6 +6,7 @@ import DisplayUser from "./pages/DisplayUser";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
+import Test from "./pages/TestEditPage";
 
 /* ************************************************************************* */
 
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: "post_request",
         element: <PostRequest />,
+      },
+      {
+        path: "test_edit/:id",
+        element: <Test />,
       },
     ],
   },
