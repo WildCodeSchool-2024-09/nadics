@@ -48,7 +48,6 @@ const router = createBrowserRouter([
         path: "display-user/:id",
         element: <DisplayUser />,
       },
-      
     ],
   },
   // Try adding a new route! For example, "/about" with an About component
