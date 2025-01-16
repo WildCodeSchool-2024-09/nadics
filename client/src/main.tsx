@@ -14,6 +14,7 @@ import LoginPage from "./pages/LoginPage";
 import PasswordRecovery from "./pages/PasswordRecovery";
 import PostRequest from "./pages/PostRequest";
 import SignupPage from "./pages/SignupPage";
+import ProfilPage from "./pages/PageProfil";
 
 // Import additional components for new routes
 // Try creating these components in the "pages" folder
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
       {
         path: "post_request",
         element: <PostRequest />,
+      },
+      {
+        path: "profil",
+        element: <ProfilPage />,
       },
     ],
   },

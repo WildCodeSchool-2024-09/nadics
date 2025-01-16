@@ -1,0 +1,67 @@
+#page_container {
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.5) /* Couleur blanche avec une opacité de 50% */,
+      rgba(255, 255, 255, 0.5)
+    ), url("../assets/images/logo.png");
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: lighten;
+  z-index: -1;
+  height: 80vh;
+}
+#mainProfile {
+  width: 100%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#avatar_icon_container {
+  display: flex;
+  flex-direction: column;
+}
+#icon_container {
+  text-align: right;
+  margin-bottom: -1.5rem;
+  margin-left: -1.5rem;
+}
+#avatar {
+  height: 10rem;
+  width: 10rem;
+  border-radius: 6em;
+}
+#edit_icon {
+  height: 2rem;
+  width: 2rem;
+}
+#champ_container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 5rem;
+}
+.text_container {
+  width: 20rem;
+  height: 4rem;
+  border-radius: 0.6rem;
+  background: #f5f5f5;
+  box-shadow: 10px 10px 14px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.edit_icon {
+  width: 2rem;
+  height: 2rem;
+}
+.button_icon {
+  border: none;
+  background-color: #f5f5f5;
+}
+#lien_container {
+  margin-top: 3rem;
+}
+#lien_change {
+  font-size: larger;
+}
