@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import DeleteRequest from "./DeleteRequest";
 
 // Définir un type pour les données de chaque demande date`,title, theme, details, user_id
 interface Request {
@@ -22,16 +23,19 @@ function RequestCard(): JSX.Element {
   return (
     <>
       {requests.map((request) => (
-        <Link to={`/request-details/${request.id}`} key={request.id}>
-          <div className="card" key={request.id}>
-            <h2>{request.title}</h2>
-            {request.details && <p>{request.details}</p>}
-            <div className="card-footer">
-              <p className="name">{request.theme}</p>
-              <p className="name">{request.date}</p>
+        <div key={request.id}>
+          <Link to={`/request-details/${request.id}`} key={request.id}>
+            <div className="card" key={request.id}>
+              <h2>{request.title}</h2>
+              {request.details && <p>{request.details}</p>}
+              <div className="card-footer">
+                <p className="name">{request.theme}</p>
+                <p className="name">{request.date}</p>
+              </div>
             </div>
-          </div>
-        </Link>
+          </Link>
+          <DeleteRequest id={request.id} />
+        </div>
       ))}
     </>
   );

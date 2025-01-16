@@ -41,6 +41,7 @@ CREATE TABLE comment (
     CONSTRAINT fk_comment_request
         FOREIGN KEY (request_id)
         REFERENCES request(id)
+        ON DELETE CASCADE
 );
 
 insert into `role`(rolename)
