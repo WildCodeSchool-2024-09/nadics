@@ -52,5 +52,13 @@ class RequestRepository {
     // Return how many rows were affected
     return result.affectedRows;
   }
+
+  async delete(id: number) {
+    const [result] = await databaseClient.query<Result>(
+      "delete from request where id=? ",
+      [id],
+    );
+    return result.affectedRows;
+  }
 }
 export default new RequestRepository();
