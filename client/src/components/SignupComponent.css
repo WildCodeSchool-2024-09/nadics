@@ -14,6 +14,12 @@
   z-index: -1;
 }
 
+.signupform {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 #signuptitle {
   color: #000;
   font-family: "Roboto", sans-serif;
