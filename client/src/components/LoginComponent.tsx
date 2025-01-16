@@ -46,7 +46,7 @@ function LoginComponent() {
         </section>
       </form>
       <section className="display">
-        <Link to="/passwordforgotten" id="passwordforgotten">
+        <Link to="/password_recovery" id="passwordforgotten">
           Password forgotten ?
         </Link>
       </section>

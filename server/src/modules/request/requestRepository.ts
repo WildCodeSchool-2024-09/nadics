@@ -45,8 +45,8 @@ class RequestRepository {
   async update(request: Request) {
     // Execute the SQL UPDATE query to update an existing category in the "category" table
     const [result] = await databaseClient.query<Result>(
-      "update request set title = ?, theme = ?, details = ?, where id = ?",
-      [request.title, request.theme, request.details, request.id],
+      "update request set title = ?, theme = ? where id = ?",
+      [request.title, request.theme, request.id],
     );
 
     // Return how many rows were affected
