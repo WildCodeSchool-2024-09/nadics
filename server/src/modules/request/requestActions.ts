@@ -51,4 +51,28 @@ const edit: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, read, edit };
+// The A of BREAD - Add (Create) operation
+const add: RequestHandler = async (req, res, next) => {
+  try {
+    const newRequest = {
+      date: req.body.date,
+      title: req.body.title,
+      theme: req.body.theme,
+      details: req.body.details,
+    };
+
+    // Create the user
+    const insertId = await requestRepository.create(newRequest);
+
+    if (!insertId) {
+      throw new Error("Failed to create program.");
+    }
+    // Respond with HTTP 201 (Created) and the ID of the newly inserted user
+    res.status(201).json({ insertId });
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
+
+export default { browse, read, edit, add };

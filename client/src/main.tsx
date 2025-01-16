@@ -11,6 +11,7 @@ import DisplayUser from "./pages/DisplayUser";
 import HomePage from "./pages/HomePage";
 import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/LoginPage";
+import ProfilPage from "./pages/PageProfil";
 import PasswordRecovery from "./pages/PasswordRecovery";
 import PostRequest from "./pages/PostRequest";
 import RequestEdit from "./pages/RequestEdit";
@@ -29,6 +30,7 @@ import SignupPage from "./pages/SignupPage";
 const router = createBrowserRouter([
   {
     path: "/",
+
     element: <LandingPage />,
   },
   {
@@ -58,6 +60,10 @@ const router = createBrowserRouter([
       {
         path: "post_request",
         element: <PostRequest />,
+      },
+      {
+        path: "profil",
+        element: <ProfilPage />,
       },
       {
         path: "test_edit/:id",

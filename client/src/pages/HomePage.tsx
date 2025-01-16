@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import RequestCard from "../components/RequestCard";
 import "./HomePage.css";
 
@@ -9,10 +10,12 @@ function HomePage() {
 
   return (
     <div>
-      <button id="button" type="button">
-        Submit a request
-      </button>
-      <main>
+      <Link to={"/post_request"}>
+        <button id="button" type="button">
+          Submit a request
+        </button>
+      </Link>
+      <main id="mainHome">
         <section id="ongoing-requests">
           <div>
             <a href="/display-user/1">Click here to find our first user</a>
