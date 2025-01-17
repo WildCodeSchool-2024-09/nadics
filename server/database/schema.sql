@@ -51,7 +51,7 @@ values
 
 insert into user(firstname, lastname,birthday, email, `password`, role_id)
 values
-  ("Toto", "Tutu", "2000.01.01", "toto.tutu@mail.com", "123456", 1),
+  ("Toto", "Tutu", "1994-02-05" , "toto.tutu@mail.com", "123456", 1),
   ("Tata", "Titi", "2000.01.02","tata.titi@mail.com", "78910", 2);
 
 insert into request(`date`,title, theme, details, user_id)
