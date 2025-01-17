@@ -13,7 +13,7 @@ function LandingPageComponent() {
           <Link to="/login" id="login-button">
             Login
           </Link>
-          <Link to="/signup" id="signupButtonMobile">
+          <Link to="/signup">
             <button id="signupButtonMobile" type="submit">
               Sign Up
             </button>
@@ -30,7 +30,7 @@ function LandingPageComponent() {
           Start impacting your community and share your opinion
         </h2>
         <img src={requestcard} alt="requestcard" id="requestcardImg" />
-        <Link to="/signup" id="signupNowButtonMobile">
+        <Link to="/signup">
           <button id="signupNowButtonMobile" type="submit">
             Sign Up Now !
           </button>
