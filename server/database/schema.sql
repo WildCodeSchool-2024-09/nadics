@@ -18,14 +18,15 @@ CREATE TABLE `user` (
 
 CREATE TABLE request (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    `date` DATE,
+   `date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     title VARCHAR(50) NOT NULL,
     theme VARCHAR(50) NOT NULL,
     details TEXT NOT NULL,
-    user_id INT NOT NULL,
+    user_id INT NOT NULL DEFAULT 1,
     CONSTRAINT fk_request_user
         FOREIGN KEY (user_id)
         REFERENCES `user`(id)
+        
 );
 
 CREATE TABLE comment (
@@ -40,6 +41,7 @@ CREATE TABLE comment (
     CONSTRAINT fk_comment_request
         FOREIGN KEY (request_id)
         REFERENCES request(id)
+        ON DELETE CASCADE
 );
 
 insert into `role`(rolename)

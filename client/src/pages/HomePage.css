@@ -6,7 +6,7 @@
 }
 
 /* Conteneur principal */
-main {
+#mainHome {
   background-color: #f2f2f2;
   width: 100%;
   padding: 2rem;
@@ -17,7 +17,7 @@ main {
 }
 
 /* Section */
-section {
+#ongoing-requests {
   width: 100%;
   margin-bottom: 3rem;
   display: flex;

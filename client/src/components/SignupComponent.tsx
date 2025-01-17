@@ -45,7 +45,7 @@ function SignupComponent() {
       <section id="displaycolumn">
         <h1 id="signuptitle"> SMART CHOICE HUB </h1>
         <h2 id="signupsubtitle1"> Create your account</h2>
-        <form onSubmit={handleSubmit}>
+        <form className="signupform" onSubmit={handleSubmit}>
           <label htmlFor="email">
             <input
               type="email"

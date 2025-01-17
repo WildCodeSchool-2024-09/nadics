@@ -20,7 +20,6 @@ class UserRepository {
       "insert into user (firstname,lastname,birthday,email, password) values ( ?, ?, ?, ?, ?)",
       [user.firstname, user.lastname, user.birthday, user.email, user.password],
     );
-
     // Return the ID of the newly inserted user
     return result.insertId;
   }
