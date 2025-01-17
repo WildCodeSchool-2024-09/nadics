@@ -40,9 +40,11 @@ function LoginComponent() {
           </label>
         </section>
         <section className="display">
-          <button id="submitbutton" type="submit">
-            Submit
-          </button>
+          <Link to="/home">
+            <button id="submitbutton" type="submit">
+              Submit
+            </button>
+          </Link>
         </section>
       </form>
       <section className="display">
