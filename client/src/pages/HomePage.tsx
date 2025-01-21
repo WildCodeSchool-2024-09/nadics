@@ -1,12 +1,13 @@
-import { Link } from "react-router-dom";
-import RequestCard from "../components/RequestCard";
+import { Link, useParams } from "react-router-dom";
 import "./HomePage.css";
+import RequestCard from "../components/RequestCard";
 
 function HomePage() {
   // const navigate = useNavigate();
   // const handleCardClick = (id: number): void => {
   //   navigate(`/request-details/${id}`); // Redirige vers la page de détails
   // };
+  const { id } = useParams();
 
   return (
     <div>
@@ -24,7 +25,9 @@ function HomePage() {
           </div>
           <h3>Ongoing Requests</h3>
           <div className="cards-container">
-            <RequestCard />
+            <Link to={`/request-details/${id}`}>
+              <RequestCard />
+            </Link>
           </div>
         </section>
       </main>

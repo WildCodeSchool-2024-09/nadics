@@ -1,0 +1,294 @@
+/* Main container */
+.request-details-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 15px;
+  text-align: center;
+  max-width: 1000px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Container for the two-column row (details on the left and table on the right) */
+.details-and-table {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 15px;
+  align-items: flex-start;
+}
+
+/* Style for the details element (on the left) */
+.details-container {
+  flex: 1;
+  margin-right: 20px;
+  padding: 8px;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  font-size: 0.95rem;
+  max-width: 48%;
+  overflow: auto;
+}
+
+/* Container for the table */
+.table-container {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+/* Container for the "Give my opinion" button */
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  position: relative;
+}
+
+/* Style for the button */
+.button-opinion {
+  background-color: #1e90ff;
+  color: white;
+  font-size: 1rem;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-opinion:hover {
+  background-color: #4682b4;
+}
+
+.button-opinion:focus {
+  outline: none;
+} /* Align the content of the "Event" column to the right */
+th:nth-child(2),
+td:nth-child(2) {
+  text-align: right; /* Align text to the right in the "Event" column */
+  padding-left: 40px; /* Add extra spacing for "Event" */
+}
+
+/* Additional spacing for the "Event" column */
+th:nth-child(2),
+td:nth-child(2) {
+  padding-left: 40px; /* Add left padding for the "Event" column */
+}
+
+/* Customization for mobile and tablet versions */
+@media (max-width: 1024px) {
+  .details-container {
+    max-width: 100%; /* Use the full width */
+    margin-right: 0; /* Remove the right margin */
+  }
+
+  .details-container summary {
+    text-align: center; /* Center titles on mobile */
+  }
+
+  .details-container summary::before {
+    left: -20px; /* Place the bullet to the left of the text on mobile */
+  }
+
+  .impact-sections {
+    padding-left: 0; /* No left padding on mobile */
+    text-align: center; /* Center Impacting Person and Impacted Person sections */
+  }
+
+  .avatar-container {
+    padding-right: 0; /* Remove the right padding on mobile */
+  }
+
+  /* The button will be between the descriptions and the table on mobile version */
+  .button-container {
+    position: absolute; /* The button will be positioned above the table */
+    top: calc(50% + 10px); /* Calculate the position to place the button between sections */
+    z-index: 10; /* Ensure the button is above the table */
+    width: 100%; /* The button should take the full width of the container */
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  .impact-sections {
+    margin-top: 10px; /* Reduce the space above the sections */
+    margin-bottom: 10px; /* Reduce the space below the sections */
+  }
+
+  .impact-person {
+    margin-bottom: 5px; /* Reduce space between the two sections */
+  }
+}
+
+.table-container {
+  display: flex;
+  justify-content: center; /* Center the table horizontally */
+  width: 100%; /* Ensure the container takes the full available width */
+  align-items: center; /* Center the table vertically */
+  margin-top: -20px; /* Add some space above if necessary */
+  margin-left: 0; /* Remove any margin to ensure the table is perfectly centered */
+  margin-bottom: 0; /* Remove any margin to ensure the table is perfectly centered */
+  margin-right: 0; /* Remove any margin to ensure the table is perfectly centered */
+  padding: 0 10px; /* Add a little padding on the left and right to prevent the table from touching the edges */
+}
+
+table {
+  width: 90%; /* Set a reduced width for the table to keep it well-centered */
+  max-width: 95%; /* Limit the width to 95% of the screen for a little margin */
+  table-layout: fixed; /* Ensure cells have a uniform width */
+  height: auto; /* Reduce the table height */
+}
+
+th,
+td {
+  padding: 6px 10px; /* Improved spacing for mobile */
+  text-align: center; /* Center text in cells */
+}
+
+/* Increased spacing between the "Date" and "Event" columns */
+th {
+  padding-left: 30px; /* Increase the left padding to 30px */
+  padding-right: 30px; /* Increase the right padding to 30px */
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+  padding-left: 25px; /* Adjust for mobile-tablet */
+  text-align: right; /* Right alignment for "Event" */
+}
+
+tr {
+  height: 30px; /* Reduce the row height of the table */
+}
+
+/* For desktop screens */
+@media (min-width: 1025px) {
+  /* The button should be located above the table (in desktop version) */
+  .button-container {
+    position: relative;
+    margin-top: 10px; /* Spacing above the button */
+    justify-content: center; /* Centered for desktop */
+  }
+
+  .impact-sections {
+    margin-top: 20px; /* Space above the Impacting and Impacted sections */
+  }
+
+  .impact-person {
+    margin-bottom: 20px; /* Space below each section */
+  }
+  th {
+    padding-left: 60px;
+    padding-right: 60px; /* Light column spacing */
+  }
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+  padding-left: 40px; /* Extra space for "Event" on desktop */
+  text-align: right; /* Right alignment for "Event" */
+}
+
+/* For mobile and tablet screens (max-width: 1024px) */
+@media (max-width: 1024px) {
+  /* Button container */
+  .button-container {
+    margin-top: -130px; /* Reduce space above the button to move it up */
+    display: flex;
+    justify-content: center; /* Center the button */
+    z-index: 10; /* Button must be above the table */
+  }
+
+  /* Button style */
+  .button-opinion {
+    background-color: #1e90ff;
+    color: white;
+    font-size: 1rem;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .button-opinion:hover {
+    background-color: #4682b4;
+  }
+
+  .button-opinion:focus {
+    outline: none;
+  }
+
+  /* Move the table down if necessary */
+  .table-container {
+    margin-top: 100px; /* Enough space to avoid overlapping the button */
+  }
+
+  /* Rearrange the detail and table sections */
+  .details-and-table {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  /* Details (on the left) */
+  .details-container {
+    max-width: 100%;
+    margin-right: 0;
+    padding: 10px;
+    text-align: left;
+    z-index: 5;
+  }
+
+  /* Adjust titles in details to make them centered */
+  .details-container summary {
+    display: flex;
+    justify-content: center; /* Center titles */
+    align-items: center;
+    position: relative;
+  }
+
+  /* Bullet (arrow) in the summaries */
+  .details-container summary::before {
+    content: "▶";
+    position: absolute;
+    left: -20px; /* Place the arrow to the left of the title */
+    font-size: 1.5rem;
+  }
+
+  /* Impacting and Impacted Person section */
+  .impact-sections {
+    flex-direction: column; /* Stack the sections */
+    align-items: center;
+    padding-left: 0;
+    margin-top: 15px;
+  }
+
+  .impact-person {
+    margin-bottom: 10px; /* Reduce space between sections */
+    width: 100%;
+    text-align: center;
+  }
+
+  .avatar-container {
+    display: flex;
+    justify-content: center; /* Center avatars */
+    width: 100%; /* Take the full width */
+  }
+
+  .avatar {
+    width: 60px; /* Smaller avatar size on mobile */
+    height: 60px;
+    margin-bottom: 10px; /* Space below the avatar */
+  }
+  th {
+    padding-left: 45px;
+    padding-right: 45px; /* Less padding on mobile/tablet for readability */
+  }
+}

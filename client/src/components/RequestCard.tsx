@@ -15,7 +15,7 @@ function RequestCard(): JSX.Element {
   const [requests, setRequests] = useState<Request[]>([]); // Utilisation du premier élément du tableau
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/request`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/request/`)
       .then((response) => response.json())
       .then((data) => setRequests(data));
   }, []);

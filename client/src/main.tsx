@@ -14,6 +14,7 @@ import LoginPage from "./pages/LoginPage";
 import ProfilPage from "./pages/PageProfil";
 import PasswordRecovery from "./pages/PasswordRecovery";
 import PostRequest from "./pages/PostRequest";
+import RequestDetails from "./pages/RequestDetails";
 import RequestEdit from "./pages/RequestEdit";
 import SignupPage from "./pages/SignupPage";
 import UserEdit from "./pages/UserEdit";
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
       {
         path: "password_recovery",
         element: <PasswordRecovery />,
+      },
+      {
+        path: "request-details/:id", // Utilisez cette route pour afficher les détails de la demande
+        element: <RequestDetails />,
       },
       {
         path: "users/:id",
