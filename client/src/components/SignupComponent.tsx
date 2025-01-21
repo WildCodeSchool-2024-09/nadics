@@ -1,9 +1,43 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./SignupComponent.css";
 
 function SignupComponent() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const navigate = useNavigate();
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+
+    const userData = {
+      firstname: formData.get("firstname") as string,
+      lastname: formData.get("lastname") as string,
+      birthday: formData.get("birthday") as string,
+      email: formData.get("email") as string,
+      password: formData.get("password") as string,
+    };
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/users`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userData),
+        },
+      );
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Failed to create user");
+      }
+      if (response.status === 204) {
+        alert("User created successfully! Redirecting...");
+        navigate("/home");
+        return;
+      }
+    } catch (error) {
+      console.error("Error creating user");
+      alert("An error please try again");
+    }
   };
 
   return (
@@ -11,12 +45,13 @@ function SignupComponent() {
       <section id="displaycolumn">
         <h1 id="signuptitle"> SMART CHOICE HUB </h1>
         <h2 id="signupsubtitle1"> Create your account</h2>
-        <form onSubmit={handleSubmit}>
+        <form className="signupform" onSubmit={handleSubmit}>
           <label htmlFor="email">
             <input
               type="email"
               id="email"
               name="email"
+              defaultValue=""
               placeholder="Email"
               required
             />
@@ -26,6 +61,7 @@ function SignupComponent() {
               type="text"
               id="firstname"
               name="firstname"
+              defaultValue=""
               placeholder="Firstname"
               required
             />
@@ -34,7 +70,8 @@ function SignupComponent() {
             <input
               type="text"
               id="surname"
-              name="surname"
+              name="lastname"
+              defaultValue=""
               placeholder="Surname"
               required
             />
@@ -43,7 +80,7 @@ function SignupComponent() {
             <input
               type="date"
               id="date-of-birth"
-              name="date of birth"
+              name="birthday"
               placeholder="Date of birth"
               required
             />
@@ -53,6 +90,7 @@ function SignupComponent() {
               type="password"
               id="password"
               name="password"
+              defaultValue=""
               placeholder="Password"
               required
             />
@@ -62,6 +100,7 @@ function SignupComponent() {
               type="password"
               id="confirm-password"
               name="confirm password"
+              defaultValue=""
               placeholder="Confirm password"
               required
             />

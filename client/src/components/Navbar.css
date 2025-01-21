@@ -42,14 +42,35 @@ nav {
 .menu {
   display: flex;
   flex-direction: column;
-  text-decoration: none;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 }
 .menu.hidden {
   display: none;
 }
 
-.menu_text {
+.menu.visible {
+  position: absolute;
+  background-color: #f9fbe1fc;
+  padding-top: 3em;
+  padding-bottom: 4em;
+  margin-top: 4rem;
+  z-index: 10;
+  width: 100%;
+}
+
+.homeLink {
   text-decoration: none;
+  font-size: 1.5em;
   color: black;
-  font-size: larger;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+  z-index: 5;
+}
+
+.homeLink.hovered {
+  color: #666518;
+  font-size: 1.8em;
+  font-weight: bold;
 }
