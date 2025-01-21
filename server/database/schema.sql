@@ -9,7 +9,8 @@ CREATE TABLE `user` (
     lastname VARCHAR(50) NOT NULL,
     birthday DATE NOT NULL, 
     email VARCHAR(50) NOT NULL UNIQUE,
-    `password` VARCHAR(50) NOT NULL,
+    -- `password` VARCHAR(50) NOT NULL,
+    hashed_password varchar(255) not null,
     role_id INT DEFAULT 2,     
     CONSTRAINT fk_user_role  
 	      FOREIGN KEY (role_id) 
@@ -49,10 +50,10 @@ values
   ("admin"),
   ("visiteur");
 
-insert into user(firstname, lastname,birthday, email, `password`, role_id)
+insert into user(firstname, lastname,birthday, email, hashed_password, role_id)
 values
   ("Toto", "Tutu", "1994-02-05" , "toto.tutu@mail.com", "123456", 1),
-  ("Tata", "Titi", "2000.01.02","tata.titi@mail.com", "78910", 2);
+  ("Tata", "Titi", "2000.01.02","tata.titi@mail.com", "$argon2id$v=19$m=19456,t=2,p=1$nz6t40CzCcijUhj3Ntpz9A$4DW+9sqLdKvj27E3JYbImIIfZAadyDGXHFiwpBHli4s", 2);
 
 insert into request(`date`,title, theme, details, user_id)
 values 

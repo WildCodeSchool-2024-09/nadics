@@ -9,11 +9,13 @@ const router = express.Router();
 // Define user-related routes
 import requestActions from "./modules/request/requestActions";
 
-import userActions from "./modules/users/userAction";
+import authActions from "./modules/auth/authActions";
+import userActions from "./modules/user/userAction";
 
 router.get("/api/users", userActions.browse);
 router.get("/api/users/:id", userActions.read);
-router.post("/api/users/", userActions.add);
+// router.post("/api/users/", userActions.add);
+router.post("/api/users/", authActions.hashPassword, userActions.add);
 router.put("/api/users/:id", userActions.edit);
 
 router.get("/api/request", requestActions.browse);

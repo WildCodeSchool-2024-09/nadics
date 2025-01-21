@@ -8,17 +8,33 @@ type User = {
   lastname: string;
   birthday: string;
   email: string;
-  password: string;
+  // password: string;
+  hashed_password: string;
 };
 
 class UserRepository {
+  async readByEmailWithPassword(email: string) {
+    // Execute the SQL SELECT query to retrieve a specific user by its email
+    const [rows] = await databaseClient.query<Rows>(
+      "select * from user where email = ?",
+      [email],
+    );
+    // Return the first row of the result, which represents the user
+    return rows[0] as User;
+  }
   // The C of CRUD - Create operation
 
   async create(user: Omit<User, "id">) {
     // Execute the SQL INSERT query to add a new user to the "user" table
     const [result] = await databaseClient.query<Result>(
-      "insert into user (firstname,lastname,birthday,email, password) values ( ?, ?, ?, ?, ?)",
-      [user.firstname, user.lastname, user.birthday, user.email, user.password],
+      "insert into user (firstname,lastname,birthday,email, hashed_password) values ( ?, ?, ?, ?, ?)",
+      [
+        user.firstname,
+        user.lastname,
+        user.birthday,
+        user.email,
+        user.hashed_password,
+      ],
     );
 
     // Return the ID of the newly inserted user
@@ -30,18 +46,27 @@ class UserRepository {
   async read(id: number) {
     // Execute the SQL SELECT query to retrieve a specific user by users ID
     const [rows] = await databaseClient.query<Rows>(
-      `SELECT 
-        id, 
-        firstname, 
-        lastname, 
-        DATE_FORMAT(birthday, '%Y-%m-%d') AS birthday, 
-        email, 
-        password, 
-        role_id 
-      FROM user 
-      WHERE id = ?`,
+      "select *, DATE_FORMAT(birthday, '%Y-%m-%d') as birthday from user where id = ?",
       [id],
     );
+
+    // la deuxième façon de faire avec plus de détail :
+
+    // async read(id: number) {
+    //   // Execute the SQL SELECT query to retrieve a specific user by users ID
+    //   const [rows] = await databaseClient.query<Rows>(
+    //     `SELECT
+    //       id,
+    //       firstname,
+    //       lastname,
+    //       DATE_FORMAT(birthday, '%Y-%m-%d') AS birthday,
+    //       email,
+    //       hashed_password,
+    //       role_id
+    //     FROM user
+    //     WHERE id = ?`,
+    //     [id],
+    //   );
 
     // Return the first row of the result, which represents the user
     return rows[0] as User;
@@ -49,7 +74,9 @@ class UserRepository {
 
   async readAll() {
     // Execute the SQL SELECT query to retrieve all users from the "user" table
-    const [rows] = await databaseClient.query<Rows>("select * from user ");
+    const [rows] = await databaseClient.query<Rows>(
+      "select *, DATE_FORMAT(birthday, '%Y-%m-%d') as birthday from user ",
+    );
 
     // Return the array of users
     return rows as User[];
