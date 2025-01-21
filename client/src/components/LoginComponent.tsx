@@ -46,6 +46,7 @@ function LoginComponent() {
       if (response.status === 200) {
         const user = await response.json();
         setAuth(user);
+        console.info(auth);
 
         navigate("/home");
       } else {
