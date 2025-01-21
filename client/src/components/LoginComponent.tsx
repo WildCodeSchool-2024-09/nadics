@@ -1,9 +1,61 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./LoginComponent.css";
+import { useRef, useState } from "react";
+import type { FormEventHandler } from "react";
 
+type User = {
+  firstname: string;
+  lastname: string;
+  birthday: string;
+  email: string;
+};
+
+type Auth = {
+  user: User | null;
+  token: string | null;
+};
 function LoginComponent() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const navigate = useNavigate();
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
+  const [auth, setAuth] = useState<Auth | null>(null);
+
+  const handleSubmit: FormEventHandler = async (
+    event: React.FormEvent<HTMLFormElement>,
+  ) => {
     event.preventDefault();
+    try {
+      // Appel à l'API pour demander une connexion
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/login`,
+        {
+          method: "post",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email:
+              /* rendering process ensures the ref is defined before the form is submitted */
+              (emailRef.current as HTMLInputElement).value,
+            password:
+              /* rendering process ensures the ref is defined before the form is submitted */
+              (passwordRef.current as HTMLInputElement).value,
+          }),
+        },
+      );
+
+      // Redirection vers la page de connexion si la création réussit
+      if (response.status === 200) {
+        const user = await response.json();
+        setAuth(user);
+
+        navigate("/home");
+      } else {
+        // Log des détails de la réponse en cas d'échec
+        console.info(response);
+      }
+    } catch (err) {
+      // Log des erreurs possibles
+      console.error(err);
+    }
   };
   return (
     <section id="entirepage">
@@ -15,12 +67,12 @@ function LoginComponent() {
       </section>
       <form onSubmit={handleSubmit}>
         <section className="display">
-          <label htmlFor="loginusername">
+          <label htmlFor="email">
             <input
               type="text"
               id="loginusername"
-              name="loginusername"
-              placeholder="Username"
+              ref={emailRef}
+              placeholder="email"
               required
             />
           </label>
@@ -33,18 +85,16 @@ function LoginComponent() {
             <input
               type="password"
               id="loginpassword"
-              name="loginpassword"
+              ref={passwordRef}
               placeholder="Password"
               required
             />
           </label>
         </section>
         <section className="display">
-          <Link to="/home">
-            <button id="submitbutton" type="submit">
-              Submit
-            </button>
-          </Link>
+          <button id="submitbutton" type="submit">
+            Submit
+          </button>
         </section>
       </form>
       <section className="display">

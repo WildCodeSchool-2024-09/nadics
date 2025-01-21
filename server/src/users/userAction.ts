@@ -45,7 +45,7 @@ const add: RequestHandler = async (req, res, next) => {
       lastname: req.body.lastname,
       birthday: req.body.birthday,
       email: req.body.email,
-      password: req.body.password,
+      hashed_password: req.body.hashed_password,
     };
 
     // Create the user

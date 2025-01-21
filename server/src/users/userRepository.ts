@@ -8,7 +8,7 @@ type User = {
   lastname: string;
   birthday: string;
   email: string;
-  password: string;
+  hashed_password: string;
 };
 
 class UserRepository {
@@ -17,8 +17,14 @@ class UserRepository {
   async create(user: Omit<User, "id">) {
     // Execute the SQL INSERT query to add a new user to the "user" table
     const [result] = await databaseClient.query<Result>(
-      "insert into user (firstname,lastname,birthday,email, password) values ( ?, ?, ?, ?, ?)",
-      [user.firstname, user.lastname, user.birthday, user.email, user.password],
+      "insert into user (firstname,lastname,birthday,email, hashed_password) values ( ?, ?, ?, ?, ?)",
+      [
+        user.firstname,
+        user.lastname,
+        user.birthday,
+        user.email,
+        user.hashed_password,
+      ],
     );
     // Return the ID of the newly inserted user
     return result.insertId;
@@ -43,6 +49,14 @@ class UserRepository {
 
     // Return the array of users
     return rows as User[];
+  }
+
+  async readByEmailWithPassword(email: string) {
+    const [rows] = await databaseClient.query<Rows>(
+      "select * from user where email = ?",
+      [email],
+    );
+    return rows[0] as User;
   }
 
   // The U of CRUD - Update operation

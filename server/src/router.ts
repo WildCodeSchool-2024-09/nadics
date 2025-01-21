@@ -10,10 +10,13 @@ const router = express.Router();
 import requestActions from "./modules/request/requestActions";
 
 import userActions from "./users/userAction";
+import authAction from "./auth/authAction";
 
 router.get("/api/users", userActions.browse);
 router.get("/api/users/:id", userActions.read);
-router.post("/api/users/", userActions.add);
+
+router.post("/api/login/", authAction.login);
+router.post("/api/users/", authAction.hashPassword, userActions.add);
 
 router.get("/api/request", requestActions.browse);
 router.get("/api/request/:id", requestActions.read);
