@@ -44,16 +44,20 @@ export default function PostRequest() {
         <h1>Request creation</h1>
         <div className="block">
           <label htmlFor="">Request title</label>
-          <input type="text" name="title" placeholder="title" />
+          <input type="text" name="title" placeholder="Title" required />
         </div>
         <hr />
         <div className="block">
           <label htmlFor="">Request category</label>
-          <input type="text" name="theme" placeholder="category" />
+          <input type="text" name="theme" placeholder="Category" required />
         </div>
         <div className="block">
           <label htmlFor="">Category detail</label>
-          <textarea name="details" placeholder="Write your decision here ..." />
+          <textarea
+            name="details"
+            placeholder="Write your decision here ..."
+            required
+          />
         </div>
         <p>
           You may add as many categories as you want. Click the Add button
@@ -80,7 +84,7 @@ const PostRequestStyled = styled.form`
   background-position: center;
   background-blend-mode: lighten;
   z-index: -1;
-
+display: grid;
   
   .block{
   display: flex;
@@ -141,11 +145,11 @@ textarea{
   font-weight: 400;
 }
 
-form {
+.background {
   display: flex;
-  justify-content: left;
+  justify-content: center;
   flex-direction: column;
-  align-items: left;
+  align-items: center;
   border-radius: 10px;
 }
 

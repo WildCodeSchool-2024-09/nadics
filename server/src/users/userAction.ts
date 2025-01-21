@@ -1,5 +1,5 @@
+import { argon2id, hash } from "argon2";
 import type { RequestHandler } from "express";
-
 // Import access to data
 import userRepository from "./userRepository";
 
@@ -45,7 +45,7 @@ const add: RequestHandler = async (req, res, next) => {
       lastname: req.body.lastname,
       birthday: req.body.birthday,
       email: req.body.email,
-      password: req.body.password,
+      hashed_password: req.body.hashed_password,
     };
 
     // Create the user
