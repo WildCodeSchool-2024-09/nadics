@@ -1,24 +1,17 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useOutletContext } from "react-router-dom";
 import "./LoginComponent.css";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import type { FormEventHandler } from "react";
+import Cookies from "js-cookie";
+import type { Auth } from "../App";
 
-type User = {
-  firstname: string;
-  lastname: string;
-  birthday: string;
-  email: string;
-};
-
-type Auth = {
-  user: User | null;
-  token: string | null;
-};
 function LoginComponent() {
   const navigate = useNavigate();
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
-  const [auth, setAuth] = useState<Auth | null>(null);
+  const { setAuth } = useOutletContext() as {
+    setAuth: (auth: Auth | null) => void;
+  };
 
   const handleSubmit: FormEventHandler = async (
     event: React.FormEvent<HTMLFormElement>,
@@ -44,9 +37,15 @@ function LoginComponent() {
 
       // Redirection vers la page de connexion si la création réussit
       if (response.status === 200) {
-        const user = await response.json();
-        setAuth(user);
-        console.info(auth);
+        const data = await response.json();
+        const token = data.token;
+        Cookies.set("authToken", token, {
+          expires: 7,
+          secure: true,
+          sameSite: "Strict",
+        });
+
+        setAuth(token);
 
         navigate("/home");
       } else {

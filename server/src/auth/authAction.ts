@@ -8,7 +8,7 @@ import userRepository from "../users/userRepository";
 const login: RequestHandler = async (req, res, next) => {
   try {
     const user = await userRepository.readByEmailWithPassword(req.body.email);
-    if (user == null) {
+    if (user === null) {
       res.sendStatus(422);
       return;
     }
@@ -33,7 +33,7 @@ const login: RequestHandler = async (req, res, next) => {
           expiresIn: "1h",
         },
       );
-      res.json({ token, user: userWithoutHashedPassword });
+      res.json({ token });
     } else {
       res.sendStatus(422);
     }
@@ -64,4 +64,31 @@ const hashPassword: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { login, hashPassword };
+const verifyToken: RequestHandler = (req, res, next) => {
+  try {
+    // Vérifier la présence de l'en-tête "Authorization" dans la requête
+    const authorizationHeader = req.get("Authorization");
+
+    if (authorizationHeader == null) {
+      throw new Error("Authorization header is missing");
+    }
+
+    // Vérifier que l'en-tête a la forme "Bearer <token>"
+    const [type, token] = authorizationHeader.split(" ");
+
+    if (type !== "Bearer") {
+      throw new Error("Authorization header has not the 'Bearer' type");
+    }
+
+    // Vérifier la validité du token (son authenticité et sa date d'expériation)
+    // En cas de succès, le payload est extrait et décodé
+    req.auth = jwt.verify(token, process.env.APP_SECRET as string) as MyPayload;
+
+    next();
+  } catch (err) {
+    console.error(err);
+    res.sendStatus(401);
+  }
+};
+
+export default { login, hashPassword, verifyToken };
