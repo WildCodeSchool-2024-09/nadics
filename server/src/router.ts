@@ -6,7 +6,7 @@ const router = express.Router();
 // Define user-related routes
 import requestActions from "./modules/request/requestActions";
 import authAction from "./auth/authAction";
-import userActions from "./users/userAction";
+import userActions from "./modules/users/userAction";
 router.get("/api/users", userActions.browse);
 router.get("/api/users/:id", userActions.read);
 

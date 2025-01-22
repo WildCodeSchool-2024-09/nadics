@@ -2,8 +2,8 @@ import type { RequestHandler } from "express";
 
 import argon2 from "argon2";
 import jwt from "jsonwebtoken";
+import userRepository from "../modules/users/userRepository";
 // Import access to data
-import userRepository from "../users/userRepository";
 
 const login: RequestHandler = async (req, res, next) => {
   try {
