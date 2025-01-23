@@ -1,9 +1,9 @@
 import "./App.css";
-import { Outlet, useNavigate } from "react-router-dom";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
-import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
+import { useEffect, useState } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
 export type Auth = {
   token: string;
 };
