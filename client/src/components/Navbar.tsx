@@ -2,8 +2,8 @@ import "./Navbar.css";
 import { useState } from "react";
 import type { SetStateAction } from "react";
 import { Link } from "react-router-dom";
-import logo from "../assets/images/logo-removebg.png";
 import type { Auth } from "../App";
+import logo from "../assets/images/logo-removebg.png";
 
 interface NavbarProps {
   setAuth: React.Dispatch<React.SetStateAction<Auth | null>>; // Typage correct de setAuth

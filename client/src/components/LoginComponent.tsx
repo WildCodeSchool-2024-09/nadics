@@ -1,8 +1,8 @@
 import { Link, useNavigate, useOutletContext } from "react-router-dom";
 import "./LoginComponent.css";
+import Cookies from "js-cookie";
 import { useRef } from "react";
 import type { FormEventHandler } from "react";
-import Cookies from "js-cookie";
 import type { Auth } from "../App";
 
 function LoginComponent() {

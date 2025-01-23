@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import backgroundImage from "../assets/images/logo.png";
 import { useNavigate, useOutletContext } from "react-router-dom";
+import styled from "styled-components";
 import type { Auth } from "../App";
+import backgroundImage from "../assets/images/logo.png";
 
 export default function PostRequest() {
   const { auth } = useOutletContext() as { auth: Auth | null };
