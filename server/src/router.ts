@@ -1,13 +1,13 @@
 import express from "express";
 const router = express.Router();
 import authAction from "./auth/authAction";
+import commentActions from "./modules/comment/commentActions";
 /* ************************************************************************* */
 // Define Your API Routes Here
 /* ************************************************************************* */
 // Define user-related routes
 import requestActions from "./modules/request/requestActions";
 import userActions from "./modules/users/userAction";
-import commentActions from "./modules/comment/commentActions";
 
 router.get("/api/comments", commentActions.browse);
 router.get("/api/comments/:id", commentActions.read);
