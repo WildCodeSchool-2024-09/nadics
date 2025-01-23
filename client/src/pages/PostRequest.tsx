@@ -1,7 +1,12 @@
+import { useNavigate, useOutletContext } from "react-router-dom";
 import styled from "styled-components";
+import type { Auth } from "../App";
 import backgroundImage from "../assets/images/logo.png";
 
 export default function PostRequest() {
+  const { auth } = useOutletContext() as { auth: Auth | null };
+  const navigate = useNavigate();
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -20,6 +25,7 @@ export default function PostRequest() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${auth as Auth}`,
           },
           body: JSON.stringify(requestData),
         },
@@ -28,9 +34,9 @@ export default function PostRequest() {
         const errorData = await response.json();
         throw new Error(errorData.message || "request updated cancel");
       }
-      if (response.status === 204) {
+      if (response.status === 201) {
         alert("Request submitted! Redirecting...");
-        return;
+        navigate("/home");
       }
     } catch (error) {
       console.error("Error creating request");

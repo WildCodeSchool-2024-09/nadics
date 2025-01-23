@@ -2,9 +2,23 @@ import "./Navbar.css";
 import { useState } from "react";
 import type { SetStateAction } from "react";
 import { Link } from "react-router-dom";
+import type { Auth } from "../App";
 import logo from "../assets/images/logo-removebg.png";
 
-function Navbar() {
+interface NavbarProps {
+  setAuth: React.Dispatch<React.SetStateAction<Auth | null>>; // Typage correct de setAuth
+}
+
+function Navbar({ setAuth }: NavbarProps) {
+  const handleLogout = () => {
+    // Supprimer cookie "authToken"
+    document.cookie =
+      "authToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+
+    // Déconnexion en mettant auth à null
+    setAuth(null);
+  };
+
   const [burger_class, setBurger_class] = useState("burger-bar unClicked");
   const [menu_class, setMenu_class] = useState("menu hidden");
   const [isMenuClicked, setMenuClicked] = useState(false);
@@ -94,6 +108,15 @@ function Navbar() {
           onClick={updateMenu}
         >
           Sign up
+        </Link>
+        <Link
+          to="/login"
+          className={`homeLink ${hoveredLink === "logout" ? "hovered" : ""}`}
+          onMouseEnter={() => handleMouseEnter("logout")}
+          onMouseLeave={handleMouseLeave}
+          onClick={handleLogout}
+        >
+          Logout
         </Link>
       </div>
     </header>
