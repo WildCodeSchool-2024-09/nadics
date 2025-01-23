@@ -7,6 +7,11 @@ import authAction from "./auth/authAction";
 // Define user-related routes
 import requestActions from "./modules/request/requestActions";
 import userActions from "./modules/users/userAction";
+import commentActions from "./modules/comment/commentActions";
+
+router.get("/api/comments", commentActions.browse);
+router.get("/api/comments/:id", commentActions.read);
+
 router.get("/api/users", userActions.browse);
 router.get("/api/users/:id", userActions.read);
 
