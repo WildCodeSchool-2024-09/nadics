@@ -7,6 +7,8 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 // Import the main app component
 import App from "./App";
+import CommentDeletePage from "./pages/CommentDeletePage";
+import CommentNewPage from "./pages/CommentNewPage";
 import DisplayUser from "./pages/DisplayUser";
 import HomePage from "./pages/HomePage";
 import LandingPage from "./pages/LandingPage";
@@ -73,6 +75,14 @@ const router = createBrowserRouter([
       {
         path: "test_edit/:id",
         element: <RequestEdit />,
+      },
+      {
+        path: "comments",
+        element: <CommentNewPage />,
+      },
+      {
+        path: "comments/:id",
+        element: <CommentDeletePage />,
       },
     ],
   },

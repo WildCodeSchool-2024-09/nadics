@@ -19,7 +19,6 @@ function App() {
       navigate("/login");
     }
   }, [navigate]);
-  console.info(auth);
   return (
     <>
       <Navbar setAuth={setAuth} />
