@@ -2,13 +2,16 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import RequestDetailCard from "../components/RequestDetailCard";
 import "./RequestDetails.css";
+// import "./RequestDetailCard.css";
 
-// Defining the type for the request details
+// Définition du type pour les détails de la demande
 interface RequestDetailsType {
   id: number;
   title: string;
   details: string;
   theme: string;
+  userAvatar: string; // Ajout de l'avatar de l'utilisateur
+  userName: string; // Ajout du nom de l'utilisateur
 }
 
 const Table: React.FC = () => (
@@ -16,7 +19,6 @@ const Table: React.FC = () => (
     <thead>
       <tr>
         <th colSpan={2} className="centered-title">
-          <div className="bullet" />
           Save the date
         </th>
       </tr>
@@ -57,57 +59,72 @@ const Table: React.FC = () => (
 );
 
 function RequestDetails() {
-  const { id } = useParams<string>(); // Gets the request ID from the URL parameters
+  const { id } = useParams<string>(); // Récupère l'ID de la demande depuis les paramètres de l'URL
   const [requestDetails, setRequestDetails] =
-    useState<RequestDetailsType | null>(null); // Request data
-  const [error, setError] = useState<string | null>(null); // Potential errors
-  const [loading, setLoading] = useState<boolean>(true); // Loading state for data
+    useState<RequestDetailsType | null>(null); // Données de la demande
+  const [error, setError] = useState<string | null>(null); // Erreurs potentielles
+  const [loading, setLoading] = useState<boolean>(true); // État de chargement des données
+
+  const [isMobile, setIsMobile] = useState<boolean>(false); // État pour vérifier si c'est un appareil mobile
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 1024); // Si la largeur de la fenêtre est inférieure ou égale à 1024px, c'est un mobile
+    };
+
+    // Initialiser la vérification de la taille de l'écran
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize); // Nettoyer l'événement lors du démontage
+    };
+  }, []);
 
   useEffect(() => {
     if (!id) {
-      setError("Request ID is not available."); // If ID is missing, show an error
+      setError("Request ID is not available."); // Si l'ID est manquant, afficher une erreur
       setLoading(false);
       return;
     }
 
-    const requestId = Number(id); // Convert ID to a number
+    const requestId = Number(id); // Convertir l'ID en nombre
 
-    // Function to fetch the request details (GET method - Read)
+    // Fonction pour récupérer les détails de la demande (méthode GET)
     const fetchRequestDetails = async () => {
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/request/${requestId}`, // Dynamic URL with request ID
+          `${import.meta.env.VITE_API_URL}/api/request/${requestId}`, // URL dynamique avec l'ID de la demande
         );
         if (!response.ok) {
-          throw new Error("Request not found"); // Handle error if request is not found
+          throw new Error("Request not found"); // Gérer l'erreur si la demande n'est pas trouvée
         }
-        const data = await response.json(); // If everything goes well, fetch the data
-        setRequestDetails(data); // Store data in the state
-        setLoading(false); // End loading state
+        const data = await response.json(); // Si tout va bien, récupérer les données
+        setRequestDetails(data); // Stocker les données dans l'état
+        setLoading(false); // Fin du chargement
       } catch (err) {
-        setError("Error fetching request details."); // If an error occurs
+        setError("Error fetching request details."); // Si une erreur se produit
         setLoading(false);
       }
     };
 
-    fetchRequestDetails(); // Call function to fetch the request details
-  }, [id]); // useEffect triggers whenever the ID in the URL changes
+    fetchRequestDetails(); // Appeler la fonction pour récupérer les détails
+  }, [id]);
 
-  if (loading) return <div>Loading...</div>; // Show "Loading..." while fetching data
-  if (error) return <div>{error}</div>; // Show the error if something goes wrong
-  if (!requestDetails) return <div>Request not found.</div>; // Show a message if the request is not found
+  if (loading) return <div>Loading...</div>; // Afficher "Loading..." pendant le chargement des données
+  if (error) return <div>{error}</div>; // Afficher l'erreur en cas de problème
+  if (!requestDetails) return <div>Request not found.</div>; // Afficher un message si la demande n'est pas trouvée
 
   return (
     <div className="request-details-container">
+      {isMobile && (
+        <div className="mobile-header-tags">
+          {/* Ajout de 2 tags uniquement pour la version mobile */}
+          <span className="mobile-tag1">Tag 1</span>
+          <span className="mobile-tag2">Tag 2</span>
+        </div>
+      )}
       <p className="request-id">Request n°: {requestDetails.id}</p>
-
-      {/* Pass the fetched data to RequestDetailCard (the component displays request details) */}
-      <RequestDetailCard
-        title={requestDetails.title}
-        details={requestDetails.details}
-        theme={requestDetails.theme}
-      />
-
       <div className="details-and-table">
         <div className="details-container">
           <details>
@@ -124,18 +141,25 @@ function RequestDetails() {
           </details>
         </div>
 
+        <div className="button-container">
+          <Link to="/" className="button-opinion">
+            <button type="button" className="home-button">
+              Give my opinion
+            </button>
+          </Link>
+        </div>
+
         <div className="table-container">
-          <Table /> {/* Display the table */}
+          <Table />
         </div>
       </div>
-
-      <div className="button-container">
-        <Link to="/" className="button-opinion">
-          <button type="button" className="home-button">
-            Give my opinion
-          </button>
-        </Link>
-      </div>
+      <RequestDetailCard
+        title={requestDetails.title}
+        details={requestDetails.details}
+        theme={requestDetails.theme}
+        userName={requestDetails.userName}
+        userAvatar={requestDetails.userAvatar}
+      />
     </div>
   );
 }

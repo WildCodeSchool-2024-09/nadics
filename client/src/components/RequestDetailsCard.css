@@ -1,0 +1,106 @@
+/* Style général pour RequestDetailCard */
+.request-detail-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centre tous les éléments horizontalement */
+  justify-content: center; /* Centre tous les éléments verticalement */
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px; /* Limite la largeur sur grand écran */
+  margin: 20px auto; /* Centre le card sur la page */
+}
+
+.request-detail-card p {
+  font-size: 1rem;
+  text-align: center; /* Centre le texte */
+  margin-bottom: 20px;
+}
+
+.impact-sections {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.impact-sections .impact-person {
+  margin-bottom: 15px; /* Ajout d'espace entre les sections */
+  width: 100%;
+}
+
+.impact-sections h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.impact-sections p {
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* Section pour l'avatar et le nom */
+.user-info-container {
+  display: flex;
+  flex-direction: row; /* Met l'avatar et le nom sur une ligne */
+  align-items: center;
+  justify-content: center; /* Centre les éléments horizontalement */
+  margin-bottom: 15px; /* Espacement sous l'avatar et le nom */
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px; /* Espacement entre l'avatar et le nom */
+}
+
+.user-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Adaptation pour les écrans mobiles et tablettes (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .request-detail-card {
+    padding: 15px; /* Réduit l'espacement intérieur sur mobile */
+    max-width: 90%; /* Réduit la largeur du card sur mobile */
+  }
+
+  .request-detail-card p {
+    font-size: 0.95rem; /* Taille réduite pour le texte */
+  }
+
+  .impact-sections .impact-person {
+    width: 100%; /* S'assure que les sections occupent toute la largeur */
+  }
+
+  .impact-sections h3 {
+    font-size: 1.1rem; /* Réduit la taille des sous-titres */
+  }
+
+  .impact-sections p {
+    font-size: 0.95rem; /* Réduit la taille du texte des sections */
+  }
+
+  /* Ajustements pour l'affichage de l'avatar sur mobile */
+  .user-info-container {
+    flex-direction: column; /* Met l'avatar et le nom l'un en dessous de l'autre sur mobile */
+  }
+
+  .user-avatar {
+    width: 50px; /* Agrandit l'avatar sur mobile */
+    height: 50px;
+    margin-bottom: 10px; /* Espacement entre l'avatar et le nom */
+  }
+
+  .user-name {
+    font-size: 1.1rem; /* Ajuste la taille du texte du nom sur mobile */
+  }
+}

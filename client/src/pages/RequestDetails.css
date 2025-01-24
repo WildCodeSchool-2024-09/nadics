@@ -1,4 +1,4 @@
-/* Main container */
+/* Container principal */
 .request-details-container {
   display: flex;
   flex-direction: column;
@@ -6,12 +6,12 @@
   justify-content: flex-start;
   padding: 15px;
   text-align: center;
-  max-width: 1000px;
+  max-width: 100%;
   margin: 0 auto;
   box-sizing: border-box;
 }
 
-/* Container for the two-column row (details on the left and table on the right) */
+/* Conteneur pour la ligne de deux colonnes (détails à gauche et tableau à droite) */
 .details-and-table {
   display: flex;
   justify-content: space-between;
@@ -20,21 +20,9 @@
   align-items: flex-start;
 }
 
-/* Style for the details element (on the left) */
-.details-container {
-  flex: 1;
-  margin-right: 20px;
-  padding: 8px;
-  background-color: #f9f9f9;
-  border-radius: 4px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  text-align: left;
-  font-size: 0.95rem;
-  max-width: 48%;
-  overflow: auto;
-}
+/* Style pour l'élément details (à gauche) */
 
-/* Container for the table */
+/* Conteneur pour le tableau */
 .table-container {
   display: flex;
   justify-content: center;
@@ -43,7 +31,7 @@
   margin-top: 20px;
 }
 
-/* Container for the "Give my opinion" button */
+/* Conteneur pour le bouton "Give my opinion" */
 .button-container {
   display: flex;
   justify-content: center;
@@ -51,9 +39,9 @@
   position: relative;
 }
 
-/* Style for the button */
+/* Style pour le bouton */
 .button-opinion {
-  background-color: #1e90ff;
+  background-color: #030a1b;
   color: white;
   font-size: 1rem;
   padding: 8px 16px;
@@ -69,226 +57,331 @@
 
 .button-opinion:focus {
   outline: none;
-} /* Align the content of the "Event" column to the right */
+} /* Aligner le contenu de la colonne "Event" à droite */
 th:nth-child(2),
 td:nth-child(2) {
-  text-align: right; /* Align text to the right in the "Event" column */
-  padding-left: 40px; /* Add extra spacing for "Event" */
+  text-align: right; /* Aligner à droite le texte dans la colonne "Event" */
+  padding-left: 40px; /* Ajouter un espacement supplémentaire pour "Event" */
 }
-
-/* Additional spacing for the "Event" column */
+/* Espacement supplémentaire pour la colonne "Event" */
 th:nth-child(2),
 td:nth-child(2) {
-  padding-left: 40px; /* Add left padding for the "Event" column */
+  padding-left: 40px; /* Ajouter un padding à gauche pour la colonne "Event" */
+}
+/* Supprimer la puce du titre "Save the date" */
+th.centered-title::before {
+  content: none; /* Supprimer la puce (cercle ou autre contenu ajouté) */
+}
+/* Centrer le texte mais garder la flèche à gauche */
+.details-container summary {
+  display: inline-block; /* Pour que le texte soit centré tout en gardant la flèche à gauche */
+  text-align: center; /* Centrer le texte */
+  width: 100%; /* Utiliser toute la largeur disponible */
+  position: relative; /* Nécessaire pour positionner la flèche */
 }
 
-/* Customization for mobile and tablet versions */
+/* Flèche à gauche sans changer sa position */
+.details-container summary::before {
+  content: "▶"; /* Utilisation du triangle comme flèche */
+  font-size: 1rem; /* Taille de la flèche */
+  position: absolute; /* Positionner la flèche à gauche */
+  left: 0; /* Positionner la flèche à gauche */
+  top: 50%; /* Centrer verticalement la flèche */
+}
+/* ******************************************************************** */
+/* ************************************************************************* */
+
+/* Personnalisation pour la version mobile et tablette */
 @media (max-width: 1024px) {
+  .request-details-container {
+    display: flex;
+    justify-content: flex-start;
+    padding: -15px;
+    text-align: center;
+    max-width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
   .details-container {
-    max-width: 100%; /* Use the full width */
-    margin-right: 0; /* Remove the right margin */
+    max-width: 100%; /* Utiliser toute la largeur */
+    margin-right: 0; /* Retirer l'espace à droite */
+    padding-top: revert;
   }
 
   .details-container summary {
-    text-align: center; /* Center titles on mobile */
+    display: inline-block;
+    width: 100%;
+    /* justify-content: center; */
+    text-align: center; /* Centrer les titres sur mobile */
+    padding-left: 20px; /* Ajouter un peu d'espace à gauche pour laisser la place à la flèche */
   }
 
   .details-container summary::before {
-    left: -20px; /* Place the bullet to the left of the text on mobile */
-  }
-
-  .impact-sections {
-    padding-left: 0; /* No left padding on mobile */
-    text-align: center; /* Center Impacting Person and Impacted Person sections */
+    content: "▶"; /* Utilisation du triangle pour la flèche */
+    font-size: 1rem; /* Taille de la flèche */
+    position: absolute; /* Positionner la flèche à gauche */
+    left: 0px; /* Placer la flèche tout à gauche */
+    top: 50%; /* Centrer la flèche verticalement */
+    transform: translateY(-50%); /* Ajuster la position verticale de la flèche */
   }
 
   .avatar-container {
-    padding-right: 0; /* Remove the right padding on mobile */
+    padding-right: 0; /* Retirer l'espace à droite sur mobile */
   }
 
-  /* The button will be between the descriptions and the table on mobile version */
+  /* Le bouton sera entre les descriptions et le tableau en version mobile */
   .button-container {
-    position: absolute; /* The button will be positioned above the table */
-    top: calc(50% + 10px); /* Calculate the position to place the button between sections */
-    z-index: 10; /* Ensure the button is above the table */
-    width: 100%; /* The button should take the full width of the container */
+    position: absolute; /* Le bouton sera positionné au-dessus du tableau */
+    top: calc(50% + 10px); /* Calcul pour positionner le bouton entre les sections */
+    z-index: 10; /* Assurer que le bouton est au-dessus du tableau */
+    width: 100%; /* Le bouton doit prendre toute la largeur du conteneur */
     justify-content: center;
     margin-top: 10px;
   }
-
-  .impact-sections {
-    margin-top: 10px; /* Reduce the space above the sections */
-    margin-bottom: 10px; /* Reduce the space below the sections */
-  }
-
-  .impact-person {
-    margin-bottom: 5px; /* Reduce space between the two sections */
-  }
-}
-
-.table-container {
-  display: flex;
-  justify-content: center; /* Center the table horizontally */
-  width: 100%; /* Ensure the container takes the full available width */
-  align-items: center; /* Center the table vertically */
-  margin-top: -20px; /* Add some space above if necessary */
-  margin-left: 0; /* Remove any margin to ensure the table is perfectly centered */
-  margin-bottom: 0; /* Remove any margin to ensure the table is perfectly centered */
-  margin-right: 0; /* Remove any margin to ensure the table is perfectly centered */
-  padding: 0 10px; /* Add a little padding on the left and right to prevent the table from touching the edges */
-}
-
-table {
-  width: 90%; /* Set a reduced width for the table to keep it well-centered */
-  max-width: 95%; /* Limit the width to 95% of the screen for a little margin */
-  table-layout: fixed; /* Ensure cells have a uniform width */
-  height: auto; /* Reduce the table height */
-}
-
-th,
-td {
-  padding: 6px 10px; /* Improved spacing for mobile */
-  text-align: center; /* Center text in cells */
-}
-
-/* Increased spacing between the "Date" and "Event" columns */
-th {
-  padding-left: 30px; /* Increase the left padding to 30px */
-  padding-right: 30px; /* Increase the right padding to 30px */
-}
-
-th:nth-child(2),
-td:nth-child(2) {
-  padding-left: 25px; /* Adjust for mobile-tablet */
-  text-align: right; /* Right alignment for "Event" */
-}
-
-tr {
-  height: 30px; /* Reduce the row height of the table */
-}
-
-/* For desktop screens */
-@media (min-width: 1025px) {
-  /* The button should be located above the table (in desktop version) */
   .button-container {
-    position: relative;
-    margin-top: 10px; /* Spacing above the button */
-    justify-content: center; /* Centered for desktop */
+    position: absolute; /* Positionner le bouton de manière absolue */
+    top: 315px; /* Ajuster cette valeur pour remonter le bouton (plus petit = plus haut) */
+    left: 50%; /* Centrer le bouton horizontalement */
+    transform: translateX(-50%); /* Centrer précisément le bouton */
+    width: 100%; /* Assurer que le bouton prend toute la largeur du conteneur */
+    z-index: 10; /* S'assurer que le bouton est au-dessus des autres éléments */
   }
-
   .impact-sections {
-    margin-top: 20px; /* Space above the Impacting and Impacted sections */
-  }
-
-  .impact-person {
-    margin-bottom: 20px; /* Space below each section */
-  }
-  th {
-    padding-left: 60px;
-    padding-right: 60px; /* Light column spacing */
-  }
-}
-
-th:nth-child(2),
-td:nth-child(2) {
-  padding-left: 40px; /* Extra space for "Event" on desktop */
-  text-align: right; /* Right alignment for "Event" */
-}
-
-/* For mobile and tablet screens (max-width: 1024px) */
-@media (max-width: 1024px) {
-  /* Button container */
-  .button-container {
-    margin-top: -130px; /* Reduce space above the button to move it up */
-    display: flex;
-    justify-content: center; /* Center the button */
-    z-index: 10; /* Button must be above the table */
-  }
-
-  /* Button style */
-  .button-opinion {
-    background-color: #1e90ff;
-    color: white;
-    font-size: 1rem;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-
-  .button-opinion:hover {
-    background-color: #4682b4;
-  }
-
-  .button-opinion:focus {
-    outline: none;
-  }
-
-  /* Move the table down if necessary */
-  .table-container {
-    margin-top: 100px; /* Enough space to avoid overlapping the button */
-  }
-
-  /* Rearrange the detail and table sections */
-  .details-and-table {
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-  }
-
-  /* Details (on the left) */
-  .details-container {
-    max-width: 100%;
-    margin-right: 0;
-    padding: 10px;
-    text-align: left;
-    z-index: 5;
-  }
-
-  /* Adjust titles in details to make them centered */
-  .details-container summary {
-    display: flex;
-    justify-content: center; /* Center titles */
-    align-items: center;
-    position: relative;
-  }
-
-  /* Bullet (arrow) in the summaries */
-  .details-container summary::before {
-    content: "▶";
-    position: absolute;
-    left: -20px; /* Place the arrow to the left of the title */
-    font-size: 1.5rem;
-  }
-
-  /* Impacting and Impacted Person section */
-  .impact-sections {
-    flex-direction: column; /* Stack the sections */
-    align-items: center;
-    padding-left: 0;
-    margin-top: 15px;
-  }
-
-  .impact-person {
-    margin-bottom: 10px; /* Reduce space between sections */
-    width: 100%;
+    margin-top: 10px; /* Réduit l'espace au-dessus des sections */
+    margin-bottom: 10px; /* Réduit l'espace sous les sections */
+    padding-left: 0; /* Pas de padding à gauche sur mobile */
     text-align: center;
   }
 
-  .avatar-container {
+  .table-container {
     display: flex;
-    justify-content: center; /* Center avatars */
-    width: 100%; /* Take the full width */
+    justify-content: center; /* Centrer le tableau horizontalement */
+    width: 100%; /* S'assurer que le conteneur prend toute la largeur disponible */
+    align-items: center; /* Centrer le tableau verticalement */
+    margin-top: 45px; /* Ajouter un peu d'espace au-dessus si nécessaire */
+    margin-left: 0px; /* Retirer tout margin pour s'assurer que le tableau est parfaitement centré */
+    margin-right: 0px;
+    margin-bottom: 0px;
+    padding: 0 10px; /* Ajouter un petit padding à gauche et à droite pour éviter que le tableau ne touche les bords */
   }
 
-  .avatar {
-    width: 60px; /* Smaller avatar size on mobile */
-    height: 60px;
-    margin-bottom: 10px; /* Space below the avatar */
+  table {
+    width: 90%; /* Donner une largeur réduite au tableau pour qu'il soit bien centré */
+    max-width: 95%; /* Limiter la largeur à 95% de l'écran pour un peu de marge */
+    table-layout: fixed; /* Pour que les cellules aient une largeur uniforme */
+    height: auto; /* Réduire la hauteur du tableau */
   }
+  th,
+  td {
+    padding: 6px 10px; /* Espacement amélioré pour mobile */
+    text-align: center; /* Centrer le texte des cellules */
+  }
+  /* Espacement augmenté entre les colonnes "Date" et "Event" */
   th {
-    padding-left: 45px;
-    padding-right: 45px; /* Less padding on mobile/tablet for readability */
+    padding-left: 30px; /* Augmenter l'espacement à 30px */
+    padding-right: 30px; /* Augmenter l'espacement à 30px */
+  }
+  th:nth-child(2),
+  td:nth-child(2) {
+    padding-left: 25px; /* Ajuster sur mobile-tablette */
+    text-align: right; /* Alignement à droite pour "Event" */
+  }
+  tr {
+    height: 30px; /* Réduire la hauteur des lignes du tableau */
+  }
+
+  /* Pour les écrans mobiles et tablettes (max-width: 1024px) */
+  @media (max-width: 1024px) {
+    /* Style du bouton */
+    .button-opinion {
+      padding: 10px 20px; /* Ajouter un peu de padding pour rendre le bouton plus grand et plus visible */
+    }
+
+    .button-opinion:hover {
+      background-color: #020202;
+    }
+
+    .button-opinion:focus {
+      outline: none;
+    }
+
+    /* Déplacer le tableau vers le bas si nécessaire */
+    .table-container {
+      display: block; /* Passe en mode bloc pour permettre un centrage simple */
+      text-align: center; /* Centre le contenu à l'intérieur du conteneur */
+      width: 100%; /* Le conteneur occupe toute la largeur disponible */
+      margin-top: 85px; /* Centrage automatique horizontal */
+      padding: 0 10px; /* Espacement autour du tableau */
+    }
+
+    /* Réorganiser les sections des détails et du tableau */
+    .details-and-table {
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    /* Détails (à gauche) */
+    .details-container {
+      max-width: 100%;
+      margin-right: 0;
+      padding: 10px;
+      text-align: center;
+      z-index: 5;
+      margin-top: 30px;
+    }
+    .request-id {
+      margin-top: -25px; /* Ajoute un espacement au-dessus pour descendre l'élément */
+    }
+
+    /* Puce (flèche) dans les résumés */
+    .details-container summary::before {
+      content: "▶";
+      position: absolute;
+      left: -20px; /* Placer la flèche à gauche du titre */
+      font-size: 1.5rem;
+    }
+
+    /* Section Impacting et Impacted Person */
+    .impact-sections {
+      flex-direction: column; /* Empiler les sections */
+      align-items: center;
+      padding-left: 0;
+      margin-top: 15px;
+    }
+
+    .impact-person {
+      margin-bottom: 10px; /* Réduire l'espace entre les sections */
+      width: 100%;
+      text-align: center;
+    }
+
+    .avatar-container {
+      display: flex;
+      justify-content: center; /* Centrer les avatars */
+      width: 100%; /* Prendre toute la largeur */
+    }
+
+    .avatar {
+      width: 50px; /* Taille plus petite des avatars sur mobile */
+      height: 50px;
+      margin-bottom: 10px; /* Espacement sous l'avatar */
+    }
+    th.centered-title {
+      text-align: center; /* Centre le texte horizontalement */
+      vertical-align: middle; /* Centre le texte verticalement dans la cellule */
+      padding: 10px; /* Ajuste le padding pour donner plus d'espace autour du texte */
+    }
+    .bullet {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background-color: #000;
+      border-radius: 50%;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+  }
+
+  table {
+    width: 100%; /* Largeur du tableau (90% de son conteneur) */
+    max-width: 100%; /* Limite la largeur à 100% du conteneur parent */
+    margin: 0 auto; /* Centrer le tableau */
+    table-layout: fixed; /* Fixe la largeur des colonnes */
+    height: auto; /* Hauteur automatique selon le contenu */
+  }
+  th:nth-child(2),
+  td:nth-child(2) {
+    padding-left: 25px; /* Réduit l'espacement dans la 2ème colonne */
+    text-align: center;
+  }
+  th,
+  td {
+    padding: 8px 12px; /* Réduit l'espacement des cellules */
+    font-size: 0.85rem; /* Réduit la taille de la police pour mobile */
+    line-height: 1.1; /* Réduit l'interligne sur mobile/tablette */
+    text-align: center; /* Centre le texte dans les cellules */
+  }
+  /* Styles spécifiques pour les tags en version mobile */
+  .mobile-header-tags {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 35px;
+  }
+
+  .mobile-tag1 {
+    background-color: #87e522;
+    color: rgb(22, 21, 21);
+    padding: 2px 45px;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    margin-top: 35px;
+  }
+  .mobile-tag2 {
+    background-color: #f0aeee;
+    color: rgb(22, 21, 21);
+    padding: 2px 45px;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    margin-top: 35px;
+  }
+  /* Centrer le titre "Save the date" */
+  th.centered-title {
+    text-align: center; /* Centrer le texte horizontalement */
+    vertical-align: middle; /* Centrer verticalement */
+    padding: 10px; /* Ajuster l'espacement pour donner plus de place autour du texte */
+  }
+  /* Centrer la flèche dans la ligne */
+  .arrow {
+    text-align: center; /* Centrer le contenu de la cellule contenant la flèche */
+    padding: 5px 0;
+    /* Ajuster l'espacement autour de la flèche */
+    vertical-align: middle;
+    position: relative;
+  }
+
+  /* Centrer la flèche vers le bas */
+  .arrow-down {
+    font-size: 1.5rem; /* Taille de la flèche */
+    margin-top: -2px; /* Ajuster légèrement la position verticale de la flèche */
+    vertical-align: middle;
+    color: #0f1010; /* Choisir une couleur qui se démarque */
+    margin-top: -2px; /* Ajuster légèrement la position verticale de la flèche */
+  }
+  /* Gérer les flèches dans le tableau */
+
+  tr th.arrow {
+    text-align: center;
+    padding-top: 0; /* Retirer tout espace supplémentaire au-dessus de la flèche */
+    padding-bottom: 15px; /* Retirer tout espace supplémentaire en dessous de la flèche */
+  }
+  /* Ajouter un cercle sous la flèche */
+  .arrow::after {
+    content: ""; /* Créer un élément vide */
+    position: absolute; /* Positionner le cercle de manière absolue */
+    left: 50%; /* Centrer horizontalement */
+    transform: translateX(-50%); /* Centrer parfaitement par rapport à son conteneur */
+    top: 50px; /* Décaler le cercle sous la flèche */
+    width: 15px; /* Taille du cercle */
+    height: 15px; /* Taille du cercle */
+    border-radius: 50%; /* Faire du cercle un rond */
+    background-color: #000; /* Couleur du cercle (noir ici, mais peut être modifiée) */
+  }
+
+  /* L'avatar et le nom restent alignés à gauche */
+  .user-info-container {
+    justify-content: flex-start; /* Garder l'alignement à gauche */
+  }
+
+  .user-avatar {
+    width: 35px;
+    height: 35px; /* Taille réduite pour l'avatar sur mobile */
+  }
+
+  .user-name {
+    font-size: 1rem; /* Réduire la taille du nom sur mobile */
   }
 }
+/* ************************************************************************************** */
+/* ********************************************************************************** */
