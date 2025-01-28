@@ -33,7 +33,7 @@ CREATE TABLE request (
 CREATE TABLE comment (
     id INT PRIMARY KEY AUTO_INCREMENT,
     details TEXT NOT NULL,
-    `date` DATE,
+    `date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     user_id INT NOT NULL,
     request_id INT NOT NULL,
     CONSTRAINT fk_comment_user

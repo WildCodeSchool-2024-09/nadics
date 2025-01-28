@@ -3,6 +3,7 @@ const router = express.Router();
 import path from "node:path";
 import multer from "multer";
 import authAction from "./auth/authAction";
+import commentActions from "./modules/comment/commentActions";
 /* ************************************************************************* */
 // Define Your API Routes Here
 /* ************************************************************************* */
@@ -21,6 +22,10 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage });
+
+router.get("/api/comments", commentActions.browse);
+router.get("/api/comments/:id", commentActions.read);
+
 router.get("/api/users", userActions.browse);
 router.get("/api/users/:id", userActions.read);
 
