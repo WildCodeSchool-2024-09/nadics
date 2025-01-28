@@ -7,6 +7,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 // Import the main app component
 import App from "./App";
+import { UserProvider } from "./context/userContext";
 import HomePage from "./pages/HomePage";
 import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/LoginPage";
@@ -16,7 +17,6 @@ import PostRequest from "./pages/PostRequest";
 import RequestEdit from "./pages/RequestEdit";
 import SignupPage from "./pages/SignupPage";
 import UserEdit from "./pages/UserEdit";
-import { UserProvider } from "./context/userContext";
 
 // Import additional components for new routes
 // Try creating these components in the "pages" folder

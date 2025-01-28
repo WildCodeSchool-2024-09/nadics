@@ -1,15 +1,15 @@
 import express from "express";
 const router = express.Router();
+import path from "node:path";
+import multer from "multer";
 import authAction from "./auth/authAction";
 /* ************************************************************************* */
 // Define Your API Routes Here
 /* ************************************************************************* */
 // Define user-related routes
 import requestActions from "./modules/request/requestActions";
-import userActions from "./modules/users/userAction";
 import uploads from "./modules/users/uploadsAction";
-import multer from "multer";
-import path from "node:path";
+import userActions from "./modules/users/userAction";
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {

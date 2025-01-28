@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import DeleteRequest from "./DeleteRequest";
-import UserContext from "../context/userContext";
 import defaultAvatar from "../assets/images/avatar.jpg";
+import UserContext from "../context/userContext";
+import DeleteRequest from "./DeleteRequest";
 
 // Définir un type pour les données de chaque demande date`,title, theme, details, user_id
 interface Request {

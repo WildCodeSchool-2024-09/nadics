@@ -3,8 +3,8 @@ import { useContext, useState } from "react";
 import type { SetStateAction } from "react";
 import { Link } from "react-router-dom";
 import type { Auth } from "../App";
-import logo from "../assets/images/logo-removebg.png";
 import defaultAvatar from "../assets/images/avatar.jpg";
+import logo from "../assets/images/logo-removebg.png";
 import UserContext from "../context/userContext";
 import type { UserTypeContext } from "../context/userContext";
 
