@@ -24,6 +24,7 @@ const login: RequestHandler = async (req, res, next) => {
         firstname: user.firstname,
         lastname: user.lastname,
         birthday: user.birthday,
+        avatar: user.avatar,
       };
 
       const token = await jwt.sign(

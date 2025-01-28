@@ -19,10 +19,10 @@ function App() {
       navigate("/login");
     }
   }, [navigate]);
-  console.info(auth);
+
   return (
     <>
-      <Navbar setAuth={setAuth} />
+      <Navbar auth={auth} setAuth={setAuth} />
       <Outlet context={{ auth, setAuth }} />
       <Footer />
     </>

@@ -44,9 +44,7 @@ function LoginComponent() {
           secure: true,
           sameSite: "Strict",
         });
-
         setAuth(token);
-
         navigate("/home");
       } else {
         // Log des détails de la réponse en cas d'échec
