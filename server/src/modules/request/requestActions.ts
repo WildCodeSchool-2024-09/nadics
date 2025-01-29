@@ -59,7 +59,6 @@ const add: RequestHandler = async (req, res, next) => {
       title: req.body.title,
       theme: req.body.theme,
       details: req.body.details,
-      userId: req.body.id,
     };
 
     // Create the user

@@ -11,28 +11,28 @@ interface Request {
 
 class RequestRepository {
   // The C of CRUD - Create operation
-
-  async create(request: Omit<Request, "id"> & { userId: number }) {
-    // Exécuter la requête SQL INSERT pour ajouter une nouvelle requête liée à un utilisateur
-    const [result] = await databaseClient.query<Result>(
-      "INSERT INTO request (title, theme, details, user_id) VALUES (?, ?, ?, ?)",
-      [request.title, request.theme, request.details, request.userId],
-    );
-
-    // Retourner l'ID de la requête nouvellement insérée
-    return result.insertId;
-  }
-
-  // async create(request: Omit<Request, "id">) {
-  //   // Execute the SQL INSERT query to add a new request to the "request" table
+  // a test to take user_id into account when creating a new request
+  // async create(request: Omit<Request, "id"> & { userId: number }) {
+  //   // Exécuter la requête SQL INSERT pour ajouter une nouvelle requête liée à un utilisateur
   //   const [result] = await databaseClient.query<Result>(
-  //     "insert into request (title,theme,details) values ( ?, ?, ?)",
-  //     [request.title, request.theme, request.details],
+  //     "INSERT INTO request (title, theme, details, user_id) VALUES (?, ?, ?, ?)",
+  //     [request.title, request.theme, request.details, request.userId],
   //   );
 
-  //   // Return the ID of the newly inserted request
+  //   // Retourner l'ID de la requête nouvellement insérée
   //   return result.insertId;
   // }
+
+  async create(request: Omit<Request, "id">) {
+    // Execute the SQL INSERT query to add a new request to the "request" table
+    const [result] = await databaseClient.query<Result>(
+      "insert into request (title,theme,details) values ( ?, ?, ?)",
+      [request.title, request.theme, request.details],
+    );
+
+    // Return the ID of the newly inserted request
+    return result.insertId;
+  }
 
   async readAll() {
     const [rows] = await databaseClient.query<Rows>(
