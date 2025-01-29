@@ -1,10 +1,30 @@
 import "./Navbar.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import type { SetStateAction } from "react";
 import { Link } from "react-router-dom";
+import type { Auth } from "../App";
+import defaultAvatar from "../assets/images/avatar.jpg";
 import logo from "../assets/images/logo-removebg.png";
+import UserContext from "../context/userContext";
+import type { UserTypeContext } from "../context/userContext";
 
-function Navbar() {
+interface NavbarProps {
+  setAuth: React.Dispatch<React.SetStateAction<Auth | null>>; // Typage correct de setAuth
+  auth: Auth | null;
+}
+
+function Navbar({ auth, setAuth }: NavbarProps) {
+  const handleLogout = () => {
+    // Supprimer cookie "authToken"
+    document.cookie =
+      "authToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+
+    // Déconnexion en mettant auth à null
+    setAuth(null);
+  };
+
+  const { user } = useContext<UserTypeContext>(UserContext);
+
   const [burger_class, setBurger_class] = useState("burger-bar unClicked");
   const [menu_class, setMenu_class] = useState("menu hidden");
   const [isMenuClicked, setMenuClicked] = useState(false);
@@ -48,6 +68,19 @@ function Navbar() {
           <div className={burger_class} />
           <div className={burger_class} />
         </div>
+        <Link to="/profil">
+          {auth && user && (
+            <img
+              src={
+                user.avatar
+                  ? `${import.meta.env.VITE_API_URL}/${user.avatar}`
+                  : defaultAvatar
+              }
+              alt="avatar"
+              id="avatar_icon"
+            />
+          )}
+        </Link>
       </nav>
       <div className={menu_class}>
         <Link
@@ -94,6 +127,15 @@ function Navbar() {
           onClick={updateMenu}
         >
           Sign up
+        </Link>
+        <Link
+          to="/login"
+          className={`homeLink ${hoveredLink === "logout" ? "hovered" : ""}`}
+          onMouseEnter={() => handleMouseEnter("logout")}
+          onMouseLeave={handleMouseLeave}
+          onClick={handleLogout}
+        >
+          Logout
         </Link>
       </div>
     </header>

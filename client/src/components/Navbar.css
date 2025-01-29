@@ -74,3 +74,9 @@ nav {
   font-size: 1.8em;
   font-weight: bold;
 }
+
+#avatar_icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 3rem;
+}

@@ -8,7 +8,16 @@ type User = {
   lastname: string;
   birthday: string;
   email: string;
-  password: string;
+  hashed_password: string;
+};
+type UserToken = {
+  id: number;
+  firstname: string;
+  lastname: string;
+  birthday: string;
+  avatar: string;
+  email: string;
+  hashed_password: string;
 };
 
 class UserRepository {
@@ -17,8 +26,14 @@ class UserRepository {
   async create(user: Omit<User, "id">) {
     // Execute the SQL INSERT query to add a new user to the "user" table
     const [result] = await databaseClient.query<Result>(
-      "insert into user (firstname,lastname,birthday,email, password) values ( ?, ?, ?, ?, ?)",
-      [user.firstname, user.lastname, user.birthday, user.email, user.password],
+      "insert into user (firstname,lastname,birthday,email, hashed_password) values ( ?, ?, ?, ?, ?)",
+      [
+        user.firstname,
+        user.lastname,
+        user.birthday,
+        user.email,
+        user.hashed_password,
+      ],
     );
 
     // Return the ID of the newly inserted user
@@ -35,8 +50,9 @@ class UserRepository {
         firstname, 
         lastname, 
         DATE_FORMAT(birthday, '%Y-%m-%d') AS birthday, 
+        avatar,
         email, 
-        password, 
+        hashed_password, 
         role_id 
       FROM user 
       WHERE id = ?`,
@@ -49,10 +65,35 @@ class UserRepository {
 
   async readAll() {
     // Execute the SQL SELECT query to retrieve all users from the "user" table
-    const [rows] = await databaseClient.query<Rows>("select * from user ");
+    const [rows] = await databaseClient.query<Rows>(`select  id, 
+        firstname, 
+        lastname, 
+        DATE_FORMAT(birthday, '%Y-%m-%d') AS birthday, 
+        avatar,
+        email, 
+        hashed_password, 
+        role_id  from user `);
 
     // Return the array of users
     return rows as User[];
+  }
+
+  async readByEmailWithPassword(email: string) {
+    const [rows] = await databaseClient.query<Rows>(
+      `SELECT  id, 
+        firstname, 
+        lastname, 
+        DATE_FORMAT(birthday, '%Y-%m-%d') AS birthday, 
+        avatar,
+        email, 
+        hashed_password, 
+        role_id 
+       FROM user 
+       WHERE email = ?`,
+      [email],
+    );
+
+    return rows[0] as UserToken;
   }
 
   // The U of CRUD - Update operation
@@ -70,6 +111,14 @@ class UserRepository {
 
     // Return how many rows were affected
     return result.affectedRows;
+  }
+
+  async createAvatar(userId: number, avatarPath: string) {
+    const [result] = await databaseClient.query<Result>(
+      "UPDATE user SET avatar = ? WHERE id = ?",
+      [avatarPath, userId],
+    );
+    return result;
   }
 
   // The D of CRUD - Delete operation

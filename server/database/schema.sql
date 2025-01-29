@@ -7,9 +7,10 @@ CREATE TABLE `user` (
     id INT PRIMARY KEY AUTO_INCREMENT,
     firstname VARCHAR(50) NOT NULL,
     lastname VARCHAR(50) NOT NULL,
-    birthday DATE NOT NULL, 
+    birthday DATE NOT NULL,
+    avatar VARCHAR(255),
     email VARCHAR(50) NOT NULL UNIQUE,
-    `password` VARCHAR(50) NOT NULL,
+    hashed_password VARCHAR(255) NOT NULL,
     role_id INT DEFAULT 2,     
     CONSTRAINT fk_user_role  
 	      FOREIGN KEY (role_id) 
@@ -32,7 +33,7 @@ CREATE TABLE request (
 CREATE TABLE comment (
     id INT PRIMARY KEY AUTO_INCREMENT,
     details TEXT NOT NULL,
-    `date` DATE,
+    `date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     user_id INT NOT NULL,
     request_id INT NOT NULL,
     CONSTRAINT fk_comment_user
@@ -49,7 +50,7 @@ values
   ("admin"),
   ("visiteur");
 
-insert into user(firstname, lastname,birthday, email, `password`, role_id)
+insert into user(firstname, lastname,birthday, email, hashed_password, role_id)
 values
   ("Toto", "Tutu", "1994-02-05" , "toto.tutu@mail.com", "123456", 1),
   ("Tata", "Titi", "2000.01.02","tata.titi@mail.com", "78910", 2);

@@ -29,9 +29,9 @@ function SignupComponent() {
         const errorData = await response.json();
         throw new Error(errorData.message || "Failed to create user");
       }
-      if (response.status === 204) {
+      if (response.status === 201) {
         alert("User created successfully! Redirecting...");
-        navigate("/home");
+        navigate("/login");
         return;
       }
     } catch (error) {
