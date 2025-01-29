@@ -1,10 +1,11 @@
-import { Link, useOutletContext } from "react-router-dom";
+import { Link, useOutletContext, useParams } from "react-router-dom";
+import "./HomePage.css";
 import RequestCard from "../components/RequestCard";
 import "./HomePage.css";
 import type { Auth } from "../App";
 function HomePage() {
   const { auth } = useOutletContext() as { auth: Auth | null };
-
+  const { id } = useParams();
   return (
     <>
       {auth ? (
@@ -18,7 +19,9 @@ function HomePage() {
             <section id="ongoing-requests">
               <h3>Ongoing Requests</h3>
               <div className="cards-container">
-                <RequestCard />
+                <Link to={`/request-details/${id}`}>
+                  <RequestCard />
+                </Link>
               </div>
             </section>
           </main>
