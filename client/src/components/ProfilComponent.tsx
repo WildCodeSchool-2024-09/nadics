@@ -1,7 +1,34 @@
+import { useEffect, useState } from "react";
 import avatar from "../assets/images/avatar.jpg";
 import editIcon from "../assets/images/edit-icon.png";
 import "../components/ProfilComponent.css";
+// import DeleteUser from "./DeleteUser";
+import Cookies from "js-cookie";
+import jwt from "jsonwebtoken";
+
 function Profil() {
+  const [userId, setUserId] = useState<number | null>(null);
+
+  useEffect(() => {
+    // Récupérer le token depuis les cookies
+    const token = Cookies.get("authToken");
+
+    if (token) {
+      // Décoder le token pour récupérer les informations de l'utilisateur
+      const decodedToken = jwt.decode(token) as { sub: string } | null;
+
+      if (decodedToken) {
+        // Extraire l'ID de l'utilisateur depuis le payload
+        const userId = Number.parseInt(decodedToken.sub, 10);
+        setUserId(userId);
+      }
+    }
+  }, []);
+
+  if (userId === null) {
+    return <div>Loading...</div>; // Gérer le cas où l'utilisateur n'est pas connecté
+  }
+
   return (
     <div id="page_container">
       <main id="mainProfile">
@@ -39,6 +66,8 @@ function Profil() {
           <a href="Change my password" id="lien_change">
             Change my password
           </a>
+          <br /> {/* pour le test  */}
+          {/* <DeleteUser id={userId} /> */}
         </div>
       </main>
     </div>

@@ -36,15 +36,15 @@ class UserRepository {
   async read(id: number) {
     // Execute the SQL SELECT query to retrieve a specific user by users ID
     const [rows] = await databaseClient.query<Rows>(
-      `SELECT 
-        id, 
-        firstname, 
-        lastname, 
-        DATE_FORMAT(birthday, '%Y-%m-%d') AS birthday, 
-        email, 
-        password, 
-        role_id 
-      FROM user 
+      `SELECT
+        id,
+        firstname,
+        lastname,
+        DATE_FORMAT(birthday, '%Y-%m-%d') AS birthday,
+        email,
+        password,
+        role_id
+      FROM user
       WHERE id = ?`,
       [id],
     );
@@ -88,6 +88,14 @@ class UserRepository {
 
   // The D of CRUD - Delete operation
   // TODO: Implement the delete operation to remove an item by its ID
+
+  async delete(id: number) {
+    const [result] = await databaseClient.query<Result>(
+      "delete from user where id=? ",
+      [id],
+    );
+    return result.affectedRows;
+  }
 
   // async delete(id: number) {
   //   ...

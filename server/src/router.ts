@@ -17,6 +17,7 @@ router.get("/api/users/:id", userActions.read);
 
 router.post("/api/login/", authAction.login);
 router.post("/api/users/", authAction.hashPassword, userActions.add);
+router.delete("/api/users/:id", userActions.destroy);
 
 router.get("/api/request", requestActions.browse);
 router.get("/api/request/:id", requestActions.read);
