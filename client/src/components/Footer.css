@@ -6,6 +6,7 @@
   justify-content: center;
   align-items: center;
   gap: 1rem;
+  margin-top: auto; /* Cette ligne garantit que le footer reste en bas */
 }
 
 .footer-text {

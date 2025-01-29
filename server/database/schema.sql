@@ -14,7 +14,8 @@ CREATE TABLE `user` (
     role_id INT DEFAULT 2,     
     CONSTRAINT fk_user_role  
 	      FOREIGN KEY (role_id) 
-        REFERENCES role(id) 
+        REFERENCES role(id)
+        ON DELETE SET NULL 
 );
 
 CREATE TABLE request (
@@ -27,6 +28,7 @@ CREATE TABLE request (
     CONSTRAINT fk_request_user
         FOREIGN KEY (user_id)
         REFERENCES `user`(id)
+        ON DELETE CASCADE
         
 );
 
@@ -38,7 +40,8 @@ CREATE TABLE comment (
     request_id INT NOT NULL,
     CONSTRAINT fk_comment_user
         FOREIGN KEY (user_id)
-        REFERENCES `user`(id),
+        REFERENCES `user`(id)
+        ON DELETE CASCADE,
     CONSTRAINT fk_comment_request
         FOREIGN KEY (request_id)
         REFERENCES request(id)

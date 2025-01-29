@@ -5,6 +5,7 @@ import "../components/ProfilComponent.css";
 
 import UserContext from "../context/userContext";
 import type { UserTypeContext } from "../context/userContext";
+import DeleteUser from "./DeleteUser";
 
 function Profil() {
   const { user, setUser } = useContext<UserTypeContext>(UserContext);
@@ -88,7 +89,7 @@ function Profil() {
                 id="avatar"
               />
             </div>
-            <button type="submit" className="button_icon">
+            <button type="submit" id="button_icon-update">
               <span>Update your avatar</span>
             </button>
           </form>
@@ -116,6 +117,8 @@ function Profil() {
             <a href="Change my password" id="lien_change">
               Change my password
             </a>
+            <br />
+            <DeleteUser />
           </div>
         </main>
       )}

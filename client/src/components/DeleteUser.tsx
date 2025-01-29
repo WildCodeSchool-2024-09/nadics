@@ -1,40 +1,126 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import UserContext from "../context/userContext";
 import type { UserTypeContext } from "../context/userContext";
 
-// interface PropsType {
-//   id: number;
-// }
 function DeleteUser() {
   const { user } = useContext<UserTypeContext>(UserContext);
+  const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
 
-  const handleDelete = () => {
-    user &&
-      fetch(`${import.meta.env.VITE_API_URL}/api/users/${user.sub}`, {
-        method: "delete",
-      }).then((response) => {
-        if (response.status === 204) {
-          window.location.reload();
+  const handleDelete = async () => {
+    if (user?.sub) {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/users/${user.sub}`,
+          {
+            method: "DELETE",
+          },
+        );
+
+        if (response.ok) {
+          alert("Account deleted successfully.");
+          navigate("/");
+        } else {
+          alert("Failed to delete account. Please try again.");
         }
-      });
+      } catch (error) {
+        console.error("Error deleting user:", error);
+        alert("An error occurred while deleting the account.");
+      }
+    }
   };
+
   return (
     <>
-      <button type="submit" onClick={handleDelete}>
+      <button
+        type="button"
+        onClick={() => setShowModal(true)}
+        id="delete-button"
+      >
         Delete my account
       </button>
+
+      {showModal && (
+        <div className="modal">
+          <div className="modal-content">
+            <p>
+              ❌ Are you sure you want to delete your account? This action
+              cannot be undone.
+            </p>
+            <button type="button" id="delete-button-yes" onClick={handleDelete}>
+              🔴Yes, delete
+            </button>
+            <button
+              type="button"
+              id="delete-button-cancel"
+              onClick={() => setShowModal(false)}
+            >
+              🟢Cancel
+            </button>
+          </div>
+        </div>
+      )}
     </>
   );
 }
+
 export default DeleteUser;
 
+// /////////
+// /////////
+// /////////
+// /////////
+// /////////
+// /////////
+// /////////
+// /////////
+// /////////
+// /////////
+// /////////
+// /////////
+
+// import { useContext } from "react";
+// import UserContext from "../context/userContext";
+// import type { UserTypeContext } from "../context/userContext";
 // import { useNavigate } from "react-router-dom";
 
-// interface DeleteUserProps {
-//   id: number;
-// }
+// // interface PropsType {
+// //   id: number;
+// // }
+// function DeleteUser() {
+//   const { user } = useContext<UserTypeContext>(UserContext);
+//   const navigate = useNavigate();
 
-// function DeleteUser({ id }: DeleteUserProps) {
+//   const handleDelete = () => {
+//     user &&
+//       fetch(`${import.meta.env.VITE_API_URL}/api/users/${user.sub}`, {
+//         method: "delete",
+//       }).then((response) => {
+//         if (response.status === 204) {
+//           navigate("/");
+//         }
+//       });
+//   };
+//   return (
+//     <>
+//       <button type="submit" onClick={handleDelete}>
+//         Delete my account
+//       </button>
+//     </>
+//   );
+// }
+// export default DeleteUser;
+
+// ///////
+
+// import { useContext } from "react";
+// import UserContext from "../context/userContext";
+// import type { UserTypeContext } from "../context/userContext";
+// import { useNavigate } from "react-router-dom";
+
+// function DeleteUser() {
+//   const { user } = useContext<UserTypeContext>(UserContext);
 //   const navigate = useNavigate();
 
 //   const handleDelete = async () => {
@@ -43,7 +129,7 @@ export default DeleteUser;
 //     );
 //     if (confirmDelete) {
 //       try {
-//         const response = await fetch(`/api/users/${id}`, {
+//         const response = await fetch(`/api/users/${user.sub}`, {
 //           method: "DELETE",
 //         });
 
