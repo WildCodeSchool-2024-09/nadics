@@ -39,7 +39,7 @@ router.get("/api/request", requestActions.browse);
 router.get("/api/request/:id", requestActions.read);
 router.put("/api/request/:id", requestActions.edit);
 
-router.post("/api/request/", authAction.verifyToken, requestActions.add);
+router.post("/api/request/", requestActions.add);
 router.delete("/api/request/:id", requestActions.destroy);
 /* ************************************************************************* */
 export default router;

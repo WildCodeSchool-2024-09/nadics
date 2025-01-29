@@ -24,7 +24,7 @@ CREATE TABLE request (
     title VARCHAR(50) NOT NULL,
     theme VARCHAR(50) NOT NULL,
     details TEXT NOT NULL,
-    user_id INT NOT NULL DEFAULT 1,
+    user_id INT NOT NULL,
     CONSTRAINT fk_request_user
         FOREIGN KEY (user_id)
         REFERENCES `user`(id)

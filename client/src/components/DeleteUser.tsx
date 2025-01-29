@@ -4,7 +4,7 @@ import UserContext from "../context/userContext";
 import type { UserTypeContext } from "../context/userContext";
 
 function DeleteUser() {
-  const { user } = useContext<UserTypeContext>(UserContext);
+  const { user, setUser } = useContext<UserTypeContext>(UserContext);
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
 
@@ -14,13 +14,18 @@ function DeleteUser() {
         const response = await fetch(
           `${import.meta.env.VITE_API_URL}/api/users/${user.sub}`,
           {
-            method: "DELETE",
+            method: "delete",
           },
         );
 
         if (response.ok) {
           alert("Account deleted successfully.");
-          navigate("/");
+
+          document.cookie = "authToken=; Max-Age=0"; // Suppression du cookie "authToken" pour déconnecter l'utilisateur. Expire immédiatement le cookie
+
+          setUser(null); // Mettre à jour le contexte pour supprimer l'utilisateur de l'état
+
+          navigate("/"); // Rediriger l'utilisateur vers la page de connexion ou la page d'accueil
         } else {
           alert("Failed to delete account. Please try again.");
         }
