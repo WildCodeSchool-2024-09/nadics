@@ -18,16 +18,6 @@ export interface RequestDetailCardProps {
   tags?: string[]; // Rendre tags optionnel
 }
 
-const UserInfo: React.FC<{ userName: string; userAvatar: string }> = ({
-  userName,
-  userAvatar,
-}) => (
-  <div className="user-info">
-    <div className="avatar">{userAvatar}, </div>
-    <p>{userName}</p>
-  </div>
-);
-
 const ImpactPerson: React.FC<{ userName: string; userAvatar: string }> = ({
   userName,
   userAvatar,
@@ -119,11 +109,6 @@ const Table: React.FC<{ events: Event[] }> = ({ events }) => (
 );
 
 const RequestDetailCard: React.FC<RequestDetailCardProps> = ({
-  title,
-  details,
-  theme,
-  userName,
-  userAvatar,
   impactingUserAvatar,
   impactedUserAvatar,
   events,
@@ -134,26 +119,12 @@ const RequestDetailCard: React.FC<RequestDetailCardProps> = ({
     { date: "2025-04-01", event: "Project Launch" },
   ];
 
-  const defaultUserAvatar = "👨‍💻";
   const defaultImpactingUserAvatar = "👩‍💼";
   const defaultImpactedUserAvatar = "🧑‍🔧";
 
   return (
     <div className="request-detail-card">
       <Table events={events || defaultEvents} />
-      <div className="header">
-        <UserInfo
-          userName={userName || "John Doe"}
-          userAvatar={userAvatar || defaultUserAvatar}
-        />
-        <div className="theme-info">
-          <p>{theme || "Project Development"}</p>
-        </div>
-        <div className="title-info">
-          <h2>{title || "Request Title"}</h2>
-        </div>
-      </div>
-      <p>{details || "No description available"}</p>
       <ImpactSection
         impactingUserAvatar={impactingUserAvatar || defaultImpactingUserAvatar}
         impactedUserAvatar={impactedUserAvatar || defaultImpactedUserAvatar}

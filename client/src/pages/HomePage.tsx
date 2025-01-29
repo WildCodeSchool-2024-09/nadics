@@ -5,7 +5,7 @@ import "./HomePage.css";
 import type { Auth } from "../App";
 function HomePage() {
   const { auth } = useOutletContext() as { auth: Auth | null };
-
+  const { id } = useParams();
   return (
     <>
       {auth ? (

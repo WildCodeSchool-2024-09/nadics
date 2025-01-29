@@ -4,25 +4,10 @@
   padding: 0;
   box-sizing: 0;
 }
-
-html,
-body {
-  height: 100%; /* Assure que le body et html prennent toute la hauteur de la fenêtre */
-  margin: 0; /* Supprime la marge par défaut */
-  padding: 0; /* Supprime le padding par défaut */
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh; /* Prendre au moins toute la hauteur de la fenêtre */
-}
-
 /* Conteneur pour les détails de la demande */
 .request-details-container {
   flex-grow: 1; /* Permet au conteneur de prendre toute la hauteur disponible */
   padding: 20px;
-  font-family: Arial, sans-serif;
   background-color: #f5f5f5;
   border-radius: 8px;
   max-width: 1200px;
@@ -30,6 +15,10 @@ body {
   padding-bottom: 80px; /* Ajouter de l'espace en bas pour le bouton */
 }
 
+#user_info {
+  display: flex;
+  flex-direction: row;
+}
 .request-detail-card {
   margin-bottom: 20px;
 }

@@ -1,8 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import type { Event as EventType } from "../components/RequestDetailCard";
 import RequestDetailCard from "../components/RequestDetailCard";
 import "./RequestDetails.css";
+import UserContext from "../context/userContext";
+import type { UserTypeContext } from "../context/userContext";
+import defaultAvatar from "../assets/images/avatar.jpg";
 
 interface RequestDetailsType {
   id: number;
@@ -19,6 +22,8 @@ interface RequestDetailsType {
 }
 
 function RequestDetails() {
+  const { user } = useContext<UserTypeContext>(UserContext);
+
   const { id } = useParams<string>();
   const [requestDetails, setRequestDetails] =
     useState<RequestDetailsType | null>(null);
@@ -72,6 +77,21 @@ function RequestDetails() {
 
   return (
     <div className="request-details-container">
+      <h1>{requestDetails.title}</h1>
+      <div id="user_info">
+        {user && (
+          <img
+            src={
+              user.avatar
+                ? `${import.meta.env.VITE_API_URL}/${user.avatar}`
+                : defaultAvatar
+            }
+            alt="avatar"
+            id="avatar_icon"
+          />
+        )}
+        <p>{user?.firstname}</p>
+      </div>
       <div className="mobile-header-tags">
         <span className="mobile-tag1">Tag 1</span>
         <span className="mobile-tag2">Tag 2</span>
