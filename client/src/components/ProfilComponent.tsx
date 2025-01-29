@@ -41,12 +41,7 @@ function Profil() {
       const data = await response.json();
       if (response.ok) {
         // Mettre à jour l'utilisateur avec le nouvel avatar
-        setUser((prevUser) => {
-          if (prevUser) {
-            return { ...prevUser, avatar: data.avatar };
-          }
-          return null;
-        });
+        setUser(data);
         alert("Avatar updated");
       } else {
         alert(data.message || "Une erreur s'est produite.");

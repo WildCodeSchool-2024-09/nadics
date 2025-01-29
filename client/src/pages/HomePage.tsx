@@ -1,10 +1,12 @@
-import { Link, useOutletContext, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "./HomePage.css";
 import RequestCard from "../components/RequestCard";
 import "./HomePage.css";
-import type { Auth } from "../App";
+import { useContext } from "react";
+import AuthContext from "../context/authContext";
+
 function HomePage() {
-  const { auth } = useOutletContext() as { auth: Auth | null };
+  const { auth } = useContext(AuthContext);
   const { id } = useParams();
   return (
     <>

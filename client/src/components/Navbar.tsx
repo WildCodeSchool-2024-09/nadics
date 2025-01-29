@@ -2,18 +2,15 @@ import "./Navbar.css";
 import { useContext, useState } from "react";
 import type { SetStateAction } from "react";
 import { Link } from "react-router-dom";
-import type { Auth } from "../App";
 import defaultAvatar from "../assets/images/avatar.jpg";
 import logo from "../assets/images/logo-removebg.png";
 import UserContext from "../context/userContext";
 import type { UserTypeContext } from "../context/userContext";
+import AuthContext from "../context/authContext";
 
-interface NavbarProps {
-  setAuth: React.Dispatch<React.SetStateAction<Auth | null>>; // Typage correct de setAuth
-  auth: Auth | null;
-}
-
-function Navbar({ auth, setAuth }: NavbarProps) {
+function Navbar() {
+  const { setUser } = useContext(UserContext);
+  const { auth, setAuth } = useContext(AuthContext);
   const handleLogout = () => {
     // Supprimer cookie "authToken"
     document.cookie =
@@ -21,6 +18,7 @@ function Navbar({ auth, setAuth }: NavbarProps) {
 
     // Déconnexion en mettant auth à null
     setAuth(null);
+    setUser(null);
   };
 
   const { user } = useContext<UserTypeContext>(UserContext);

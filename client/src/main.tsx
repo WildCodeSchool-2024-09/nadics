@@ -18,6 +18,7 @@ import RequestDetails from "./pages/RequestDetails";
 import RequestEdit from "./pages/RequestEdit";
 import SignupPage from "./pages/SignupPage";
 import UserEdit from "./pages/UserEdit";
+import { AuthProvider } from "./context/authContext";
 
 // Import additional components for new routes
 // Try creating these components in the "pages" folder
@@ -132,9 +133,11 @@ if (rootElement == null) {
 // Render the app inside the root element
 createRoot(rootElement).render(
   <StrictMode>
-    <UserProvider>
-      <RouterProvider router={router} />
-    </UserProvider>
+    <AuthProvider>
+      <UserProvider>
+        <RouterProvider router={router} />
+      </UserProvider>
+    </AuthProvider>
   </StrictMode>,
 );
 
