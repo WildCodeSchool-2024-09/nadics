@@ -4,9 +4,9 @@ import type { SetStateAction } from "react";
 import { Link } from "react-router-dom";
 import defaultAvatar from "../assets/images/avatar.jpg";
 import logo from "../assets/images/logo-removebg.png";
+import AuthContext from "../context/authContext";
 import UserContext from "../context/userContext";
 import type { UserTypeContext } from "../context/userContext";
-import AuthContext from "../context/authContext";
 
 function Navbar() {
   const { setUser } = useContext(UserContext);

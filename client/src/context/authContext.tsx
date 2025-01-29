@@ -1,5 +1,5 @@
-import { createContext, useEffect, useState } from "react";
 import Cookies from "js-cookie";
+import { createContext, useEffect, useState } from "react";
 
 export type AuthType = {
   token: string;

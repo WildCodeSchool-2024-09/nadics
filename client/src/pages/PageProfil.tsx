@@ -1,5 +1,5 @@
-import Profil from "../components/ProfilComponent";
 import { useContext } from "react";
+import Profil from "../components/ProfilComponent";
 import AuthContext from "../context/authContext";
 function ProfilPage() {
   const { auth } = useContext(AuthContext);
