@@ -1,8 +1,8 @@
-import { useOutletContext } from "react-router-dom";
-import type { Auth } from "../App";
+import { useContext } from "react";
 import Profil from "../components/ProfilComponent";
+import AuthContext from "../context/authContext";
 function ProfilPage() {
-  const { auth } = useOutletContext() as { auth: Auth | null };
+  const { auth } = useContext(AuthContext);
   return <>{auth ? <Profil /> : <h2>You are not connected</h2>}</>;
 }
 export default ProfilPage;

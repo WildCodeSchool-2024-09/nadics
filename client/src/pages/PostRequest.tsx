@@ -1,10 +1,12 @@
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import type { Auth } from "../App";
+
+import { useContext } from "react";
 import backgroundImage from "../assets/images/logo.png";
+import AuthContext from "../context/authContext";
 
 export default function PostRequest() {
-  const { auth } = useOutletContext() as { auth: Auth | null };
+  const { auth } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -25,7 +27,7 @@ export default function PostRequest() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${auth as Auth}`,
+            Authorization: `Bearer ${auth}`,
           },
           body: JSON.stringify(requestData),
         },
