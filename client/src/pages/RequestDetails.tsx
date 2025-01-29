@@ -3,9 +3,9 @@ import { Link, useParams } from "react-router-dom";
 import type { Event as EventType } from "../components/RequestDetailCard";
 import RequestDetailCard from "../components/RequestDetailCard";
 import "./RequestDetails.css";
+import defaultAvatar from "../assets/images/avatar.jpg";
 import UserContext from "../context/userContext";
 import type { UserTypeContext } from "../context/userContext";
-import defaultAvatar from "../assets/images/avatar.jpg";
 
 interface RequestDetailsType {
   id: number;
