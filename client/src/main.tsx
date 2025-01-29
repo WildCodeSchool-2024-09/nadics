@@ -7,7 +7,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 // Import the main app component
 import App from "./App";
-import DisplayUser from "./pages/DisplayUser";
+import { UserProvider } from "./context/userContext";
 import HomePage from "./pages/HomePage";
 import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/LoginPage";
@@ -53,10 +53,6 @@ const router = createBrowserRouter([
       {
         path: "password_recovery",
         element: <PasswordRecovery />,
-      },
-      {
-        path: "users/:id",
-        element: <DisplayUser />,
       },
       {
         path: "/users/:id/edit",
@@ -131,7 +127,9 @@ if (rootElement == null) {
 // Render the app inside the root element
 createRoot(rootElement).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <UserProvider>
+      <RouterProvider router={router} />
+    </UserProvider>
   </StrictMode>,
 );
 

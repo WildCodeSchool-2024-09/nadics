@@ -22,18 +22,29 @@
 }
 #icon_container {
   text-align: right;
+  width: 11rem;
   margin-bottom: -1.5rem;
-  margin-left: -1.5rem;
+  margin-left: -1rem;
+}
+#input_upload {
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 1;
+}
+#edit_icon {
+  height: 2rem;
+  width: 2rem;
+  z-index: 0;
 }
 #avatar {
   height: 10rem;
   width: 10rem;
   border-radius: 6em;
 }
-#edit_icon {
-  height: 2rem;
-  width: 2rem;
-}
+
 #champ_container {
   display: flex;
   flex-direction: column;
