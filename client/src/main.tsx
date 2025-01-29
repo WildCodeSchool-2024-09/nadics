@@ -7,6 +7,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 // Import the main app component
 import App from "./App";
+import CommentEdit from "./pages/CommentEdit";
 import DisplayUser from "./pages/DisplayUser";
 import HomePage from "./pages/HomePage";
 import LandingPage from "./pages/LandingPage";
@@ -17,7 +18,6 @@ import PostRequest from "./pages/PostRequest";
 import RequestEdit from "./pages/RequestEdit";
 import SignupPage from "./pages/SignupPage";
 import UserEdit from "./pages/UserEdit";
-
 // Import additional components for new routes
 // Try creating these components in the "pages" folder
 
@@ -73,6 +73,10 @@ const router = createBrowserRouter([
       {
         path: "test_edit/:id",
         element: <RequestEdit />,
+      },
+      {
+        path: "comment_edit/:id",
+        element: <CommentEdit />,
       },
     ],
   },

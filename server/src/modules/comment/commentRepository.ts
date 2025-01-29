@@ -33,8 +33,8 @@ class CommentRepository {
 
   async update(comment: Comment) {
     const [result] = await databaseClient.query<Result>(
-      "update comment set details = ? date = ? where id = ?",
-      [comment.details, comment.date, comment.id],
+      "update comment set details = ? where id = ?",
+      [comment.details, comment.id],
     );
 
     return result.affectedRows;
