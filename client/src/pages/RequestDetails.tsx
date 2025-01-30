@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import ComponentAdd from "../components/ComponentAdd"; // Import du composant modale
+import CommentAdd from "../components/CommentAdd";
 import type { Event as EventType } from "../components/RequestDetailCard";
 import RequestDetailCard from "../components/RequestDetailCard";
 import "./RequestDetails.css";
@@ -173,7 +173,7 @@ function RequestDetails() {
       {isModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
-            <ComponentAdd
+            <CommentAdd
               onClose={() => setIsModalOpen(false)}
               requestId={requestDetails.id}
             />
