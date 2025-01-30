@@ -25,6 +25,7 @@ const upload = multer({ storage });
 
 router.get("/api/comments", commentActions.browse);
 router.get("/api/comments/:id", commentActions.read);
+router.put("/api/comments/:id", commentActions.edit);
 
 router.get("/api/users", userActions.browse);
 router.get("/api/users/:id", userActions.read);

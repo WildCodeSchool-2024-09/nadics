@@ -65,5 +65,5 @@ values
 
 insert into comment(details, `date`, user_id, request_id)
 values 
-  ("jesuispasdaccord", "1994.11.25", 1, 1),
-  ("jesuisdaccord", "1994.11.26", 2, 2);
+  ("jesuispasdaccord", NOW(), 1, 1),
+  ("jesuisdaccord", NOW(), 2, 2);

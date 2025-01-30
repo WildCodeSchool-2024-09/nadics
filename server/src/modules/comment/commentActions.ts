@@ -37,4 +37,23 @@ const read: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, read };
+const edit: RequestHandler = async (req, res, next) => {
+  try {
+    const comment = {
+      id: Number(req.params.id),
+      details: req.body.details,
+      date: req.body.date,
+    };
+
+    const affectedRows = await commentRepository.update(comment);
+    if (affectedRows === 0) {
+      res.sendStatus(404);
+    } else {
+      res.sendStatus(204);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
+export default { browse, read, edit };
