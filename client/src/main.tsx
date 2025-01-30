@@ -8,13 +8,15 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 // Import the main app component
 import App from "./App";
 import CommentEdit from "./pages/CommentEdit";
-import DisplayUser from "./pages/DisplayUser";
+import { AuthProvider } from "./context/authContext";
+import { UserProvider } from "./context/userContext";
 import HomePage from "./pages/HomePage";
 import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/LoginPage";
 import ProfilPage from "./pages/PageProfil";
 import PasswordRecovery from "./pages/PasswordRecovery";
 import PostRequest from "./pages/PostRequest";
+import RequestDetails from "./pages/RequestDetails";
 import RequestEdit from "./pages/RequestEdit";
 import SignupPage from "./pages/SignupPage";
 import UserEdit from "./pages/UserEdit";
@@ -55,8 +57,8 @@ const router = createBrowserRouter([
         element: <PasswordRecovery />,
       },
       {
-        path: "users/:id",
-        element: <DisplayUser />,
+        path: "request-details/:id", // Utilisez cette route pour afficher les détails de la demande
+        element: <RequestDetails />,
       },
       {
         path: "/users/:id/edit",
@@ -135,7 +137,11 @@ if (rootElement == null) {
 // Render the app inside the root element
 createRoot(rootElement).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <UserProvider>
+        <RouterProvider router={router} />
+      </UserProvider>
+    </AuthProvider>
   </StrictMode>,
 );
 
