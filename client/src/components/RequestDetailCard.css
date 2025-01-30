@@ -1,10 +1,10 @@
 /* Styles pour l'en-tête mobile avec les tags */
 .mobile-header-tags {
-  display: flex; /* Utiliser flexbox pour l'alignement horizontal */
-  justify-content: center; /* Centrer les éléments horizontalement */
-  align-items: center; /* Aligner les éléments verticalement (utile si les éléments sont de tailles variées) */
-  gap: 20px; /* Espacement de 20px entre les tags */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 20px;
+  flex-direction: row;
 }
 
 .mobile-tag1,
@@ -84,9 +84,7 @@
 
 /* Styling pour RequestDetailCard */
 .request-detail-card {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  width: 492px;
   padding: 20px;
   background-color: #f9f9f9;
   border-radius: 10px;
@@ -116,6 +114,12 @@
 table {
   width: 100%;
   table-layout: fixed;
+}
+th.centered-title {
+  display: block;
+  text-align: center; /* Centrer le texte horizontalement */
+  margin-right: -258px;
+  padding: 10px; /* Ajuster l'espacement pour donner plus de place autour du texte */
 }
 
 th,
@@ -187,13 +191,6 @@ td:nth-child(2) {
   width: 100%;
 }
 
-.user-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin-right: 10px;
-}
-
 .user-name {
   font-size: 1.2rem;
   font-weight: bold;
@@ -228,11 +225,14 @@ td:nth-child(2) {
 
 /* Version mobile */
 @media (max-width: 1024px) {
-  .request-details-container {
+  .request-detail-card {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 10px;
+    align-items: center; /* Centre la carte de détails */
+    justify-content: center;
+    width: 100%;
+    max-width: 500px; /* Limite la largeur de la carte */
+    margin: 20px auto; /* Centre la carte horizontalement */
   }
 
   .details-container {
@@ -243,22 +243,63 @@ td:nth-child(2) {
   }
 
   .table-container {
-    width: 100%;
-    justify-content: center;
-    margin-top: 20px;
+    display: flex;
+    justify-content: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement si nécessaire */
+    width: 100%; /* S'assurer que le tableau occupe toute la largeur */
+    margin-top: 20px; /* Espace au-dessus du tableau */
   }
 
   table {
-    width: 90%;
-    max-width: 95%;
+    width: 90%; /* Largeur du tableau ajustée */
+    max-width: 95%; /* Pour éviter qu'il devienne trop large */
+    margin: -12px auto; /* Centre le tableau horizontalement */
+    margin-left: -9px;
   }
 
   th,
   td {
     padding: 6px 10px;
-    text-align: center;
+    text-align: center; /* Centre le texte dans les cellules */
+  }
+  /* Centrer le titre "Save the Date" */
+  th.centered-title {
+    text-align: center; /* Centre le texte du titre */
+    padding: 10px -20px; /* Espace autour du titre */
+  }
+  /* Centrer les flèches et les ronds */
+  .arrow {
+    text-align: center; /* Centre la flèche horizontalement */
+    vertical-align: middle; /* Assure que la flèche est centrée verticalement */
+    padding: 2px 0;
+    padding: 0px;
+    position: relative; /* Positionnement relatif pour ajuster la flèche */
+    top: -5px; /* Déplace la flèche vers le haut */
+    margin-left: 30px; /* Décale la flèche vers la droite */
+  }
+  .arrow-down {
+    font-size: 2.5rem; /* Taille de la flèche */
+    color: #0f1010; /* Couleur de la flèche */
+    margin-left: 58px;
   }
 
+  .arrow::after {
+    content: "";
+    position: absolute;
+    left: 57%; /* Centre le rond horizontalement */
+    transform: translateX(-50%); /* Ajuste pour centrer parfaitement */
+    top: 30px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #000;
+    top: 61px;
+  }
+
+  /* Centrer les autres éléments du tableau (comme les dates et événements) */
+  td {
+    text-align: center; /* Assure que tout le contenu des cellules est centré */
+  }
   .button-container {
     position: relative;
     width: 100%;
@@ -266,10 +307,10 @@ td:nth-child(2) {
     margin: 20px 0;
   }
 
+  /* Pour les autres éléments dans la card */
   .impact-sections {
+    width: 100%; /* S'assurer que les sections impact sont à 100% de la largeur */
     margin-top: 10px;
-    margin-bottom: 10px;
-    text-align: center;
   }
 
   .mobile-header-tags {
@@ -303,17 +344,25 @@ td:nth-child(2) {
 
 /* Version desktop */
 @media (min-width: 1025px) {
+  /* Container principal pour la mise en page à deux colonnes */
+  .details-and-table {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 20px;
+    padding: 20px;
+  }
+  /* Première colonne */
   .details-container {
+    width: 60%;
     position: relative;
-    top: 0;
-    left: 0;
+    margin: 0;
   }
 
   .table-container {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 40%;
+    position: static;
+    width: 100%;
+    margin-bottom: 20px;
   }
 
   /* Conteneur du bouton */
@@ -326,7 +375,7 @@ td:nth-child(2) {
   /* Sections Impact */
   .impact-sections {
     display: flex;
-    width: 100%;
+    width: 35%;
     flex-direction: column;
     margin-top: 10px; /* Réduire l'espace entre les sections */
     margin-bottom: 10px; /* Ajuster cette marge si nécessaire */
@@ -371,19 +420,14 @@ td:nth-child(2) {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   }
   .request-detail-card {
-    position: fixed; /* Change de absolute à fixed pour la maintenir en haut à droite */
-    top: 20px;
-    right: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    position: static; /* Enlever le fixed pour permettre le scroll */
+    width: 35%;
+    margin: 0;
     padding: 20px;
     background-color: #f9f9f9;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    max-width: 100%;
-    z-index: 1000; /* S'assure que la carte reste au-dessus des autres éléments */
+    height: fit-content;
   }
   /* Organisation des éléments à l'intérieur de la carte */
   .table-container,

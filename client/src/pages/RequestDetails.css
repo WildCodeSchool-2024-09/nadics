@@ -2,120 +2,75 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: 0;
+  box-sizing: border-box;
 }
+
 /* Conteneur pour les détails de la demande */
 .request-details-container {
-  flex-grow: 1; /* Permet au conteneur de prendre toute la hauteur disponible */
+  flex-grow: 1;
   padding: 20px;
   background-color: #f5f5f5;
   border-radius: 8px;
   max-width: 1200px;
   margin: 0 auto;
-  padding-bottom: 80px; /* Ajouter de l'espace en bas pour le bouton */
+  padding-bottom: 80px;
+  text-align: center;
 }
 
+/* Centrage du titre */
+h1 {
+  margin: 0 auto;
+  margin-bottom: 20px;
+  display: block;
+}
+
+/* Réajustement du #user_info */
 #user_info {
   display: flex;
-  flex-direction: row;
-}
-.request-detail-card {
-  margin-bottom: 20px;
-}
-
-/* Conteneur pour le bouton */
-.button-container {
-  display: flex;
-  justify-content: flex-end; /* Placer le bouton à droite */
+  justify-content: center;
   align-items: center;
-  position: fixed; /* Fixer le bouton à la fenêtre */
-  bottom: 20px; /* Laisser un espacement de 20px du bas */
-  right: 20px; /* Laisser un espacement de 20px de la droite */
-  width: auto; /* Pas besoin de prendre toute la largeur */
-  z-index: 1000; /* Assurer que le bouton soit au-dessus des autres éléments */
-}
-
-/* Style du bouton d'opinion */
-.home-button {
-  background-color: #007bff;
-  color: white;
-  padding: 12px 24px;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  min-width: 200px; /* Largeur minimale pour le bouton */
-}
-
-.home-button:hover {
-  background-color: #0056b3;
-}
-
-/* En-têtes des sections avec les tags */
-.mobile-header-tags,
-.request-id,
-.request-detail-card,
-.impact-sections {
   margin-bottom: 20px;
 }
 
-.details-container summary {
-  display: flex;
-  justify-content: center; /* Centrer le texte à l'intérieur du summary */
-  width: 100%;
-  position: relative;
-  padding-left: 20px;
+/* Conteneur pour l'avatar et le nom */
+#user_info img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
 }
 
-.details-container summary::before {
-  content: "▶";
-  font-size: 1rem;
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  margin-left: 10px; /* Espacement entre le triangle et le texte */
-}
-
-/* Styles pour l'en-tête mobile avec les tags */
+/* Centrer les tags horizontalement dans le conteneur */
 .mobile-header-tags {
-  display: flex; /* Utiliser flexbox pour l'alignement horizontal */
-  justify-content: center; /* Centrer les éléments horizontalement */
-  align-items: center; /* Aligner les éléments verticalement */
-  gap: 20px; /* Espacement de 20px entre les tags */
+  display: flex;
+  justify-content: center; /* Centrer les tags horizontalement */
+  align-items: center;
+  flex-direction: row;
+  gap: 15px;
   margin-bottom: 20px;
+  width: 100%; /* Garantir que le conteneur prenne toute la largeur */
 }
 
-.mobile-tag1,
+/* Tags individuels */
+.mobile-tag1 {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
 .mobile-tag2 {
-  background-color: #4caf50; /* Couleur de fond */
-  color: white; /* Couleur du texte */
+  background-color: #f298eb;
+  color: white;
   padding: 10px 20px;
   border-radius: 20px;
   font-size: 14px;
   font-weight: bold;
+  white-space: nowrap;
 }
-
-/* Styles pour les tags */
-.header-tags {
-  display: flex; /* Utiliser flexbox pour l'alignement horizontal */
-  justify-content: center; /* Centrer les éléments horizontalement */
-  align-items: center; /* Aligner les éléments verticalement */
-  gap: 20px; /* Espacement de 20px entre les tags */
-  margin-bottom: 20px; /* Marge sous les tags */
-}
-
-.tag1,
-.tag2 {
-  background-color: #4caf50; /* Couleur de fond */
-  color: white; /* Couleur du texte */
-  padding: 10px 20px;
-  border-radius: 20px;
-  font-size: 14px;
-  font-weight: bold;
-}
-
 /* Style pour le texte de l'ID de la demande */
 .request-id {
   width: 100%;
@@ -183,10 +138,13 @@ summary {
     padding-bottom: 60px;
   }
 }
-/* Fichier RequestDetails.css */
 
-/* Styles pour la version desktop */
+/* Version desktop (larges écrans) */
 @media (min-width: 1025px) {
+  .request-details-container {
+    text-align: center;
+  }
+
   .details-container {
     flex: 1;
     margin-right: 20px;
