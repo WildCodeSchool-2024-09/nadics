@@ -6,19 +6,15 @@
 }
 /* Conteneur pour les détails de la demande */
 .request-details-container {
+  display: flex;
   flex-grow: 1; /* Permet au conteneur de prendre toute la hauteur disponible */
   padding: 20px;
   background-color: #f5f5f5;
   border-radius: 8px;
-  max-width: 1200px;
   margin: 0 auto;
   padding-bottom: 80px; /* Ajouter de l'espace en bas pour le bouton */
 }
 
-#user_info {
-  display: flex;
-  flex-direction: row;
-}
 .request-detail-card {
   margin-bottom: 20px;
 }
@@ -26,33 +22,49 @@
 /* Conteneur pour le bouton */
 .button-container {
   display: flex;
-  justify-content: flex-end; /* Placer le bouton à droite */
   align-items: center;
-  position: fixed; /* Fixer le bouton à la fenêtre */
   bottom: 20px; /* Laisser un espacement de 20px du bas */
   right: 20px; /* Laisser un espacement de 20px de la droite */
   width: auto; /* Pas besoin de prendre toute la largeur */
-  z-index: 1000; /* Assurer que le bouton soit au-dessus des autres éléments */
 }
 
 /* Style du bouton d'opinion */
 .home-button {
-  background-color: #007bff;
-  color: white;
-  padding: 12px 24px;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
+  background-color: #000000;
+  border: 1px solid transparent;
+  display: inline-flex;
+  min-width: 1rem;
+  min-height: 3.875rem;
+  margin: 1rem 1rem;
+  padding: 1.25rem 1.5rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+  border-radius: 0.3125rem;
+  box-shadow: 0.625rem 0.625rem 0.875rem rgba(0, 0, 0, 0.25);
+  margin-bottom: 1.875rem;
+  color: #fff;
+  text-align: center;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  min-width: 200px; /* Largeur minimale pour le bouton */
+
+  &:hover {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #000;
+    transition: all 200ms ease-out;
+  }
+
+  &:active {
+    background-color: #000;
+    color: #fff;
+  }
 }
 
-.home-button:hover {
-  background-color: #0056b3;
-}
-
-/* En-têtes des sections avec les tags */
+/* En-têtes des sections ec les tags */
 .mobile-header-tags,
 .request-id,
 .request-detail-card,
@@ -62,10 +74,10 @@
 
 .details-container summary {
   display: flex;
-  justify-content: center; /* Centrer le texte à l'intérieur du summary */
+  justify-content: left; /* Centrer le texte à l'intérieur du summary */
   width: 100%;
   position: relative;
-  padding-left: 20px;
+  padding-left: 40px;
 }
 
 .details-container summary::before {
@@ -81,20 +93,10 @@
 /* Styles pour l'en-tête mobile avec les tags */
 .mobile-header-tags {
   display: flex; /* Utiliser flexbox pour l'alignement horizontal */
-  justify-content: center; /* Centrer les éléments horizontalement */
+  justify-content: left; /* Centrer les éléments horizontalement */
   align-items: center; /* Aligner les éléments verticalement */
   gap: 20px; /* Espacement de 20px entre les tags */
   margin-bottom: 20px;
-}
-
-.mobile-tag1,
-.mobile-tag2 {
-  background-color: #4caf50; /* Couleur de fond */
-  color: white; /* Couleur du texte */
-  padding: 10px 20px;
-  border-radius: 20px;
-  font-size: 14px;
-  font-weight: bold;
 }
 
 /* Styles pour les tags */
@@ -171,11 +173,6 @@ summary {
   .mobile-tag2 {
     font-size: 12px;
     padding: 8px 16px;
-  }
-
-  .home-button {
-    padding: 10px 20px;
-    font-size: 14px;
   }
 
   /* Réduire l'espacement en bas sur mobile */
