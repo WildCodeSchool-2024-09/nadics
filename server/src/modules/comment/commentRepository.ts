@@ -4,6 +4,7 @@ import type { Result, Rows } from "../../../database/client";
 
 type Comment = {
   id: number;
+  details: string;
   date: string;
 };
 
@@ -28,6 +29,15 @@ class CommentRepository {
 
     // Return the first row of the result, which represents the user
     return rows[0] as Comment;
+  }
+
+  async update(comment: Comment) {
+    const [result] = await databaseClient.query<Result>(
+      "update comment set details = ? where id = ?",
+      [comment.details, comment.id],
+    );
+
+    return result.affectedRows;
   }
 
   async readAll() {

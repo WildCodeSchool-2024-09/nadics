@@ -9,6 +9,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import { AuthProvider } from "./context/authContext";
 import { UserProvider } from "./context/userContext";
+import CommentEdit from "./pages/CommentEdit";
 import HomePage from "./pages/HomePage";
 import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/LoginPage";
@@ -19,7 +20,6 @@ import RequestDetails from "./pages/RequestDetails";
 import RequestEdit from "./pages/RequestEdit";
 import SignupPage from "./pages/SignupPage";
 import UserEdit from "./pages/UserEdit";
-
 // Import additional components for new routes
 // Try creating these components in the "pages" folder
 
@@ -75,6 +75,10 @@ const router = createBrowserRouter([
       {
         path: "test_edit/:id",
         element: <RequestEdit />,
+      },
+      {
+        path: "comment_edit/:id",
+        element: <CommentEdit />,
       },
     ],
   },
