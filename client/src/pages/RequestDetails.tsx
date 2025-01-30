@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import ComponentAdd from "../components/ComponentAdd"; // Import du composant modale
 import type { Event as EventType } from "../components/RequestDetailCard";
 import RequestDetailCard from "../components/RequestDetailCard";
 import "./RequestDetails.css";
@@ -23,21 +24,12 @@ interface RequestDetailsType {
 
 function RequestDetails() {
   const { user } = useContext<UserTypeContext>(UserContext);
-
   const { id } = useParams<string>();
   const [requestDetails, setRequestDetails] =
     useState<RequestDetailsType | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    const handleResize = () => {};
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false); // Gérer la modale
 
   useEffect(() => {
     if (!id) {
@@ -113,11 +105,13 @@ function RequestDetails() {
 
           <div className="right-details">
             <div className="button-container">
-              <Link to="/" className="button-opinion">
-                <button type="button" className="home-button">
-                  Give my opinion
-                </button>
-              </Link>
+              <button
+                type="button"
+                className="home-button"
+                onClick={() => setIsModalOpen(true)}
+              >
+                Give my opinion
+              </button>
             </div>
             <RequestDetailCard
               {...requestDetails}
@@ -126,6 +120,15 @@ function RequestDetails() {
           </div>
         </div>
       </div>
+
+      {/* Affichage de la modale */}
+      {isModalOpen && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <ComponentAdd onClose={() => setIsModalOpen(false)} />
+          </div>
+        </div>
+      )}
     </>
   );
 }
