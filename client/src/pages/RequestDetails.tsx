@@ -31,7 +31,7 @@ function RequestDetails() {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const handleResize = () => { };
+    const handleResize = () => {};
     window.addEventListener("resize", handleResize);
 
     return () => {
@@ -106,7 +106,7 @@ function RequestDetails() {
                     <summary>{summaryText}</summary>
                     {requestDetails.details || "No description available."}
                   </details>
-                )
+                ),
               )}
             </div>
           </div>
