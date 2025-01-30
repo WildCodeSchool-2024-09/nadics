@@ -16,6 +16,19 @@ const browse: RequestHandler = async (req, res, next) => {
     next(err);
   }
 };
+const browseRequest: RequestHandler = async (req, res, next) => {
+  try {
+    // Fetch all users
+    const requestId = Number(req.params.request_id);
+    const comments = await commentRepository.readAllRequest(requestId);
+
+    // Respond with the comments in JSON format
+    res.json(comments);
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
 
 // The R of BREAD - Read operation
 const read: RequestHandler = async (req, res, next) => {
@@ -40,7 +53,7 @@ const add: RequestHandler = async (req, res, next) => {
   try {
     const newComment = {
       details: req.body.details,
-      user_id: Number(req.params.user_id),
+      user_id: Number(req.body.user_id),
       request_id: Number(req.body.request_id),
     };
 
@@ -77,4 +90,4 @@ const edit: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, read, edit, add };
+export default { browse, read, edit, add, browseRequest };

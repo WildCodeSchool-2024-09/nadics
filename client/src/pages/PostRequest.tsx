@@ -20,7 +20,7 @@ export default function PostRequest() {
       title: formData.get("title") as string,
       theme: formData.get("theme") as string,
       details: formData.get("details") as string,
-      user_id: user ? user.sub : null,
+      user_id: user ? user.id : null,
     };
 
     try {

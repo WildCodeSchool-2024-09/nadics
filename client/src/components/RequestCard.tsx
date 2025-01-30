@@ -21,7 +21,7 @@ function RequestCard(): JSX.Element {
   useEffect(() => {
     if (!user) return; // Vérifie si user est null avant d'exécuter le fetch
 
-    fetch(`${import.meta.env.VITE_API_URL}/api/request/user/${user.sub}`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/request/`)
       .then((response) => response.json())
       .then((data) => setRequests(data))
       .catch((error) => console.error("Erreur lors du fetch :", error));

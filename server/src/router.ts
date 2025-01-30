@@ -24,6 +24,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 router.get("/api/comments", commentActions.browse);
+router.get("/api/comments/request/:request_id", commentActions.browseRequest);
 router.get("/api/comments/:id", commentActions.read);
 router.post("/api/comments/", commentActions.add);
 router.put("/api/comments/:id", commentActions.edit);
