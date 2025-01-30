@@ -1,0 +1,423 @@
+/* Styles pour l'en-tête mobile avec les tags */
+.mobile-header-tags {
+  display: flex; /* Utiliser flexbox pour l'alignement horizontal */
+  justify-content: center; /* Centrer les éléments horizontalement */
+  align-items: center; /* Aligner les éléments verticalement (utile si les éléments sont de tailles variées) */
+  gap: 20px; /* Espacement de 20px entre les tags */
+  margin-bottom: 20px;
+}
+
+.mobile-tag1,
+.mobile-tag2 {
+  background-color: #4caf50; /* Couleur de fond */
+  color: white; /* Couleur du texte */
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+}
+/* Container principal */
+.request-id {
+  width: 100%;
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+  order: 0; /* Mettre le titre avant les autres éléments */
+}
+
+.request-details-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 5px;
+  text-align: center;
+  max-width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* Conteneur détails */
+.details-container {
+  width: 45%;
+  text-align: left;
+  position: relative;
+  margin-right: 20px;
+} /* Conteneur détails */
+.details-container {
+  width: 100%; /* Occupe toute la largeur disponible */
+  max-width: 800px; /* Limite la largeur maximale pour que ce ne soit pas trop large */
+  text-align: left;
+  position: relative;
+  margin: 0 auto; /* Centrer horizontalement */
+}
+.details-container summary {
+  display: flex;
+  justify-content: center; /* Centrer le texte à l'intérieur du summary */
+  width: 100%;
+  position: relative;
+  padding-left: 20px;
+}
+
+.details-container summary::before {
+  content: "▶";
+  font-size: 1rem;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 10px; /* Espacement entre le triangle et le texte */
+}
+
+/* Conteneur pour la ligne de deux colonnes */
+.details-and-table {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 15px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* Styling pour RequestDetailCard */
+.request-detail-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  margin: 20px auto;
+}
+
+.request-detail-card h2 {
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+/* Centrer les textes dans les <details> */
+.details-container details {
+  text-align: center; /* Centrer le texte dans la section details */
+}
+/* Conteneur pour le tableau */
+.table-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 50%;
+  align-items: flex-start;
+}
+
+/* Styles du tableau */
+table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+th,
+td {
+  padding: 8px 10px;
+  text-align: left;
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+  text-align: right;
+  padding-left: 40px;
+}
+
+/* Conteneur bouton */
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.button-opinion {
+  background-color: #030a1b;
+  color: white;
+  font-size: 1rem;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-opinion:hover {
+  background-color: #4682b4;
+}
+
+.button-opinion:focus {
+  outline: none;
+}
+
+/* Sections impact */
+.impact-sections {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.impact-person {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 25px;
+  width: 90%;
+  max-width: 500px;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Conteneur info utilisateur */
+.user-info-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.user-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Style flèche */
+.arrow {
+  text-align: center;
+  padding: 5px 0;
+  vertical-align: middle;
+  position: relative;
+}
+
+.arrow-down {
+  font-size: 1.5rem;
+  margin-top: -2px;
+  color: #0f1010;
+}
+
+.arrow::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 30px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #000;
+}
+
+/* Version mobile */
+@media (max-width: 1024px) {
+  .request-details-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .details-container {
+    width: 100%;
+    max-width: 100%;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .table-container {
+    width: 100%;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  table {
+    width: 90%;
+    max-width: 95%;
+  }
+
+  th,
+  td {
+    padding: 6px 10px;
+    text-align: center;
+  }
+
+  .button-container {
+    position: relative;
+    width: 100%;
+    justify-content: center;
+    margin: 20px 0;
+  }
+
+  .impact-sections {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .mobile-header-tags {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .mobile-tag1,
+  .mobile-tag2 {
+    background-color: #87e522;
+    color: rgb(22, 21, 21);
+    padding: 2px 45px;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    margin-top: 35px;
+  }
+
+  .user-avatar {
+    width: 35px;
+    height: 35px;
+  }
+
+  .user-name {
+    font-size: 1rem;
+  }
+}
+
+/* Version desktop */
+@media (min-width: 1025px) {
+  .details-container {
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+
+  .table-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40%;
+  }
+
+  /* Conteneur du bouton */
+  .button-container {
+    display: flex;
+    justify-content: center;
+    width: 100%; /* Centrer le bouton */
+  }
+
+  /* Sections Impact */
+  .impact-sections {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    margin-top: 10px; /* Réduire l'espace entre les sections */
+    margin-bottom: 10px; /* Ajuster cette marge si nécessaire */
+  }
+
+  .impact-person {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 25px;
+    width: 100%; /* S'assurer que l'impact section occupe la largeur disponible */
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  /* Transitions */
+  .button-opinion,
+  .impact-person {
+    transition: all 0.3s ease;
+  }
+  .button-opinion {
+    background-color: #030a1b;
+    color: white;
+    font-size: 1rem;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .button-opinion:hover {
+    background-color: #4682b4;
+  }
+
+  .button-opinion:focus {
+    outline: none;
+  }
+  /* Hover effects */
+  .impact-person:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  .request-detail-card {
+    position: fixed; /* Change de absolute à fixed pour la maintenir en haut à droite */
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    max-width: 100%;
+    z-index: 1000; /* S'assure que la carte reste au-dessus des autres éléments */
+  }
+  /* Organisation des éléments à l'intérieur de la carte */
+  .table-container,
+  .button-container,
+  .impact-sections {
+    width: 100%; /* Chaque élément prend toute la largeur disponible */
+    margin-bottom: 20px; /* Ajoute de l'espace entre les éléments */
+  }
+  /* Ajustements pour le tableau */
+  .table-container {
+    width: 100%; /* Tableau occupe toute la largeur disponible */
+    display: flex;
+    justify-content: flex-start; /* Le tableau est aligné à gauche dans la carte */
+  }
+  table {
+    width: 100%; /* Le tableau occupe toute la largeur disponible */
+    table-layout: fixed;
+  }
+  th,
+  td {
+    padding: 8px 10px;
+    text-align: left;
+  }
+  .request-details-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 20px;
+    text-align: center;
+    max-width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    position: relative;
+    order: 1; /* Met ce conteneur à droite */
+  }
+}

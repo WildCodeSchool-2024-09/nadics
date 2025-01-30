@@ -7,13 +7,15 @@ CREATE TABLE `user` (
     id INT PRIMARY KEY AUTO_INCREMENT,
     firstname VARCHAR(50) NOT NULL,
     lastname VARCHAR(50) NOT NULL,
-    birthday DATE NOT NULL, 
+    birthday DATE NOT NULL,
+    avatar VARCHAR(255),
     email VARCHAR(50) NOT NULL UNIQUE,
     hashed_password VARCHAR(255) NOT NULL,
     role_id INT DEFAULT 2,     
     CONSTRAINT fk_user_role  
 	      FOREIGN KEY (role_id) 
-        REFERENCES role(id) 
+        REFERENCES role(id)
+        ON DELETE SET NULL 
 );
 
 CREATE TABLE request (
@@ -22,10 +24,11 @@ CREATE TABLE request (
     title VARCHAR(50) NOT NULL,
     theme VARCHAR(50) NOT NULL,
     details TEXT NOT NULL,
-    user_id INT NOT NULL DEFAULT 1,
+    user_id INT NOT NULL DEFAULT 3,
     CONSTRAINT fk_request_user
         FOREIGN KEY (user_id)
         REFERENCES `user`(id)
+        ON DELETE CASCADE
         
 );
 
@@ -37,7 +40,8 @@ CREATE TABLE comment (
     request_id INT NOT NULL,
     CONSTRAINT fk_comment_user
         FOREIGN KEY (user_id)
-        REFERENCES `user`(id),
+        REFERENCES `user`(id)
+        ON DELETE CASCADE,
     CONSTRAINT fk_comment_request
         FOREIGN KEY (request_id)
         REFERENCES request(id)

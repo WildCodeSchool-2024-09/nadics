@@ -7,9 +7,9 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 // Import the main app component
 import App from "./App";
-import CommentEdit from "./pages/CommentEdit";
 import { AuthProvider } from "./context/authContext";
 import { UserProvider } from "./context/userContext";
+import CommentEdit from "./pages/CommentEdit";
 import HomePage from "./pages/HomePage";
 import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/LoginPage";

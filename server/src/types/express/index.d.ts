@@ -6,6 +6,7 @@ declare global {
     firstname: string;
     lastname: string;
     birthday: string;
+    avatar: string;
   };
 
   namespace Express {

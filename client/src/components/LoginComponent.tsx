@@ -1,17 +1,15 @@
-import { Link, useNavigate, useOutletContext } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./LoginComponent.css";
 import Cookies from "js-cookie";
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import type { FormEventHandler } from "react";
-import type { Auth } from "../App";
+import AuthContext from "../context/authContext";
 
 function LoginComponent() {
   const navigate = useNavigate();
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
-  const { setAuth } = useOutletContext() as {
-    setAuth: (auth: Auth | null) => void;
-  };
+  const { setAuth } = useContext(AuthContext);
 
   const handleSubmit: FormEventHandler = async (
     event: React.FormEvent<HTMLFormElement>,
@@ -44,10 +42,9 @@ function LoginComponent() {
           secure: true,
           sameSite: "Strict",
         });
-
         setAuth(token);
-
         navigate("/home");
+        window.location.reload();
       } else {
         // Log des détails de la réponse en cas d'échec
         console.info(response);
