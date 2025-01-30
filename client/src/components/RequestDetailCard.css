@@ -9,21 +9,22 @@
   align-items: center;
   gap: 10px;
   margin-bottom: 20px;
-  width: inherit;
+  width: 100%; /* Modification ici pour rendre la largeur flexible */
+  flex-wrap: wrap; /* Permet à l'en-tête de s'ajuster en fonction de l'écran */
 }
 
 .mobile-tag {
   background-color: #87e522;
   color: rgb(22, 21, 21);
-  width: 145px;
-  height: 44px;
   padding: 4px 12px;
-  gap: 10px;
   flex-shrink: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 12px;
+  max-width: 100%; /* Permet à chaque tag de s'ajuster à la largeur disponible */
+  box-sizing: border-box;
+  /* Correction de la valeur manquante dans la hauteur, à ajuster sur mobile */
 }
 
 /* Container principal */
@@ -46,7 +47,7 @@
 
 .details-container {
   width: 100%;
-  text-align: lef;
+  text-align: left;
 }
 
 .details-container summary {
@@ -74,12 +75,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
   background-color: #f9f9f9;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 500px;
+  margin-bottom: 20px; /* Ajout pour espacer les cartes sur petits écrans */
 }
 
 .request-detail-card h2 {
@@ -93,11 +94,12 @@
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  overflow-x: auto; /* Permet le défilement horizontal pour le tableau */
 }
 
 /* Styles du tableau */
 table {
-  width: 90%;
+  width: 100%;
   max-width: 95%;
   table-layout: fixed;
   text-align: center;
@@ -105,9 +107,35 @@ table {
 
 th,
 td {
-  padding: 10px 10px;
+  padding: 10px;
   text-align: center;
-  margin: 20px 0;
+  margin: 5px 0; /* Réduction des marges */
+}
+
+/* Style flèche */
+.arrow {
+  text-align: center;
+  padding: 5px 0;
+  vertical-align: middle;
+  position: relative;
+}
+
+.arrow-down {
+  font-size: 2.5rem;
+  color: #0f1010;
+  margin-left: 0px;
+}
+
+.arrow::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #000;
+  top: 69px;
 }
 
 /* Sections impact */
@@ -121,11 +149,11 @@ td {
   text-align: center;
 }
 
-.impact-person {
+.impacted-person {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 90%;
+  width: 100%;
   max-width: 500px;
   background-color: #f9f9f9;
   padding: 20px;
@@ -218,26 +246,53 @@ summary {
   padding-left: 40px;
 }
 
+/* Médiation pour les écrans plus petits */
 @media (max-width: 768px) {
   .details-and-table {
     order: 2;
-    display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Modification pour empiler les sections */
   }
+
   .right-details {
     order: 1;
-    display: flex;
     flex-direction: column;
   }
 
   .details-wrapper {
-    display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column-reverse; /* Modification pour empiler les éléments */
   }
 
   .mobile-tag {
-    width: 145px;
-    height: px;
-    padding: 4px 12px;
+    width: auto; /* La largeur s'adapte automatiquement */
+    height: auto; /* La hauteur s'ajuste automatiquement */
+    padding: 4px 8px; /* Réduction du padding pour les petits écrans */
+  }
+
+  .request-detail-card h2 {
+    font-size: 1.3rem; /* Réduction de la taille du titre sur mobile */
+  }
+
+  .table-container {
+    overflow-x: auto; /* Défilement horizontal autorisé pour le tableau */
+  }
+
+  th,
+  td {
+    padding: 8px; /* Réduction du padding dans le tableau */
+  }
+}
+
+@media (max-width: 480px) {
+  .request-id {
+    font-size: 1rem; /* Réduction de la taille de la police */
+  }
+
+  .request-detail-card {
+    max-width: 100%;
+    margin: 10px;
+  }
+
+  .details-container summary {
+    font-size: 1rem;
   }
 }
