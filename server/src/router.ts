@@ -41,5 +41,8 @@ router.put("/api/request/:id", requestActions.edit);
 
 router.post("/api/request/", requestActions.add);
 router.delete("/api/request/:id", requestActions.destroy);
+
+/*authAction.verifyToken middleware  à ajouter qpres correction
+
 /* ************************************************************************* */
 export default router;

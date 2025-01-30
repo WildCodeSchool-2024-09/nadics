@@ -19,7 +19,7 @@ function RequestCard(): JSX.Element {
   const { user } = useContext(UserContext);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/request`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/request/`)
       .then((response) => response.json())
       .then((data) => setRequests(data));
   }, []);
