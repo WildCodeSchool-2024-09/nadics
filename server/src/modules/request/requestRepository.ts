@@ -11,6 +11,17 @@ interface Request {
 
 class RequestRepository {
   // The C of CRUD - Create operation
+  // a test to take user_id into account when creating a new request
+  // async create(request: Omit<Request, "id"> & { userId: number }) {
+  //   // Exécuter la requête SQL INSERT pour ajouter une nouvelle requête liée à un utilisateur
+  //   const [result] = await databaseClient.query<Result>(
+  //     "INSERT INTO request (title, theme, details, user_id) VALUES (?, ?, ?, ?)",
+  //     [request.title, request.theme, request.details, request.userId],
+  //   );
+
+  //   // Retourner l'ID de la requête nouvellement insérée
+  //   return result.insertId;
+  // }
 
   async create(request: Omit<Request, "id">) {
     // Execute the SQL INSERT query to add a new request to the "request" table
