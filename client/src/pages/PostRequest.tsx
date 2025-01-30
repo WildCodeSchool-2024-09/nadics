@@ -4,9 +4,11 @@ import styled from "styled-components";
 import { useContext } from "react";
 import backgroundImage from "../assets/images/logo.png";
 import AuthContext from "../context/authContext";
+import UserContext from "../context/userContext";
 
 export default function PostRequest() {
   const { auth } = useContext(AuthContext);
+  const { user } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -18,6 +20,7 @@ export default function PostRequest() {
       title: formData.get("title") as string,
       theme: formData.get("theme") as string,
       details: formData.get("details") as string,
+      user_id: user ? user.id : null,
     };
 
     try {

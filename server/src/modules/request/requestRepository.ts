@@ -8,6 +8,14 @@ interface Request {
   theme: string;
   details: string;
 }
+interface RequestAdd {
+  id: number;
+  date: Date;
+  title: string;
+  theme: string;
+  details: string;
+  user_id: number;
+}
 
 class RequestRepository {
   // The C of CRUD - Create operation
@@ -23,11 +31,11 @@ class RequestRepository {
   //   return result.insertId;
   // }
 
-  async create(request: Omit<Request, "id">) {
+  async create(request: Omit<RequestAdd, "id">) {
     // Execute the SQL INSERT query to add a new request to the "request" table
     const [result] = await databaseClient.query<Result>(
-      "insert into request (title,theme,details) values ( ?, ?, ?)",
-      [request.title, request.theme, request.details],
+      "insert into request (title,theme,details,user_id) values ( ?, ?, ?, ?)",
+      [request.title, request.theme, request.details, request.user_id],
     );
 
     // Return the ID of the newly inserted request
@@ -38,6 +46,16 @@ class RequestRepository {
     const [rows] = await databaseClient.query<Rows>(
       `SELECT *, DATE_FORMAT(date, '%Y-%m-%d') AS date 
        FROM request`,
+    );
+
+    return rows as Request[];
+  }
+
+  async readAllUser(user_id: number) {
+    const [rows] = await databaseClient.query<Rows>(
+      `SELECT *, DATE_FORMAT(date, '%Y-%m-%d') AS date 
+       FROM request where user_id=?`,
+      [user_id],
     );
 
     return rows as Request[];

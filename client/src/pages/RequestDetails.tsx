@@ -21,6 +21,16 @@ interface RequestDetailsType {
   impactedUserName: string;
   events: EventType[];
 }
+interface CommentType {
+  id: number;
+  date: string;
+  details: string;
+  user_id: number;
+  request_id: number;
+  firstname: string;
+  lastname: string;
+  avatar: string;
+}
 
 function RequestDetails() {
   const { user } = useContext<UserTypeContext>(UserContext);
@@ -30,6 +40,8 @@ function RequestDetails() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false); // Gérer la modale
+
+  const [comments, setComments] = useState<CommentType[]>([]);
 
   useEffect(() => {
     if (!id) {
@@ -62,6 +74,18 @@ function RequestDetails() {
 
     fetchRequestDetails();
   }, [id]);
+
+  useEffect(() => {
+    if (!user) return; // Vérifie si user est null avant d'exécuter le fetch
+    if (!requestDetails) return; // Vérifie si user est null avant d'exécuter le fetch
+
+    fetch(
+      `${import.meta.env.VITE_API_URL}/api/comments/request/${requestDetails.id}`,
+    )
+      .then((response) => response.json())
+      .then((data) => setComments(data))
+      .catch((error) => console.error("Erreur lors du fetch :", error));
+  }, [user, requestDetails]);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
@@ -101,6 +125,30 @@ function RequestDetails() {
                 ),
               )}
             </div>
+            {comments && (
+              <div className="details-container">
+                <details>
+                  <summary>Comments</summary>
+                  {comments.map((comment) => (
+                    <details key={comment.id}>
+                      <summary>
+                        {comment.date} {comment.firstname} {comment.lastname}{" "}
+                        <img
+                          src={
+                            comment.avatar
+                              ? `${import.meta.env.VITE_API_URL}/${comment.avatar}`
+                              : defaultAvatar
+                          }
+                          alt="comment_icon"
+                          id="avatar_icon"
+                        />{" "}
+                      </summary>
+                      {comment.details}
+                    </details>
+                  ))}
+                </details>
+              </div>
+            )}
           </div>
 
           <div className="right-details">
@@ -125,7 +173,10 @@ function RequestDetails() {
       {isModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
-            <CommentAdd onClose={() => setIsModalOpen(false)} />
+            <CommentAdd
+              onClose={() => setIsModalOpen(false)}
+              requestId={requestDetails.id}
+            />
           </div>
         </div>
       )}
