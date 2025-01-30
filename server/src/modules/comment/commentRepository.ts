@@ -3,15 +3,30 @@ import databaseClient from "../../../database/client";
 import type { Result, Rows } from "../../../database/client";
 
 type Comment = {
-  id: number;
   details: string;
   date: string;
+};
+type Newcomment = {
+  details: string;
+  user_id: number;
+  request_id: number;
 };
 
 class CommentRepository {
   // The C of CRUD - Create operation
 
   // The Rs of CRUD - Read operations
+
+  async create(newComment: Omit<Newcomment, "id">) {
+    // Execute the SQL INSERT query to add a new request to the "request" table
+    const [result] = await databaseClient.query<Result>(
+      "insert into comment (details,user_id,request_id) values ( ?, ?, ?)",
+      [newComment.details, newComment.user_id, newComment.request_id],
+    );
+
+    // Return the ID of the newly inserted request
+    return result.insertId;
+  }
 
   async read(id: number) {
     // Execute the SQL SELECT query to retrieve a specific user by users ID
@@ -31,10 +46,10 @@ class CommentRepository {
     return rows[0] as Comment;
   }
 
-  async update(comment: Comment) {
+  async update(comment: Omit<Comment, "id">) {
     const [result] = await databaseClient.query<Result>(
       "update comment set details = ? where id = ?",
-      [comment.details, comment.id],
+      [comment.details],
     );
 
     return result.affectedRows;
