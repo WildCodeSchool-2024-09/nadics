@@ -39,7 +39,7 @@ router.delete("/api/users/:id", userActions.destroy);
 router.post("/upload-avatar/:id", upload.single("avatar"), uploads.addAvatar);
 
 router.get("/api/request", requestActions.browse);
-router.get("/api/request/user/:user_id", requestActions.browseUser);
+router.get("/api/request/user/:id", requestActions.browseUser);
 router.get("/api/request/:id", requestActions.read);
 router.put("/api/request/:id", requestActions.edit);
 

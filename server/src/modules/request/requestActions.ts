@@ -11,8 +11,8 @@ const browse: RequestHandler = async (req, res, next) => {
 };
 const browseUser: RequestHandler = async (req, res, next) => {
   try {
-    const user_id = Number(req.params.user_id);
-    const request = await requestRepository.readAllUser(user_id);
+    const id = Number(req.params.id);
+    const request = await requestRepository.readAllUser(id);
     res.json(request);
   } catch (err) {
     next(err);

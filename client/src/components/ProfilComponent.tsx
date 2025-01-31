@@ -4,11 +4,11 @@ import editIcon from "../assets/images/edit-icon.png";
 import "../components/ProfilComponent.css";
 
 import UserContext from "../context/userContext";
-import type { UserTypeContext } from "../context/userContext";
+
 import DeleteUser from "./DeleteUser";
 
 function Profil() {
-  const { user, setUser } = useContext<UserTypeContext>(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const [avatarFile, setAvatarFile] = useState<File | null>(null);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,7 +41,9 @@ function Profil() {
       const data = await response.json();
       if (response.ok) {
         // Mettre à jour l'utilisateur avec le nouvel avatar
-        setUser(data);
+        setUser((prevUser) =>
+          prevUser ? { ...prevUser, avatar: data.avatar } : null,
+        );
         alert("Avatar updated");
       } else {
         alert(data.message || "Une erreur s'est produite.");
