@@ -4,10 +4,6 @@ import path from "node:path";
 import multer from "multer";
 import authAction from "./auth/authAction";
 import commentActions from "./modules/comment/commentActions";
-/* ************************************************************************* */
-// Define Your API Routes Here
-/* ************************************************************************* */
-// Define user-related routes
 import requestActions from "./modules/request/requestActions";
 import uploads from "./modules/users/uploadsAction";
 import userActions from "./modules/users/userAction";
@@ -35,6 +31,7 @@ router.get("/api/users/:id", userActions.read);
 router.post("/api/login/", authAction.login);
 router.post("/api/users/", authAction.hashPassword, userActions.add);
 router.delete("/api/users/:id", userActions.destroy);
+router.put("/api/users/:id", userActions.edit);
 
 router.post("/upload-avatar/:id", upload.single("avatar"), uploads.addAvatar);
 

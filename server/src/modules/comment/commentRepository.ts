@@ -23,8 +23,6 @@ type RequestComment = {
 class CommentRepository {
   // The C of CRUD - Create operation
 
-  // The Rs of CRUD - Read operations
-
   async create(newComment: Omit<Newcomment, "id">) {
     // Execute the SQL INSERT query to add a new request to the "request" table
     const [result] = await databaseClient.query<Result>(
@@ -36,21 +34,18 @@ class CommentRepository {
     return result.insertId;
   }
 
+  // The Rs of CRUD - Read operations
   async read(id: number) {
-    // Execute the SQL SELECT query to retrieve a specific user by users ID
+    // Execute the SQL SELECT query to retrieve a specific comment by comments ID
     const [rows] = await databaseClient.query<Rows>(
       `SELECT 
-        id, 
-        DATE_FORMAT(date, '%Y-%m-%d') AS date, 
-        details,
-        user_id, 
-        request_id 
+        details
       FROM comment 
-      WHERE id = ?`,
+      WHERE id=?`,
       [id],
     );
 
-    // Return the first row of the result, which represents the user
+    // Return the first row of the result, which represents the comment
     return rows[0] as Comment;
   }
 
@@ -64,7 +59,7 @@ class CommentRepository {
   }
 
   async readAll() {
-    // Execute the SQL SELECT query to retrieve all users from the "comment" table
+    // Execute the SQL SELECT query to retrieve all comments from the "comment" table
     const [rows] = await databaseClient.query<Rows>(
       `SELECT 
         id, 
@@ -99,17 +94,15 @@ class CommentRepository {
   }
 
   // The U of CRUD - Update operation
-  // TODO: Implement the update operation to modify an existing item
-  // async update(item: Item) {
-  //   ...
-  // }
 
   // The D of CRUD - Delete operation
-  // TODO: Implement the delete operation to remove an item by its ID
-
-  // async delete(id: number) {
-  //   ...
-  // }
+  async delete(id: number) {
+    const [comment] = await databaseClient.query<Result>(
+      "delete from comment where id=? ",
+      [id],
+    );
+    return comment.affectedRows;
+  }
 }
 
 export default new CommentRepository();

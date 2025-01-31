@@ -36,8 +36,8 @@ CREATE TABLE comment (
     id INT PRIMARY KEY AUTO_INCREMENT,
     details TEXT NOT NULL,
     `date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    user_id INT NOT NULL,
-    request_id INT NOT NULL,
+    user_id INT NOT NULL DEFAULT 1,
+    request_id INT NOT NULL DEFAULT 1,
     CONSTRAINT fk_comment_user
         FOREIGN KEY (user_id)
         REFERENCES `user`(id)

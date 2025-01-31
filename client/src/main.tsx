@@ -7,9 +7,13 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 // Import the main app component
 import App from "./App";
+// import UserEdit from "./pages/UserEdit";
+import ProfileEditComponent from "./components/ProfilEditComponent";
 import { AuthProvider } from "./context/authContext";
 import { UserProvider } from "./context/userContext";
+import CommentDeletePage from "./pages/CommentDeletePage";
 import CommentEdit from "./pages/CommentEdit";
+import CommentNewPage from "./pages/CommentNewPage";
 import HomePage from "./pages/HomePage";
 import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/LoginPage";
@@ -19,7 +23,7 @@ import PostRequest from "./pages/PostRequest";
 import RequestDetails from "./pages/RequestDetails";
 import RequestEdit from "./pages/RequestEdit";
 import SignupPage from "./pages/SignupPage";
-import UserEdit from "./pages/UserEdit";
+// import ProfileEditComponent from "./components/ProfilEditComponent";
 // Import additional components for new routes
 // Try creating these components in the "pages" folder
 
@@ -62,7 +66,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/users/:id/edit",
-        element: <UserEdit />,
+        element: <ProfileEditComponent />,
       },
       {
         path: "post_request",
@@ -75,6 +79,14 @@ const router = createBrowserRouter([
       {
         path: "test_edit/:id",
         element: <RequestEdit />,
+      },
+      {
+        path: "comments",
+        element: <CommentNewPage />,
+      },
+      {
+        path: "comments/:id",
+        element: <CommentDeletePage />,
       },
       {
         path: "comment_edit/:id",

@@ -77,13 +77,13 @@ const add: RequestHandler = async (req, res, next) => {
     };
 
     // Create the user
-    const insertId = await userRepository.create(newUser);
+    const userId = await userRepository.create(newUser);
 
-    if (!insertId) {
+    if (!userId) {
       throw new Error("Failed to create program.");
     }
     // Respond with HTTP 201 (Created) and the ID of the newly inserted user
-    res.status(201).json({ insertId });
+    res.status(201).json({ userId });
   } catch (err) {
     // Pass any errors to the error-handling middleware
     next(err);
