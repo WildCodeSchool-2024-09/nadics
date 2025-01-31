@@ -62,6 +62,7 @@ app.use(express.json());
 // Import the API router
 import router from "./router";
 
+app.use("/uploads", express.static(path.join(__dirname, "public", "uploads")));
 // Mount the API router under the "/api" endpoint
 app.use(router);
 

@@ -24,6 +24,7 @@ const login: RequestHandler = async (req, res, next) => {
         firstname: user.firstname,
         lastname: user.lastname,
         birthday: user.birthday,
+        avatar: user.avatar,
       };
 
       const token = await jwt.sign(
@@ -82,7 +83,11 @@ const verifyToken: RequestHandler = (req, res, next) => {
 
     // Vérifier la validité du token (son authenticité et sa date d'expériation)
     // En cas de succès, le payload est extrait et décodé
-    req.auth = jwt.verify(token, process.env.APP_SECRET as string) as MyPayload;
+    const decodedToken = jwt.verify(
+      token,
+      process.env.APP_SECRET as string,
+    ) as MyPayload;
+    req.auth = decodedToken;
 
     next();
   } catch (err) {

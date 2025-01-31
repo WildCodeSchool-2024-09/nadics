@@ -10,6 +10,15 @@ type User = {
   email: string;
   hashed_password: string;
 };
+type UserToken = {
+  id: number;
+  firstname: string;
+  lastname: string;
+  birthday: string;
+  avatar: string;
+  email: string;
+  hashed_password: string;
+};
 
 class UserRepository {
   // The C of CRUD - Create operation
@@ -41,8 +50,9 @@ class UserRepository {
         firstname, 
         lastname, 
         DATE_FORMAT(birthday, '%Y-%m-%d') AS birthday, 
+        avatar,
         email, 
-        password, 
+        hashed_password, 
         role_id 
       FROM user 
       WHERE id = ?`,
@@ -55,7 +65,14 @@ class UserRepository {
 
   async readAll() {
     // Execute the SQL SELECT query to retrieve all users from the "user" table
-    const [rows] = await databaseClient.query<Rows>("select * from user ");
+    const [rows] = await databaseClient.query<Rows>(`select  id, 
+        firstname, 
+        lastname, 
+        DATE_FORMAT(birthday, '%Y-%m-%d') AS birthday, 
+        avatar,
+        email, 
+        hashed_password, 
+        role_id  from user `);
 
     // Return the array of users
     return rows as User[];
@@ -63,10 +80,20 @@ class UserRepository {
 
   async readByEmailWithPassword(email: string) {
     const [rows] = await databaseClient.query<Rows>(
-      "select * from user where email = ?",
+      `SELECT  id, 
+        firstname, 
+        lastname, 
+        DATE_FORMAT(birthday, '%Y-%m-%d') AS birthday, 
+        avatar,
+        email, 
+        hashed_password, 
+        role_id 
+       FROM user 
+       WHERE email = ?`,
       [email],
     );
-    return rows[0] as User;
+
+    return rows[0] as UserToken;
   }
 
   // The U of CRUD - Update operation
@@ -86,12 +113,24 @@ class UserRepository {
     return result.affectedRows;
   }
 
+  async createAvatar(userId: number, avatarPath: string) {
+    const [result] = await databaseClient.query<Result>(
+      "UPDATE user SET avatar = ? WHERE id = ?",
+      [avatarPath, userId],
+    );
+    return result;
+  }
+
   // The D of CRUD - Delete operation
   // TODO: Implement the delete operation to remove an item by its ID
 
-  // async delete(id: number) {
-  //   ...
-  // }
+  async delete(id: number) {
+    const [result] = await databaseClient.query<Result>(
+      "delete from user where id=? ",
+      [id],
+    );
+    return result.affectedRows;
+  }
 }
 
 export default new UserRepository();

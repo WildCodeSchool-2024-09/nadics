@@ -1,0 +1,243 @@
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+/* Styles pour l'en-tête mobile avec les tags */
+.mobile-header-tags {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  width: inherit;
+}
+
+.mobile-tag {
+  background-color: #87e522;
+  color: rgb(22, 21, 21);
+  width: 145px;
+  height: 44px;
+  padding: 4px 12px;
+  gap: 10px;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+}
+
+/* Container principal */
+.request-id {
+  width: 100%;
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.request-details-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.details-container {
+  width: 100%;
+  text-align: lef;
+}
+
+.details-container summary {
+  display: flex;
+  justify-content: left;
+  width: 100%;
+  padding-left: 40px;
+  padding-bottom: 10px;
+  text-align: initial;
+  padding-top: 13px;
+}
+
+.details-container summary::before {
+  content: "▶";
+  font-size: 1rem;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 10px;
+}
+
+/* Styling pour RequestDetailCard */
+.request-detail-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+}
+
+.request-detail-card h2 {
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+
+/* Conteneur pour le tableau */
+.table-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* Styles du tableau */
+table {
+  width: 90%;
+  max-width: 95%;
+  table-layout: fixed;
+  text-align: center;
+}
+
+th,
+td {
+  padding: 10px 10px;
+  text-align: center;
+  margin: 20px 0;
+}
+
+/* Sections impact */
+.impact-sections {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.impact-person {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  max-width: 500px;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+}
+
+/* Conteneur bouton */
+.button-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* Utilisateur info */
+.user-info-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.user-avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.user-name {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Ajout du display flex pour right-detail et details-and-table */
+.right-detail {
+  display: flex;
+}
+
+.details-and-table {
+  display: flex;
+}
+
+.details-wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  width: 100%;
+  gap: 20px;
+}
+
+.details-and-table {
+  flex: 1;
+}
+
+.right-details {
+  flex: 0.4;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+}
+
+#user_info {
+  display: flex;
+  width: inherit;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.name_user {
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+summary {
+  display: flex;
+  justify-content: left;
+  gap: 10px;
+  padding-left: 40px;
+}
+
+@media (max-width: 768px) {
+  .details-and-table {
+    order: 2;
+    display: flex;
+    flex-direction: column;
+  }
+  .right-details {
+    order: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .details-wrapper {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .mobile-tag {
+    width: 145px;
+    height: px;
+    padding: 4px 12px;
+  }
+}

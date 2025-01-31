@@ -1,15 +1,14 @@
 import "dotenv/config";
-import request from "supertest";
-import app from "../../src/app";
-// on importe databaseClient pour fermer l'appel à la BDD à la fin du test et éviter une boucle 
-import databaseClient from "../../database/client";
-// on utilise faker pour créer un newUser dynamique et éviter de devoir supprimer la BDD à chaque utilisation à cause des champs uniques dans la BDD 
+// on utilise faker pour créer un newUser dynamique et éviter de devoir supprimer la BDD à chaque utilisation à cause des champs uniques dans la BDD
 import { faker } from "@faker-js/faker";
+import request from "supertest";
+// on importe databaseClient pour fermer l'appel à la BDD à la fin du test et éviter une boucle
+import databaseClient from "../../database/client";
+import app from "../../src/app";
 
 //test d'intégration
 
 describe("Test pour création d utilisateur", () => {
-
   test("devrait créer un utilisateur et le retourner", async () => {
     const newUser = {
       email: faker.internet.email(),

@@ -1,0 +1,198 @@
+/* Réinitialisation des marges et paddings */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: 0;
+}
+/* Conteneur pour les détails de la demande */
+.request-details-container {
+  display: flex;
+  flex-grow: 1; /* Permet au conteneur de prendre toute la hauteur disponible */
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  margin: 0 auto;
+  padding-bottom: 80px; /* Ajouter de l'espace en bas pour le bouton */
+}
+
+.request-detail-card {
+  margin-bottom: 20px;
+}
+
+/* Conteneur pour le bouton */
+.button-container {
+  display: flex;
+  align-items: center;
+  bottom: 20px; /* Laisser un espacement de 20px du bas */
+  right: 20px; /* Laisser un espacement de 20px de la droite */
+  width: auto; /* Pas besoin de prendre toute la largeur */
+}
+
+/* Style du bouton d'opinion */
+.home-button {
+  background-color: #000000;
+  border: 1px solid transparent;
+  display: inline-flex;
+  min-width: 1rem;
+  min-height: 3.875rem;
+  margin: 1rem 1rem;
+  padding: 1.25rem 1.5rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+  border-radius: 0.3125rem;
+  box-shadow: 0.625rem 0.625rem 0.875rem rgba(0, 0, 0, 0.25);
+  margin-bottom: 1.875rem;
+  color: #fff;
+  text-align: center;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #000;
+    transition: all 200ms ease-out;
+  }
+
+  &:active {
+    background-color: #000;
+    color: #fff;
+  }
+}
+
+/* En-têtes des sections ec les tags */
+.mobile-header-tags,
+.request-id,
+.request-detail-card,
+.impact-sections {
+  margin-bottom: 20px;
+}
+
+.details-container summary {
+  display: flex;
+  justify-content: left; /* Centrer le texte à l'intérieur du summary */
+  width: 100%;
+  position: relative;
+  padding-left: 40px;
+}
+
+.details-container summary::before {
+  content: "▶";
+  font-size: 1rem;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 10px; /* Espacement entre le triangle et le texte */
+}
+
+/* Styles pour l'en-tête mobile avec les tags */
+.mobile-header-tags {
+  display: flex; /* Utiliser flexbox pour l'alignement horizontal */
+  justify-content: left; /* Centrer les éléments horizontalement */
+  align-items: center; /* Aligner les éléments verticalement */
+  gap: 20px; /* Espacement de 20px entre les tags */
+  margin-bottom: 20px;
+}
+
+/* Styles pour les tags */
+.header-tags {
+  display: flex; /* Utiliser flexbox pour l'alignement horizontal */
+  justify-content: center; /* Centrer les éléments horizontalement */
+  align-items: center; /* Aligner les éléments verticalement */
+  gap: 20px; /* Espacement de 20px entre les tags */
+  margin-bottom: 20px; /* Marge sous les tags */
+}
+
+.tag1,
+.tag2 {
+  background-color: #4caf50; /* Couleur de fond */
+  color: white; /* Couleur du texte */
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* Style pour le texte de l'ID de la demande */
+.request-id {
+  width: 100%;
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+/* Conteneur pour les détails de la demande et le tableau */
+.details-and-table {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 15px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* Conteneur pour les détails */
+.details-container {
+  flex: 1;
+  margin-right: 20px;
+}
+
+/* Style des éléments <details> */
+details {
+  margin-bottom: 15px;
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+summary {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Réduire la taille des éléments pour les petits écrans */
+@media (max-width: 768px) {
+  .details-and-table {
+    flex-direction: column;
+  }
+
+  .details-container {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .mobile-tag1,
+  .mobile-tag2 {
+    font-size: 12px;
+    padding: 8px 16px;
+  }
+
+  /* Réduire l'espacement en bas sur mobile */
+  .request-details-container {
+    padding-bottom: 60px;
+  }
+}
+/* Fichier RequestDetails.css */
+
+/* Styles pour la version desktop */
+@media (min-width: 1025px) {
+  .details-container {
+    flex: 1;
+    margin-right: 20px;
+  }
+
+  .table-container {
+    display: flex;
+    justify-content: flex-start;
+    width: 50%;
+    align-items: flex-start;
+  }
+}
