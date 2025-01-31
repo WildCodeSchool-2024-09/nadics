@@ -5,6 +5,7 @@ import editIcon from "../assets/images/edit-icon.png";
 import "../components/ProfilComponent.css";
 
 import UserContext from "../context/userContext";
+
 import DeleteUser from "./DeleteUser";
 
 function Profil() {
@@ -51,7 +52,9 @@ function Profil() {
       const data = await response.json();
       if (response.ok) {
         // Mettre à jour l'utilisateur avec le nouvel avatar
-        setUser(data);
+        setUser((prevUser) =>
+          prevUser ? { ...prevUser, avatar: data.avatar } : null,
+        );
         alert("Avatar updated");
       } else {
         alert(data.message || "Une erreur s'est produite.");

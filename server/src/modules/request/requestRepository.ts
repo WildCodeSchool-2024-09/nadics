@@ -51,11 +51,11 @@ class RequestRepository {
     return rows as Request[];
   }
 
-  async readAllUser(user_id: number) {
+  async readAllUser(id: number) {
     const [rows] = await databaseClient.query<Rows>(
-      `SELECT *, DATE_FORMAT(date, '%Y-%m-%d') AS date 
-       FROM request where user_id=?`,
-      [user_id],
+      `SELECT request.*, DATE_FORMAT(request.date, '%Y-%m-%d') AS date , user.firstname, user.lastname,user.avatar
+       FROM request JOIN user ON user.id= request.user_id where request.id=?`,
+      [id],
     );
 
     return rows as Request[];

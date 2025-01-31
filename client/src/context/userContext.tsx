@@ -42,7 +42,6 @@ export const UserProvider = ({
     null,
   );
   const [user, setUser] = useState<UserType | null>(null);
-
   useEffect(() => {
     const authToken = getCookie("authToken");
     if (authToken) {
@@ -58,7 +57,7 @@ export const UserProvider = ({
     fetch(`${import.meta.env.VITE_API_URL}/api/users/${userConnected.sub}`)
       .then((response) => response.json())
       .then((data) => setUser(data))
-      .catch((error) => console.error("Erreur lors du fetch :", error));
+      .catch((error) => console.error("Error of the fetch :", error));
   }, [userConnected]);
 
   return (
