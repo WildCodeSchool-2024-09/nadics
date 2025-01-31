@@ -1,6 +1,6 @@
 import CommentNew from "../components/CommentNew";
 
-function CommentNewPage(){
+function CommentNewPage() {
   return (
     <>
       <CommentNew />

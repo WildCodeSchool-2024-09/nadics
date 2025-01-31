@@ -1,6 +1,6 @@
-import CommentDelete from "../components/CommentDelete";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import CommentDelete from "../components/CommentDelete";
 
 function CommentDeletePage() {
   const [comment, setComment] = useState("");

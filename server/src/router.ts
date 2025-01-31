@@ -14,7 +14,7 @@ router.delete("/api/comments/:id", commentActions.destroy);
 
 router.get("/api/users", userActions.browse);
 router.get("/api/users/:id", userActions.read);
-router.post("/api/users/", authAction.hashPassword, userActions.add);
+router.post("/api/users/", userActions.add);
 
 router.get("/api/request", requestActions.browse);
 router.get("/api/request/:id", requestActions.read);

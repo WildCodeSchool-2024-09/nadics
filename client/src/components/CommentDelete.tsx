@@ -1,10 +1,9 @@
 interface PropsType {
   id: string;
-  comment: string; 
+  comment: string;
 }
 
-function CommentDelete({id, comment}: PropsType) {
-
+function CommentDelete({ id, comment }: PropsType) {
   const handleDelete = () => {
     fetch(`${import.meta.env.VITE_API_URL}/api/comments/${id}`, {
       method: "delete",
