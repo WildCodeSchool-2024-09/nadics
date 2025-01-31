@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import UserContext from "../context/userContext";
 interface ComponentAddProps {
   onClose: () => void;
-  requestId: number;
+  requestId: number | null;
 }
 
 function ComponentAdd({ onClose, requestId }: ComponentAddProps) {

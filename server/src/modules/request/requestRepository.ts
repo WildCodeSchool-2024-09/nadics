@@ -44,18 +44,8 @@ class RequestRepository {
 
   async readAll() {
     const [rows] = await databaseClient.query<Rows>(
-      `SELECT *, DATE_FORMAT(date, '%Y-%m-%d') AS date 
-       FROM request`,
-    );
-
-    return rows as Request[];
-  }
-
-  async readAllUser(id: number) {
-    const [rows] = await databaseClient.query<Rows>(
       `SELECT request.*, DATE_FORMAT(request.date, '%Y-%m-%d') AS date , user.firstname, user.lastname,user.avatar
-       FROM request JOIN user ON user.id= request.user_id where request.id=?`,
-      [id],
+      FROM request JOIN user ON user.id= request.user_id`,
     );
 
     return rows as Request[];
@@ -64,7 +54,8 @@ class RequestRepository {
   //Search a request via id
   async read(id: number) {
     const [rows] = await databaseClient.query<Rows>(
-      "select * from request where id = ?",
+      `SELECT request.*, DATE_FORMAT(request.date, '%Y-%m-%d') AS date , user.firstname, user.lastname,user.avatar
+      FROM request JOIN user ON user.id= request.user_id where request.id=?`,
       [id],
     );
 
