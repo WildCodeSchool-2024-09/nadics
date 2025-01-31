@@ -122,7 +122,7 @@ function SignupComponent() {
               onChange={() => setAcceptCGU(!acceptCGU)} // Gestion de l'état de la case à cocher
               required
             />
-            I accept the{" "}
+            I Accept the{" "}
             <a
               href="https://www.example.com/cgu" // Remplace cette URL par celle des CGU en ligne
               target="_blank"

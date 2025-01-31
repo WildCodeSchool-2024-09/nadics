@@ -83,3 +83,28 @@
 #displaycolumn input {
   padding-left: 1rem;
 }
+/* Media Query for Mobile (max-width: 768px) */
+@media (max-width: 768px) {
+  #displaycolumn {
+    height: auto; /* Ajuste la hauteur pour les petits écrans */
+    padding: 2rem 1rem;
+  }
+
+  #signuptitle {
+    font-size: 1.5rem; /* Réduit la taille de la police du titre */
+    margin-top: 2rem;
+  }
+
+  #signupsubtitle1 {
+    font-size: 1.2rem; /* Réduit la taille de la police du sous-titre */
+  }
+
+  #signupbutton {
+    width: 100%; /* Le bouton de soumission prend toute la largeur */
+  }
+
+  #alreadyaccount {
+    font-size: 0.9rem; /* Réduit la taille de la police pour le texte "déjà un compte" */
+    text-align: center;
+  }
+}
