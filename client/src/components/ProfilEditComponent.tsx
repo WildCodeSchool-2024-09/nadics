@@ -3,10 +3,13 @@ import defaultAvatar from "../assets/images/avatar.jpg";
 import editIcon from "../assets/images/edit-icon.png";
 import "../components/ProfilComponent.css";
 
+import { useNavigate } from "react-router-dom";
 import UserContext from "../context/userContext";
 import DeleteUser from "./DeleteUser";
+import UserForm from "./UserForm";
 
-function Profil() {
+function ProfileEditComponent() {
+  const navigate = useNavigate();
   const { user, setUser } = useContext(UserContext);
   const [avatarFile, setAvatarFile] = useState<File | null>(null);
 
@@ -87,29 +90,39 @@ function Profil() {
               <span>Edit My Avatar</span>
             </button>
           </form>
-          <div id="champ_container">
-            <div className="text_container">
-              <h3>{user.firstname}</h3>
-              {/* <button type="button" className="button_icon">
-                <img src={editIcon} alt="edit icon" className="edit_icon" />
-              </button> */}
-            </div>
-            <div className="text_container">
-              <h3>{user.lastname}</h3>
-              {/* <button type="button" className="button_icon">
-                <img src={editIcon} alt="edit icon" className="edit_icon" />
-              </button> */}
-            </div>
-            <div className="text_container">
-              <h3>{user.birthday}</h3>
-              {/* <button type="button" className="button_icon">
-                <img src={editIcon} alt="edit icon" className="edit_icon" />
-              </button> */}
-            </div>
-          </div>
-          <button type="submit" id="button_icon-update-my-profile">
-            <span>Edit My Profile</span>
-          </button>
+          <UserForm
+            defaultValue={user}
+            onSubmit={(userData) => {
+              fetch(`${import.meta.env.VITE_API_URL}/api/users/${user.id}`, {
+                method: "put",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(userData),
+              })
+                .then((response) => {
+                  if (response.status === 204) {
+                    navigate("/profil");
+                  } else {
+                    alert(
+                      "Une erreur s'est produite lors de la mise à jour du profil.",
+                    );
+                  }
+                })
+                .catch((error) => {
+                  console.error(
+                    "Erreur lors de la mise à jour du profil :",
+                    error,
+                  );
+                  alert("Erreur de connexion au serveur.");
+                });
+            }}
+          >
+            <button type="submit" id="button_icon-update-my-profile">
+              <span>Edit My Profile</span>
+            </button>
+          </UserForm>
+
           <div id="lien_container">
             <a href="/password_recovery" id="lien_change">
               Change My Password
@@ -123,4 +136,4 @@ function Profil() {
   );
 }
 
-export default Profil;
+export default ProfileEditComponent;

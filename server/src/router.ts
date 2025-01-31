@@ -33,6 +33,7 @@ router.get("/api/users/:id", userActions.read);
 router.post("/api/login/", authAction.login);
 router.post("/api/users/", authAction.hashPassword, userActions.add);
 router.delete("/api/users/:id", userActions.destroy);
+router.put("/api/users/:id", userActions.edit);
 
 router.post("/upload-avatar/:id", upload.single("avatar"), uploads.addAvatar);
 

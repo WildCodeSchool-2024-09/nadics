@@ -2,6 +2,7 @@ import { jwtDecode } from "jwt-decode";
 import { createContext, useEffect, useState } from "react";
 
 export type UserType = {
+  id: number;
   sub: number;
   firstname: string;
   lastname: string;

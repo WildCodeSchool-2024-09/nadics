@@ -7,6 +7,8 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 // Import the main app component
 import App from "./App";
+// import UserEdit from "./pages/UserEdit";
+import ProfileEditComponent from "./components/ProfilEditComponent";
 import { AuthProvider } from "./context/authContext";
 import { UserProvider } from "./context/userContext";
 import CommentEdit from "./pages/CommentEdit";
@@ -19,7 +21,7 @@ import PostRequest from "./pages/PostRequest";
 import RequestDetails from "./pages/RequestDetails";
 import RequestEdit from "./pages/RequestEdit";
 import SignupPage from "./pages/SignupPage";
-import UserEdit from "./pages/UserEdit";
+// import ProfileEditComponent from "./components/ProfilEditComponent";
 // Import additional components for new routes
 // Try creating these components in the "pages" folder
 
@@ -62,7 +64,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/users/:id/edit",
-        element: <UserEdit />,
+        element: <ProfileEditComponent />,
       },
       {
         path: "post_request",
