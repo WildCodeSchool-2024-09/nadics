@@ -16,6 +16,19 @@ const browse: RequestHandler = async (req, res, next) => {
     next(err);
   }
 };
+const browseRequest: RequestHandler = async (req, res, next) => {
+  try {
+    // Fetch all users
+    const requestId = Number(req.params.request_id);
+    const comments = await commentRepository.readAllRequest(requestId);
+
+    // Respond with the comments in JSON format
+    res.json(comments);
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
 
 // The R of BREAD - Read operation
 const read: RequestHandler = async (req, res, next) => {
@@ -31,6 +44,27 @@ const read: RequestHandler = async (req, res, next) => {
     } else {
       res.json(comment);
     }
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
+const add: RequestHandler = async (req, res, next) => {
+  try {
+    const newComment = {
+      details: req.body.details,
+      user_id: Number(req.body.user_id),
+      request_id: Number(req.body.request_id),
+    };
+
+    // Create the user
+    const insertId = await commentRepository.create(newComment);
+
+    if (!insertId) {
+      throw new Error("Failed to create comment.");
+    }
+    // Respond with HTTP 201 (Created) and the ID of the newly inserted comment
+    res.status(201).json({ insertId });
   } catch (err) {
     // Pass any errors to the error-handling middleware
     next(err);
@@ -56,4 +90,4 @@ const edit: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, read, edit };
+export default { browse, read, edit, add, browseRequest };

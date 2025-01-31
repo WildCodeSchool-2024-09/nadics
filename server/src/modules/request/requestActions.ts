@@ -9,6 +9,15 @@ const browse: RequestHandler = async (req, res, next) => {
     next(err);
   }
 };
+const browseUser: RequestHandler = async (req, res, next) => {
+  try {
+    const user_id = Number(req.params.user_id);
+    const request = await requestRepository.readAllUser(user_id);
+    res.json(request);
+  } catch (err) {
+    next(err);
+  }
+};
 
 const read: RequestHandler = async (req, res, next) => {
   try {
@@ -59,6 +68,7 @@ const add: RequestHandler = async (req, res, next) => {
       title: req.body.title,
       theme: req.body.theme,
       details: req.body.details,
+      user_id: req.body.user_id,
     };
 
     // Create the user
@@ -84,4 +94,4 @@ const destroy: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, read, edit, add, destroy };
+export default { browse, read, edit, add, destroy, browseUser };

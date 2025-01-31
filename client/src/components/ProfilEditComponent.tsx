@@ -33,7 +33,7 @@ function ProfileEditComponent() {
 
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/upload-avatar/${user.sub}`,
+        `${import.meta.env.VITE_API_URL}/upload-avatar/${user.id}`,
         {
           method: "POST",
           headers: {},

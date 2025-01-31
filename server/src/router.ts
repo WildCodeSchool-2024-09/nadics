@@ -24,7 +24,9 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 router.get("/api/comments", commentActions.browse);
+router.get("/api/comments/request/:request_id", commentActions.browseRequest);
 router.get("/api/comments/:id", commentActions.read);
+router.post("/api/comments/", commentActions.add);
 router.put("/api/comments/:id", commentActions.edit);
 
 router.get("/api/users", userActions.browse);
@@ -38,6 +40,7 @@ router.put("/api/users/:id", userActions.edit);
 router.post("/upload-avatar/:id", upload.single("avatar"), uploads.addAvatar);
 
 router.get("/api/request", requestActions.browse);
+router.get("/api/request/user/:user_id", requestActions.browseUser);
 router.get("/api/request/:id", requestActions.read);
 router.put("/api/request/:id", requestActions.edit);
 

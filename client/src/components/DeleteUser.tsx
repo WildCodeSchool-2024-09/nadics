@@ -9,10 +9,10 @@ function DeleteUser() {
   const [showModal, setShowModal] = useState(false);
 
   const handleDelete = async () => {
-    if (user?.sub) {
+    if (user?.id) {
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/users/${user.sub}`,
+          `${import.meta.env.VITE_API_URL}/api/users/${user.id}`,
           {
             method: "delete",
           },
