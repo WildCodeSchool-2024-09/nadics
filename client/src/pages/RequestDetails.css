@@ -28,42 +28,6 @@
   width: auto; /* Pas besoin de prendre toute la largeur */
 }
 
-/* Style du bouton d'opinion */
-.home-button {
-  background-color: #000000;
-  border: 1px solid transparent;
-  display: inline-flex;
-  min-width: 1rem;
-  min-height: 3.875rem;
-  margin: 1rem 1rem;
-  padding: 1.25rem 1.5rem;
-  justify-content: center;
-  align-items: center;
-  gap: 0.625rem;
-  border-radius: 0.3125rem;
-  box-shadow: 0.625rem 0.625rem 0.875rem rgba(0, 0, 0, 0.25);
-  margin-bottom: 1.875rem;
-  color: #fff;
-  text-align: center;
-  font-size: 1.25rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #fff;
-    color: #000;
-    border: 1px solid #000;
-    transition: all 200ms ease-out;
-  }
-
-  &:active {
-    background-color: #000;
-    color: #fff;
-  }
-}
-
 /* En-têtes des sections ec les tags */
 .mobile-header-tags,
 .request-id,

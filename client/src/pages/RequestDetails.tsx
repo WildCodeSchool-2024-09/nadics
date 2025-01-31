@@ -79,8 +79,8 @@ function RequestDetails() {
     <>
       <div className="request-details-container">
         <div className="mobile-header-tags">
-          <span className="mobile-tag">Tag 1</span>
-          <span className="mobile-tag">Tag 2</span>
+          <span className="mobile-tag1">Tag 1</span>
+          <span className="mobile-tag2">Tag 2</span>
         </div>
         <h1>{requestDetails.title}</h1>
         <div id="user_info">

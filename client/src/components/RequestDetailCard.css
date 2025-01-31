@@ -13,9 +13,11 @@
   flex-wrap: wrap; /* Permet à l'en-tête de s'ajuster en fonction de l'écran */
 }
 
-.mobile-tag {
+.mobile-tag1 {
   background-color: #87e522;
   color: rgb(22, 21, 21);
+  width: 145px;
+  height: 44px;
   padding: 4px 12px;
   flex-shrink: 0;
   display: flex;
@@ -26,7 +28,21 @@
   box-sizing: border-box;
   /* Correction de la valeur manquante dans la hauteur, à ajuster sur mobile */
 }
-
+.mobile-tag2 {
+  background-color: #f590da;
+  color: rgb(22, 21, 21);
+  width: 145px;
+  height: 44px;
+  padding: 4px 12px;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  max-width: 100%; /* Permet à chaque tag de s'ajuster à la largeur disponible */
+  box-sizing: border-box;
+  /* Correction de la valeur manquante dans la hauteur, à ajuster sur mobile */
+}
 /* Container principal */
 .request-id {
   width: 100%;
@@ -148,7 +164,10 @@ td {
   margin-bottom: 10px;
   text-align: center;
 }
-
+.th {
+  text-align: center;
+  align-items: center;
+}
 .impacted-person {
   display: flex;
   flex-direction: column;
@@ -160,7 +179,41 @@ td {
   border-radius: 10px;
   margin-bottom: 25px;
 }
+/* Style du bouton d'opinion */
+.home-button {
+  background-color: #000000;
+  border: 1px solid transparent;
+  display: inline-flex;
+  min-width: 1rem;
+  min-height: 3.875rem;
+  margin: 1rem 1rem;
+  padding: 1.25rem 1.5rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+  border-radius: 0.3125rem;
+  box-shadow: 0.625rem 0.625rem 0.875rem rgba(0, 0, 0, 0.25);
+  margin-bottom: 1.875rem;
+  color: #fff;
+  text-align: center;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  cursor: pointer;
 
+  &:hover {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #000;
+    transition: all 200ms ease-out;
+  }
+
+  &:active {
+    background-color: #000;
+    color: #fff;
+  }
+}
 /* Conteneur bouton */
 .button-container {
   display: flex;
@@ -181,6 +234,7 @@ td {
 .user-avatar {
   width: 70px;
   height: 70px;
+
   border-radius: 50%;
   margin-right: 10px;
 }
@@ -189,9 +243,14 @@ td {
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  margin-right: 10px;
+  margin-left: 53px;
 }
-
+div.avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  margin-left: 53px;
+}
 .user-name {
   font-size: 1rem;
   font-weight: bold;
@@ -263,8 +322,8 @@ summary {
   }
 
   .mobile-tag {
-    width: auto; /* La largeur s'adapte automatiquement */
-    height: auto; /* La hauteur s'ajuste automatiquement */
+    width: 145px; /* La largeur s'adapte automatiquement */
+    height: px; /* La hauteur s'ajuste automatiquement */
     padding: 4px 8px; /* Réduction du padding pour les petits écrans */
   }
 
@@ -279,20 +338,5 @@ summary {
   th,
   td {
     padding: 8px; /* Réduction du padding dans le tableau */
-  }
-}
-
-@media (max-width: 480px) {
-  .request-id {
-    font-size: 1rem; /* Réduction de la taille de la police */
-  }
-
-  .request-detail-card {
-    max-width: 100%;
-    margin: 10px;
-  }
-
-  .details-container summary {
-    font-size: 1rem;
   }
 }
