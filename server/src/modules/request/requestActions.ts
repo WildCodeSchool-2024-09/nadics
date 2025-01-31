@@ -9,16 +9,6 @@ const browse: RequestHandler = async (req, res, next) => {
     next(err);
   }
 };
-const browseUser: RequestHandler = async (req, res, next) => {
-  try {
-    const id = Number(req.params.id);
-    const request = await requestRepository.readAllUser(id);
-    res.json(request);
-  } catch (err) {
-    next(err);
-  }
-};
-
 const read: RequestHandler = async (req, res, next) => {
   try {
     const requestId = Number(req.params.id);
@@ -94,4 +84,4 @@ const destroy: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, read, edit, add, destroy, browseUser };
+export default { browse, read, edit, add, destroy };
