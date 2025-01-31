@@ -4,10 +4,6 @@ import path from "node:path";
 import multer from "multer";
 import authAction from "./auth/authAction";
 import commentActions from "./modules/comment/commentActions";
-/* ************************************************************************* */
-// Define Your API Routes Here
-/* ************************************************************************* */
-// Define user-related routes
 import requestActions from "./modules/request/requestActions";
 import uploads from "./modules/users/uploadsAction";
 import userActions from "./modules/users/userAction";
