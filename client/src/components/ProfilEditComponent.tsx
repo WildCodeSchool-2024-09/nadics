@@ -103,6 +103,7 @@ function ProfileEditComponent() {
                 .then((response) => {
                   if (response.status === 204) {
                     navigate("/profil");
+                    window.location.reload();
                   } else {
                     alert(
                       "Une erreur s'est produite lors de la mise à jour du profil.",

@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import defaultAvatar from "../assets/images/avatar.jpg";
 import editIcon from "../assets/images/edit-icon.png";
 import "../components/ProfilComponent.css";
@@ -9,6 +10,16 @@ import DeleteUser from "./DeleteUser";
 function Profil() {
   const { user, setUser } = useContext(UserContext);
   const [avatarFile, setAvatarFile] = useState<File | null>(null);
+
+  const navigate = useNavigate();
+
+  const handleEditProfile = () => {
+    if (user?.id) {
+      navigate(`/users/${user.id}/edit`);
+    } else {
+      alert("User ID not found");
+    }
+  };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files ? e.target.files[0] : null;
@@ -106,9 +117,14 @@ function Profil() {
               </button> */}
             </div>
           </div>
-          <button type="submit" id="button_icon-update-my-profile">
+          <button
+            type="button"
+            id="button_icon-update-my-profile"
+            onClick={handleEditProfile}
+          >
             <span>Edit My Profile</span>
           </button>
+
           <div id="lien_container">
             <a href="/password_recovery" id="lien_change">
               Change My Password
