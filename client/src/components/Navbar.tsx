@@ -3,10 +3,11 @@ import { useContext, useState } from "react";
 import type { SetStateAction } from "react";
 import { Link } from "react-router-dom";
 import defaultAvatar from "../assets/images/avatar.jpg";
-import logo from "../assets/images/logo-removebg.png";
+import logoDesktop from "../assets/images/logo-removebg.png";
+import logoMobile from "../assets/images/logo favicon.png";
 import AuthContext from "../context/authContext";
 import UserContext from "../context/userContext";
-import type { UserTypeContext } from "../context/userContext";
+// import type { UserTypeContext } from "../context/userContext";
 
 function Navbar() {
   const { setUser } = useContext(UserContext);
@@ -21,7 +22,7 @@ function Navbar() {
     setUser(null);
   };
 
-  const { user } = useContext<UserTypeContext>(UserContext);
+  const { user } = useContext(UserContext);
 
   const [burger_class, setBurger_class] = useState("burger-bar unClicked");
   const [menu_class, setMenu_class] = useState("menu hidden");
@@ -47,41 +48,61 @@ function Navbar() {
     setMenuClicked(!isMenuClicked);
   };
   return (
-    <header>
+    <header id="navbarContainer">
       <Link to="/home">
-        <img src={logo} alt="logo" className="logoImg" />
+        <img src={logoMobile} alt="logo" id="logoImageMobile" />
+        <img src={logoDesktop} alt="logo" id="logoImageDesktop" />
       </Link>
-      <nav>
-        <div
-          className="menu_burger"
-          onClick={updateMenu}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              updateMenu(); // Simulate click on "Enter" or "Space"
-              e.preventDefault(); // Prevent scrolling for "Space"
-            }
-          }}
-        >
-          <div className={burger_class} />
-          <div className={burger_class} />
-          <div className={burger_class} />
-        </div>
-        <Link to="/profil">
-          {auth && user && (
-            <img
-              src={
-                user.avatar
-                  ? `${import.meta.env.VITE_API_URL}/${user.avatar}`
-                  : defaultAvatar
+      <section id="LinksAndProfileDesktop">
+        <nav id="navbarLinksDesktop">
+          <Link to="/home" className="navBarLinks" onClick={updateMenu}>
+            Home
+          </Link>
+
+          <Link to="/profil" className="navBarLinks" onClick={updateMenu}>
+            My profile
+          </Link>
+
+          <Link to="/post_request" className="navBarLinks" onClick={updateMenu}>
+            Create a request
+          </Link>
+
+          <Link to="/login" className="navBarLinks" onClick={handleLogout}>
+            Logout
+          </Link>
+        </nav>
+        <nav id="sectionBurgerAndProfile">
+          <div
+            id="menu_burger"
+            onClick={updateMenu}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                updateMenu(); // Simulate click on "Enter" or "Space"
+                e.preventDefault(); // Prevent scrolling for "Space"
               }
-              alt="avatar"
-              id="avatar_icon"
-            />
-          )}
-        </Link>
-      </nav>
+            }}
+          >
+            <div className={burger_class} />
+            <div className={burger_class} />
+            <div className={burger_class} />
+          </div>
+          <Link to="/profil">
+            {auth && user && (
+              <img
+                src={
+                  user.avatar
+                    ? `${import.meta.env.VITE_API_URL}/${user.avatar}`
+                    : defaultAvatar
+                }
+                alt="avatar"
+                id="avatar_icon"
+              />
+            )}
+          </Link>
+        </nav>
+      </section>
       <div className={menu_class}>
-        <Link
+        {/* <Link
           to="/login"
           className={`homeLink ${hoveredLink === "login" ? "hovered" : ""}`} // survole de souris il change classname
           onMouseEnter={() => handleMouseEnter("login")}
@@ -89,7 +110,7 @@ function Navbar() {
           onClick={updateMenu}
         >
           Login
-        </Link>
+        </Link> */}
         <Link
           to="/home"
           className={`homeLink ${hoveredLink === "home" ? "hovered" : ""}`} // survole de souris il change classname
@@ -106,7 +127,7 @@ function Navbar() {
           onMouseLeave={handleMouseLeave}
           onClick={updateMenu}
         >
-          Profil
+          My profile
         </Link>
         <Link
           to="/post_request"
@@ -115,9 +136,9 @@ function Navbar() {
           onMouseLeave={handleMouseLeave}
           onClick={updateMenu}
         >
-          Create request
+          Create a request
         </Link>
-        <Link
+        {/* <Link
           to="/signup"
           className={`homeLink ${hoveredLink === "signup" ? "hovered" : ""}`}
           onMouseEnter={() => handleMouseEnter("signup")}
@@ -125,7 +146,7 @@ function Navbar() {
           onClick={updateMenu}
         >
           Sign up
-        </Link>
+        </Link> */}
         <Link
           to="/login"
           className={`homeLink ${hoveredLink === "logout" ? "hovered" : ""}`}
