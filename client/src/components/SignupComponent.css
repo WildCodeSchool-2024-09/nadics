@@ -20,6 +20,16 @@
   align-items: center;
   flex-direction: column;
 }
+
+#logoImageDesktop_signup {
+  width: 15rem;
+}
+
+#logo-section-signup-page {
+  display: flex;
+  justify-content: center;
+}
+
 #signuptitle {
   color: #000;
   font-family: "Roboto", sans-serif;
