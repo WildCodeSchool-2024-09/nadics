@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import defaultAvatar from "../assets/images/avatar.jpg";
 import editIcon from "../assets/images/edit-icon.png";
-import "../components/ProfilComponent.css";
+import "../components/ProfilEditComponent.css";
 
 import { useNavigate } from "react-router-dom";
 import UserContext from "../context/userContext";
@@ -36,15 +36,16 @@ function ProfileEditComponent() {
         `${import.meta.env.VITE_API_URL}/upload-avatar/${user.id}`,
         {
           method: "POST",
-          headers: {},
           body: formData,
         },
       );
 
       const data = await response.json();
       if (response.ok) {
-        // Mettre à jour l'utilisateur avec le nouvel avatar
-        setUser(data);
+        setUser((prevUser) =>
+          prevUser ? { ...prevUser, avatar: data.avatar } : null,
+        );
+        setAvatarFile(null); // Réinitialise avatarFile pour cacher le bouton
         alert("Avatar updated");
       } else {
         alert(data.message || "Une erreur s'est produite.");
@@ -72,7 +73,11 @@ function ProfileEditComponent() {
                 id="input_upload"
               />
               <button type="button" className="button_icon">
-                <img src={editIcon} alt="edit icon" id="edit_icon" />
+                <img
+                  src={editIcon}
+                  alt="edit icon"
+                  className="edit_icon_profile"
+                />
               </button>
             </div>
             <div id="avatar_container">
@@ -86,9 +91,12 @@ function ProfileEditComponent() {
                 id="avatar"
               />
             </div>
-            <button type="submit" id="button_icon-update">
-              <span>Edit My Avatar</span>
-            </button>
+            {/* Le bouton n'apparaît que si une image est sélectionnée */}
+            {avatarFile && (
+              <button type="submit" id="button_icon-update-my-avatar">
+                <span>Confirm My Avatar</span>
+              </button>
+            )}
           </form>
           <UserForm
             defaultValue={user}
@@ -120,17 +128,15 @@ function ProfileEditComponent() {
             }}
           >
             <button type="submit" id="button_icon-update-my-profile">
-              <span>Edit My Profile</span>
+              Confirm My Information
             </button>
           </UserForm>
-
-          <div id="lien_container">
-            <a href="/password_recovery" id="lien_change">
+          <div id="password_recovery_container">
+            <a href="/password_recovery" id="password_recovery_link">
               Change My Password
             </a>
-
-            <DeleteUser />
           </div>
+          <DeleteUser />
         </main>
       )}
     </div>

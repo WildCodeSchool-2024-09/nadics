@@ -51,10 +51,10 @@ function Profil() {
 
       const data = await response.json();
       if (response.ok) {
-        // Mettre à jour l'utilisateur avec le nouvel avatar
         setUser((prevUser) =>
           prevUser ? { ...prevUser, avatar: data.avatar } : null,
         );
+        setAvatarFile(null); // Réinitialise avatarFile pour cacher le bouton
         alert("Avatar updated");
       } else {
         alert(data.message || "Une erreur s'est produite.");
@@ -75,15 +75,20 @@ function Profil() {
             id="avatar_icon_container"
           >
             <div id="icon_container">
+              <label htmlFor="input_upload" className="button_icon">
+                <img
+                  src={editIcon}
+                  alt="edit icon"
+                  className="edit_icon_profile"
+                />
+              </label>
               <input
                 type="file"
                 name="avatar"
-                onChange={handleFileChange}
                 id="input_upload"
+                onChange={handleFileChange}
+                style={{ display: "none" }}
               />
-              <button type="button" className="button_icon">
-                <img src={editIcon} alt="edit icon" id="edit_icon" />
-              </button>
             </div>
             <div id="avatar_container">
               <img
@@ -96,45 +101,66 @@ function Profil() {
                 id="avatar"
               />
             </div>
-            <button type="submit" id="button_icon-update">
-              <span>Edit My Avatar</span>
-            </button>
+
+            {/* Le bouton n'apparaît que si une image est sélectionnée */}
+            {avatarFile && (
+              <button type="submit" id="button_icon-update-my-avatar">
+                <span>Confirm My Avatar</span>
+              </button>
+            )}
           </form>
+
           <div id="champ_container">
             <div className="text_container">
               <h3>{user.firstname}</h3>
-              {/* <button type="button" className="button_icon">
-                <img src={editIcon} alt="edit icon" className="edit_icon" />
-              </button> */}
+              <button
+                type="button"
+                className="button_icon_profile"
+                onClick={handleEditProfile}
+              >
+                <img
+                  src={editIcon}
+                  alt="edit icon"
+                  className="edit_icon_profile"
+                />
+              </button>
             </div>
             <div className="text_container">
               <h3>{user.lastname}</h3>
-              {/* <button type="button" className="button_icon">
-                <img src={editIcon} alt="edit icon" className="edit_icon" />
-              </button> */}
+              <button
+                type="button"
+                className="button_icon_profile"
+                onClick={handleEditProfile}
+              >
+                <img
+                  src={editIcon}
+                  alt="edit icon"
+                  className="edit_icon_profile"
+                />
+              </button>
             </div>
             <div className="text_container">
               <h3>{user.birthday}</h3>
-              {/* <button type="button" className="button_icon">
-                <img src={editIcon} alt="edit icon" className="edit_icon" />
-              </button> */}
+              <button
+                type="button"
+                className="button_icon_profile"
+                onClick={handleEditProfile}
+              >
+                <img
+                  src={editIcon}
+                  alt="edit icon"
+                  className="edit_icon_profile"
+                />
+              </button>
             </div>
           </div>
-          <button
-            type="button"
-            id="button_icon-update-my-profile"
-            onClick={handleEditProfile}
-          >
-            <span>Edit My Profile</span>
-          </button>
 
-          <div id="lien_container">
-            <a href="/password_recovery" id="lien_change">
+          <div id="password_recovery_container">
+            <a href="/password_recovery" id="password_recovery_link">
               Change My Password
             </a>
-
-            <DeleteUser />
           </div>
+          <DeleteUser />
         </main>
       )}
     </div>
