@@ -3,6 +3,12 @@
   padding: 0;
   box-sizing: 0;
 }
+#navbarContainer {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin: 1rem 0.5rem 0.5rem 0.5rem;
+}
 
 #logoImageMobile {
   height: 3.7rem;
@@ -81,13 +87,6 @@ nav {
 /* version mobile */
 
 @media (max-width: 431px) {
-  #navbarContainer {
-    display: flex;
-    justify-content: space-between;
-    gap: 0.5rem;
-    margin: 0.5rem 0.5rem 0.5rem 0.5rem;
-  }
-
   #logoImageDesktop {
     display: none;
   }
@@ -108,13 +107,6 @@ nav {
 /* version tablet/desktop */
 
 @media (min-width: 431px) {
-  #navbarContainer {
-    display: flex;
-    justify-content: space-between;
-    gap: 0.5rem;
-    margin: 1rem 1.5rem 0.5rem 1rem;
-  }
-
   #logoImageMobile {
     display: none;
   }
