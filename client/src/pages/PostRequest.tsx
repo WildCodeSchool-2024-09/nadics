@@ -18,8 +18,11 @@ export default function PostRequest() {
 
     const requestData = {
       title: formData.get("title") as string,
-      theme: formData.get("theme") as string,
-      details: formData.get("details") as string,
+      tag1: formData.get("tag1") as string,
+      tag2: formData.get("tag2") as string,
+      details1: formData.get("details1") as string,
+      details2: formData.get("details2") as string,
+      details3: formData.get("details3") as string,
       user_id: user ? user.id : null,
     };
 
@@ -58,21 +61,48 @@ export default function PostRequest() {
           <input type="text" name="title" placeholder="title" />
         </div>
         <hr />
-        <div className="block">
-          <label htmlFor="">Request category</label>
-          <input type="text" name="theme" placeholder="category" />
+        <div id="tag_choix">
+          <div className="tag_select">
+            <label htmlFor="choix">Select primary tag (required):</label>
+            <select id="choix" name="tag1">
+              <option value="Sport">Sport</option>
+              <option value="Eat">Eat</option>
+              <option value="Drink">Drink</option>
+              <option value="Sex">Sex</option>
+            </select>
+          </div>
+          <div className="tag_select">
+            <label htmlFor="choix">Select second tag (not required):</label>
+            <select id="choix" name="tag2">
+              <option value="Sport">---</option>
+              <option value="Sport">Sport</option>
+              <option value="Eat">Eat</option>
+              <option value="Drink">Drink</option>
+              <option value="Sex">Sex</option>
+            </select>
+          </div>
         </div>
         <div className="block">
-          <label htmlFor="">Category detail</label>
-          <textarea name="details" placeholder="Write your decision here ..." />
+          <label htmlFor="">Reason of the request</label>
+          <textarea
+            name="details1"
+            placeholder="Write your decision here ..."
+          />
         </div>
-        <p>
-          You may add as many categories as you want. Click the Add button
-          below.
-        </p>
-        <button type="button" className="roundButton">
-          +
-        </button>
+        <div className="block">
+          <label htmlFor="">How to do it</label>
+          <textarea
+            name="details2"
+            placeholder="Write your decision here ..."
+          />
+        </div>
+        <div className="block">
+          <label htmlFor="">Why to do it</label>
+          <textarea
+            name="details3"
+            placeholder="Write your decision here ..."
+          />
+        </div>
         <button type="submit" className="buttonSubmit">
           Submit your request
         </button>
@@ -113,6 +143,19 @@ hr {
   width: 75%; 
   margin: auto; 
   border: 1px solid #000; 
+}
+
+#tag_choix{
+display:flex;
+ flex-direction: column;
+gap:2rem;
+margin-top:2rem;
+margin-bottom:2rem;
+}
+#choix{
+width:10rem;
+height:2rem;
+background-color:#fff
 }
 
 label{

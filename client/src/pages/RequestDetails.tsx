@@ -21,9 +21,12 @@ interface CommentType {
 interface RequestUser {
   id: number;
   title: string;
-  theme: string;
   date: string;
-  details?: string;
+  tag1: string;
+  tag2: string;
+  details1: string;
+  details2: string;
+  details3: string;
   firstname: string;
   lastname: string;
   avatar: string;
@@ -60,8 +63,8 @@ function RequestDetails() {
       {request && (
         <div className="request-details-container">
           <div className="mobile-header-tags">
-            <span className="mobile-tag1">Tag 1</span>
-            <span className="mobile-tag2">Tag 2</span>
+            <span className="mobile-tag1">{request.tag1}</span>
+            <span className="mobile-tag2">{request.tag2}</span>
           </div>
           <h1>{request.title}</h1>
           <div id="user_info">
@@ -79,14 +82,22 @@ function RequestDetails() {
           <div className="details-wrapper">
             <div className="details-and-table">
               <div className="details-container">
-                {["Reason of the request", "How to do it", "Why to do it"].map(
-                  (summaryText) => (
-                    <details key={summaryText}>
-                      <summary>{summaryText}</summary>
-                      {request.details || "No description available."}
-                    </details>
-                  ),
-                )}
+                <details key={request.id}>
+                  <summary>Reason of the request</summary>
+                  {request.details1 || "No description available."}
+                </details>
+              </div>
+              <div className="details-container">
+                <details key={request.id}>
+                  <summary>How to do it</summary>
+                  {request.details2 || "No description available."}
+                </details>
+              </div>
+              <div className="details-container">
+                <details key={request.id}>
+                  <summary>Why to do it?</summary>
+                  {request.details3 || "No description available."}
+                </details>
               </div>
               {comments && (
                 <div className="details-container">
