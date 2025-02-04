@@ -31,8 +31,11 @@ const edit: RequestHandler = async (req, res, next) => {
       id: Number(req.params.id),
       title: req.body.title,
       date: req.body.date,
-      theme: req.body.theme,
-      details: req.body.details,
+      tag1: req.body.tag1,
+      tag2: req.body.tag2,
+      details1: req.body.details1,
+      details2: req.body.details2,
+      details3: req.body.details3,
     };
 
     const affectedRows = await requestRepository.update(request);
@@ -56,8 +59,11 @@ const add: RequestHandler = async (req, res, next) => {
     const newRequest = {
       date: req.body.date,
       title: req.body.title,
-      theme: req.body.theme,
-      details: req.body.details,
+      tag1: req.body.tag1,
+      tag2: req.body.tag2,
+      details1: req.body.details1,
+      details2: req.body.details2,
+      details3: req.body.details3,
       user_id: req.body.user_id,
     };
 
