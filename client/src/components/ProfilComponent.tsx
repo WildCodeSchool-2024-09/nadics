@@ -69,98 +69,101 @@ function Profil() {
     <div id="page_container">
       {user && (
         <main id="mainProfile">
-          <form
-            onSubmit={handleSubmit}
-            encType="multipart/form-data"
-            id="avatar_icon_container"
-          >
-            <div id="icon_container">
-              <label htmlFor="input_upload" className="button_icon">
-                <img
-                  src={editIcon}
-                  alt="edit icon"
-                  className="edit_icon_profile"
+          <div id="avatarAndButton">
+            <form
+              onSubmit={handleSubmit}
+              encType="multipart/form-data"
+              id="avatar_icon_container"
+            >
+              <div id="icon_container">
+                <label htmlFor="input_upload" className="button_icon">
+                  <img
+                    src={editIcon}
+                    alt="edit icon"
+                    id="edit_icon_profile_avatar"
+                  />
+                </label>
+                <input
+                  type="file"
+                  name="avatar"
+                  id="input_upload"
+                  onChange={handleFileChange}
+                  style={{ display: "none" }}
                 />
-              </label>
-              <input
-                type="file"
-                name="avatar"
-                id="input_upload"
-                onChange={handleFileChange}
-                style={{ display: "none" }}
-              />
-            </div>
-            <div id="avatar_container">
-              <img
-                src={
-                  user.avatar
-                    ? `${import.meta.env.VITE_API_URL}/${user.avatar}`
-                    : defaultAvatar
-                }
-                alt="avatar pic"
-                id="avatar"
-              />
-            </div>
+              </div>
+              <div id="avatar_container">
+                <img
+                  src={
+                    user.avatar
+                      ? `${import.meta.env.VITE_API_URL}/${user.avatar}`
+                      : defaultAvatar
+                  }
+                  alt="avatar pic"
+                  id="avatar"
+                />
+              </div>
 
-            {/* Le bouton n'apparaît que si une image est sélectionnée */}
-            {avatarFile && (
-              <button type="submit" id="button_icon-update-my-avatar">
-                <span>Confirm My Avatar</span>
-              </button>
-            )}
-          </form>
-
-          <div id="champ_container">
-            <div className="text_container">
-              <h3>{user.firstname}</h3>
-              <button
-                type="button"
-                className="button_icon_profile"
-                onClick={handleEditProfile}
-              >
-                <img
-                  src={editIcon}
-                  alt="edit icon"
-                  className="edit_icon_profile"
-                />
-              </button>
-            </div>
-            <div className="text_container">
-              <h3>{user.lastname}</h3>
-              <button
-                type="button"
-                className="button_icon_profile"
-                onClick={handleEditProfile}
-              >
-                <img
-                  src={editIcon}
-                  alt="edit icon"
-                  className="edit_icon_profile"
-                />
-              </button>
-            </div>
-            <div className="text_container">
-              <h3>{user.birthday}</h3>
-              <button
-                type="button"
-                className="button_icon_profile"
-                onClick={handleEditProfile}
-              >
-                <img
-                  src={editIcon}
-                  alt="edit icon"
-                  className="edit_icon_profile"
-                />
-              </button>
-            </div>
+              {avatarFile && (
+                <button type="submit" id="button_icon-update-my-avatar">
+                  <span>Confirm My Avatar</span>
+                </button>
+              )}
+            </form>
           </div>
 
-          <div id="password_recovery_container">
-            <a href="/password_recovery" id="password_recovery_link">
-              Change My Password
-            </a>
+          <div id="fieldsAndButtons">
+            <div id="champ_container">
+              <div className="text_container">
+                <h3>{user.firstname}</h3>
+                <button
+                  type="button"
+                  className="button_icon_profile"
+                  onClick={handleEditProfile}
+                >
+                  <img
+                    src={editIcon}
+                    alt="edit icon"
+                    className="edit_icon_profile"
+                  />
+                </button>
+              </div>
+              <div className="text_container">
+                <h3>{user.lastname}</h3>
+                <button
+                  type="button"
+                  className="button_icon_profile"
+                  onClick={handleEditProfile}
+                >
+                  <img
+                    src={editIcon}
+                    alt="edit icon"
+                    className="edit_icon_profile"
+                  />
+                </button>
+              </div>
+              <div className="text_container">
+                <h3>{user.birthday}</h3>
+                <button
+                  type="button"
+                  className="button_icon_profile"
+                  onClick={handleEditProfile}
+                >
+                  <img
+                    src={editIcon}
+                    alt="edit icon"
+                    className="edit_icon_profile"
+                  />
+                </button>
+              </div>
+            </div>
+
+            <div id="password_recovery_container">
+              <a href="/password_recovery" id="password_recovery_link">
+                Change My Password
+              </a>
+            </div>
+            <DeleteUser />
           </div>
-          <DeleteUser />
         </main>
       )}
     </div>
