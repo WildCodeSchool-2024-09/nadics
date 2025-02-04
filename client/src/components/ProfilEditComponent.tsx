@@ -60,83 +60,90 @@ function ProfileEditComponent() {
     <div id="page_container">
       {user && (
         <main id="mainProfile">
-          <form
-            onSubmit={handleSubmit}
-            encType="multipart/form-data"
-            id="avatar_icon_container"
-          >
-            <div id="icon_container">
-              <input
-                type="file"
-                name="avatar"
-                onChange={handleFileChange}
-                id="input_upload"
-              />
-              <button type="button" className="button_icon">
-                <img
-                  src={editIcon}
-                  alt="edit icon"
-                  className="edit_icon_profile_edit"
+          <div id="avatarAndButton">
+            <form
+              onSubmit={handleSubmit}
+              encType="multipart/form-data"
+              id="avatar_icon_container"
+            >
+              <div id="icon_container">
+                <label htmlFor="input_upload" className="button_icon">
+                  <img
+                    src={editIcon}
+                    alt="edit icon"
+                    id="edit_icon_profile_avatar"
+                  />
+                </label>
+                <input
+                  type="file"
+                  name="avatar"
+                  id="input_upload"
+                  onChange={handleFileChange}
+                  style={{ display: "none" }}
                 />
-              </button>
-            </div>
-            <div id="avatar_container">
-              <img
-                src={
-                  user.avatar
-                    ? `${import.meta.env.VITE_API_URL}/${user.avatar}`
-                    : defaultAvatar
-                }
-                alt="avatar pic"
-                id="avatar"
-              />
-            </div>
-            {/* Le bouton n'apparaît que si une image est sélectionnée */}
-            {avatarFile && (
-              <button type="submit" id="button_icon-update-my-avatar">
-                <span>Confirm My Avatar</span>
-              </button>
-            )}
-          </form>
-          <UserForm
-            defaultValue={user}
-            onSubmit={(userData) => {
-              fetch(`${import.meta.env.VITE_API_URL}/api/users/${user.id}`, {
-                method: "put",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify(userData),
-              })
-                .then((response) => {
-                  if (response.status === 204) {
-                    navigate("/profil");
-                    window.location.reload();
-                  } else {
-                    alert(
-                      "Une erreur s'est produite lors de la mise à jour du profil.",
-                    );
+              </div>
+              <div id="avatar_container">
+                <img
+                  src={
+                    user.avatar
+                      ? `${import.meta.env.VITE_API_URL}/${user.avatar}`
+                      : defaultAvatar
                   }
-                })
-                .catch((error) => {
-                  console.error(
-                    "Erreur lors de la mise à jour du profil :",
-                    error,
-                  );
-                  alert("Erreur de connexion au serveur.");
-                });
-            }}
-          >
-            <button type="submit" id="button_icon-update-my-profile">
-              Confirm My Information
-            </button>
-          </UserForm>
-          <div id="password_recovery_container">
-            <a href="/password_recovery" id="password_recovery_link">
-              Change My Password
-            </a>
+                  alt="avatar pic"
+                  id="avatar"
+                />
+              </div>
+              <div id="boutonConfirmAvatar">
+                {avatarFile && (
+                  <button type="submit" id="button_icon-update-my-avatar">
+                    <span>Confirm My Avatar</span>
+                  </button>
+                )}
+              </div>
+            </form>
           </div>
-          <DeleteUser />
+
+          <div id="fieldsAndButtons">
+            <UserForm
+              defaultValue={user}
+              onSubmit={(userData) => {
+                fetch(`${import.meta.env.VITE_API_URL}/api/users/${user.id}`, {
+                  method: "put",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify(userData),
+                })
+                  .then((response) => {
+                    if (response.status === 204) {
+                      navigate("/profil");
+                      window.location.reload();
+                    } else {
+                      alert(
+                        "Une erreur s'est produite lors de la mise à jour du profil.",
+                      );
+                    }
+                  })
+                  .catch((error) => {
+                    console.error(
+                      "Erreur lors de la mise à jour du profil :",
+                      error,
+                    );
+                    alert("Erreur de connexion au serveur.");
+                  });
+              }}
+            >
+              <button type="submit" id="button_icon-update-my-profile">
+                Confirm My Information
+              </button>
+            </UserForm>
+            <div id="password_recovery_container">
+              <a href="/password_recovery" id="password_recovery_link">
+                Change My Password
+              </a>
+            </div>
+            <DeleteUser />
+          </div>
         </main>
       )}
     </div>

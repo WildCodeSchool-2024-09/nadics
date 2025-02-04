@@ -209,6 +209,12 @@
     position: relative;
     z-index: 1;
   }
+
+  #boutonConfirmAvatar {
+    display: flex;
+    justify-content: center; /* Centre le bouton horizontalement */
+    margin-top: 1rem; /* Ajoute un espace entre l'image et le bouton */
+  }
 }
 
 /* version tablet/desktop */
@@ -299,5 +305,11 @@
     font-weight: bold;
     text-decoration: underline;
     color: #000000;
+  }
+
+  #boutonConfirmAvatar {
+    display: flex;
+    justify-content: center; /* Centre le bouton horizontalement */
+    margin-top: 1rem; /* Ajoute un espace entre l'image et le bouton */
   }
 }

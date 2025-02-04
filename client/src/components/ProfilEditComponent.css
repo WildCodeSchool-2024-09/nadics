@@ -1,55 +1,63 @@
-#page_container {
-  background: linear-gradient(
-      rgba(255, 255, 255, 0.5),
-      rgba(255, 255, 255, 0.5)
-    ), url("../assets/images/logo.png");
-  background-size: cover;
-  background-position: center;
-  background-blend-mode: lighten;
-  z-index: -1;
-  min-height: 100vh; /* pour occuper toute la hauteur */
-  display: flex;
-  flex-direction: column;
-}
+/* version mobile */
 
-#mainProfile {
-  width: 100%;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex-grow: 1; /* pour prendre l'espace restant disponible */
-  margin-bottom: 0;
-}
+@media (max-width: 431px) {
+  #page_container {
+    background: linear-gradient(
+        rgba(255, 255, 255, 0.5),
+        rgba(255, 255, 255, 0.5)
+      ), url("../assets/images/logo.png");
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: lighten;
+    z-index: -1;
+    min-height: 100vh; /* pour occuper toute la hauteur */
+    display: flex;
+    flex-direction: column;
+  }
 
-#avatar_icon_container {
-  display: flex;
-  flex-direction: column;
-}
+  #mainProfile {
+    width: 100%;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1; /* pour prendre l'espace restant disponible */
+    margin-bottom: 0;
+  }
 
-#icon_container {
-  text-align: right;
-  width: 11rem;
-  margin-bottom: -1.5rem;
-  margin-left: -1rem;
-}
+  #avatar_icon_container {
+    display: flex;
+    flex-direction: column;
+  }
 
-#input_upload {
-  position: absolute;
-  width: 2rem;
-  height: 2rem;
-  opacity: 0;
-  cursor: pointer;
-  z-index: 1;
-}
+  #avatarAndButton {
+    display: flex;
+    flex-direction: column;
+  }
 
-#avatar {
-  height: 10rem;
-  width: 10rem;
-  border-radius: 6em;
-}
+  #icon_container {
+    text-align: right;
+    width: 11rem;
+    margin-bottom: -1.5rem;
+    margin-left: -1rem;
+  }
 
-/* #champ_container {
+  #input_upload {
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 1;
+  }
+
+  #avatar {
+    height: 10rem;
+    width: 10rem;
+    border-radius: 6em;
+  }
+
+  /* #champ_container {
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -57,7 +65,7 @@
   margin-bottom: 1rem;
 } */
 
-/* .text_container {
+  /* .text_container {
   width: 20rem;
   height: 4rem;
   border-radius: 0.6rem;
@@ -70,56 +78,56 @@
   align-items: center;
 } */
 
-.edit_icon_profile_edit {
-  width: 2rem;
-  height: 2rem;
-  cursor: pointer;
-}
+  .edit_icon_profile_edit {
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+  }
 
-/* .button_icon_profile {
+  /* .button_icon_profile {
   border: none;
   background-color: #ffffff;
   position: relative;
 } */
 
-#password_recovery_container {
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-}
+  #password_recovery_container {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
 
-#password_recovery_link {
-  font-size: larger;
-  text-align: center;
-  font-size: 1.1rem;
-  font-weight: bold;
-  text-decoration: underline;
-  color: #000000;
-}
+  #password_recovery_link {
+    font-size: larger;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-decoration: underline;
+    color: #000000;
+  }
 
-/* #delete_button_container {
+  /* #delete_button_container {
   margin-top: 1rem;
 } */
 
-#delete-button,
-#delete-button-yes {
-  display: flex;
-  width: 9.5rem;
-  height: 3.1rem;
-  font-size: 1.1rem;
-  font-weight: bold;
-  justify-content: center;
-  align-items: center;
-  gap: 0.625rem;
-  flex-shrink: 0;
-  border-radius: 0.5rem;
-  background: #9e0000;
-  color: #f5f5f5;
-  text-decoration: none;
-  cursor: pointer;
-  margin: 1rem;
-}
+  #delete-button,
+  #delete-button-yes {
+    display: flex;
+    width: 9.5rem;
+    height: 3.1rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+    gap: 0.625rem;
+    flex-shrink: 0;
+    border-radius: 0.5rem;
+    background: #9e0000;
+    color: #f5f5f5;
+    text-decoration: none;
+    cursor: pointer;
+    margin: 1rem;
+  }
 
-/* #delete-button-yes {
+  /* #delete-button-yes {
   display: inline-block;
   width: 9.5rem;
   height: 3.1rem;
@@ -136,7 +144,226 @@
   cursor: pointer;
 } */
 
-#delete-button-cancel {
+  #delete-button-cancel {
+    display: inline-block;
+    width: 9.5rem;
+    height: 3.1rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+    gap: 0.625rem;
+    flex-shrink: 0;
+    border-radius: 0.5rem;
+    background: #000;
+    color: #f5f5f5;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  #button_icon-update-my-profile {
+    display: flex;
+    width: 9.5rem;
+    height: 3.1rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+    gap: 0.625rem;
+    flex-shrink: 0;
+    border-radius: 0.5rem;
+    background: #000;
+    color: #f5f5f5;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  #button_icon-update-my-avatar {
+    display: flex;
+    width: 9.5rem;
+    height: 3.1rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+    gap: 0.625rem;
+    flex-shrink: 0;
+    border-radius: 0.5rem;
+    background: #000;
+    color: #f5f5f5;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: bold;
+    z-index: 1000;
+  }
+
+  .modal-content {
+    background: white;
+    padding: 1rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    max-width: 500px;
+    width: 80%;
+    min-width: 250px;
+  }
+
+  #avatar_icon_container {
+    position: relative;
+  }
+
+  #avatar_container {
+    position: relative;
+    z-index: 1;
+  }
+
+  #boutonConfirmAvatar {
+    display: flex;
+    justify-content: center; /* Centre le bouton horizontalement */
+    margin-top: 1rem; /* Ajoute un espace entre l'image et le bouton */
+  }
+}
+
+/* version tablet/desktop */
+
+@media (min-width: 431px) {
+  #page_container {
+    background: linear-gradient(
+        rgba(255, 255, 255, 0.5),
+        rgba(255, 255, 255, 0.5)
+      ), url("../assets/images/logo.png");
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: lighten;
+    z-index: -1;
+    min-height: 100vh; /* pour occuper toute la hauteur */
+    display: flex;
+    flex-direction: column;
+  }
+
+  #mainProfile {
+    width: 100%;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1; /* pour prendre l'espace restant disponible */
+    margin-bottom: 0;
+  }
+
+  #avatar_icon_container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #icon_container {
+    text-align: right;
+    width: 11rem;
+    margin-bottom: -1.5rem;
+    margin-left: -1rem;
+  }
+
+  #input_upload {
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 1;
+  }
+
+  #avatar {
+    height: 10rem;
+    width: 10rem;
+    border-radius: 6em;
+  }
+
+  /* #champ_container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 5rem;
+  margin-bottom: 1rem;
+} */
+
+  /* .text_container {
+  width: 20rem;
+  height: 4rem;
+  border-radius: 0.6rem;
+  background: #f5f5f5;
+  box-shadow: 10px 10px 14px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: space-between;
+  padding-left: 2rem;
+  padding-right: 1rem;
+  align-items: center;
+} */
+
+  .edit_icon_profile_edit {
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+  }
+
+  /* .button_icon_profile {
+  border: none;
+  background-color: #ffffff;
+  position: relative;
+} */
+
+  #password_recovery_container {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  #password_recovery_link {
+    font-size: larger;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-decoration: underline;
+    color: #000000;
+  }
+
+  /* #delete_button_container {
+  margin-top: 1rem;
+} */
+
+  #delete-button,
+  #delete-button-yes {
+    display: flex;
+    width: 9.5rem;
+    height: 3.1rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+    gap: 0.625rem;
+    flex-shrink: 0;
+    border-radius: 0.5rem;
+    background: #9e0000;
+    color: #f5f5f5;
+    text-decoration: none;
+    cursor: pointer;
+    margin: 1rem;
+  }
+
+  /* #delete-button-yes {
   display: inline-block;
   width: 9.5rem;
   height: 3.1rem;
@@ -147,70 +374,120 @@
   gap: 0.625rem;
   flex-shrink: 0;
   border-radius: 0.5rem;
-  background: #000;
+  background: #9e0000;
   color: #f5f5f5;
   text-decoration: none;
   cursor: pointer;
-}
+} */
 
-#button_icon-update-my-profile {
-  display: flex;
-  width: 9.5rem;
-  height: 3.1rem;
-  font-size: 1.1rem;
-  font-weight: bold;
-  justify-content: center;
-  align-items: center;
-  gap: 0.625rem;
-  flex-shrink: 0;
-  border-radius: 0.5rem;
-  background: #000;
-  color: #f5f5f5;
-  text-decoration: none;
-  cursor: pointer;
-}
+  #delete-button-cancel {
+    display: inline-block;
+    width: 9.5rem;
+    height: 3.1rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+    gap: 0.625rem;
+    flex-shrink: 0;
+    border-radius: 0.5rem;
+    background: #000;
+    color: #f5f5f5;
+    text-decoration: none;
+    cursor: pointer;
+  }
 
-#button_icon-update-my-avatar {
-  display: flex;
-  width: 9.5rem;
-  height: 3.1rem;
-  font-size: 1.1rem;
-  font-weight: bold;
-  justify-content: center;
-  align-items: center;
-  gap: 0.625rem;
-  flex-shrink: 0;
-  border-radius: 0.5rem;
-  background: #000;
-  color: #f5f5f5;
-  text-decoration: none;
-  cursor: pointer;
-}
+  #button_icon-update-my-profile {
+    display: flex;
+    width: 9.5rem;
+    height: 3.1rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+    gap: 0.625rem;
+    flex-shrink: 0;
+    border-radius: 0.5rem;
+    background: #000;
+    color: #f5f5f5;
+    text-decoration: none;
+    cursor: pointer;
+  }
 
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-weight: bold;
-  z-index: 1000;
-}
+  #button_icon-update-my-avatar {
+    display: flex;
+    width: 9.5rem;
+    height: 3.1rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+    gap: 0.625rem;
+    flex-shrink: 0;
+    border-radius: 0.5rem;
+    background: #000;
+    color: #f5f5f5;
+    text-decoration: none;
+    cursor: pointer;
+  }
 
-.modal-content {
-  background: white;
-  padding: 1rem;
-  border-radius: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  max-width: 500px;
-  width: 80%;
-  min-width: 250px;
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: bold;
+    z-index: 1000;
+  }
+
+  .modal-content {
+    background: white;
+    padding: 1rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    max-width: 500px;
+    width: 80%;
+    min-width: 250px;
+  }
+
+  #icon_container {
+    text-align: right;
+    margin-bottom: -1.5rem;
+    margin-left: -1rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+  }
+
+  #avatarAndButton {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #avatar_icon_container {
+    position: relative;
+  }
+
+  #avatar_container {
+    position: relative;
+    z-index: 1;
+  }
+
+  #boutonConfirmAvatar {
+    display: flex;
+    justify-content: center; /* Centre le bouton horizontalement */
+    margin-top: 1rem; /* Ajoute un espace entre l'image et le bouton */
+  }
 }

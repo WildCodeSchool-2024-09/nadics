@@ -102,12 +102,13 @@ function Profil() {
                   id="avatar"
                 />
               </div>
-
-              {avatarFile && (
-                <button type="submit" id="button_icon-update-my-avatar">
-                  <span>Confirm My Avatar</span>
-                </button>
-              )}
+              <div id="boutonConfirmAvatar">
+                {avatarFile && (
+                  <button type="submit" id="button_icon-update-my-avatar">
+                    <span>Confirm My Avatar</span>
+                  </button>
+                )}
+              </div>
             </form>
           </div>
 
