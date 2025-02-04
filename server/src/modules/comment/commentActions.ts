@@ -76,4 +76,14 @@ const edit: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, read, edit, add };
+const destroy: RequestHandler = async (req, res, next) => {
+  try {
+    const commentId = Number(req.params.id);
+    await commentRepository.delete(commentId);
+    res.sendStatus(204);
+  } catch (err) {
+    next(err);
+  }
+};
+
+export default { browse, read, edit, add, destroy };

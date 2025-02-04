@@ -11,7 +11,6 @@ import App from "./App";
 import ProfileEditComponent from "./components/ProfilEditComponent";
 import { AuthProvider } from "./context/authContext";
 import { UserProvider } from "./context/userContext";
-import CommentDeletePage from "./pages/CommentDeletePage";
 import CommentEdit from "./pages/CommentEdit";
 import CommentNewPage from "./pages/CommentNewPage";
 import HomePage from "./pages/HomePage";
@@ -83,10 +82,6 @@ const router = createBrowserRouter([
       {
         path: "comments",
         element: <CommentNewPage />,
-      },
-      {
-        path: "comments/:id",
-        element: <CommentDeletePage />,
       },
       {
         path: "comment_edit/:id",

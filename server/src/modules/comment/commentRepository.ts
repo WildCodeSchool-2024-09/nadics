@@ -78,8 +78,6 @@ class CommentRepository {
     return rows as RequestComment[];
   }
 
-  // The U of CRUD - Update operation
-
   // The D of CRUD - Delete operation
   async delete(id: number) {
     const [comment] = await databaseClient.query<Result>(
