@@ -23,6 +23,7 @@ router.get("/api/comments/request/:request_id", commentActions.browse);
 router.get("/api/comments/:id", commentActions.read);
 router.post("/api/comments/", commentActions.add);
 router.put("/api/comments/:id", commentActions.edit);
+router.delete("/api/comments/:id", commentActions.destroy);
 
 router.get("/api/users", userActions.browse);
 router.get("/api/users/:id", userActions.read);
