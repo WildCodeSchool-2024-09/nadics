@@ -1,15 +1,6 @@
-/* Importation de la police Roboto */
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
-
-/* Application générale de la police */
-body {
+* {
   font-family: "Roboto", sans-serif;
-  margin: 0;
-  padding: 0;
-  color: #333;
-  background-color: #fff; /* Fond blanc */
 }
-
 /* Formulaire CGU */
 .cguform {
   display: flex;
@@ -30,7 +21,7 @@ body {
 .cgu-title {
   display: flex;
   justify-content: center;
-  color: #000; /* Couleur du texte en noir */
+  color: #0c0c0c; /* Couleur du texte en noir */
   font-family: "Roboto", sans-serif;
   font-size: 2rem;
   font-weight: 700;
@@ -41,7 +32,7 @@ body {
 }
 /* Sous-titres */
 .cgu-welcome-subtitle {
-  color: #000;
+  color: #4651e8; /* Couleur du texte en noir */
   font-family: "Roboto", sans-serif;
   font-size: 1.5rem;
   font-weight: 700;
@@ -50,7 +41,7 @@ body {
 }
 /* Sous-titres */
 .cgu-subtitle {
-  color: #000;
+  color: #4651e8; /* Couleur du texte en noir */
   font-family: "Roboto", sans-serif;
   font-size: 1.5rem;
   font-weight: 700;
@@ -71,7 +62,7 @@ body {
 }
 
 /* Appliquer du style au texte "Smart Choice Hub" (en bleu et en gras) */
-strong {
+.cgu-titles-trong {
   font-weight: 700;
   color: #007bff; /* Bleu spécifique */
 }
@@ -84,27 +75,13 @@ strong {
   font-weight: 700;
 }
 
-/* Mettre un peu d'espace entre chaque section */
-section {
-  margin-bottom: 30px;
-}
-
 /* Styles pour les liens */
-a {
+.acgu-paragraph-a {
   color: #007bff;
   text-decoration: none;
 }
 
-a:hover {
-  text-decoration: underline;
-}
-
 @media screen and (max-width: 768px) {
-  /* Force la largeur du body à 100% sur mobile */
-  body {
-    width: 100%; /* Assurez-vous que le body occupe toute la largeur */
-    margin: 0; /* Retirer les marges éventuelles */
-  }
   /* Ajuster la taille des titres */
   .cgu-title {
     font-size: 1.5em; /* Réduire la taille des titres */

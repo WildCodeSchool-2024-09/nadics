@@ -120,7 +120,7 @@ const CGU: React.FC = () => {
       </p>
 
       <h4 className="cgu-subtitle">
-        <strong>Réservation des droits</strong>
+        <strong className="droits">Réservation des droits</strong>
       </h4>
 
       <p className="cgu-paragraph">
