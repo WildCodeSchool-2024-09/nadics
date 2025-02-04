@@ -10,18 +10,6 @@
     background-blend-mode: lighten;
     z-index: -1;
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-
-  #mainProfile {
-    width: 100vw;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-grow: 1;
-    margin-bottom: 0;
   }
 
   #icon_container {
@@ -56,6 +44,15 @@
     gap: 2rem;
     margin-top: 2rem;
   }
+
+  /* #mainProfile {
+    width: 100vw;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    flex-grow: 1;
+  } */
 
   #fieldsAndButtons {
     display: flex;
@@ -220,10 +217,10 @@
   #mainProfile {
     display: flex;
     flex-direction: row;
-    gap: 2rem;
     justify-content: space-between;
-    padding-left: 13rem;
-    padding-right: 13rem;
+    padding-left: 10rem;
+    padding-right: 10rem;
+    gap: 5rem;
   }
 
   #champ_container {
@@ -266,8 +263,8 @@
     width: 4rem;
     height: 4rem;
     cursor: pointer;
-    border-style: none;
-    background-color: transparent;
+    /* border-style: none;
+    background-color: transparent; */
   }
 
   #fieldsAndButtons {

@@ -76,7 +76,7 @@ function ProfileEditComponent() {
                 <img
                   src={editIcon}
                   alt="edit icon"
-                  className="edit_icon_profile"
+                  className="edit_icon_profile_edit"
                 />
               </button>
             </div>
