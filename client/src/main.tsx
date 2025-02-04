@@ -7,6 +7,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 // Import the main app component
 import App from "./App";
+import CGU from "./components/CGU";
 // import UserEdit from "./pages/UserEdit";
 import ProfileEditComponent from "./components/ProfilEditComponent";
 import { AuthProvider } from "./context/authContext";
@@ -91,6 +92,10 @@ const router = createBrowserRouter([
       {
         path: "comment_edit/:id",
         element: <CommentEdit />,
+      },
+      {
+        path: "CGU",
+        element: <CGU />,
       },
     ],
   },

@@ -83,3 +83,13 @@
 #displaycolumn input {
   padding-left: 1rem;
 }
+.checkbox-container {
+  display: flex; /* Utilisation de flexbox pour aligner les éléments en ligne */
+  align-items: center; /* Aligner la case à cocher et le texte verticalement */
+  justify-content: center; /* Centrer le contenu horizontalement */
+}
+/* Appliquer un espacement à droite de la case à cocher */
+.checkbox-input {
+  align-items: center;
+  margin-right: 10px; /* Espace entre la case et le texte */
+}
