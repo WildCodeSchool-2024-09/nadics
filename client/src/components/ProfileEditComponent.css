@@ -10,7 +10,7 @@
     background-position: center;
     background-blend-mode: lighten;
     z-index: -1;
-    min-height: 100vh; /* pour occuper toute la hauteur */
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
   }
@@ -21,7 +21,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex-grow: 1; /* pour prendre l'espace restant disponible */
+    flex-grow: 1;
     margin-bottom: 0;
   }
 
@@ -57,38 +57,11 @@
     border-radius: 6em;
   }
 
-  /* #champ_container {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  margin-top: 5rem;
-  margin-bottom: 1rem;
-} */
-
-  /* .text_container {
-  width: 20rem;
-  height: 4rem;
-  border-radius: 0.6rem;
-  background: #f5f5f5;
-  box-shadow: 10px 10px 14px 0px rgba(0, 0, 0, 0.25);
-  display: flex;
-  justify-content: space-between;
-  padding-left: 2rem;
-  padding-right: 1rem;
-  align-items: center;
-} */
-
   .edit_icon_profile_edit {
     width: 2rem;
     height: 2rem;
     cursor: pointer;
   }
-
-  /* .button_icon_profile {
-  border: none;
-  background-color: #ffffff;
-  position: relative;
-} */
 
   #password_recovery_container {
     margin-top: 2rem;
@@ -103,10 +76,6 @@
     text-decoration: underline;
     color: #000000;
   }
-
-  /* #delete_button_container {
-  margin-top: 1rem;
-} */
 
   #delete-button,
   #delete-button-yes {
@@ -126,23 +95,6 @@
     cursor: pointer;
     margin: 1rem;
   }
-
-  /* #delete-button-yes {
-  display: inline-block;
-  width: 9.5rem;
-  height: 3.1rem;
-  font-size: 1.1rem;
-  font-weight: bold;
-  justify-content: center;
-  align-items: center;
-  gap: 0.625rem;
-  flex-shrink: 0;
-  border-radius: 0.5rem;
-  background: #9e0000;
-  color: #f5f5f5;
-  text-decoration: none;
-  cursor: pointer;
-} */
 
   #delete-button-cancel {
     display: inline-block;
@@ -234,8 +186,8 @@
 
   #boutonConfirmAvatar {
     display: flex;
-    justify-content: center; /* Centre le bouton horizontalement */
-    margin-top: 1rem; /* Ajoute un espace entre l'image et le bouton */
+    justify-content: center;
+    margin-top: 1rem;
   }
 }
 
@@ -251,7 +203,7 @@
     background-position: center;
     background-blend-mode: lighten;
     z-index: -1;
-    min-height: 100vh; /* pour occuper toute la hauteur */
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
   }
@@ -262,7 +214,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex-grow: 1; /* pour prendre l'espace restant disponible */
+    flex-grow: 1;
     margin-bottom: 0;
   }
 
@@ -293,38 +245,11 @@
     border-radius: 6em;
   }
 
-  /* #champ_container {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  margin-top: 5rem;
-  margin-bottom: 1rem;
-} */
-
-  /* .text_container {
-  width: 20rem;
-  height: 4rem;
-  border-radius: 0.6rem;
-  background: #f5f5f5;
-  box-shadow: 10px 10px 14px 0px rgba(0, 0, 0, 0.25);
-  display: flex;
-  justify-content: space-between;
-  padding-left: 2rem;
-  padding-right: 1rem;
-  align-items: center;
-} */
-
   .edit_icon_profile_edit {
     width: 2rem;
     height: 2rem;
     cursor: pointer;
   }
-
-  /* .button_icon_profile {
-  border: none;
-  background-color: #ffffff;
-  position: relative;
-} */
 
   #password_recovery_container {
     margin-top: 2rem;
@@ -339,10 +264,6 @@
     text-decoration: underline;
     color: #000000;
   }
-
-  /* #delete_button_container {
-  margin-top: 1rem;
-} */
 
   #delete-button,
   #delete-button-yes {
@@ -362,23 +283,6 @@
     cursor: pointer;
     margin: 1rem;
   }
-
-  /* #delete-button-yes {
-  display: inline-block;
-  width: 9.5rem;
-  height: 3.1rem;
-  font-size: 1.1rem;
-  font-weight: bold;
-  justify-content: center;
-  align-items: center;
-  gap: 0.625rem;
-  flex-shrink: 0;
-  border-radius: 0.5rem;
-  background: #9e0000;
-  color: #f5f5f5;
-  text-decoration: none;
-  cursor: pointer;
-} */
 
   #delete-button-cancel {
     display: inline-block;
@@ -487,7 +391,7 @@
 
   #boutonConfirmAvatar {
     display: flex;
-    justify-content: center; /* Centre le bouton horizontalement */
-    margin-top: 1rem; /* Ajoute un espace entre l'image et le bouton */
+    justify-content: center;
+    margin-top: 1rem;
   }
 }

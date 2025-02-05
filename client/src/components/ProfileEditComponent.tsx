@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import defaultAvatar from "../assets/images/avatar.jpg";
 import editIcon from "../assets/images/edit-icon.png";
-import "../components/ProfilEditComponent.css";
+import "../components/ProfileEditComponent.css";
 
 import { useNavigate } from "react-router-dom";
 import UserContext from "../context/userContext";
@@ -96,7 +96,7 @@ function ProfileEditComponent() {
               <div id="boutonConfirmAvatar">
                 {avatarFile && (
                   <button type="submit" id="button_icon-update-my-avatar">
-                    <span>Confirm My Avatar</span>
+                    <span>Confirm my avatar</span>
                   </button>
                 )}
               </div>
@@ -116,17 +116,21 @@ function ProfileEditComponent() {
                 })
                   .then((response) => {
                     if (response.status === 204) {
-                      navigate("/profil");
-                      window.location.reload();
+                      setUser((prevUser) =>
+                        // Mise à jour de l'état local de l'utilisateur pour éviter d'utiliser window.location.reload();
+                        prevUser ? { ...prevUser, ...userData } : null,
+                      );
+                      navigate("/profile");
+                      // window.location.reload();
                     } else {
                       alert(
-                        "Une erreur s'est produite lors de la mise à jour du profil.",
+                        "Une erreur s'est produite lors de la mise à jour du profile.",
                       );
                     }
                   })
                   .catch((error) => {
                     console.error(
-                      "Erreur lors de la mise à jour du profil :",
+                      "Erreur lors de la mise à jour du profile :",
                       error,
                     );
                     alert("Erreur de connexion au serveur.");
@@ -134,12 +138,12 @@ function ProfileEditComponent() {
               }}
             >
               <button type="submit" id="button_icon-update-my-profile">
-                Confirm My Information
+                Confirm my information
               </button>
             </UserForm>
             <div id="password_recovery_container">
               <a href="/password_recovery" id="password_recovery_link">
-                Change My Password
+                Change my password
               </a>
             </div>
             <DeleteUser />

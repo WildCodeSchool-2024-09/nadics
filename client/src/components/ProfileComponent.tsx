@@ -2,13 +2,13 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import defaultAvatar from "../assets/images/avatar.jpg";
 import editIcon from "../assets/images/edit-icon.png";
-import "../components/ProfilComponent.css";
+import "../components/ProfileComponent.css";
 
 import UserContext from "../context/userContext";
 
 import DeleteUser from "./DeleteUser";
 
-function Profil() {
+function Profile() {
   const { user, setUser } = useContext(UserContext);
   const [avatarFile, setAvatarFile] = useState<File | null>(null);
 
@@ -105,7 +105,7 @@ function Profil() {
               <div id="boutonConfirmAvatar">
                 {avatarFile && (
                   <button type="submit" id="button_icon-update-my-avatar">
-                    <span>Confirm My Avatar</span>
+                    <span>Confirm my avatar</span>
                   </button>
                 )}
               </div>
@@ -160,7 +160,7 @@ function Profil() {
 
             <div id="password_recovery_container">
               <a href="/password_recovery" id="password_recovery_link">
-                Change My Password
+                Change my password
               </a>
             </div>
             <DeleteUser />
@@ -171,4 +171,4 @@ function Profil() {
   );
 }
 
-export default Profil;
+export default Profile;

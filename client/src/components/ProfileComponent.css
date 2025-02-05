@@ -1,4 +1,5 @@
 /* version mobile */
+
 @media (max-width: 431px) {
   #page_container {
     background: linear-gradient(
@@ -45,15 +46,6 @@
     margin-top: 2rem;
   }
 
-  /* #mainProfile {
-    width: 100vw;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    flex-grow: 1;
-  } */
-
   #fieldsAndButtons {
     display: flex;
     flex-direction: column;
@@ -69,7 +61,7 @@
     display: flex;
     justify-content: space-between;
     padding-left: 2rem;
-    padding-right: 1rem;
+    padding-right: 2rem;
     align-items: center;
   }
 
@@ -212,8 +204,8 @@
 
   #boutonConfirmAvatar {
     display: flex;
-    justify-content: center; /* Centre le bouton horizontalement */
-    margin-top: 1rem; /* Ajoute un espace entre l'image et le bouton */
+    justify-content: center;
+    margin-top: 1rem;
   }
 }
 
@@ -245,7 +237,7 @@
     display: flex;
     justify-content: space-between;
     padding-left: 2rem;
-    padding-right: 1rem;
+    padding-right: 2rem;
     align-items: center;
   }
 
@@ -269,8 +261,6 @@
     width: 4rem;
     height: 4rem;
     cursor: pointer;
-    /* border-style: none;
-    background-color: transparent; */
   }
 
   #fieldsAndButtons {
@@ -309,7 +299,7 @@
 
   #boutonConfirmAvatar {
     display: flex;
-    justify-content: center; /* Centre le bouton horizontalement */
-    margin-top: 1rem; /* Ajoute un espace entre l'image et le bouton */
+    justify-content: center;
+    margin-top: 1rem;
   }
 }
