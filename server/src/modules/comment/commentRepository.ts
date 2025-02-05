@@ -58,42 +58,25 @@ class CommentRepository {
     return result.affectedRows;
   }
 
-  async readAll() {
+  async readAll(request_id: number) {
     // Execute the SQL SELECT query to retrieve all comments from the "comment" table
     const [rows] = await databaseClient.query<Rows>(
       `SELECT 
-        id, 
-        DATE_FORMAT(date, '%Y-%m-%d') AS date, 
-        details,
-        user_id, 
-        request_id 
-      FROM comment`,
-    );
+      comment.id, 
+      DATE_FORMAT(comment.date, '%Y-%m-%d') AS date, 
+      comment.details,
+      comment.user_id, 
+      comment.request_id,
+      user.firstname,
+      user.lastname,
+      user.avatar
+    FROM comment JOIN user ON user.id=comment.user_id WHERE comment.request_id=?`,
+      [request_id],
 
-    // Return the array of users
+      // Return the array of users
+    );
     return rows as RequestComment[];
   }
-  async readAllRequest(request_id: number) {
-    // Execute the SQL SELECT query to retrieve all users from the "comment" table
-    const [rows] = await databaseClient.query<Rows>(
-      `SELECT 
-        comment.id, 
-        DATE_FORMAT(comment.date, '%Y-%m-%d') AS date, 
-        comment.details,
-        comment.user_id, 
-        comment.request_id,
-        user.firstname,
-        user.lastname,
-        user.avatar
-      FROM comment JOIN user ON user.id=comment.user_id WHERE comment.request_id=?`,
-      [request_id],
-    );
-
-    // Return the array of users
-    return rows as Comment[];
-  }
-
-  // The U of CRUD - Update operation
 
   // The D of CRUD - Delete operation
   async delete(id: number) {

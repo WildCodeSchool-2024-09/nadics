@@ -1,11 +1,18 @@
 import { Link, useNavigate } from "react-router-dom";
 import "./SignupComponent.css";
+import { useState } from "react";
 import logoDesktop from "../assets/images/logo-removebg.png";
 
 function SignupComponent() {
   const navigate = useNavigate();
+  const [acceptCGU, setAcceptCGU] = useState(false);
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (!acceptCGU) {
+      alert("You must accept the Terms and Conditions to proceed.");
+      return;
+    }
+
     const formData = new FormData(event.currentTarget);
 
     const userData = {
@@ -15,6 +22,7 @@ function SignupComponent() {
       email: formData.get("email") as string,
       password: formData.get("password") as string,
     };
+
     try {
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/api/users`,
@@ -110,13 +118,29 @@ function SignupComponent() {
               required
             />
           </label>
+
+          {/* Case à cocher pour accepter les CGU */}
+          <label className="checkbox-container">
+            <input
+              type="checkbox"
+              className="checkbox-input"
+              checked={acceptCGU}
+              onChange={() => setAcceptCGU(!acceptCGU)} // Gestion de l'état de la case à cocher
+              required
+            />
+            I Accept the{" "}
+            <Link to="/cgu" target="_blank" rel="noopener noreferrer">
+              Terms and Conditions
+            </Link>
+          </label>
+
           <button id="signupbutton" type="submit">
             Sign Up
           </button>
         </form>
         <div id="alreadyaccount">
           <Link to="/login" id="login">
-            Already have an account ? Login
+            Already have an account? Login
           </Link>
         </div>
       </section>

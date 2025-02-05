@@ -2,7 +2,7 @@
   background: linear-gradient(
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
-    ), url("../assets/images/logo.png");
+    ), url("../assets/images/background.png");
   background-size: cover;
   background-position: center;
   background-blend-mode: lighten;
@@ -96,7 +96,7 @@
   margin-top: 1rem;
 }
 
-#delete-button {
+.delete-button {
   display: flex;
   width: 9.5rem;
   height: 3.1rem;
@@ -146,7 +146,7 @@
   cursor: pointer;
 }
 
-#button_icon-update {
+.button_icon-update {
   display: flex;
   width: 9.5rem;
   height: 3.1rem;

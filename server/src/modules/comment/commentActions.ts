@@ -5,20 +5,8 @@ import commentRepository from "./commentRepository";
 const browse: RequestHandler = async (req, res, next) => {
   try {
     // Fetch all comments
-    const comments = await commentRepository.readAll();
-
-    // Respond with the comments in JSON format
-    res.json(comments);
-  } catch (err) {
-    // Pass any errors to the error-handling middleware
-    next(err);
-  }
-};
-const browseRequest: RequestHandler = async (req, res, next) => {
-  try {
-    // Fetch all users
     const requestId = Number(req.params.request_id);
-    const comments = await commentRepository.readAllRequest(requestId);
+    const comments = await commentRepository.readAll(requestId);
 
     // Respond with the comments in JSON format
     res.json(comments);
@@ -88,4 +76,14 @@ const edit: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, read, edit, add, browseRequest };
+const destroy: RequestHandler = async (req, res, next) => {
+  try {
+    const commentId = Number(req.params.id);
+    await commentRepository.delete(commentId);
+    res.sendStatus(204);
+  } catch (err) {
+    next(err);
+  }
+};
+
+export default { browse, read, edit, add, destroy };

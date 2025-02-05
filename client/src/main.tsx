@@ -7,11 +7,12 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 // Import the main app component
 import App from "./App";
+import CGU from "./components/CGU";
+import PrivacyPolicy from "./components/PrivacyPolicy";
 // import UserEdit from "./pages/UserEdit";
 import ProfileEditComponent from "./components/ProfilEditComponent";
 import { AuthProvider } from "./context/authContext";
 import { UserProvider } from "./context/userContext";
-import CommentDeletePage from "./pages/CommentDeletePage";
 import CommentEdit from "./pages/CommentEdit";
 import CommentNewPage from "./pages/CommentNewPage";
 import HomePage from "./pages/HomePage";
@@ -21,8 +22,8 @@ import ProfilPage from "./pages/PageProfil";
 import PasswordRecovery from "./pages/PasswordRecovery";
 import PostRequest from "./pages/PostRequest";
 import RequestDetails from "./pages/RequestDetails";
-import RequestEdit from "./pages/RequestEdit";
 import SignupPage from "./pages/SignupPage";
+
 // import ProfileEditComponent from "./components/ProfilEditComponent";
 // Import additional components for new routes
 // Try creating these components in the "pages" folder
@@ -77,20 +78,20 @@ const router = createBrowserRouter([
         element: <ProfilPage />,
       },
       {
-        path: "test_edit/:id",
-        element: <RequestEdit />,
-      },
-      {
         path: "comments",
         element: <CommentNewPage />,
       },
       {
-        path: "comments/:id",
-        element: <CommentDeletePage />,
-      },
-      {
         path: "comment_edit/:id",
         element: <CommentEdit />,
+      },
+      {
+        path: "CGU",
+        element: <CGU />,
+      },
+      {
+        path: "privacypolicy",
+        element: <PrivacyPolicy />, // Correctement utilisé ici
       },
     ],
   },
