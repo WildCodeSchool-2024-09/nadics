@@ -23,9 +23,45 @@
 .button-container {
   display: flex;
   align-items: center;
-  bottom: 20px; /* Laisser un espacement de 20px du bas */
-  right: 20px; /* Laisser un espacement de 20px de la droite */
-  width: auto; /* Pas besoin de prendre toute la largeur */
+  bottom: 20px;
+  right: 20px;
+  width: auto;
+}
+
+/* Style du bouton d'opinion */
+.home-button {
+  background-color: #000000;
+  border: 1px solid transparent;
+  display: inline-flex;
+  min-width: 1rem;
+  min-height: 3.875rem;
+  margin: 1rem 1rem;
+  padding: 1.25rem 1.5rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+  border-radius: 0.3125rem;
+  box-shadow: 0.625rem 0.625rem 0.875rem rgba(0, 0, 0, 0.25);
+  margin-bottom: 1.875rem;
+  color: #fff;
+  text-align: center;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #000;
+    transition: all 200ms ease-out;
+  }
+
+  &:active {
+    background-color: #000;
+    color: #fff;
+  }
 }
 
 /* En-têtes des sections ec les tags */
@@ -65,24 +101,23 @@
 
 /* Styles pour les tags */
 .header-tags {
-  display: flex; /* Utiliser flexbox pour l'alignement horizontal */
-  justify-content: center; /* Centrer les éléments horizontalement */
-  align-items: center; /* Aligner les éléments verticalement */
-  gap: 20px; /* Espacement de 20px entre les tags */
-  margin-bottom: 20px; /* Marge sous les tags */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
 }
 
 .tag1,
 .tag2 {
-  background-color: #4caf50; /* Couleur de fond */
-  color: white; /* Couleur du texte */
+  background-color: #4caf50;
+  color: white;
   padding: 10px 20px;
   border-radius: 20px;
   font-size: 14px;
   font-weight: bold;
 }
 
-/* Style pour le texte de l'ID de la demande */
 .request-id {
   width: 100%;
   text-align: center;
@@ -91,7 +126,6 @@
   font-weight: bold;
 }
 
-/* Conteneur pour les détails de la demande et le tableau */
 .details-and-table {
   display: flex;
   justify-content: space-between;
@@ -102,13 +136,11 @@
   gap: 20px;
 }
 
-/* Conteneur pour les détails */
 .details-container {
   flex: 1;
   margin-right: 20px;
 }
 
-/* Style des éléments <details> */
 details {
   margin-bottom: 15px;
   background-color: #fff;
@@ -122,7 +154,6 @@ summary {
   cursor: pointer;
 }
 
-/* Réduire la taille des éléments pour les petits écrans */
 @media (max-width: 768px) {
   .details-and-table {
     flex-direction: column;
@@ -139,7 +170,6 @@ summary {
     padding: 8px 16px;
   }
 
-  /* Réduire l'espacement en bas sur mobile */
   .request-details-container {
     padding-bottom: 60px;
   }
@@ -151,6 +181,11 @@ summary {
   .details-container {
     flex: 1;
     margin-right: 20px;
+  }
+
+  .details-and-table {
+    display: flex;
+    flex-direction: column;
   }
 
   .table-container {

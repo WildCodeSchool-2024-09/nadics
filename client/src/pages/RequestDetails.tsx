@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CommentAdd from "../components/CommentAdd";
+import CommentDelete from "../components/CommentDelete";
 import RequestDetailCard from "../components/RequestDetailCard";
 import "./RequestDetails.css";
 import defaultAvatar from "../assets/images/avatar.jpg";
@@ -189,6 +190,9 @@ function RequestDetails() {
                           />{" "}
                         </summary>
                         {comment.details}
+                        {user && comment.user_id === user.id && (
+                          <CommentDelete id={comment.id} />
+                        )}
                       </details>
                     ))}
                   </details>
