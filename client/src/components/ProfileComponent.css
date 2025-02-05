@@ -212,6 +212,9 @@
 /* version tablet/desktop */
 
 @media (min-width: 431px) {
+  #entirepage {
+    height: 100%;
+  }
   #mainProfile {
     display: flex;
     flex-direction: row;
