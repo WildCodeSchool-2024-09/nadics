@@ -33,8 +33,6 @@ router.post("/api/users/", authAction.hashPassword, userActions.add);
 router.delete("/api/users/:id", userActions.destroy);
 router.put("/api/users/:id", userActions.edit);
 
-router.post("/upload-avatar/:id", upload.single("avatar"), uploads.addAvatar);
-
 router.get("/api/request", requestActions.browse);
 router.get("/api/request/:id", requestActions.read);
 router.put("/api/request/:id", requestActions.edit);
@@ -42,6 +40,11 @@ router.put("/api/request/:id", requestActions.edit);
 router.post("/api/request/", requestActions.add);
 router.delete("/api/request/:id", requestActions.destroy);
 
+router.use(
+  "/uploads",
+  express.static(path.join(__dirname, "public", "uploads")),
+);
+router.post("/upload-avatar/:id", upload.single("avatar"), uploads.addAvatar);
 /*authAction.verifyToken middleware  à ajouter qpres correction
 
 /* ************************************************************************* */

@@ -96,7 +96,7 @@ function Profil() {
                 id="avatar"
               />
             </div>
-            <button type="submit" id="button_icon-update">
+            <button type="submit" className="button_icon-update">
               <span>Edit My Avatar</span>
             </button>
           </form>
