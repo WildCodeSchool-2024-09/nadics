@@ -7,7 +7,7 @@
   background: linear-gradient(
       rgba(255, 255, 255, 0.5) /* Couleur blanche avec une opacité de 50% */,
       rgba(255, 255, 255, 0.5)
-    ), url("../assets/images/logo.png");
+    ), url("../assets/images/background.png");
   background-size: cover;
   background-position: center;
   background-blend-mode: lighten;
