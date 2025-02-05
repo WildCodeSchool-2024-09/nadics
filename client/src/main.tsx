@@ -22,7 +22,6 @@ import ProfilPage from "./pages/PageProfil";
 import PasswordRecovery from "./pages/PasswordRecovery";
 import PostRequest from "./pages/PostRequest";
 import RequestDetails from "./pages/RequestDetails";
-import RequestEdit from "./pages/RequestEdit";
 import SignupPage from "./pages/SignupPage";
 
 // import ProfileEditComponent from "./components/ProfilEditComponent";
@@ -77,10 +76,6 @@ const router = createBrowserRouter([
       {
         path: "profil",
         element: <ProfilPage />,
-      },
-      {
-        path: "test_edit/:id",
-        element: <RequestEdit />,
       },
       {
         path: "comments",
