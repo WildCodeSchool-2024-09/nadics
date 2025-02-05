@@ -204,3 +204,9 @@
   max-width: 400px;
   width: 80%;
 }
+
+@media (min-width: 431px) {
+  #entirepage {
+    height: 100%;
+  }
+}
