@@ -59,7 +59,7 @@ function Navbar() {
             Home
           </Link>
 
-          <Link to="/profil" className="navBarLinks" onClick={updateMenu}>
+          <Link to="/profile" className="navBarLinks" onClick={updateMenu}>
             My profile
           </Link>
 
@@ -86,7 +86,7 @@ function Navbar() {
             <div className={burger_class} />
             <div className={burger_class} />
           </div>
-          <Link to="/profil">
+          <Link to="/profile">
             {auth && user && (
               <img
                 src={
@@ -121,9 +121,9 @@ function Navbar() {
           Home
         </Link>
         <Link
-          to="/profil"
-          className={`homeLink ${hoveredLink === "profil" ? "hovered" : ""}`}
-          onMouseEnter={() => handleMouseEnter("profil")}
+          to="/profile"
+          className={`homeLink ${hoveredLink === "profile" ? "hovered" : ""}`}
+          onMouseEnter={() => handleMouseEnter("profile")}
           onMouseLeave={handleMouseLeave}
           onClick={updateMenu}
         >
