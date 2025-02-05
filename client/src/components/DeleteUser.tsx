@@ -41,7 +41,7 @@ function DeleteUser() {
       <button
         type="button"
         onClick={() => setShowModal(true)}
-        className="delete-button"
+        id="delete-button"
       >
         Delete my account
       </button>
