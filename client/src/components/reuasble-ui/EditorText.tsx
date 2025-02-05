@@ -23,16 +23,13 @@ export default function EditorText({
 }
 
 const EditorTextStyled = styled.div`
-
   width: 100%; 
   max-width: 400px; 
   height: auto;
   min-height: 150px; 
-  border-radius: 10px;
   background: #FFF;
   font-size: 1em;
   font-weight: 400;
-  margin: 1rem auto; 
   fill: #f5f5f5;
   filter: drop-shadow(10px 10px 14px rgba(0, 0, 0, 0.25));
 
@@ -69,6 +66,20 @@ const EditorTextStyled = styled.div`
   margin: 0;
   box-sizing: border-box;
 }
+
+@media screen and (min-width: 1024px) {
+    max-width: 1600px; 
+    
+
+    .ql-container {
+      max-width: 100%;
+      min-height: 198px; 
+    }
+
+    .ql-editor {
+      min-height: 198px;
+    }
+  }
 
   
 `;

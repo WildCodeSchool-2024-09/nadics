@@ -10,7 +10,9 @@ import UserContext from "../context/userContext";
 export default function PostRequest() {
   const { auth } = useContext(AuthContext);
   const { user } = useContext(UserContext);
-  const [tempContent, setTempContent] = useState("");
+  const [tempContent1, setTempContent1] = useState("");
+  const [tempContent2, setTempContent2] = useState("");
+  const [tempContent3, setTempContent3] = useState("");
 
   const navigate = useNavigate();
 
@@ -19,10 +21,18 @@ export default function PostRequest() {
 
     const formData = new FormData(event.currentTarget);
 
+    const getPlainText = (html: string) => {
+      const doc = new DOMParser().parseFromString(html, "text/html");
+      return doc.body.textContent || "";
+    };
+
     const requestData = {
       title: formData.get("title") as string,
-      theme: formData.get("theme") as string,
-      details: formData.get("details") as string,
+      tag1: formData.get("tag1") as string,
+      tag2: formData.get("tag2") as string,
+      details1: getPlainText(tempContent1),
+      details2: getPlainText(tempContent2),
+      details3: getPlainText(tempContent3),
       user_id: user ? user.id : null,
     };
 
@@ -61,22 +71,51 @@ export default function PostRequest() {
           <input type="text" name="title" placeholder="title" />
         </div>
         <hr />
-        <div className="block">
-          <label htmlFor="">Request category</label>
-          <input type="text" name="theme" placeholder="category" />
+        <div id="tag_choix">
+          <div className="tag_select">
+            <label htmlFor="choix">Select primary tag (required):</label>
+            <select id="choix" name="tag1">
+              <option value="Sport">Sport</option>
+              <option value="Eat">Eat</option>
+              <option value="Drink">Drink</option>
+              <option value="Sex">Sex</option>
+            </select>
+          </div>
+          <div className="tag_select">
+            <label htmlFor="choix">Select second tag (not required):</label>
+            <select id="choix" name="tag2">
+              <option value="Sport">---</option>
+              <option value="Sport">Sport</option>
+              <option value="Eat">Eat</option>
+              <option value="Drink">Drink</option>
+              <option value="Sex">Sex</option>
+            </select>
+          </div>
         </div>
         <div className="block">
-          <label htmlFor="">Category detail</label>
+          <label htmlFor="">Reason of the request</label>
           <EditorText
-            placeholder="write a short paragraph for request"
-            value={tempContent}
-            onChange={setTempContent}
+            value={tempContent1}
+            onChange={setTempContent1}
+            placeholder="Write your decision here ..."
           />
         </div>
-        <p>
-          You may add as many categories as you want. Click the Add button
-          below.
-        </p>
+        <div className="block">
+          <label htmlFor="">How to do it</label>
+          <EditorText
+            value={tempContent2}
+            onChange={setTempContent2}
+            placeholder="How to do it "
+          />
+        </div>
+        <div className="block">
+          <label htmlFor="">Why to do it</label>
+          <EditorText
+            value={tempContent3}
+            onChange={setTempContent3}
+            placeholder="Why to do it ."
+          />
+        </div>
         <button type="submit" className="buttonSubmit">
           Submit your request
         </button>
@@ -96,12 +135,20 @@ const PostRequestStyled = styled.form`
   background-blend-mode: lighten;
   z-index: -1;
 
+
   
   .block{
   display: flex;
   justify-content: left;
   flex-direction: column;
-  flex-shrink: 0;
+  padding-left: 1rem;
+}
+
+.tag_select{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
+  padding-left: 1rem; 
 }
 
 h1{
@@ -117,13 +164,25 @@ hr {
   border: 1px solid #000; 
 }
 
+#tag_choix{
+display:flex;
+ flex-direction: column;
+gap:2rem;
+margin-top:2rem;
+margin-bottom:2rem;
+}
+#choix{
+width:10rem;
+height:2rem;
+background-color:#fff
+}
+
 label{
   color: #000;
   font-size: 24px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  margin-left: 1rem;
 }
 
 input {
@@ -134,7 +193,6 @@ input {
   filter: drop-shadow(10px 10px 14px rgba(0, 0, 0, 0.25));
   font-size: 1.2rem;
   margin-bottom: 1rem;
-  margin-left: 1rem;
   font-size: 1em;
   padding:1rem;
   font-weight: 400;
@@ -197,12 +255,20 @@ p {
 
 @media screen and (min-width: 1024px) {
 
-
-  .buttonSubmit {
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
+  .tag_select{
+    padding-left: 8rem;
   }
+
+  .block{
+  display: flex;
+  justify-content: left;
+  align-items: flex-start;
+  flex-direction: column;
+  margin-bottom: 2rem;
+  padding-left:8rem;
+  gap:1rem;
+}
+
 }
 
 `;
