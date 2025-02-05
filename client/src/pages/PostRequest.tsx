@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { useContext, useState } from "react";
-import backgroundImage from "../assets/images/logo.png";
+import backgroundImage from "../assets/images/background.png";
 import EditorText from "../components/reuasble-ui/EditorText";
 import AuthContext from "../context/authContext";
 import UserContext from "../context/userContext";
@@ -68,7 +68,7 @@ export default function PostRequest() {
         <h1>Request creation</h1>
         <div className="block">
           <label htmlFor="">Request title</label>
-          <input type="text" name="title" placeholder="title" />
+          <input type="text" name="title" placeholder="Title" />
         </div>
         <hr />
         <div id="tag_choix">
@@ -127,8 +127,8 @@ export default function PostRequest() {
 const PostRequestStyled = styled.form`
   font-family: "Roboto", sans-serif;
   background: linear-gradient(
-      rgba(255, 255, 255, 0.7),
-      rgba(255, 255, 255, 0.7)
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
     ), url(${backgroundImage});
   background-size: cover;
   background-position: center;
