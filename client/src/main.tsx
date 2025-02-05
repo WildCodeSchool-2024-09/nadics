@@ -10,7 +10,7 @@ import App from "./App";
 import CGU from "./components/CGU";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 // import UserEdit from "./pages/UserEdit";
-import ProfileEditComponent from "./components/ProfilEditComponent";
+import ProfileEditComponent from "./components/ProfileEditComponent";
 import { AuthProvider } from "./context/authContext";
 import { UserProvider } from "./context/userContext";
 import CommentEdit from "./pages/CommentEdit";
@@ -18,13 +18,14 @@ import CommentNewPage from "./pages/CommentNewPage";
 import HomePage from "./pages/HomePage";
 import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/LoginPage";
-import ProfilPage from "./pages/PageProfil";
+import ProfilePage from "./pages/PageProfile";
 import PasswordRecovery from "./pages/PasswordRecovery";
 import PostRequest from "./pages/PostRequest";
 import RequestDetails from "./pages/RequestDetails";
 import SignupPage from "./pages/SignupPage";
 
 // import ProfileEditComponent from "./components/ProfilEditComponent";
+
 // Import additional components for new routes
 // Try creating these components in the "pages" folder
 
@@ -74,8 +75,8 @@ const router = createBrowserRouter([
         element: <PostRequest />,
       },
       {
-        path: "profil",
-        element: <ProfilPage />,
+        path: "profile",
+        element: <ProfilePage />,
       },
       {
         path: "comments",
