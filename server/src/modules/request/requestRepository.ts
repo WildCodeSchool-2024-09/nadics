@@ -3,7 +3,6 @@ import type { Result, Rows } from "../../../database/client";
 
 interface Request {
   id: number;
-  date: Date;
   title: string;
   tag1: string;
   tag2: string;
@@ -13,7 +12,6 @@ interface Request {
 }
 interface RequestAdd {
   id: number;
-  date: Date;
   title: string;
   tag1: string;
   tag2: string;
@@ -79,8 +77,16 @@ class RequestRepository {
   async update(request: Request) {
     // Execute the SQL UPDATE query to update an existing category in the "category" table
     const [result] = await databaseClient.query<Result>(
-      "update request set title = ?, theme = ? where id = ?",
-      [request.title, request.tag1, request.id],
+      "update request set title = ?, tag1 = ?,tag2 = ?,details1 = ?,details2 = ?,details3 = ? where id = ?",
+      [
+        request.title,
+        request.tag1,
+        request.tag2,
+        request.details1,
+        request.details2,
+        request.details3,
+        request.id,
+      ],
     );
 
     // Return how many rows were affected

@@ -4,6 +4,8 @@ import CommentAdd from "../components/CommentAdd";
 import RequestDetailCard from "../components/RequestDetailCard";
 import "./RequestDetails.css";
 import defaultAvatar from "../assets/images/avatar.jpg";
+import DeleteRequest from "../components/RequestDelete";
+import RequestEdit from "../components/RequestEdit";
 import UserContext from "../context/userContext";
 import type { UserTypeContext } from "../context/userContext";
 
@@ -18,7 +20,7 @@ interface CommentType {
   avatar: string;
 }
 
-interface RequestUser {
+export interface RequestUser {
   id: number;
   title: string;
   date: string;
@@ -38,14 +40,19 @@ function RequestDetails() {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false); // Gérer la modale
   const [comments, setComments] = useState<CommentType[]>([]);
   const [request, setRequest] = useState<RequestUser | null>(null);
+  const [editedRequest, setEditedRequest] = useState<Partial<RequestUser>>({});
+  const [isEditing, setIsEditing] = useState<boolean>(false); //etat pour modifier request
 
   useEffect(() => {
     if (!id) return; // Vérifie si user est null avant d'exécuter le fetch
     const requestId = Number(id);
     fetch(`${import.meta.env.VITE_API_URL}/api/request/${requestId}`)
       .then((response) => response.json())
-      .then((data) => setRequest(data))
-      .catch((error) => console.error("Erreur lors du fetch :", error));
+      .then((data) => {
+        setRequest(data);
+        setEditedRequest({ ...data });
+      })
+      .catch((error) => console.error("Error while fetching :", error));
   }, [id]);
 
   useEffect(() => {
@@ -55,18 +62,69 @@ function RequestDetails() {
     fetch(`${import.meta.env.VITE_API_URL}/api/comments/request/${request.id}`)
       .then((response) => response.json())
       .then((data) => setComments(data))
-      .catch((error) => console.error("Erreur lors du fetch :", error));
+      .catch((error) => console.error("Error while fetching :", error));
   }, [user, request]);
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ) => {
+    const { name, value } = e.target;
+    setEditedRequest((prev) => ({ ...prev, [name]: value }));
+  };
 
   return (
     <>
       {request && (
         <div className="request-details-container">
+          {isEditing ? (
+            <input
+              type="text"
+              name="title"
+              value={editedRequest.title || ""}
+              onChange={handleInputChange}
+            />
+          ) : (
+            <h1>{request.title}</h1>
+          )}
           <div className="mobile-header-tags">
-            <span className="mobile-tag1">{request.tag1}</span>
-            <span className="mobile-tag2">{request.tag2}</span>
+            {isEditing ? (
+              <div className="tag_select">
+                <label htmlFor="choix">Select primary tag (required):</label>
+                <select
+                  id="choix"
+                  name="tag1"
+                  value={editedRequest.tag1 || ""}
+                  onChange={handleInputChange}
+                >
+                  <option value="Sport">Sport</option>
+                  <option value="Eat">Eat</option>
+                  <option value="Drink">Drink</option>
+                  <option value="Sex">Sex</option>
+                </select>
+              </div>
+            ) : (
+              <span className="mobile-tag1">{request.tag1}</span>
+            )}
+            {isEditing ? (
+              <div className="tag_select">
+                <label htmlFor="choix">Select primary tag (required):</label>
+                <select
+                  id="choix"
+                  name="tag2"
+                  value={editedRequest.tag2 || ""}
+                  onChange={handleInputChange}
+                >
+                  <option value="Sport">Sport</option>
+                  <option value="Eat">Eat</option>
+                  <option value="Drink">Drink</option>
+                  <option value="Sex">Sex</option>
+                </select>
+              </div>
+            ) : (
+              <span className="mobile-tag1">{request.tag2}</span>
+            )}
           </div>
-          <h1>{request.title}</h1>
+
           <div id="user_info">
             <img
               src={
@@ -81,24 +139,37 @@ function RequestDetails() {
           </div>
           <div className="details-wrapper">
             <div className="details-and-table">
-              <div className="details-container">
-                <details key={request.id}>
-                  <summary>Reason of the request</summary>
-                  {request.details1 || "No description available."}
-                </details>
-              </div>
-              <div className="details-container">
-                <details key={request.id}>
-                  <summary>How to do it</summary>
-                  {request.details2 || "No description available."}
-                </details>
-              </div>
-              <div className="details-container">
-                <details key={request.id}>
-                  <summary>Why to do it?</summary>
-                  {request.details3 || "No description available."}
-                </details>
-              </div>
+              {["details1", "details2", "details3"].map((key, index) => (
+                <div className="details-container" key={key}>
+                  <details>
+                    <summary>
+                      {index === 0
+                        ? "Reason of the request"
+                        : index === 1
+                          ? "How to do it"
+                          : "Why to do it?"}
+                    </summary>
+                    {isEditing ? (
+                      <input
+                        type="text"
+                        name={key}
+                        value={editedRequest[key as keyof RequestUser] || ""}
+                        onChange={handleInputChange}
+                      />
+                    ) : (
+                      request[key as keyof RequestUser] ||
+                      "No description available."
+                    )}
+                  </details>
+                </div>
+              ))}
+              <RequestEdit
+                request={request}
+                setRequest={setRequest}
+                editedRequest={editedRequest}
+                isEditing={isEditing}
+                setIsEditing={setIsEditing}
+              />
               {comments && (
                 <div className="details-container">
                   <details>
@@ -155,6 +226,7 @@ function RequestDetails() {
               </div>
             </div>
           )}
+          <DeleteRequest id={request.id} />
         </div>
       )}
     </>

@@ -27,10 +27,11 @@ const read: RequestHandler = async (req, res, next) => {
 const edit: RequestHandler = async (req, res, next) => {
   try {
     // Update a specific category based on the provided ID
+    console.info("couocu");
+    console.info(req.body);
     const request = {
       id: Number(req.params.id),
       title: req.body.title,
-      date: req.body.date,
       tag1: req.body.tag1,
       tag2: req.body.tag2,
       details1: req.body.details1,

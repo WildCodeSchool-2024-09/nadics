@@ -42,6 +42,7 @@ export const UserProvider = ({
     null,
   );
   const [user, setUser] = useState<UserType | null>(null);
+
   useEffect(() => {
     const authToken = getCookie("authToken");
     if (authToken) {

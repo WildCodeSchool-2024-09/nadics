@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import defaultAvatar from "../assets/images/avatar.jpg";
-import DeleteRequest from "./DeleteRequest";
 
 // Définir un type pour les données de chaque demande date`,title, theme, details, user_id
 interface Request {
@@ -50,8 +49,6 @@ function RequestCard(): JSX.Element {
               </p>
             </div>
           </Link>
-
-          <DeleteRequest id={request.id} />
         </div>
       ))}
     </>
