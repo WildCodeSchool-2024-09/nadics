@@ -1,0 +1,110 @@
+* {
+  font-family: "Roboto", sans-serif;
+}
+/* Centrer le titre dans la balise <p> */
+.privacy-policy-intro {
+  text-align: center; /* Centre le texte */
+  font-size: 2rem; /* Taille du texte */
+  font-weight: bold; /* Mettre le texte en gras */
+  color: #333; /* Couleur du texte (peut être ajustée) */
+  margin-top: 2rem; /* Espace au-dessus du texte */
+  margin-bottom: 2rem; /* Espace en dessous du texte */
+}
+
+/* Formulaire de Politique de Confidentialité */
+.privacy-policy-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 900px; /* Limite la largeur pour une meilleure lisibilité */
+  margin-bottom: 3rem;
+  background-color: transparent;
+  padding: 0;
+  box-shadow: none;
+  border-radius: 0;
+  text-align: left; /* Aligne le texte à gauche dans le formulaire */
+}
+
+/* Titre principal */
+.privacy-policy-title {
+  color: #0c0c0c;
+  font-family: "Roboto", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  text-align: center; /* Centrer le titre */
+}
+
+/* Sous-titres */
+.privacy-policy-subtitle {
+  color: #161617;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center; /* Centrer les sous-titres */
+}
+
+/* Paragraphe standard */
+.privacy-policy-paragraph {
+  line-height: 1.8;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  word-wrap: break-word;
+  text-align: center; /* Centrer tous les paragraphes */
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto; /* Centrer les paragraphes */
+}
+.privacy-policy-paragraph1 {
+  line-height: 1.8;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  word-wrap: break-word;
+  text-align: start;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto; /* Centrer les paragraphes */
+}
+/* Appliquer du style au texte en gras, tel que "nous", "vous", etc. */
+.privacy-policy-bold {
+  font-weight: 700;
+}
+
+/* Styles pour les liens */
+.privacy-policy-link {
+  color: #111111;
+  text-decoration: none;
+}
+
+/* Changer le style au survol des liens */
+.privacy-policy-link:hover {
+  text-decoration: underline;
+}
+
+/* Styles pour les listes */
+.privacy-policy-list {
+  padding-left: 20px;
+  margin-bottom: 1.5rem;
+}
+
+/* Responsivité : ajuster la taille des titres et des paragraphes sur les petits écrans */
+@media screen and (min-width: 431px) {
+  .privacy-policy-title {
+    font-size: 1.5em;
+    margin: 10px;
+  }
+
+  .privacy-policy-paragraph {
+    font-size: 1em;
+    padding: 10px;
+  }
+
+  .privacy-policy-link {
+    font-size: 0.9em;
+  }
+}

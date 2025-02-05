@@ -32,7 +32,7 @@
 }
 /* Sous-titres */
 .cgu-welcome-subtitle {
-  color: #4651e8; /* Couleur du texte en noir */
+  color: #0b0b0c; /* Couleur du texte en noir */
   font-family: "Roboto", sans-serif;
   font-size: 1.5rem;
   font-weight: 700;
@@ -41,7 +41,7 @@
 }
 /* Sous-titres */
 .cgu-subtitle {
-  color: #4651e8; /* Couleur du texte en noir */
+  color: #050505; /* Couleur du texte en noir */
   font-family: "Roboto", sans-serif;
   font-size: 1.5rem;
   font-weight: 700;
@@ -64,24 +64,33 @@
 /* Appliquer du style au texte "Smart Choice Hub" (en bleu et en gras) */
 .cgu-titles-trong {
   font-weight: 700;
-  color: #007bff; /* Bleu spécifique */
+  color: #101010; /* Bleu spécifique */
 }
 
 /* Mettre en rouge et gras les mots "devoirs", "interdits", "sanctions" */
 .devoirs,
 .interdits,
 .sanctions {
-  color: red;
+  color: rgb(9, 8, 8);
   font-weight: 700;
 }
 
 /* Styles pour les liens */
 .acgu-paragraph-a {
-  color: #007bff;
+  color: #0e0e0f;
   text-decoration: none;
 }
+/* Ajouter une règle spécifique pour l'URL dans le texte */
+.url-link {
+  color: #101011; /* Bleu spécifique pour l'URL */
+  text-decoration: none; /* Supprimer la souligné */
+}
 
-@media screen and (max-width: 768px) {
+.url-link:hover {
+  text-decoration: underline; /* Souligner l'URL au survol */
+}
+
+@media screen and (min-width: 431px) {
   /* Ajuster la taille des titres */
   .cgu-title {
     font-size: 1.5em; /* Réduire la taille des titres */

@@ -115,10 +115,10 @@ function SignupComponent() {
           </label>
 
           {/* Case à cocher pour accepter les CGU */}
-          <label>
+          <label className="checkbox-container">
             <input
               type="checkbox"
-              className="checkbox-input" // Classe ajoutée ici, au début
+              className="checkbox-input"
               checked={acceptCGU}
               onChange={() => setAcceptCGU(!acceptCGU)} // Gestion de l'état de la case à cocher
               required

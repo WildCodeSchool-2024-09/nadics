@@ -1,4 +1,4 @@
-import "./CGU.css"; // Assurez-vous de bien lier le fichier CSS
+import "./CGU.css";
 
 const CGU: React.FC = () => {
   return (
@@ -14,7 +14,10 @@ const CGU: React.FC = () => {
       <p className="cgu-paragraph">
         Ces termes et conditions décrivent les règles et réglementations
         d'utilisation du site Web de Smart Choice Hub, situé{" "}
-        <a href="http://localhost:3000/">http://localhost:3000/</a>.
+        <a href="http://localhost:3000/" className="url-link">
+          http://localhost:3000/
+        </a>
+        .
       </p>
 
       <p className="cgu-paragraph">
@@ -116,7 +119,10 @@ const CGU: React.FC = () => {
       </h4>
 
       <p className="cgu-paragraph">
-        Veuillez lire notre politique de confidentialité
+        Veuillez lire notre politique de{" "}
+        <a href="privacypolicy" className="cgu-link">
+          confidentialité
+        </a>
       </p>
 
       <h4 className="cgu-subtitle">

@@ -8,6 +8,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 // Import the main app component
 import App from "./App";
 import CGU from "./components/CGU";
+import PrivacyPolicy from "./components/PrivacyPolicy";
 // import UserEdit from "./pages/UserEdit";
 import ProfileEditComponent from "./components/ProfilEditComponent";
 import { AuthProvider } from "./context/authContext";
@@ -24,6 +25,7 @@ import PostRequest from "./pages/PostRequest";
 import RequestDetails from "./pages/RequestDetails";
 import RequestEdit from "./pages/RequestEdit";
 import SignupPage from "./pages/SignupPage";
+
 // import ProfileEditComponent from "./components/ProfilEditComponent";
 // Import additional components for new routes
 // Try creating these components in the "pages" folder
@@ -96,6 +98,10 @@ const router = createBrowserRouter([
       {
         path: "CGU",
         element: <CGU />,
+      },
+      {
+        path: "privacypolicy",
+        element: <PrivacyPolicy />, // Correctement utilisé ici
       },
     ],
   },

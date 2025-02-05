@@ -90,6 +90,12 @@
 }
 /* Appliquer un espacement à droite de la case à cocher */
 .checkbox-input {
+  display: flex;
   align-items: center;
   margin-right: 10px; /* Espace entre la case et le texte */
+}
+@media (max-width: 414px) {
+  .checkbox-container {
+    margin-top: 30px; /* Déplace l'ensemble de la ligne (case à cocher et texte) un peu plus bas */
+  }
 }
