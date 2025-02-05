@@ -9,16 +9,6 @@ const browse: RequestHandler = async (req, res, next) => {
     next(err);
   }
 };
-const browseUser: RequestHandler = async (req, res, next) => {
-  try {
-    const id = Number(req.params.id);
-    const request = await requestRepository.readAllUser(id);
-    res.json(request);
-  } catch (err) {
-    next(err);
-  }
-};
-
 const read: RequestHandler = async (req, res, next) => {
   try {
     const requestId = Number(req.params.id);
@@ -37,12 +27,16 @@ const read: RequestHandler = async (req, res, next) => {
 const edit: RequestHandler = async (req, res, next) => {
   try {
     // Update a specific category based on the provided ID
+    console.info("couocu");
+    console.info(req.body);
     const request = {
       id: Number(req.params.id),
       title: req.body.title,
-      date: req.body.date,
-      theme: req.body.theme,
-      details: req.body.details,
+      tag1: req.body.tag1,
+      tag2: req.body.tag2,
+      details1: req.body.details1,
+      details2: req.body.details2,
+      details3: req.body.details3,
     };
 
     const affectedRows = await requestRepository.update(request);
@@ -66,8 +60,11 @@ const add: RequestHandler = async (req, res, next) => {
     const newRequest = {
       date: req.body.date,
       title: req.body.title,
-      theme: req.body.theme,
-      details: req.body.details,
+      tag1: req.body.tag1,
+      tag2: req.body.tag2,
+      details1: req.body.details1,
+      details2: req.body.details2,
+      details3: req.body.details3,
       user_id: req.body.user_id,
     };
 
@@ -94,4 +91,4 @@ const destroy: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, read, edit, add, destroy, browseUser };
+export default { browse, read, edit, add, destroy };
