@@ -253,7 +253,7 @@ p {
   line-height: normal;
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 431px) {
 
   .tag_select{
     padding-left: 8rem;

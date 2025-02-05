@@ -67,7 +67,7 @@ const EditorTextStyled = styled.div`
   box-sizing: border-box;
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 431px) {
     max-width: 1600px; 
     
 
