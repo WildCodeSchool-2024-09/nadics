@@ -1,17 +1,11 @@
+/* version mobile */
+
 * {
   font-family: "Roboto", sans-serif;
 }
 
-#logoImg {
-  width: 2.5rem;
-  height: 2.6875rem;
-  flex-shrink: 0;
-}
-
 #header-landing {
-  margin: 1.5rem 0.2rem 1.5rem 0.2rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  margin: 0.5rem 0.6rem 0.5rem 0.6rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -21,7 +15,11 @@
   display: flex;
   justify-content: right;
   align-items: center;
-  gap: 1rem;
+  gap: 0.9rem;
+}
+
+#logoImageMobileLanding {
+  height: 3.7rem;
 }
 
 #login-button {
@@ -32,10 +30,10 @@
   text-decoration: none;
 }
 
-#signupButtonMobile {
+#signupButtonMobileLanding {
   display: flex;
-  width: 6.5rem;
-  height: 2.4rem;
+  width: 7rem;
+  height: 2.9rem;
   font-size: 1.1rem;
   justify-content: center;
   align-items: center;
@@ -67,12 +65,9 @@
 
 #requestcardImg {
   width: 80vw;
-  margin-bottom: 2rem;
-  margin-top: 1rem;
 }
 
 #carousel-heading-text {
-  display: flex;
   text-align: center;
   font-size: x-large;
   margin: 1rem;
@@ -81,11 +76,11 @@
 #main_text {
   text-align: center;
   font-size: large;
-  margin: 3rem 3rem 1rem 3rem;
 }
 
 #carousel {
   height: 20vh;
+  width: 100vw;
   background: linear-gradient(
       rgba(255, 255, 255, 0.5) /* Couleur blanche avec une opacité de 50% */,
       rgba(255, 255, 255, 0.5)
@@ -104,7 +99,7 @@
   font-size: large;
   margin-bottom: 4rem;
   text-decoration: none;
-  margin-top: 2rem;
+  margin-top: 1rem;
   margin-bottom: 0;
 }
 
@@ -117,10 +112,82 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   margin: 0;
 }
 
-#signupNowButtonMobile {
-  margin: 0;
+#startImpactingAndRequestImg {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem 2rem 2rem;
+  gap: 1rem;
+}
+
+#mainPageLandingContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Assure que le conteneur occupe toute la hauteur de l'écran */
+  flex: 1;
+}
+
+/* version tablet/desktop */
+
+@media (min-width: 431px) {
+  #logoImageMobileLanding {
+    display: none;
+  }
+
+  #carousel {
+    height: 30vh;
+    width: 100vw;
+    background: linear-gradient(
+        rgba(255, 255, 255, 0.5) /* Couleur blanche avec une opacité de 50% */,
+        rgba(255, 255, 255, 0.5)
+      ), url("../assets/images/people_liking.png");
+    background-size: 100vw auto;
+
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-shadow: 1px 1px 4px #ffffff;
+  }
+
+  #requestcardImg {
+    width: 30vw;
+  }
+
+  #startImpactingAndRequestImg {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20rem;
+    padding: 0rem 9rem 0rem 9rem;
+  }
+
+  #main_text {
+    font-size: 1.7rem;
+  }
+
+  #carousel-heading-text {
+    text-align: center;
+    font-size: xx-large;
+    margin: 1rem;
+  }
+
+  #header-landing {
+    margin: 0.5rem 1.6rem 0.5rem 1.6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #login-signup-container {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    gap: 1.5rem;
+  }
 }

@@ -1,20 +1,22 @@
 import { Link } from "react-router-dom";
 import "./LandingPageComponent.css";
-import logo from "../assets/images/logo favicon.ico";
+import logoDesktop from "../assets/images/logo-removebg.png";
+import logoMobile from "../assets/images/logo favicon.png";
 import requestcard from "../assets/images/request_card_with_explanation.png";
 import Footer from "./Footer";
 
 function LandingPageComponent() {
   return (
-    <>
+    <section id="mainPageLandingContainer">
       <header id="header-landing">
-        <img src={logo} alt="logo" id="logoImg" />
+        <img src={logoMobile} alt="logo" id="logoImageMobileLanding" />
+        <img src={logoDesktop} alt="logo" id="logoImageDesktop" />
         <div id="login-signup-container">
           <Link to="/login" id="login-button">
             Login
           </Link>
           <Link to="/signup">
-            <button id="signupButtonMobile" type="submit">
+            <button id="signupButtonMobileLanding" type="submit">
               Sign Up
             </button>
           </Link>
@@ -26,10 +28,13 @@ function LandingPageComponent() {
             Live the best experience ever with your community
           </h1>
         </div>
-        <h2 id="main_text">
-          Start impacting your community and share your opinion
-        </h2>
-        <img src={requestcard} alt="requestcard" id="requestcardImg" />
+        <div id="startImpactingAndRequestImg">
+          <h2 id="main_text">
+            Start impacting your community and share your opinion
+          </h2>
+          <img src={requestcard} alt="requestcard" id="requestcardImg" />
+        </div>
+
         <Link to="/signup">
           <button id="signupNowButtonMobile" type="submit">
             Sign Up Now !
@@ -40,7 +45,7 @@ function LandingPageComponent() {
         </Link>
       </section>
       <Footer />
-    </>
+    </section>
   );
 }
 
