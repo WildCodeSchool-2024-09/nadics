@@ -80,19 +80,12 @@ a {
 }
 
 @media (min-width: 431px) {
-  .cards-container {
-    display: flex;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-    justify-items: center;
-    width: 100%;
-  }
-
   .grid-card {
     display: grid;
     grid-template-columns: repeat(4, minmax(397px, 1fr));
     grid-row-gap: 60px;
     padding: 40px 130px 140px;
+    width: 100vw;
   }
 
   section h3 {

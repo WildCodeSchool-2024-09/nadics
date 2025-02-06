@@ -42,7 +42,6 @@ export default function PostRequest() {
         {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
             Authorization: `Bearer ${auth}`,
           },
           body: JSON.stringify(requestData),
@@ -63,64 +62,62 @@ export default function PostRequest() {
   };
 
   return (
-    <>
-      <PostRequestStyled className="background" onSubmit={handleSubmit}>
-        <h1>Request creation</h1>
-        <div className="block">
-          <label htmlFor="">Request title</label>
-          <input type="text" name="title" placeholder="Title" />
+    <PostRequestStyled onSubmit={handleSubmit}>
+      <h1>Request creation</h1>
+      <div className="block">
+        <label htmlFor="">Request title</label>
+        <input type="text" name="title" placeholder="Title" />
+      </div>
+      <hr />
+      <div id="tag_choix">
+        <div className="tag_select">
+          <label htmlFor="choix">Select primary tag (required):</label>
+          <select id="choix" name="tag1">
+            <option value="Sport">Sport</option>
+            <option value="Eat">Eat</option>
+            <option value="Drink">Drink</option>
+            <option value="Sex">Sex</option>
+          </select>
         </div>
-        <hr />
-        <div id="tag_choix">
-          <div className="tag_select">
-            <label htmlFor="choix">Select primary tag (required):</label>
-            <select id="choix" name="tag1">
-              <option value="Sport">Sport</option>
-              <option value="Eat">Eat</option>
-              <option value="Drink">Drink</option>
-              <option value="Sex">Sex</option>
-            </select>
-          </div>
-          <div className="tag_select">
-            <label htmlFor="choix">Select second tag (not required):</label>
-            <select id="choix" name="tag2">
-              <option value="Sport">---</option>
-              <option value="Sport">Sport</option>
-              <option value="Eat">Eat</option>
-              <option value="Drink">Drink</option>
-              <option value="Sex">Sex</option>
-            </select>
-          </div>
+        <div className="tag_select">
+          <label htmlFor="choix">Select second tag (not required):</label>
+          <select id="choix" name="tag2">
+            <option value="Sport">---</option>
+            <option value="Sport">Sport</option>
+            <option value="Eat">Eat</option>
+            <option value="Drink">Drink</option>
+            <option value="Sex">Sex</option>
+          </select>
         </div>
-        <div className="block">
-          <label htmlFor="">Reason of the request</label>
-          <EditorText
-            value={tempContent1}
-            onChange={setTempContent1}
-            placeholder="Write your decision here ..."
-          />
-        </div>
-        <div className="block">
-          <label htmlFor="">How to do it</label>
-          <EditorText
-            value={tempContent2}
-            onChange={setTempContent2}
-            placeholder="How to do it "
-          />
-        </div>
-        <div className="block">
-          <label htmlFor="">Why to do it</label>
-          <EditorText
-            value={tempContent3}
-            onChange={setTempContent3}
-            placeholder="Why to do it ."
-          />
-        </div>
-        <button type="submit" className="buttonSubmit">
-          Submit your request
-        </button>
-      </PostRequestStyled>
-    </>
+      </div>
+      <div className="block">
+        <label htmlFor="">Reason of the request</label>
+        <EditorText
+          value={tempContent1}
+          onChange={setTempContent1}
+          placeholder="Write your decision here ..."
+        />
+      </div>
+      <div className="block">
+        <label htmlFor="">How to do it</label>
+        <EditorText
+          value={tempContent2}
+          onChange={setTempContent2}
+          placeholder="How to do it "
+        />
+      </div>
+      <div className="block">
+        <label htmlFor="">Why to do it</label>
+        <EditorText
+          value={tempContent3}
+          onChange={setTempContent3}
+          placeholder="Why to do it ."
+        />
+      </div>
+      <button type="submit" className="buttonSubmit">
+        Submit your request
+      </button>
+    </PostRequestStyled>
   );
 }
 
@@ -133,15 +130,12 @@ const PostRequestStyled = styled.form`
   background-size: cover;
   background-position: center;
   background-blend-mode: lighten;
-  z-index: -1;
-
-
-  
+ 
   .block{
   display: flex;
-  justify-content: left;
+  justify-content: center;
   flex-direction: column;
-  padding-left: 1rem;
+  align-items: center;
 }
 
 .tag_select{
@@ -254,6 +248,7 @@ p {
 }
 
 @media screen and (min-width: 431px) {
+  width: 100vw;
 
   .tag_select{
     padding-left: 8rem;
@@ -267,6 +262,7 @@ p {
   margin-bottom: 2rem;
   padding-left:8rem;
   gap:1rem;
+
 }
 
 }
