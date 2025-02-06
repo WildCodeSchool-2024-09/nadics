@@ -127,7 +127,7 @@
 #mainPageLandingContainer {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Assure que le conteneur occupe toute la hauteur de l'écran */
+  min-height: 100vh;
   flex: 1;
 }
 
