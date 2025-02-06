@@ -55,19 +55,19 @@ function Navbar() {
       </Link>
       <section id="LinksAndProfileDesktop">
         <nav id="navbarLinksDesktop">
-          <Link to="/home" className="navBarLinks" onClick={updateMenu}>
+          <Link to="/home" className="navBarLinks">
             Home
           </Link>
 
-          <Link to="/profile" className="navBarLinks" onClick={updateMenu}>
+          <Link to="/profile" className="navBarLinks">
             My profile
           </Link>
 
-          <Link to="/post_request" className="navBarLinks" onClick={updateMenu}>
+          <Link to="/post_request" className="navBarLinks">
             Create a request
           </Link>
 
-          <Link to="/login" className="navBarLinks" onClick={handleLogout}>
+          <Link to="/login" className="navBarLinks">
             Logout
           </Link>
         </nav>
@@ -101,16 +101,8 @@ function Navbar() {
           </Link>
         </nav>
       </section>
+
       <div className={menu_class}>
-        {/* <Link
-          to="/login"
-          className={`homeLink ${hoveredLink === "login" ? "hovered" : ""}`} // survole de souris il change classname
-          onMouseEnter={() => handleMouseEnter("login")}
-          onMouseLeave={handleMouseLeave}
-          onClick={updateMenu}
-        >
-          Login
-        </Link> */}
         <Link
           to="/home"
           className={`homeLink ${hoveredLink === "home" ? "hovered" : ""}`} // survole de souris il change classname
@@ -120,6 +112,7 @@ function Navbar() {
         >
           Home
         </Link>
+
         <Link
           to="/profile"
           className={`homeLink ${hoveredLink === "profile" ? "hovered" : ""}`}
@@ -129,6 +122,7 @@ function Navbar() {
         >
           My profile
         </Link>
+
         <Link
           to="/post_request"
           className={`homeLink ${hoveredLink === "post_request" ? "hovered" : ""}`}
@@ -138,15 +132,7 @@ function Navbar() {
         >
           Create a request
         </Link>
-        {/* <Link
-          to="/signup"
-          className={`homeLink ${hoveredLink === "signup" ? "hovered" : ""}`}
-          onMouseEnter={() => handleMouseEnter("signup")}
-          onMouseLeave={handleMouseLeave}
-          onClick={updateMenu}
-        >
-          Sign up
-        </Link> */}
+
         <Link
           to="/login"
           className={`homeLink ${hoveredLink === "logout" ? "hovered" : ""}`}

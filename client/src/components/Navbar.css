@@ -7,7 +7,7 @@
   display: flex;
   justify-content: space-between;
   gap: 0.5rem;
-  margin: 1rem 0.5rem 0.5rem 0.5rem;
+  margin: 1rem 1rem 0.5rem 1rem;
 }
 
 #logoImageMobile {
@@ -129,7 +129,7 @@ nav {
   #navbarLinksDesktop {
     display: flex;
     flex-direction: row;
-    gap: 1rem;
+    gap: 2rem;
     align-items: center;
     text-align: center;
   }
@@ -138,6 +138,6 @@ nav {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 0.5rem;
+    gap: 2rem;
   }
 }
