@@ -2,7 +2,7 @@ import type { JwtPayload } from "jsonwebtoken";
 
 declare global {
   export type MyPayload = JwtPayload & {
-    sub: string;
+    id: string;
     firstname: string;
     lastname: string;
     birthday: string;

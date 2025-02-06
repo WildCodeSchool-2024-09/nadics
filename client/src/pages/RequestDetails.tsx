@@ -51,7 +51,6 @@ function RequestDetails() {
       .then((response) => response.json())
       .then((data) => {
         setRequest(data);
-        setEditedRequest({ ...data });
       })
       .catch((error) => console.error("Error while fetching :", error));
   }, [id]);
@@ -168,6 +167,7 @@ function RequestDetails() {
                 request={request}
                 setRequest={setRequest}
                 editedRequest={editedRequest}
+                setEditedRequest={setEditedRequest}
                 isEditing={isEditing}
                 setIsEditing={setIsEditing}
               />
