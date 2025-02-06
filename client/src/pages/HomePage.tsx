@@ -12,16 +12,16 @@ function HomePage() {
     <>
       {auth ? (
         <div>
-          <Link to={"/post_request"}>
-            <button id="button" type="button">
-              Submit a request
-            </button>
-          </Link>
           <main id="mainHome">
+            <Link to={"/post_request"}>
+              <button id="button" type="button">
+                Submit a request
+              </button>
+            </Link>
             <section id="ongoing-requests">
               <h3>Ongoing Requests</h3>
               <div className="cards-container">
-                <Link to={`/request-details/${id}`}>
+                <Link to={`/request-details/${id}`} className="grid-card">
                   <RequestCard />
                 </Link>
               </div>
