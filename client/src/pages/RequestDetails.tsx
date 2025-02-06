@@ -168,6 +168,7 @@ function RequestDetails() {
                 request={request}
                 setRequest={setRequest}
                 editedRequest={editedRequest}
+                setEditedRequest={setEditedRequest}
                 isEditing={isEditing}
                 setIsEditing={setIsEditing}
               />

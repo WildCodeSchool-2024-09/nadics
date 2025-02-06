@@ -1,4 +1,4 @@
-import { type RequestHandler, request } from "express";
+import { type NextFunction, type RequestHandler, request } from "express";
 import requestRepository from "./requestRepository";
 
 const browse: RequestHandler = async (req, res, next) => {
@@ -90,5 +90,23 @@ const destroy: RequestHandler = async (req, res, next) => {
     next(err);
   }
 };
+const isPoster: RequestHandler = async (req, res, next) => {
+  try {
+    const requestId = Number(req.params.id);
+    const userId = Number(req.auth.id);
+    const request = await requestRepository.read(requestId);
+    if (request.user_id !== userId) {
+      res
+        .status(403)
+        .json({ message: "Forbidden: You are not the owner of this request" });
+      return;
+    }
 
-export default { browse, read, edit, add, destroy };
+    // Si tout est ok, passe au middleware suivant
+    next();
+  } catch (err) {
+    next(err); // En cas d'erreur, passe l'erreur au middleware d'erreur
+  }
+};
+
+export default { browse, read, edit, add, destroy, isPoster };

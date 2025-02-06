@@ -1,8 +1,9 @@
 import express from "express";
 const router = express.Router();
+import { verify } from "node:crypto";
 import path from "node:path";
 import multer from "multer";
-import authAction from "./auth/authAction";
+import authAction from "./modules/auth/authAction";
 import commentActions from "./modules/comment/commentActions";
 import requestActions from "./modules/request/requestActions";
 import uploads from "./modules/users/uploadsAction";
@@ -35,16 +36,37 @@ router.put("/api/users/:id", userActions.edit);
 
 router.get("/api/request", requestActions.browse);
 router.get("/api/request/:id", requestActions.read);
-router.put("/api/request/:id", requestActions.edit);
-
 router.post("/api/request/", requestActions.add);
-router.delete("/api/request/:id", requestActions.destroy);
+
+router.get(
+  "/api/request/:id/isPoster",
+  authAction.verifyToken,
+  requestActions.isPoster,
+  (req, res) => {
+    // Si on atteint cette partie, c'est que l'utilisateur est bien le propriétaire.
+    res.status(200).json({ message: "You are the owner of this request" });
+  },
+);
+router.put(
+  "/api/request/:id",
+  authAction.verifyToken,
+  requestActions.isPoster,
+  requestActions.edit,
+);
+
+router.delete(
+  "/api/request/:id",
+  authAction.verifyToken,
+  requestActions.isPoster,
+  requestActions.destroy,
+);
 
 router.use(
   "/uploads",
   express.static(path.join(__dirname, "public", "uploads")),
 );
 router.post("/upload-avatar/:id", upload.single("avatar"), uploads.addAvatar);
+
 /*authAction.verifyToken middleware  à ajouter qpres correction
 
 /* ************************************************************************* */

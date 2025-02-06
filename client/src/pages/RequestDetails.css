@@ -63,6 +63,9 @@
     color: #fff;
   }
 }
+#edit_save_bouton_cantainer {
+  display: flex;
+}
 
 /* En-têtes des sections ec les tags */
 .mobile-header-tags,

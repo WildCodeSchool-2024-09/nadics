@@ -2,7 +2,7 @@ import { jwtDecode } from "jwt-decode";
 import { createContext, useEffect, useState } from "react";
 
 export type UserConnectedType = {
-  sub: number;
+  id: number;
   firstname: string;
   lastname: string;
   birthday: string;
@@ -55,7 +55,7 @@ export const UserProvider = ({
   useEffect(() => {
     if (!userConnected) return; // Vérifie si user est null avant d'exécuter le fetch
 
-    fetch(`${import.meta.env.VITE_API_URL}/api/users/${userConnected.sub}`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/users/${userConnected.id}`)
       .then((response) => response.json())
       .then((data) => setUser(data))
       .catch((error) => console.error("Error of the fetch :", error));

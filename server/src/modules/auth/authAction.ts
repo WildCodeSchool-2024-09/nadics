@@ -2,9 +2,8 @@ import type { RequestHandler } from "express";
 
 import argon2 from "argon2";
 import jwt from "jsonwebtoken";
-import userRepository from "../modules/users/userRepository";
+import userRepository from "../users/userRepository";
 // Import access to data
-
 const login: RequestHandler = async (req, res, next) => {
   try {
     const user = await userRepository.readByEmailWithPassword(req.body.email);
@@ -20,7 +19,7 @@ const login: RequestHandler = async (req, res, next) => {
       const { hashed_password, ...userWithoutHashedPassword } = user;
 
       const myPayload: MyPayload = {
-        sub: user.id.toString(),
+        id: user.id.toString(),
         firstname: user.firstname,
         lastname: user.lastname,
         birthday: user.birthday,
@@ -68,8 +67,7 @@ const hashPassword: RequestHandler = async (req, res, next) => {
 const verifyToken: RequestHandler = (req, res, next) => {
   try {
     // Vérifier la présence de l'en-tête "Authorization" dans la requête
-    const authorizationHeader = req.get("Authorization");
-
+    const authorizationHeader = req.headers.authorization;
     if (authorizationHeader == null) {
       throw new Error("Authorization header is missing");
     }
@@ -87,8 +85,8 @@ const verifyToken: RequestHandler = (req, res, next) => {
       token,
       process.env.APP_SECRET as string,
     ) as MyPayload;
-    req.auth = decodedToken;
 
+    req.auth = decodedToken; // Attacher l'utilisateur à la requête
     next();
   } catch (err) {
     console.error(err);

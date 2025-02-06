@@ -71,9 +71,8 @@ class RequestRepository {
       [id],
     );
 
-    return rows[0] as Request;
+    return rows[0] as RequestAdd;
   }
-
   async update(request: Request) {
     // Execute the SQL UPDATE query to update an existing category in the "category" table
     const [result] = await databaseClient.query<Result>(
