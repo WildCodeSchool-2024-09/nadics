@@ -1,8 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
+
 import "./LoginComponent.css";
 import Cookies from "js-cookie";
 import { useContext, useRef } from "react";
 import type { FormEventHandler } from "react";
+import logoDesktop from "../assets/images/logo-removebg.png";
 import AuthContext from "../context/authContext";
 
 function LoginComponent() {
@@ -56,6 +58,12 @@ function LoginComponent() {
   };
   return (
     <section id="entirepage">
+      <div id="logo-section-login-page">
+        <Link to="/home">
+          <img src={logoDesktop} alt="logo" id="logoImageDesktop_login" />
+        </Link>
+      </div>
+
       {/* <section id="displaylogintitle">
           <h1 className="logintitle">Smart choice</h1>
         </section> */}

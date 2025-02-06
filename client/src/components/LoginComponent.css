@@ -20,6 +20,15 @@
   z-index: -1;
 }
 
+#logoImageDesktop_login {
+  width: 15rem;
+}
+
+#logo-section-login-page {
+  display: flex;
+  justify-content: center;
+}
+
 #displaylogintitle {
   display: flex;
   justify-content: center;
