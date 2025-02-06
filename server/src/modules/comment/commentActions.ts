@@ -60,9 +60,8 @@ const add: RequestHandler = async (req, res, next) => {
 const edit: RequestHandler = async (req, res, next) => {
   try {
     const comment = {
-      id: Number(req.params.id),
+      id: Number(req.body.id),
       details: req.body.details,
-      date: req.body.date,
     };
 
     const affectedRows = await commentRepository.update(comment);
