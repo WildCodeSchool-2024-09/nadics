@@ -101,7 +101,7 @@ function RequestEdit({
   };
 
   return (
-    <>
+    <div id="edit_save_bouton_cantainer">
       <button
         id="button_icon-update-my-profile"
         type="button"
@@ -110,11 +110,15 @@ function RequestEdit({
         {isEditing ? "Cancel" : "Edit request"}
       </button>
       {isEditing && (
-        <button type="button" onClick={handleSave}>
-          Save
+        <button
+          id="button_icon-update-my-profile"
+          type="button"
+          onClick={handleSave}
+        >
+          Save changes
         </button>
       )}
-    </>
+    </div>
   );
 }
 

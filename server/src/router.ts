@@ -66,6 +66,7 @@ router.use(
   express.static(path.join(__dirname, "public", "uploads")),
 );
 router.post("/upload-avatar/:id", upload.single("avatar"), uploads.addAvatar);
+
 /*authAction.verifyToken middleware  à ajouter qpres correction
 
 /* ************************************************************************* */
