@@ -19,8 +19,27 @@
 .footer-logos {
   display: flex;
   gap: 1rem;
+  justify-content: center;
 }
 
 .footer-logo {
   width: 2.3rem;
+}
+/* Media Query pour la version mobile */
+@media (min-width: 431px) {
+  .footer-container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-text {
+    text-align: left;
+    margin-left: 1rem;
+  }
+
+  .footer-logos {
+    justify-content: flex-end;
+    margin-right: 1rem;
+  }
 }
