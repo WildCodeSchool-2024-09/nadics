@@ -9,7 +9,7 @@ type User = {
   lastname: string;
   birthday: string;
   email: string;
-  password: string;
+  hashed_password: string;
 };
 
 function UserEdit() {
@@ -39,7 +39,7 @@ function UserEdit() {
             body: JSON.stringify(userData),
           }).then((response) => {
             if (response.status === 204) {
-              navigate(`/users/${user.id}`);
+              navigate("/profil");
             }
           });
         }}

@@ -47,7 +47,7 @@ const edit: RequestHandler = async (req, res, next) => {
       lastname: req.body.lastname,
       birthday: req.body.birthday,
       email: req.body.email,
-      password: req.body.password,
+      hashed_password: req.body.hashed_password,
     };
 
     const affectedRows = await userRepository.update(user);
@@ -73,21 +73,33 @@ const add: RequestHandler = async (req, res, next) => {
       lastname: req.body.lastname,
       birthday: req.body.birthday,
       email: req.body.email,
-      password: req.body.password,
+      hashed_password: req.body.hashed_password,
     };
 
     // Create the user
-    const insertId = await userRepository.create(newUser);
+    const userId = await userRepository.create(newUser);
 
-    if (!insertId) {
+    if (!userId) {
       throw new Error("Failed to create program.");
     }
     // Respond with HTTP 201 (Created) and the ID of the newly inserted user
-    res.status(201).json({ insertId });
+    res.status(201).json({ userId });
   } catch (err) {
     // Pass any errors to the error-handling middleware
     next(err);
   }
 };
 
-export default { browse, read, edit, add };
+// The D of BREAD - Destroy (Delete) operation
+const destroy: RequestHandler = async (req, res, next) => {
+  try {
+    const userId = Number(req.params.id);
+    await userRepository.delete(userId);
+    res.sendStatus(204);
+  } catch (err) {
+    next(err);
+  }
+};
+export default { browse, read, edit, add, destroy };
+
+///test

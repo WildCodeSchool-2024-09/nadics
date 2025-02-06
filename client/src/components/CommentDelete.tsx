@@ -1,9 +1,10 @@
 interface PropsType {
   id: number;
 }
-function DeleteRequest({ id }: PropsType) {
+
+function CommentDelete({ id }: PropsType) {
   const handleDelete = () => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/request/${id}`, {
+    fetch(`${import.meta.env.VITE_API_URL}/api/comments/${id}`, {
       method: "delete",
     }).then((response) => {
       if (response.status === 204) {
@@ -19,4 +20,4 @@ function DeleteRequest({ id }: PropsType) {
     </>
   );
 }
-export default DeleteRequest;
+export default CommentDelete;

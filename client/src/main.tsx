@@ -7,16 +7,24 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 // Import the main app component
 import App from "./App";
-import DisplayUser from "./pages/DisplayUser";
+import CGU from "./components/CGU";
+import PrivacyPolicy from "./components/PrivacyPolicy";
+// import UserEdit from "./pages/UserEdit";
+import ProfileEditComponent from "./components/ProfileEditComponent";
+import { AuthProvider } from "./context/authContext";
+import { UserProvider } from "./context/userContext";
+import CommentEdit from "./pages/CommentEdit";
+import CommentNewPage from "./pages/CommentNewPage";
 import HomePage from "./pages/HomePage";
 import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/LoginPage";
-import ProfilPage from "./pages/PageProfil";
+import ProfilePage from "./pages/PageProfile";
 import PasswordRecovery from "./pages/PasswordRecovery";
 import PostRequest from "./pages/PostRequest";
-import RequestEdit from "./pages/RequestEdit";
+import RequestDetails from "./pages/RequestDetails";
 import SignupPage from "./pages/SignupPage";
-import UserEdit from "./pages/UserEdit";
+
+// import ProfileEditComponent from "./components/ProfilEditComponent";
 
 // Import additional components for new routes
 // Try creating these components in the "pages" folder
@@ -35,6 +43,14 @@ const router = createBrowserRouter([
     element: <LandingPage />,
   },
   {
+    path: "/login",
+    element: <LoginPage />,
+  },
+  {
+    path: "/signup",
+    element: <SignupPage />,
+  },
+  {
     path: "/",
     element: <App />,
     children: [
@@ -43,36 +59,40 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: "login",
-        element: <LoginPage />,
-      },
-      {
-        path: "signup",
-        element: <SignupPage />,
-      },
-      {
         path: "password_recovery",
         element: <PasswordRecovery />,
       },
       {
-        path: "users/:id",
-        element: <DisplayUser />,
+        path: "request-details/:id", // Utilisez cette route pour afficher les détails de la demande
+        element: <RequestDetails />,
       },
       {
         path: "/users/:id/edit",
-        element: <UserEdit />,
+        element: <ProfileEditComponent />,
       },
       {
         path: "post_request",
         element: <PostRequest />,
       },
       {
-        path: "profil",
-        element: <ProfilPage />,
+        path: "profile",
+        element: <ProfilePage />,
       },
       {
-        path: "test_edit/:id",
-        element: <RequestEdit />,
+        path: "comments",
+        element: <CommentNewPage />,
+      },
+      {
+        path: "comment_edit/:id",
+        element: <CommentEdit />,
+      },
+      {
+        path: "CGU",
+        element: <CGU />,
+      },
+      {
+        path: "privacypolicy",
+        element: <PrivacyPolicy />, // Correctement utilisé ici
       },
     ],
   },
@@ -131,7 +151,11 @@ if (rootElement == null) {
 // Render the app inside the root element
 createRoot(rootElement).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <UserProvider>
+        <RouterProvider router={router} />
+      </UserProvider>
+    </AuthProvider>
   </StrictMode>,
 );
 

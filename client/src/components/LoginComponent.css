@@ -13,11 +13,20 @@
   background: linear-gradient(
       rgba(255, 255, 255, 0.5) /* Couleur blanche avec une opacité de 50% */,
       rgba(255, 255, 255, 0.5)
-    ), url("../assets/images/unity.png");
+    ), url("../assets/images/background.png");
   background-size: cover;
   background-position: center;
   background-blend-mode: lighten;
   z-index: -1;
+}
+
+#logoImageDesktop_login {
+  width: 15rem;
+}
+
+#logo-section-login-page {
+  display: flex;
+  justify-content: center;
 }
 
 #displaylogintitle {
@@ -97,6 +106,9 @@
   align-items: center;
   gap: 10px;
   flex-shrink: 0;
+  border-radius: 0.3125rem;
+  background: #000;
+  color: #f5f5f5;
 }
 
 #signup {

@@ -1,0 +1,110 @@
+* {
+  font-family: "Roboto", sans-serif;
+}
+/* Formulaire CGU */
+.cguform {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 900px; /* Limite la largeur pour une meilleure lisibilité */
+  margin-bottom: 3rem;
+  background-color: transparent; /* Retirer le fond coloré du formulaire */
+  padding: 0; /* Supprimer les espacements internes */
+  box-shadow: none; /* Enlever l'ombre autour du formulaire */
+  border-radius: 0; /* Supprimer les coins arrondis */
+  text-align: left; /* Pour garder les titres et le texte aligné à gauche dans la section */
+}
+
+/* Titre de la page */
+.cgu-title {
+  display: flex;
+  justify-content: center;
+  color: #0c0c0c; /* Couleur du texte en noir */
+  font-family: "Roboto", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  text-align: center; /* Centrer le titre */
+}
+/* Sous-titres */
+.cgu-welcome-subtitle {
+  color: #0b0b0c; /* Couleur du texte en noir */
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center; /* Centrer le sous-titre */
+}
+/* Sous-titres */
+.cgu-subtitle {
+  color: #050505; /* Couleur du texte en noir */
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center; /* Centrer le sous-titre */
+}
+
+/* Paragraphe standard */
+.cgu-paragraph {
+  line-height: 1.8;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  word-wrap: break-word; /* Assure que le texte va automatiquement à la ligne */
+  text-align: justify; /* Aligner le texte à gauche */
+  max-width: 800px; /* Limiter la largeur du texte pour le rendre lisible */
+  margin-left: auto;
+  margin-right: auto; /* Centrer le texte horizontalement */
+}
+
+/* Appliquer du style au texte "Smart Choice Hub" (en bleu et en gras) */
+.cgu-titles-trong {
+  font-weight: 700;
+  color: #101010; /* Bleu spécifique */
+}
+
+/* Mettre en rouge et gras les mots "devoirs", "interdits", "sanctions" */
+.devoirs,
+.interdits,
+.sanctions {
+  color: rgb(9, 8, 8);
+  font-weight: 700;
+}
+
+/* Styles pour les liens */
+.acgu-paragraph-a {
+  color: #0e0e0f;
+  text-decoration: none;
+}
+/* Ajouter une règle spécifique pour l'URL dans le texte */
+.url-link {
+  color: #101011; /* Bleu spécifique pour l'URL */
+  text-decoration: none; /* Supprimer la souligné */
+}
+
+.url-link:hover {
+  text-decoration: underline; /* Souligner l'URL au survol */
+}
+
+@media screen and (min-width: 431px) {
+  /* Ajuster la taille des titres */
+  .cgu-title {
+    font-size: 1.5em; /* Réduire la taille des titres */
+    margin: 10px; /* Réduire les marges */
+  }
+
+  /* Ajuster les paragraphes */
+  .cgu-paragraph {
+    font-size: 1em; /* Ajuster la taille de la police */
+    padding: 10px; /* Ajuster l'espacement */
+  }
+
+  /* Réduire la taille des liens */
+  .cgu-paragraph a {
+    font-size: 0.9em;
+  }
+}

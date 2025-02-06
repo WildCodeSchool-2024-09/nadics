@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import "./UserForm.css";
 
 type UserData = {
   firstname: string;
@@ -16,6 +17,7 @@ function UserForm({ children, defaultValue, onSubmit }: UserFormProps) {
   return (
     <>
       <form
+        id="userform"
         onSubmit={(event) => {
           event.preventDefault();
 
@@ -33,6 +35,7 @@ function UserForm({ children, defaultValue, onSubmit }: UserFormProps) {
         }}
       >
         <input
+          id="firstname-profile"
           type="text"
           name="firstname"
           defaultValue={defaultValue.firstname}
@@ -41,6 +44,7 @@ function UserForm({ children, defaultValue, onSubmit }: UserFormProps) {
         {/* */}
 
         <input
+          id="lastname-profile"
           type="text"
           name="lastname"
           defaultValue={defaultValue.lastname}
@@ -49,6 +53,7 @@ function UserForm({ children, defaultValue, onSubmit }: UserFormProps) {
         {/* */}
 
         <input
+          id="birthday-profile"
           type="date"
           name="birthday"
           defaultValue={defaultValue.birthday}
