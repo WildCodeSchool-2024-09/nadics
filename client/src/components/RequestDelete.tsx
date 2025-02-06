@@ -29,7 +29,7 @@ function DeleteRequest({ id }: PropsType) {
   };
   return (
     <>
-      <button className="delete-button" type="submit" onClick={handleDelete}>
+      <button id="delete-button" type="submit" onClick={handleDelete}>
         Delete request
       </button>
     </>

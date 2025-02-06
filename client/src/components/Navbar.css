@@ -3,20 +3,23 @@
   padding: 0;
   box-sizing: 0;
 }
-header {
+#navbarContainer {
   display: flex;
-  justify-content: space-around;
-  margin-top: 1rem;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin: 1rem 1rem 0.5rem 1rem;
 }
 
-.logoImg {
-  height: 4rem;
+#logoImageMobile {
+  height: 3.7rem;
 }
+
 nav {
   display: flex;
 }
-.menu_burger {
+#menu_burger {
   margin-top: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 .burger-bar {
@@ -79,4 +82,62 @@ nav {
   width: 3rem;
   height: 3rem;
   border-radius: 3rem;
+}
+
+/* version mobile */
+
+@media (max-width: 431px) {
+  #logoImageDesktop {
+    display: none;
+  }
+
+  #navbarLinksDesktop {
+    display: none;
+  }
+
+  #sectionBurgerAndProfile {
+    display: flex;
+    align-items: baseline;
+    background-color: #c2c2c2;
+    padding: 0.2rem 0.5rem 0.2rem 0.8rem;
+    border-radius: 3rem;
+  }
+}
+
+/* version tablet/desktop */
+
+@media (min-width: 431px) {
+  #logoImageMobile {
+    display: none;
+  }
+
+  #logoImageDesktop {
+    height: 4.0rem;
+  }
+
+  #menu_burger {
+    display: none;
+  }
+
+  .navBarLinks {
+    text-decoration: none;
+    font-size: 1em;
+    color: black;
+    font-weight: bold;
+  }
+
+  #navbarLinksDesktop {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    align-items: center;
+    text-align: center;
+  }
+
+  #LinksAndProfileDesktop {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+  }
 }

@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import "./SignupComponent.css";
 import { useState } from "react";
+import logoDesktop from "../assets/images/logo-removebg.png";
 
 function SignupComponent() {
   const navigate = useNavigate();
@@ -51,7 +52,11 @@ function SignupComponent() {
   return (
     <>
       <section id="displaycolumn">
-        <h1 id="signuptitle"> SMART CHOICE HUB </h1>
+        <div id="logo-section-signup-page">
+          <Link to="/home">
+            <img src={logoDesktop} alt="logo" id="logoImageDesktop_signup" />
+          </Link>
+        </div>
         <h2 id="signupsubtitle1"> Create your account</h2>
         <form className="signupform" onSubmit={handleSubmit}>
           <label htmlFor="email">
@@ -133,11 +138,11 @@ function SignupComponent() {
             Sign Up
           </button>
         </form>
-        <section id="alreadyaccount">
+        <div id="alreadyaccount">
           <Link to="/login" id="login">
             Already have an account? Login
           </Link>
-        </section>
+        </div>
       </section>
     </>
   );
