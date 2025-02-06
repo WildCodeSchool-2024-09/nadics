@@ -1,4 +1,5 @@
 import type { CommentType } from "../pages/RequestDetails";
+import "./CommentEdit.css";
 
 interface EditCommentProps {
   comment: CommentType;
@@ -8,7 +9,7 @@ interface EditCommentProps {
   setIsEditingComment: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function CommentEdit2({
+function CommentEdit({
   comment,
   editedComment,
   setEditedComment,
@@ -44,14 +45,18 @@ function CommentEdit2({
   return (
     <>
       <button
-        className="button_icon-update"
+        id="button_icon-update-comment"
         type="button"
         onClick={handleEditToggle}
       >
         {isEditingComment ? "Cancel change" : "Edit comment"}
       </button>
       {isEditingComment && (
-        <button type="button" onClick={handleSave}>
+        <button
+          type="button"
+          id="button_icon-update-comment"
+          onClick={handleSave}
+        >
           Save comment
         </button>
       )}
@@ -59,4 +64,4 @@ function CommentEdit2({
   );
 }
 
-export default CommentEdit2;
+export default CommentEdit;

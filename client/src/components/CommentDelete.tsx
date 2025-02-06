@@ -1,3 +1,5 @@
+import "./CommentDelete.css";
+
 interface PropsType {
   id: number;
 }
@@ -14,7 +16,7 @@ function CommentDelete({ id }: PropsType) {
   };
   return (
     <>
-      <button type="submit" onClick={handleDelete}>
+      <button type="submit" id="delete-button-comment" onClick={handleDelete}>
         Delete comment
       </button>
     </>

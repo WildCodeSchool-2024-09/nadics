@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CommentAdd from "../components/CommentAdd";
 import CommentDelete from "../components/CommentDelete";
-import CommentEdit2 from "../components/CommentEdit2";
+import CommentEdit from "../components/CommentEdit";
 import RequestDetailCard from "../components/RequestDetailCard";
 import "./RequestDetails.css";
 import defaultAvatar from "../assets/images/avatar.jpg";
@@ -211,19 +211,20 @@ function RequestDetails() {
                         ) : (
                           <p>{comment.details}</p>
                         )}
-
-                        {user && comment.user_id === user.id && (
-                          <CommentDelete id={comment.id} />
-                        )}
-                        {user && comment.user_id === user.id && (
-                          <CommentEdit2
-                            comment={comment}
-                            editedComment={editedComment}
-                            setEditedComment={setEditedComment}
-                            isEditingComment={isEditingComment}
-                            setIsEditingComment={setIsEditingComment}
-                          />
-                        )}
+                        <div className="group-button">
+                          {user && comment.user_id === user.id && (
+                            <CommentDelete id={comment.id} />
+                          )}
+                          {user && comment.user_id === user.id && (
+                            <CommentEdit
+                              comment={comment}
+                              editedComment={editedComment}
+                              setEditedComment={setEditedComment}
+                              isEditingComment={isEditingComment}
+                              setIsEditingComment={setIsEditingComment}
+                            />
+                          )}
+                        </div>
                       </details>
                     ))}
                   </details>
