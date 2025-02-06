@@ -7,6 +7,7 @@ interface EditProps {
   isEditing: boolean;
   setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
 function RequestEdit({
   request,
   setRequest,
@@ -37,7 +38,6 @@ function RequestEdit({
       });
       setRequest({ ...request, ...editedRequest } as RequestUser);
       setIsEditing(false);
-      console.info(request);
     } catch (error) {
       console.error("Error while fetching :", error);
     }

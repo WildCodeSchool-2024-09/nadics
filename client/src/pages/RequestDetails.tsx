@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CommentAdd from "../components/CommentAdd";
 import CommentDelete from "../components/CommentDelete";
+import CommentEdit2 from "../components/CommentEdit2";
 import RequestDetailCard from "../components/RequestDetailCard";
 import "./RequestDetails.css";
 import defaultAvatar from "../assets/images/avatar.jpg";
@@ -10,7 +11,7 @@ import RequestEdit from "../components/RequestEdit";
 import UserContext from "../context/userContext";
 import type { UserTypeContext } from "../context/userContext";
 
-interface CommentType {
+export interface CommentType {
   id: number;
   date: string;
   details: string;
@@ -42,7 +43,9 @@ function RequestDetails() {
   const [comments, setComments] = useState<CommentType[]>([]);
   const [request, setRequest] = useState<RequestUser | null>(null);
   const [editedRequest, setEditedRequest] = useState<Partial<RequestUser>>({});
+  const [editedComment, setEditedComment] = useState<Partial<CommentType>>({});
   const [isEditing, setIsEditing] = useState<boolean>(false); //etat pour modifier request
+  const [isEditingComment, setIsEditingComment] = useState<boolean>(false); //etat pour modifier comment
 
   useEffect(() => {
     if (!id) return; // Vérifie si user est null avant d'exécuter le fetch
@@ -51,7 +54,7 @@ function RequestDetails() {
       .then((response) => response.json())
       .then((data) => {
         setRequest(data);
-        setEditedRequest({ ...data });
+        setEditedRequest({ ...data }); // au rechargement du composant editedRequest va garder sa valeur précédente grâce à {... data}
       })
       .catch((error) => console.error("Error while fetching :", error));
   }, [id]);
@@ -71,6 +74,11 @@ function RequestDetails() {
   ) => {
     const { name, value } = e.target;
     setEditedRequest((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleInputChangeComment = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setEditedComment((prev) => ({ ...prev, details: value }));
   };
 
   return (
@@ -175,7 +183,7 @@ function RequestDetails() {
                 <div className="details-container">
                   <details>
                     <summary>Comments</summary>
-                    {comments.map((comment) => (
+                    {comments.map((comment: CommentType) => (
                       <details key={comment.id}>
                         <summary>
                           {comment.date} {comment.firstname} {comment.lastname}{" "}
@@ -189,9 +197,32 @@ function RequestDetails() {
                             id="avatar_icon"
                           />{" "}
                         </summary>
-                        {comment.details}
+                        {isEditingComment ? (
+                          <input
+                            type="text"
+                            name="details"
+                            value={
+                              editedComment.details === undefined
+                                ? comment.details
+                                : editedComment.details
+                            }
+                            onChange={handleInputChangeComment}
+                          />
+                        ) : (
+                          <p>{comment.details}</p>
+                        )}
+
                         {user && comment.user_id === user.id && (
                           <CommentDelete id={comment.id} />
+                        )}
+                        {user && comment.user_id === user.id && (
+                          <CommentEdit2
+                            comment={comment}
+                            editedComment={editedComment}
+                            setEditedComment={setEditedComment}
+                            isEditingComment={isEditingComment}
+                            setIsEditingComment={setIsEditingComment}
+                          />
                         )}
                       </details>
                     ))}

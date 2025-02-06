@@ -15,7 +15,7 @@ function CommentDelete({ id }: PropsType) {
   return (
     <>
       <button type="submit" onClick={handleDelete}>
-        Delete
+        Delete comment
       </button>
     </>
   );
