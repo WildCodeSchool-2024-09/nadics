@@ -19,7 +19,7 @@ function HomePage() {
             <section id="ongoing-requests">
               <h3>Ongoing Requests</h3>
               <div className="cards-container">
-                <Link to={`/request-details/${id}`}>
+                <Link className="grid-card" to={`/request-details/${id}`}>
                   <RequestCard />
                 </Link>
               </div>

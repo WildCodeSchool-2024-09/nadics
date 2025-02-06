@@ -1,8 +1,6 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import defaultAvatar from "../assets/images/avatar.jpg";
-import UserContext from "../context/userContext";
-import DeleteRequest from "./DeleteRequest";
 
 // Définir un type pour les données de chaque demande date`,title, theme, details, user_id
 interface Request {
@@ -11,17 +9,18 @@ interface Request {
   theme: string;
   date: string;
   details?: string;
+  avatar: string;
+  firstname: string;
+  lastname: string;
 }
 
 function RequestCard(): JSX.Element {
   const [requests, setRequests] = useState<Request[]>([]); // Utilisation du premier élément du tableau
-
-  const { user } = useContext(UserContext);
-
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/request/`)
       .then((response) => response.json())
-      .then((data) => setRequests(data));
+      .then((data) => setRequests(data))
+      .catch((error) => console.error("Erreur lors du fetch :", error));
   }, []);
 
   return (
@@ -36,21 +35,20 @@ function RequestCard(): JSX.Element {
                 <p className="name">{request.theme}</p>
                 <p className="name">{request.date}</p>
               </div>
-              {user && (
-                <img
-                  src={
-                    user.avatar
-                      ? `${import.meta.env.VITE_API_URL}/${user.avatar}`
-                      : defaultAvatar
-                  }
-                  alt="avatar"
-                  id="avatar_icon"
-                />
-              )}
+              <img
+                src={
+                  request.avatar
+                    ? `${import.meta.env.VITE_API_URL}/${request.avatar}`
+                    : defaultAvatar
+                }
+                alt="avatar"
+                id="avatar_icon"
+              />
+              <p>
+                {request.firstname} {request.lastname}
+              </p>
             </div>
           </Link>
-
-          <DeleteRequest id={request.id} />
         </div>
       ))}
     </>
