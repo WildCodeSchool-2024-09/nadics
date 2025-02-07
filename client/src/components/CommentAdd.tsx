@@ -55,7 +55,8 @@ function ComponentAdd({ onClose, requestId }: ComponentAddProps) {
       }
       if (response.status === 201) {
         alert("Comment submitted! Redirecting...");
-        navigate("/home");
+        // navigate("/home");
+        onClose();
       }
     } catch (error) {
       console.error("Error creating comment");
