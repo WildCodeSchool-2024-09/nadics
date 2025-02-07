@@ -1,8 +1,16 @@
+import { Link } from "react-router-dom";
 import "./CGU.css";
+import logoDesktop from "../assets/images/logo-removebg.png";
+import Footer from "./Footer";
 
 const CGU: React.FC = () => {
   return (
     <div>
+      <div id="containerLogoImageDesktop-policy">
+        <Link to="/signup">
+          <img src={logoDesktop} alt="logo" id="logoImageDesktop-policy" />
+        </Link>
+      </div>
       <h2 className="cgu-title">
         <strong>Conditions générales d'utilisation</strong>
       </h2>
@@ -120,7 +128,7 @@ const CGU: React.FC = () => {
 
       <p className="cgu-paragraph">
         Veuillez lire notre politique de{" "}
-        <a href="privacypolicy" className="cgu-link">
+        <a href="privacy-policy" className="cgu-link">
           confidentialité
         </a>
       </p>
@@ -162,6 +170,7 @@ const CGU: React.FC = () => {
         soumises au paragraphe précédent ; et (b) régissent toutes les
         responsabilités découlant de la clause de non-responsabilité.
       </p>
+      <Footer />
     </div>
   );
 };
