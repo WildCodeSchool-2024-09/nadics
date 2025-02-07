@@ -157,6 +157,10 @@ summary {
   cursor: pointer;
 }
 
+.group-button {
+  display: flex;
+}
+
 @media (max-width: 768px) {
   .details-and-table {
     flex-direction: column;
