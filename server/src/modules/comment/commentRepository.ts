@@ -4,7 +4,7 @@ import type { Result, Rows } from "../../../database/client";
 
 type Comment = {
   details: string;
-  date: string;
+  id: number;
 };
 type Newcomment = {
   details: string;
@@ -49,10 +49,10 @@ class CommentRepository {
     return rows[0] as Comment;
   }
 
-  async update(comment: Omit<Comment, "id">) {
+  async update(comment: Comment) {
     const [result] = await databaseClient.query<Result>(
       "update comment set details = ? where id = ?",
-      [comment.details],
+      [comment.details, comment.id],
     );
 
     return result.affectedRows;

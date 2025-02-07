@@ -2,15 +2,18 @@ import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CommentAdd from "../components/CommentAdd";
 import CommentDelete from "../components/CommentDelete";
+import CommentEdit from "../components/CommentEdit";
 import RequestDetailCard from "../components/RequestDetailCard";
 import "./RequestDetails.css";
+import parse from "html-react-parser";
 import defaultAvatar from "../assets/images/avatar.jpg";
 import DeleteRequest from "../components/RequestDelete";
 import RequestEdit from "../components/RequestEdit";
+import EditorText from "../components/reuasble-ui/EditorText";
 import UserContext from "../context/userContext";
 import type { UserTypeContext } from "../context/userContext";
 
-interface CommentType {
+export interface CommentType {
   id: number;
   date: string;
   details: string;
@@ -42,7 +45,9 @@ function RequestDetails() {
   const [comments, setComments] = useState<CommentType[]>([]);
   const [request, setRequest] = useState<RequestUser | null>(null);
   const [editedRequest, setEditedRequest] = useState<Partial<RequestUser>>({});
+  const [editedComment, setEditedComment] = useState<Partial<CommentType>>({});
   const [isEditing, setIsEditing] = useState<boolean>(false); //etat pour modifier request
+  const [isEditingComment, setIsEditingComment] = useState<boolean>(false); //etat pour modifier comment
 
   useEffect(() => {
     if (!id) return; // Vérifie si user est null avant d'exécuter le fetch
@@ -51,7 +56,7 @@ function RequestDetails() {
       .then((response) => response.json())
       .then((data) => {
         setRequest(data);
-        setEditedRequest({ ...data });
+        setEditedRequest({ ...data }); // au rechargement du composant editedRequest va garder sa valeur précédente grâce à {... data}
       })
       .catch((error) => console.error("Error while fetching :", error));
   }, [id]);
@@ -67,10 +72,18 @@ function RequestDetails() {
   }, [user, request]);
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
-    const { name, value } = e.target;
+    const { name, value } = event.target;
     setEditedRequest((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleEditorChange = (name: string, value: string) => {
+    setEditedRequest((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleInputChangeComment = (value: string) => {
+    setEditedComment((prev) => ({ ...prev, details: value }));
   };
 
   return (
@@ -151,14 +164,20 @@ function RequestDetails() {
                           : "Why to do it?"}
                     </summary>
                     {isEditing ? (
-                      <input
-                        type="text"
+                      <EditorText
                         name={key}
-                        value={editedRequest[key as keyof RequestUser] || ""}
-                        onChange={handleInputChange}
+                        value={
+                          (editedRequest[key as keyof RequestUser] as string) ||
+                          ""
+                        }
+                        onChange={(value: string) =>
+                          handleEditorChange(key, value)
+                        }
+                        placeholder="Edit your decision here ..."
                       />
+                    ) : request[key as keyof RequestUser] ? (
+                      parse(request[key as keyof RequestUser] as string)
                     ) : (
-                      request[key as keyof RequestUser] ||
                       "No description available."
                     )}
                   </details>
@@ -176,7 +195,7 @@ function RequestDetails() {
                 <div className="details-container">
                   <details>
                     <summary>Comments</summary>
-                    {comments.map((comment) => (
+                    {comments.map((comment: CommentType) => (
                       <details key={comment.id}>
                         <summary>
                           {comment.date} {comment.firstname} {comment.lastname}{" "}
@@ -190,10 +209,34 @@ function RequestDetails() {
                             id="avatar_icon"
                           />{" "}
                         </summary>
-                        {comment.details}
-                        {user && comment.user_id === user.id && (
-                          <CommentDelete id={comment.id} />
+                        {isEditingComment ? (
+                          <EditorText
+                            name="details"
+                            value={
+                              editedComment.details === undefined
+                                ? comment.details
+                                : editedComment.details
+                            }
+                            onChange={handleInputChangeComment}
+                            placeholder="Edit your comment here ..."
+                          />
+                        ) : (
+                          parse(comment.details as string)
                         )}
+                        <div className="group-button">
+                          {user && comment.user_id === user.id && (
+                            <CommentDelete id={comment.id} />
+                          )}
+                          {user && comment.user_id === user.id && (
+                            <CommentEdit
+                              comment={comment}
+                              editedComment={editedComment}
+                              setEditedComment={setEditedComment}
+                              isEditingComment={isEditingComment}
+                              setIsEditingComment={setIsEditingComment}
+                            />
+                          )}
+                        </div>
                       </details>
                     ))}
                   </details>

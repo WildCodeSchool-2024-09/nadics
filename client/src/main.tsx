@@ -9,11 +9,9 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import CGU from "./components/CGU";
 import PrivacyPolicy from "./components/PrivacyPolicy";
-// import UserEdit from "./pages/UserEdit";
 import ProfileEditComponent from "./components/ProfileEditComponent";
 import { AuthProvider } from "./context/authContext";
 import { UserProvider } from "./context/userContext";
-import CommentEdit from "./pages/CommentEdit";
 import CommentNewPage from "./pages/CommentNewPage";
 import HomePage from "./pages/HomePage";
 import LandingPage from "./pages/LandingPage";
@@ -51,6 +49,14 @@ const router = createBrowserRouter([
     element: <SignupPage />,
   },
   {
+    path: "/CGU",
+    element: <CGU />,
+  },
+  {
+    path: "/privacy-policy",
+    element: <PrivacyPolicy />,
+  },
+  {
     path: "/",
     element: <App />,
     children: [
@@ -82,65 +88,9 @@ const router = createBrowserRouter([
         path: "comments",
         element: <CommentNewPage />,
       },
-      {
-        path: "comment_edit/:id",
-        element: <CommentEdit />,
-      },
-      {
-        path: "CGU",
-        element: <CGU />,
-      },
-      {
-        path: "privacypolicy",
-        element: <PrivacyPolicy />, // Correctement utilisé ici
-      },
     ],
   },
-  // Try adding a new route! For example, "/about" with an About component
 ]);
-
-/* ************************************************************************* */
-// Original version for backup :
-
-// const router = createBrowserRouter([
-//   {
-//     path: "/", // The root path
-//     element: <App />,
-//     children: [
-//       {
-//         path: "home",
-//         element: <HomePage />,
-//       },
-//       {
-//         path: "login",
-//         element: <LoginPage />,
-//       },
-//       {
-//         path: "signup",
-//         element: <SignupPage />,
-//       },
-//       {
-//         path: "password_recovery",
-//         element: <PasswordRecovery />,
-//       },
-//       {
-//         path: "display-user/:id",
-//         element: <DisplayUser />,
-//       },
-//       {
-//         path: "post_request",
-//         element: <PostRequest />,
-//       },
-//     ],
-//   },
-//   {
-//     path: "landingPage",
-//     element: <LandingPageComponent />,
-//   },
-//   // Try adding a new route! For example, "/about" with an About component
-// ]);
-
-/* ************************************************************************* */
 
 // Find the root element in the HTML document
 const rootElement = document.getElementById("root");

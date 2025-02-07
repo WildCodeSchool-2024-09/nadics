@@ -64,9 +64,6 @@ function LoginComponent() {
         </Link>
       </div>
 
-      {/* <section id="displaylogintitle">
-          <h1 className="logintitle">Smart choice</h1>
-        </section> */}
       <section className="display">
         <h2 id="loginsubtitle1">Login</h2>
       </section>
