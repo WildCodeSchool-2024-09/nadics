@@ -5,9 +5,11 @@ import CommentDelete from "../components/CommentDelete";
 import CommentEdit from "../components/CommentEdit";
 import RequestDetailCard from "../components/RequestDetailCard";
 import "./RequestDetails.css";
+import parse from "html-react-parser";
 import defaultAvatar from "../assets/images/avatar.jpg";
 import DeleteRequest from "../components/RequestDelete";
 import RequestEdit from "../components/RequestEdit";
+import EditorText from "../components/reuasble-ui/EditorText";
 import UserContext from "../context/userContext";
 import type { UserTypeContext } from "../context/userContext";
 
@@ -70,14 +72,17 @@ function RequestDetails() {
   }, [user, request]);
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
-    const { name, value } = e.target;
+    const { name, value } = event.target;
     setEditedRequest((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleInputChangeComment = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
+  const handleEditorChange = (name: string, value: string) => {
+    setEditedRequest((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleInputChangeComment = (value: string) => {
     setEditedComment((prev) => ({ ...prev, details: value }));
   };
 
@@ -159,14 +164,20 @@ function RequestDetails() {
                           : "Why to do it?"}
                     </summary>
                     {isEditing ? (
-                      <input
-                        type="text"
+                      <EditorText
                         name={key}
-                        value={editedRequest[key as keyof RequestUser] || ""}
-                        onChange={handleInputChange}
+                        value={
+                          (editedRequest[key as keyof RequestUser] as string) ||
+                          ""
+                        }
+                        onChange={(value: string) =>
+                          handleEditorChange(key, value)
+                        }
+                        placeholder="Edit your decision here ..."
                       />
+                    ) : request[key as keyof RequestUser] ? (
+                      parse(request[key as keyof RequestUser] as string)
                     ) : (
-                      request[key as keyof RequestUser] ||
                       "No description available."
                     )}
                   </details>
@@ -199,8 +210,7 @@ function RequestDetails() {
                           />{" "}
                         </summary>
                         {isEditingComment ? (
-                          <input
-                            type="text"
+                          <EditorText
                             name="details"
                             value={
                               editedComment.details === undefined
@@ -208,9 +218,10 @@ function RequestDetails() {
                                 : editedComment.details
                             }
                             onChange={handleInputChangeComment}
+                            placeholder="Edit your comment here ..."
                           />
                         ) : (
-                          <p>{comment.details}</p>
+                          parse(comment.details as string)
                         )}
                         <div className="group-button">
                           {user && comment.user_id === user.id && (

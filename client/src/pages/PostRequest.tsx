@@ -21,18 +21,13 @@ export default function PostRequest() {
 
     const formData = new FormData(event.currentTarget);
 
-    const getPlainText = (html: string) => {
-      const doc = new DOMParser().parseFromString(html, "text/html");
-      return doc.body.textContent || "";
-    };
-
     const requestData = {
       title: formData.get("title") as string,
       tag1: formData.get("tag1") as string,
       tag2: formData.get("tag2") as string,
-      details1: getPlainText(tempContent1),
-      details2: getPlainText(tempContent2),
-      details3: getPlainText(tempContent3),
+      details1: tempContent1,
+      details2: tempContent2,
+      details3: tempContent3,
       user_id: user ? user.id : null,
     };
 
