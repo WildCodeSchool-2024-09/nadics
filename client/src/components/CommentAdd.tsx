@@ -49,6 +49,7 @@ function ComponentAdd({ onClose, requestId }: ComponentAddProps) {
       if (response.status === 201) {
         alert("Comment submitted! Redirecting...");
         onClose();
+        window.location.reload();
       }
     } catch (error) {
       console.error("Error creating comment");
