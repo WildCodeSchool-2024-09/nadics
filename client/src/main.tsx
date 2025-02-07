@@ -49,6 +49,14 @@ const router = createBrowserRouter([
     element: <SignupPage />,
   },
   {
+    path: "/CGU",
+    element: <CGU />,
+  },
+  {
+    path: "/privacy-policy",
+    element: <PrivacyPolicy />,
+  },
+  {
     path: "/",
     element: <App />,
     children: [
@@ -79,14 +87,6 @@ const router = createBrowserRouter([
       {
         path: "comments",
         element: <CommentNewPage />,
-      },
-      {
-        path: "CGU",
-        element: <CGU />,
-      },
-      {
-        path: "privacypolicy",
-        element: <PrivacyPolicy />,
       },
     ],
   },

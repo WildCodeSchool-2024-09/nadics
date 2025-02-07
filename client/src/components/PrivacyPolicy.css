@@ -1,6 +1,7 @@
 * {
   font-family: "Roboto", sans-serif;
 }
+
 /* Centrer le titre dans la balise <p> */
 .privacy-policy-intro {
   text-align: center; /* Centre le texte */
@@ -9,6 +10,16 @@
   color: #333; /* Couleur du texte (peut être ajustée) */
   margin-top: 2rem; /* Espace au-dessus du texte */
   margin-bottom: 2rem; /* Espace en dessous du texte */
+}
+
+#containerLogoImageDesktop-policy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#logoImageDesktop-policy {
+  width: 10rem;
 }
 
 /* Formulaire de Politique de Confidentialité */
