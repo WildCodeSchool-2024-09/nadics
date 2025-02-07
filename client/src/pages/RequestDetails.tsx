@@ -4,6 +4,7 @@ import CommentAdd from "../components/CommentAdd";
 import CommentDelete from "../components/CommentDelete";
 import RequestDetailCard from "../components/RequestDetailCard";
 import "./RequestDetails.css";
+import parse from "html-react-parser";
 import defaultAvatar from "../assets/images/avatar.jpg";
 import DeleteRequest from "../components/RequestDelete";
 import RequestEdit from "../components/RequestEdit";
@@ -157,8 +158,9 @@ function RequestDetails() {
                         value={editedRequest[key as keyof RequestUser] || ""}
                         onChange={handleInputChange}
                       />
+                    ) : request[key as keyof RequestUser] ? (
+                      parse(request[key as keyof RequestUser] as string)
                     ) : (
-                      request[key as keyof RequestUser] ||
                       "No description available."
                     )}
                   </details>
