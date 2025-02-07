@@ -82,9 +82,9 @@ a {
 @media (min-width: 431px) {
   .grid-card {
     display: grid;
-    grid-template-columns: repeat(4, minmax(397px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     grid-row-gap: 60px;
-    padding: 40px 130px 140px;
+    padding: 50px 150px 170px;
     width: 100vw;
   }
 
