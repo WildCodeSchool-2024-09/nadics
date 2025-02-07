@@ -2,7 +2,6 @@ import { useContext, useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import "./CommentAdd.css";
-import { useNavigate } from "react-router-dom";
 import UserContext from "../context/userContext";
 interface ComponentAddProps {
   onClose: () => void;
@@ -21,7 +20,6 @@ function ComponentAdd({ onClose, requestId }: ComponentAddProps) {
     setTempContent(editorContent);
   };
   const { user } = useContext(UserContext);
-  const navigate = useNavigate();
 
   // Fonction pour récupérer uniquement le texte sans balises HTML
   const getPlainText = (html: string) => {
@@ -55,8 +53,8 @@ function ComponentAdd({ onClose, requestId }: ComponentAddProps) {
       }
       if (response.status === 201) {
         alert("Comment submitted! Redirecting...");
-        // navigate("/home");
         onClose();
+        window.location.reload();
       }
     } catch (error) {
       console.error("Error creating comment");
