@@ -42,6 +42,7 @@ export default function PostRequest() {
         {
           method: "POST",
           headers: {
+            "Content-type": "application/json",
             Authorization: `Bearer ${auth}`,
           },
           body: JSON.stringify(requestData),
