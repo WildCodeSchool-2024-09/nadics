@@ -4,11 +4,9 @@ import styled from "styled-components";
 import { useContext, useState } from "react";
 import backgroundImage from "../assets/images/background.png";
 import EditorText from "../components/reuasble-ui/EditorText";
-import AuthContext from "../context/authContext";
 import UserContext from "../context/userContext";
 
 export default function PostRequest() {
-  const { auth } = useContext(AuthContext);
   const { user } = useContext(UserContext);
   const [tempContent1, setTempContent1] = useState("");
   const [tempContent2, setTempContent2] = useState("");
@@ -36,9 +34,9 @@ export default function PostRequest() {
         `${import.meta.env.VITE_API_URL}/api/request`,
         {
           method: "POST",
+          credentials: "include",
           headers: {
             "Content-type": "application/json",
-            Authorization: `Bearer ${auth}`,
           },
           body: JSON.stringify(requestData),
         },

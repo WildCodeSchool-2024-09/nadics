@@ -1,7 +1,7 @@
 // Load the express module to create a web application
 
+import cookieParser from "cookie-parser";
 import express from "express";
-
 const app = express();
 
 // Configure it
@@ -53,7 +53,8 @@ app.use(
 // Uncomment one or more of these options depending on the format of the data sent by your client:
 
 app.use(express.json());
-// app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 // app.use(express.text());
 // app.use(express.raw());
 

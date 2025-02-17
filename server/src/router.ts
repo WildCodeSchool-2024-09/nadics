@@ -30,6 +30,7 @@ router.get("/api/users", userActions.browse);
 router.get("/api/users/:id", userActions.read);
 
 router.post("/api/login/", authAction.login);
+router.get("/api/me/", authAction.me);
 router.post("/api/logout/", authAction.logout);
 router.post("/api/users/", authAction.hashPassword, userActions.add);
 router.delete("/api/users/:id", userActions.destroy);

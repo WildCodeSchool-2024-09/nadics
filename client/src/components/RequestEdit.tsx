@@ -1,5 +1,3 @@
-import { useContext } from "react";
-import AuthContext from "../context/authContext";
 import type { RequestUser } from "../pages/RequestDetails";
 
 interface EditProps {
@@ -19,22 +17,13 @@ function RequestEdit({
   isEditing,
   setIsEditing,
 }: EditProps) {
-  const { auth } = useContext(AuthContext);
-  const token = auth?.token;
   const checkOwnership = async (requestId: number): Promise<boolean> => {
-    if (!auth) {
-      console.error("No auth token found");
-      alert("Authentication token is missing!");
-      return false;
-    }
     try {
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/api/request/${requestId}/isPoster`,
         {
           method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          credentials: "include",
         },
       );
 
@@ -71,9 +60,9 @@ function RequestEdit({
         `${import.meta.env.VITE_API_URL}/api/request/${request.id}`,
         {
           method: "PUT",
+          credentials: "include",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify({
             title: editedRequest.title || request.title,

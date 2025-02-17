@@ -3,14 +3,14 @@ import "./HomePage.css";
 import RequestCard from "../components/RequestCard";
 import "./HomePage.css";
 import { useContext } from "react";
-import AuthContext from "../context/authContext";
+import UserContext from "../context/userContext";
 
 function HomePage() {
-  const { auth } = useContext(AuthContext);
+  const { user } = useContext(UserContext);
   const { id } = useParams();
   return (
     <>
-      {auth ? (
+      {user ? (
         <div>
           <main id="mainHome">
             <Link to={"/post_request"}>

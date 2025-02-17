@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export type UserType = {
   id: number;
@@ -25,6 +25,26 @@ export const UserProvider = ({
   children,
 }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<UserType | null>(null);
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/me`, {
+          method: "GET",
+          credentials: "include",
+        });
+        if (response.status === 200) {
+          const data = await response.json();
+          setUser(data);
+        } else {
+          setUser(null);
+        }
+      } catch (err) {
+        setUser(null);
+      }
+    };
+    checkAuth();
+  }, []);
 
   return (
     <UserContext.Provider

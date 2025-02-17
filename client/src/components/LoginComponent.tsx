@@ -1,17 +1,13 @@
 import { Link, useNavigate } from "react-router-dom";
 import "./LoginComponent.css";
-import { useContext, useRef } from "react";
+import { useRef } from "react";
 import type { FormEventHandler } from "react";
 import logoDesktop from "../assets/images/logo-removebg.png";
-import AuthContext from "../context/authContext";
-import UserContext from "../context/userContext";
 
 function LoginComponent() {
   const navigate = useNavigate();
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
-  const { setAuth } = useContext(AuthContext);
-  const { setUser } = useContext(UserContext);
 
   const handleSubmit: FormEventHandler = async (
     event: React.FormEvent<HTMLFormElement>,
@@ -22,7 +18,7 @@ function LoginComponent() {
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/api/login`,
         {
-          method: "post",
+          method: "POST",
           credentials: "include",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -38,12 +34,8 @@ function LoginComponent() {
 
       // Redirection vers la page de connexion si la création réussit
       if (response.status === 200) {
-        const data = await response.json();
-        const token = data.token;
-        const userData = data.user;
-        setAuth(token);
-        setUser(userData);
         navigate("/home");
+        window.location.reload();
       } else {
         // Log des détails de la réponse en cas d'échec
         console.info(response);
