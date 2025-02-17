@@ -39,8 +39,10 @@ function LoginComponent() {
       // Redirection vers la page de connexion si la création réussit
       if (response.status === 200) {
         const data = await response.json();
-        setAuth(data);
-
+        const token = data.token;
+        const userData = data.user;
+        setAuth(token);
+        setUser(userData);
         navigate("/home");
       } else {
         // Log des détails de la réponse en cas d'échec
