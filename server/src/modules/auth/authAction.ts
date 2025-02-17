@@ -33,10 +33,29 @@ const login: RequestHandler = async (req, res, next) => {
           expiresIn: "1h",
         },
       );
+      res.cookie("token", token, {
+        httpOnly: true, // Empêche l'accès depuis JavaScript
+        secure: process.env.NODE_ENV === "production", // Active HTTPS en prod
+        sameSite: "strict", // Protège contre les attaques CSRF
+        maxAge: 3600000, // Expiration dans 1h
+      });
       res.json({ token });
     } else {
       res.sendStatus(422);
     }
+  } catch (err) {
+    next(err);
+  }
+};
+
+const logout: RequestHandler = async (req, res, next) => {
+  try {
+    res.clearCookie("token", {
+      httpOnly: true,
+      secure: true,
+      sameSite: "strict",
+    });
+    res.status(200).json({ message: "Déconnecté avec succès" });
   } catch (err) {
     next(err);
   }
@@ -94,4 +113,4 @@ const verifyToken: RequestHandler = (req, res, next) => {
   }
 };
 
-export default { login, hashPassword, verifyToken };
+export default { login, hashPassword, verifyToken, logout };

@@ -10,16 +10,27 @@ import UserContext from "../context/userContext";
 // import type { UserTypeContext } from "../context/userContext";
 
 function Navbar() {
-  const { setUser } = useContext(UserContext);
-  const { auth, setAuth } = useContext(AuthContext);
-  const handleLogout = () => {
-    // Supprimer cookie "authToken"
-    document.cookie =
-      "authToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+  const { auth } = useContext(AuthContext);
 
-    // Déconnexion en mettant auth à null
-    setAuth(null);
-    setUser(null);
+  const handleLogout = async () => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/logout`,
+        {
+          method: "POST",
+          credentials: "include", // Indispensable pour les cookies httpOnly !
+        },
+      );
+
+      if (!response.ok) {
+        throw new Error("Erreur lors de la déconnexion");
+      }
+
+      // Redirection après logout (ex: vers la page de connexion)
+      window.location.href = "/login";
+    } catch (error) {
+      console.error("Erreur de déconnexion :", error);
+    }
   };
 
   const { user } = useContext(UserContext);
