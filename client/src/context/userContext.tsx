@@ -25,6 +25,7 @@ export const UserProvider = ({
   children,
 }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<UserType | null>(null);
+  const [userConnected, setUserConnected] = useState<UserType | null>(null);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -35,16 +36,26 @@ export const UserProvider = ({
         });
         if (response.status === 200) {
           const data = await response.json();
-          setUser(data);
+          setUserConnected(data);
         } else {
-          setUser(null);
+          setUserConnected(null);
         }
       } catch (err) {
-        setUser(null);
+        setUserConnected(null);
       }
     };
     checkAuth();
   }, []);
+
+  useEffect(() => {
+    if (!userConnected) return;
+    fetch(`${import.meta.env.VITE_API_URL}/api/users/${userConnected.id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setUser(data);
+      })
+      .catch((error) => console.error("Error while fetching :", error));
+  }, [userConnected]);
 
   return (
     <UserContext.Provider
