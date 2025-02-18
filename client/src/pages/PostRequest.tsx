@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import { useContext, useState } from "react";
 import backgroundImage from "../assets/images/background.png";
+import ImpactedPerson from "../components/impactedPerson";
 import EditorText from "../components/reuasble-ui/EditorText";
 import UserContext from "../context/userContext";
 
@@ -11,6 +12,7 @@ export default function PostRequest() {
   const [tempContent1, setTempContent1] = useState("");
   const [tempContent2, setTempContent2] = useState("");
   const [tempContent3, setTempContent3] = useState("");
+  const [impactedPersonId, setImpactedPersonId] = useState<number | null>(null);
 
   const navigate = useNavigate();
 
@@ -26,6 +28,7 @@ export default function PostRequest() {
       details1: tempContent1,
       details2: tempContent2,
       details3: tempContent3,
+      impacted_person: impactedPersonId,
       user_id: user ? user.id : null,
     };
 
@@ -106,6 +109,12 @@ export default function PostRequest() {
           value={tempContent3}
           onChange={setTempContent3}
           placeholder="Why to do it ."
+        />
+      </div>
+      <div className="block">
+        <ImpactedPerson
+          impactedPersonId={impactedPersonId}
+          setImpactedPersonId={setImpactedPersonId}
         />
       </div>
       <button type="submit" className="buttonSubmit">

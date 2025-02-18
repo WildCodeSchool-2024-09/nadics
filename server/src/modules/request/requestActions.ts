@@ -57,6 +57,7 @@ const edit: RequestHandler = async (req, res, next) => {
 // The A of BREAD - Add (Create) operation
 const add: RequestHandler = async (req, res, next) => {
   try {
+    console.info("body_request", req.body);
     const newRequest = {
       date: req.body.date,
       title: req.body.title,
@@ -65,6 +66,7 @@ const add: RequestHandler = async (req, res, next) => {
       details1: req.body.details1,
       details2: req.body.details2,
       details3: req.body.details3,
+      impacted_person: req.body.impacted_person,
       user_id: req.body.user_id,
     };
 

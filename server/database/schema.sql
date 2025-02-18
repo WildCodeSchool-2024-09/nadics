@@ -27,6 +27,7 @@ CREATE TABLE request (
     details1 TEXT NOT NULL,
     details2 TEXT,
     details3 TEXT,
+    impacted_person VARCHAR(50) NOT NULL,
     user_id INT NOT NUll,
     CONSTRAINT fk_request_user
         FOREIGN KEY (user_id)
@@ -61,10 +62,10 @@ values
   ("Toto", "Tutu", "1994-02-05" , "toto.tutu@mail.com", "123456", 1),
   ("Tata", "Titi", "2000.01.02","tata.titi@mail.com", "78910", 2);
 
-insert into request(`date`,title, tag1, details1, user_id)
+insert into request(`date`,title, tag1, details1, impacted_person, user_id)
 values 
-  ("1994.12.24","titre1", "Sport", "bcp de details1", 1),
-  ("1994.11.24","titre2", "Tech", "bcp de details2", 2);
+  ("1994.12.24","titre1", "Sport", "bcp de details1", "tata", 1),
+  ("1994.11.24","titre2", "Tech", "bcp de details2", "toto", 2);
 
 insert into comment(details, `date`, user_id, request_id)
 values 
