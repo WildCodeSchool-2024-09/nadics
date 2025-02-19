@@ -3,15 +3,12 @@ import UserContext from "../context/userContext";
 import type { UserType } from "../context/userContext";
 
 interface PropsType {
-  impactedPersonId: number | null; // L'état qui contient la personne impactée
-  setImpactedPersonId: React.Dispatch<React.SetStateAction<number | null>>; // La fonction pour mettre à jour impactedPerson
+  impactedPersonId: number | null; // L'état qui contient id de la personne  impactée
+  setImpactedPersonId: React.Dispatch<React.SetStateAction<number | null>>;
 }
 
-function ImpactedPerson({
-  impactedPersonId: impactedPerson,
-  setImpactedPersonId: setImpactedPerson,
-}: PropsType) {
-  const { allUsers } = useContext(UserContext); // Récupère tous les utilisateurs depuis le contexte
+function ImpactedPerson({ setImpactedPersonId }: PropsType) {
+  const { allUsers } = useContext(UserContext);
   const [search, setSearch] = useState(""); // État pour gérer la recherche
   const [tempUsers, setTempUsers] = useState<UserType[]>([]); // Liste des utilisateurs sélectionnés
 
@@ -41,7 +38,7 @@ function ImpactedPerson({
 
   // Fonction pour mettre à jour la personne impactée dans les props
   const handleImpactedPersonChange = (id: number) => {
-    setImpactedPerson(id); // Met à jour l'état de la personne impactée dans le parent
+    setImpactedPersonId(id); // Met à jour l'état de la personne impactée dans le parent
   };
 
   return (
@@ -76,14 +73,6 @@ function ImpactedPerson({
             ))
           : search && <div>User not found</div> // Affiche ce message uniquement si la recherche est active et sans résultat
       }
-
-      {/* Afficher la personne impactée si elle est sélectionnée */}
-      {impactedPerson && (
-        <div>
-          <h3>Selected Impacted Person</h3>
-          <p>{impactedPerson}</p>
-        </div>
-      )}
     </>
   );
 }

@@ -33,6 +33,7 @@ export interface RequestUser {
   details1: string;
   details2: string;
   details3: string;
+  impacted_person: number;
   firstname: string;
   lastname: string;
   avatar: string;
@@ -254,14 +255,7 @@ function RequestDetails() {
                   Give my opinion
                 </button>
               </div>
-              <RequestDetailCard
-                title={""}
-                userName={""}
-                userAvatar={""}
-                impactingUserAvatar={""}
-                impactedUserAvatar={""}
-                events={[]}
-              />
+              <RequestDetailCard impacted_personId={request.impacted_person} />
             </div>
           </div>
           {isModalOpen && (
