@@ -3,12 +3,11 @@ import "./LoginComponent.css";
 import { useRef } from "react";
 import type { FormEventHandler } from "react";
 import logoDesktop from "../assets/images/logo-removebg.png";
-
+import PrimaryButton from "./reuasble-ui/PrimaryButton";
 function LoginComponent() {
   const navigate = useNavigate();
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
-
   const handleSubmit: FormEventHandler = async (
     event: React.FormEvent<HTMLFormElement>,
   ) => {
@@ -31,7 +30,6 @@ function LoginComponent() {
           }),
         },
       );
-
       // Redirection vers la page de connexion si la création réussit
       if (response.status === 200) {
         navigate("/home");
@@ -52,7 +50,6 @@ function LoginComponent() {
           <img src={logoDesktop} alt="logo" id="logoImageDesktop_login" />
         </Link>
       </div>
-
       <section className="display">
         <h2 id="loginsubtitle1">Login</h2>
       </section>
@@ -83,9 +80,7 @@ function LoginComponent() {
           </label>
         </section>
         <section className="display">
-          <button id="submitbutton" type="submit">
-            Submit
-          </button>
+          <PrimaryButton id="submitbutton" type="submit" label="Submit" />
         </section>
       </form>
       <section className="display">
@@ -101,5 +96,4 @@ function LoginComponent() {
     </section>
   );
 }
-
 export default LoginComponent;

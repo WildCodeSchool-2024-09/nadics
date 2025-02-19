@@ -3,8 +3,8 @@ import "./HomePage.css";
 import RequestCard from "../components/RequestCard";
 import "./HomePage.css";
 import { useContext } from "react";
+import PrimaryButton from "../components/reuasble-ui/PrimaryButton";
 import UserContext from "../context/userContext";
-
 function HomePage() {
   const { user } = useContext(UserContext);
   const { id } = useParams();
@@ -14,9 +14,7 @@ function HomePage() {
         <div>
           <main id="mainHome">
             <Link to={"/post_request"}>
-              <button id="button" type="button">
-                Submit a request
-              </button>
+              <PrimaryButton type="button" label="Submit a request" />
             </Link>
             <section id="ongoing-requests">
               <h3>Ongoing Requests</h3>
@@ -34,5 +32,4 @@ function HomePage() {
     </>
   );
 }
-
 export default HomePage;
