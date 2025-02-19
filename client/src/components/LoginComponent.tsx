@@ -6,6 +6,7 @@ import { useContext, useRef } from "react";
 import type { FormEventHandler } from "react";
 import logoDesktop from "../assets/images/logo-removebg.png";
 import AuthContext from "../context/authContext";
+import PrimaryButton from "./reuasble-ui/PrimaryButton";
 
 function LoginComponent() {
   const navigate = useNavigate();
@@ -97,9 +98,7 @@ function LoginComponent() {
           </label>
         </section>
         <section className="display">
-          <button id="submitbutton" type="submit">
-            Submit
-          </button>
+          <PrimaryButton id="submitbutton" type="submit" label="Submit" />
         </section>
       </form>
       <section className="display">

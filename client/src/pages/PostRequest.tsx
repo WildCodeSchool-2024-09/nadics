@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { useContext, useState } from "react";
 import backgroundImage from "../assets/images/background.png";
 import EditorText from "../components/reuasble-ui/EditorText";
+import PrimaryButton from "../components/reuasble-ui/PrimaryButton";
 import AuthContext from "../context/authContext";
 import UserContext from "../context/userContext";
 
@@ -115,9 +116,7 @@ export default function PostRequest() {
           placeholder="Why to do it ."
         />
       </div>
-      <button type="submit" className="buttonSubmit">
-        Submit your request
-      </button>
+      <PrimaryButton type="submit" label="Submit your request" />
     </PostRequestStyled>
   );
 }
@@ -198,40 +197,6 @@ form {
   justify-content: left;
   flex-direction: column;
   border-radius: 10px;
-}
-
-.buttonSubmit {
-  background-color: #000000;
-  border: 1px solid transparent;
-  display: block;
-  min-width: 1rem;
-  min-height: 3.875rem; 
-  margin: 1rem auto;
-  padding: 1.25rem 1.5rem; 
-  gap: 0.625rem; 
-  border-radius: 0.3125rem; 
-  box-shadow: 0.625rem 0.625rem 0.875rem rgba(0, 0, 0, 0.25); 
-  margin-bottom: 1.875rem; 
-  color: #fff;
-  text-align: center;
-  font-size: 1.25rem; 
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  cursor: pointer;
-
-&:hover {
-  background-color: #fff;
-  color:#000;
-  border: 1px solid #000;
-  transition: all 200ms ease-out;
-}
-
-&:active {
-  background-color: #000;
-  color: #fff;
-}
-
 }
 
 p {

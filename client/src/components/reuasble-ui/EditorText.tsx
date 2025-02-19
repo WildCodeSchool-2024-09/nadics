@@ -39,7 +39,6 @@ const EditorTextStyled = styled.div`
   min-height: 200px; 
   background: #FFF;
   width: 80vw; 
-  max-width: 400px; 
 }
 
 
@@ -59,7 +58,7 @@ const EditorTextStyled = styled.div`
   box-sizing: border-box;
 }
 
-@media screen and (min-width: 431px) {
+@media screen and (max-width: 431px) {
   width: 80vw;
   
   .ql-container {

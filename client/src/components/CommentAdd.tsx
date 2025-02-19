@@ -4,6 +4,7 @@ import "react-quill/dist/quill.snow.css";
 import "./CommentAdd.css";
 import { useNavigate } from "react-router-dom";
 import UserContext from "../context/userContext";
+import PrimaryButton from "./reuasble-ui/PrimaryButton";
 interface ComponentAddProps {
   onClose: () => void;
   requestId: number | null;
@@ -65,7 +66,7 @@ function ComponentAdd({ onClose, requestId }: ComponentAddProps) {
 
   return (
     <div className="modal-overlay">
-      <div className="modal-content">
+      <div className="modal-form">
         <form className="opinion-form" onSubmit={handleSubmit}>
           <div className="editor-section">
             <label htmlFor="editor">Your opinion:</label>
@@ -84,9 +85,12 @@ function ComponentAdd({ onClose, requestId }: ComponentAddProps) {
               Delete my comment
             </button>
           </div>
-          <button type="button" className="exit-button" onClick={onClose}>
-            Exit
-          </button>
+          <PrimaryButton
+            className="button-exit"
+            type="button"
+            onClick={onClose}
+            label="Exit"
+          />
         </form>
       </div>
     </div>

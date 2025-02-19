@@ -8,6 +8,7 @@ import "./RequestDetails.css";
 import defaultAvatar from "../assets/images/avatar.jpg";
 import DeleteRequest from "../components/RequestDelete";
 import RequestEdit from "../components/RequestEdit";
+import PrimaryButton from "../components/reuasble-ui/PrimaryButton";
 import UserContext from "../context/userContext";
 import type { UserTypeContext } from "../context/userContext";
 
@@ -235,13 +236,11 @@ function RequestDetails() {
 
             <div className="right-details">
               <div className="button-container">
-                <button
+                <PrimaryButton
                   type="button"
-                  className="home-button"
                   onClick={() => setIsModalOpen(true)}
-                >
-                  Give my opinion
-                </button>
+                  label="Give my opinion"
+                />
               </div>
               <RequestDetailCard
                 title={""}
