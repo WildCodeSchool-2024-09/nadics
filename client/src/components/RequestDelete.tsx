@@ -1,6 +1,5 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import AuthContext from "../context/authContext";
 import UserContext from "../context/userContext";
 
 interface PropsType {
@@ -9,16 +8,13 @@ interface PropsType {
 function DeleteRequest({ id }: PropsType) {
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
-  const { auth } = useContext(AuthContext);
+
   const [showModal, setShowModal] = useState(false);
-  const token = auth?.token;
 
   const handleDelete = () => {
     fetch(`${import.meta.env.VITE_API_URL}/api/request/${id}`, {
       method: "delete",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      credentials: "include",
       body: JSON.stringify({ userId: user?.id, requestId: id }),
     }).then((response) => {
       if (response.status === 403) {

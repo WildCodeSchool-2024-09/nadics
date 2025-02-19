@@ -1,8 +1,16 @@
+import { Link } from "react-router-dom";
+import Footer from "./Footer";
 import "./PrivacyPolicy.css";
+import logoDesktop from "../assets/images/logo-removebg.png";
 
 const PrivacyPolicy: React.FC = () => {
   return (
     <div>
+      <div id="containerLogoImageDesktop-policy">
+        <Link to="/signup">
+          <img src={logoDesktop} alt="logo" id="logoImageDesktop-policy" />
+        </Link>
+      </div>
       <h2 className="privacy-policy-title">
         <strong>Politique de Confidentialité</strong>
       </h2>
@@ -125,6 +133,7 @@ const PrivacyPolicy: React.FC = () => {
           contact@votresite.com
         </a>
       </p>
+      <Footer />
     </div>
   );
 };

@@ -1,9 +1,8 @@
 import { useContext, useState } from "react";
-import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import "./CommentAdd.css";
-import { useNavigate } from "react-router-dom";
 import UserContext from "../context/userContext";
+import EditorText from "./reuasble-ui/EditorText";
 import PrimaryButton from "./reuasble-ui/PrimaryButton";
 interface ComponentAddProps {
   onClose: () => void;
@@ -13,7 +12,6 @@ interface ComponentAddProps {
 function ComponentAdd({ onClose, requestId }: ComponentAddProps) {
   const [editorContent, setEditorContent] = useState("");
   const [tempContent, setTempContent] = useState("");
-
   const handleSave = () => {
     setEditorContent(tempContent);
   };
@@ -22,19 +20,14 @@ function ComponentAdd({ onClose, requestId }: ComponentAddProps) {
     setTempContent(editorContent);
   };
   const { user } = useContext(UserContext);
-  const navigate = useNavigate();
 
   // Fonction pour récupérer uniquement le texte sans balises HTML
-  const getPlainText = (html: string) => {
-    const doc = new DOMParser().parseFromString(html, "text/html");
-    return doc.body.textContent || "";
-  };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const commentData = {
-      details: getPlainText(tempContent),
+      details: tempContent,
       user_id: user ? user.id : null,
       request_id: requestId,
     };
@@ -56,7 +49,8 @@ function ComponentAdd({ onClose, requestId }: ComponentAddProps) {
       }
       if (response.status === 201) {
         alert("Comment submitted! Redirecting...");
-        navigate("/home");
+        onClose();
+        window.location.reload();
       }
     } catch (error) {
       console.error("Error creating comment");
@@ -70,7 +64,11 @@ function ComponentAdd({ onClose, requestId }: ComponentAddProps) {
         <form className="opinion-form" onSubmit={handleSubmit}>
           <div className="editor-section">
             <label htmlFor="editor">Your opinion:</label>
-            <ReactQuill value={tempContent} onChange={setTempContent} />
+            <EditorText
+              value={tempContent}
+              onChange={setTempContent}
+              placeholder="Write your comment here ..."
+            />
           </div>
 
           <div className="modal-buttons">

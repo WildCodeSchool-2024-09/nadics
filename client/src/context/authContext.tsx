@@ -1,5 +1,4 @@
-import Cookies from "js-cookie";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 
 export type AuthType = {
   token: string;
@@ -21,14 +20,6 @@ export const AuthProvider = ({
   children,
 }: { children: React.ReactNode }) => {
   const [auth, setAuth] = useState<AuthType | null>(null);
-
-  useEffect(() => {
-    // Vérifier la présence du token dans localStorage au démarrage
-    const token = Cookies.get("authToken");
-    if (token) {
-      setAuth({ token });
-    }
-  }, []);
 
   return (
     <AuthContext.Provider

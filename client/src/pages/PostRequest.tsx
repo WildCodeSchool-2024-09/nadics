@@ -5,11 +5,9 @@ import { useContext, useState } from "react";
 import backgroundImage from "../assets/images/background.png";
 import EditorText from "../components/reuasble-ui/EditorText";
 import PrimaryButton from "../components/reuasble-ui/PrimaryButton";
-import AuthContext from "../context/authContext";
 import UserContext from "../context/userContext";
 
 export default function PostRequest() {
-  const { auth } = useContext(AuthContext);
   const { user } = useContext(UserContext);
   const [tempContent1, setTempContent1] = useState("");
   const [tempContent2, setTempContent2] = useState("");
@@ -22,18 +20,13 @@ export default function PostRequest() {
 
     const formData = new FormData(event.currentTarget);
 
-    const getPlainText = (html: string) => {
-      const doc = new DOMParser().parseFromString(html, "text/html");
-      return doc.body.textContent || "";
-    };
-
     const requestData = {
       title: formData.get("title") as string,
       tag1: formData.get("tag1") as string,
       tag2: formData.get("tag2") as string,
-      details1: getPlainText(tempContent1),
-      details2: getPlainText(tempContent2),
-      details3: getPlainText(tempContent3),
+      details1: tempContent1,
+      details2: tempContent2,
+      details3: tempContent3,
       user_id: user ? user.id : null,
     };
 
@@ -42,9 +35,9 @@ export default function PostRequest() {
         `${import.meta.env.VITE_API_URL}/api/request`,
         {
           method: "POST",
+          credentials: "include",
           headers: {
             "Content-type": "application/json",
-            Authorization: `Bearer ${auth}`,
           },
           body: JSON.stringify(requestData),
         },
