@@ -5,23 +5,10 @@ import { Link } from "react-router-dom";
 import defaultAvatar from "../assets/images/avatar.jpg";
 import logoDesktop from "../assets/images/logo-removebg.png";
 import logoMobile from "../assets/images/logo favicon.png";
-import AuthContext from "../context/authContext";
 import UserContext from "../context/userContext";
 // import type { UserTypeContext } from "../context/userContext";
 
 function Navbar() {
-  const { setUser } = useContext(UserContext);
-  const { auth, setAuth } = useContext(AuthContext);
-  const handleLogout = () => {
-    // Supprimer cookie "authToken"
-    document.cookie =
-      "authToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
-
-    // Déconnexion en mettant auth à null
-    setAuth(null);
-    setUser(null);
-  };
-
   const { user } = useContext(UserContext);
 
   const [burger_class, setBurger_class] = useState("burger-bar unClicked");
@@ -47,6 +34,24 @@ function Navbar() {
     }
     setMenuClicked(!isMenuClicked);
   };
+
+  const handleLogout = async () => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/logout`,
+        {
+          method: "POST",
+          credentials: "include", // Indispensable pour les cookies httpOnly !
+        },
+      );
+
+      if (!response.ok) {
+        throw new Error("Erreur lors de la déconnexion");
+      }
+    } catch (error) {
+      console.error("Erreur de déconnexion :", error);
+    }
+  };
   return (
     <header id="navbarContainer">
       <Link to="/home">
@@ -67,7 +72,7 @@ function Navbar() {
             Create a request
           </Link>
 
-          <Link to="/login" className="navBarLinks">
+          <Link to="/" className="navBarLinks" onClick={handleLogout}>
             Logout
           </Link>
         </nav>
@@ -87,7 +92,7 @@ function Navbar() {
             <div className={burger_class} />
           </div>
           <Link to="/profile">
-            {auth && user && (
+            {user && (
               <img
                 src={
                   user.avatar

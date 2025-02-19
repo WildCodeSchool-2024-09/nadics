@@ -15,7 +15,7 @@ declare global {
       // Add your custom properties here, for example:
       //
       // user?: { ... }
-      auth: MyPayload;
+      user: MyPayload;
       /* ************************************************************************* */
     }
   }
