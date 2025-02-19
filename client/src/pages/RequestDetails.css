@@ -14,11 +14,9 @@
   margin: 0 auto;
   padding-bottom: 80px; /* Ajouter de l'espace en bas pour le bouton */
 }
-
 .request-detail-card {
   margin-bottom: 20px;
 }
-
 /* Conteneur pour le bouton */
 .button-container {
   display: flex;
@@ -27,46 +25,9 @@
   right: 20px;
   width: auto;
 }
-
-/* Style du bouton d'opinion */
-.home-button {
-  background-color: #000000;
-  border: 1px solid transparent;
-  display: inline-flex;
-  min-width: 1rem;
-  min-height: 3.875rem;
-  margin: 1rem 1rem;
-  padding: 1.25rem 1.5rem;
-  justify-content: center;
-  align-items: center;
-  gap: 0.625rem;
-  border-radius: 0.3125rem;
-  box-shadow: 0.625rem 0.625rem 0.875rem rgba(0, 0, 0, 0.25);
-  margin-bottom: 1.875rem;
-  color: #fff;
-  text-align: center;
-  font-size: 1.25rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #fff;
-    color: #000;
-    border: 1px solid #000;
-    transition: all 200ms ease-out;
-  }
-
-  &:active {
-    background-color: #000;
-    color: #fff;
-  }
-}
 #edit_save_bouton_cantainer {
   display: flex;
 }
-
 /* En-têtes des sections ec les tags */
 .mobile-header-tags,
 .request-id,
@@ -74,7 +35,6 @@
 .impact-sections {
   margin-bottom: 20px;
 }
-
 .details-container summary {
   display: flex;
   justify-content: left; /* Centrer le texte à l'intérieur du summary */
@@ -82,9 +42,8 @@
   position: relative;
   padding-left: 40px;
 }
-
 .details-container summary::before {
-  content: "▶";
+  /* content: ":flèche_avant:"; */
   font-size: 1rem;
   position: absolute;
   left: 0;
@@ -92,7 +51,6 @@
   transform: translateY(-50%);
   margin-left: 10px; /* Espacement entre le triangle et le texte */
 }
-
 /* Styles pour l'en-tête mobile avec les tags */
 .mobile-header-tags {
   display: flex; /* Utiliser flexbox pour l'alignement horizontal */
@@ -101,7 +59,6 @@
   gap: 20px; /* Espacement de 20px entre les tags */
   margin-bottom: 20px;
 }
-
 /* Styles pour les tags */
 .header-tags {
   display: flex;
@@ -110,7 +67,6 @@
   gap: 20px;
   margin-bottom: 20px;
 }
-
 .tag1,
 .tag2 {
   background-color: #4caf50;
@@ -120,7 +76,6 @@
   font-size: 14px;
   font-weight: bold;
 }
-
 .request-id {
   width: 100%;
   text-align: center;
@@ -128,7 +83,6 @@
   margin-bottom: 20px;
   font-weight: bold;
 }
-
 .details-and-table {
   display: flex;
   justify-content: space-between;
@@ -138,12 +92,10 @@
   flex-wrap: wrap;
   gap: 20px;
 }
-
 .details-container {
   flex: 1;
   margin-right: 20px;
 }
-
 details {
   margin-bottom: 15px;
   background-color: #fff;
@@ -151,50 +103,41 @@ details {
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-
 summary {
   font-weight: bold;
   cursor: pointer;
 }
-
 .group-button {
   display: flex;
 }
-
 @media (max-width: 768px) {
   .details-and-table {
     flex-direction: column;
   }
-
   .details-container {
     margin-right: 0;
     margin-bottom: 20px;
   }
-
   .mobile-tag1,
   .mobile-tag2 {
     font-size: 12px;
     padding: 8px 16px;
   }
-
   .request-details-container {
     padding-bottom: 60px;
   }
 }
 /* Fichier RequestDetails.css */
-
 /* Styles pour la version desktop */
 @media (min-width: 1025px) {
   .details-container {
     flex: 1;
     margin-right: 20px;
   }
-
   .details-and-table {
     display: flex;
     flex-direction: column;
   }
-
   .table-container {
     display: flex;
     justify-content: flex-start;

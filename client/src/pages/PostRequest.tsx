@@ -1,24 +1,19 @@
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-
-import { useContext, useState } from "react";
 import backgroundImage from "../assets/images/background.png";
 import EditorText from "../components/reuasble-ui/EditorText";
+import PrimaryButton from "../components/reuasble-ui/PrimaryButton";
 import UserContext from "../context/userContext";
-
 export default function PostRequest() {
   const { user } = useContext(UserContext);
   const [tempContent1, setTempContent1] = useState("");
   const [tempContent2, setTempContent2] = useState("");
   const [tempContent3, setTempContent3] = useState("");
-
   const navigate = useNavigate();
-
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
     const formData = new FormData(event.currentTarget);
-
     const requestData = {
       title: formData.get("title") as string,
       tag1: formData.get("tag1") as string,
@@ -28,7 +23,6 @@ export default function PostRequest() {
       details3: tempContent3,
       user_id: user ? user.id : null,
     };
-
     try {
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/api/request`,
@@ -54,7 +48,6 @@ export default function PostRequest() {
       alert("An error please try again");
     }
   };
-
   return (
     <PostRequestStyled onSubmit={handleSubmit}>
       <h1>Request creation</h1>
@@ -108,13 +101,10 @@ export default function PostRequest() {
           placeholder="Why to do it ."
         />
       </div>
-      <button type="submit" className="buttonSubmit">
-        Submit your request
-      </button>
+      <PrimaryButton type="submit" label="Submit your request" />
     </PostRequestStyled>
   );
 }
-
 const PostRequestStyled = styled.form`
   font-family: "Roboto", sans-serif;
   background: linear-gradient(
@@ -124,34 +114,29 @@ const PostRequestStyled = styled.form`
   background-size: cover;
   background-position: center;
   background-blend-mode: lighten;
- 
   .block{
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
 }
-
 .tag_select{
   display: flex;
   flex-direction: column;
-  align-items: flex-start; 
-  padding-left: 1rem; 
+  align-items: flex-start;
+  padding-left: 1rem;
 }
-
 h1{
   display: flex;
   justify-content: center;
   margin-top:1rem;
   margin-bottom:1rem;
 }
-
 hr {
-  width: 75%; 
-  margin: auto; 
-  border: 1px solid #000; 
+  width: 75%;
+  margin: auto;
+  border: 1px solid #000;
 }
-
 #tag_choix{
 display:flex;
  flex-direction: column;
@@ -164,7 +149,6 @@ width:10rem;
 height:2rem;
 background-color:#fff
 }
-
 label{
   color: #000;
   font-size: 24px;
@@ -172,12 +156,11 @@ label{
   font-weight: 700;
   line-height: normal;
 }
-
 input {
-  width: 360px; 
+  width: 360px;
   height: 64px;
   border-radius: 10px;
-  fill: #f5f5f5;
+  fill: #F5F5F5;
   filter: drop-shadow(10px 10px 14px rgba(0, 0, 0, 0.25));
   font-size: 1.2rem;
   margin-bottom: 1rem;
@@ -185,54 +168,18 @@ input {
   padding:1rem;
   font-weight: 400;
 }
-
 form {
   display: flex;
   justify-content: left;
   flex-direction: column;
   border-radius: 10px;
 }
-
-.buttonSubmit {
-  background-color: #000000;
-  border: 1px solid transparent;
-  display: block;
-  min-width: 1rem;
-  min-height: 3.875rem; 
-  margin: 1rem auto;
-  padding: 1.25rem 1.5rem; 
-  gap: 0.625rem; 
-  border-radius: 0.3125rem; 
-  box-shadow: 0.625rem 0.625rem 0.875rem rgba(0, 0, 0, 0.25); 
-  margin-bottom: 1.875rem; 
-  color: #fff;
-  text-align: center;
-  font-size: 1.25rem; 
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  cursor: pointer;
-
-&:hover {
-  background-color: #fff;
-  color:#000;
-  border: 1px solid #000;
-  transition: all 200ms ease-out;
-}
-
-&:active {
-  background-color: #000;
-  color: #fff;
-}
-
-}
-
 p {
   margin-top: 2rem;
   margin-bottom: 2rem;
-  margin-left: auto; 
-  margin-right: auto; 
-  width: 80%; 
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
   color: #000;
   text-align: justify;
   font-size: 22px;
@@ -240,14 +187,11 @@ p {
   font-weight: 500;
   line-height: normal;
 }
-
 @media screen and (min-width: 431px) {
   width: 100vw;
-
   .tag_select{
     padding-left: 8rem;
   }
-
   .block{
   display: flex;
   justify-content: left;
@@ -256,9 +200,6 @@ p {
   margin-bottom: 2rem;
   padding-left:8rem;
   gap:1rem;
-
 }
-
 }
-
 `;
