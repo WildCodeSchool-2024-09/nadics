@@ -104,6 +104,70 @@
   align-items: center;
   margin-right: 10px; /* Espace entre la case et le texte */
 }
+
+.signupform label {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.signupform input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 4px; /* Small space between input and error message */
+}
+
+.signupform input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+/* Style for error messages */
+.error-message {
+  color: #dc3545;
+  font-size: 0.8rem;
+  margin-top: 4px;
+  padding-left: 4px;
+  text-align: left;
+  min-height: 20px; /* Fixed height to prevent layout shifts */
+}
+
+/* Add red border to inputs with errors */
+.signupform input.has-error {
+  border-color: #dc3545;
+  border-width: 1px;
+}
+
+/* Special styling for the checkbox container to keep it inline */
+.checkbox-container {
+  flex-direction: row !important;
+  align-items: center;
+  gap: 8px;
+}
+
+.checkbox-input {
+  width: auto !important;
+  margin: 0 !important;
+}
+
+/* Animation for error messages */
+.error-message {
+  opacity: 0;
+  transform: translateY(-5px);
+  animation: slideDown 0.2s ease forwards;
+}
+
+@keyframes slideDown {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (max-width: 414px) {
   .checkbox-container {
     margin-top: 30px; /* Déplace l'ensemble de la ligne (case à cocher et texte) un peu plus bas */
