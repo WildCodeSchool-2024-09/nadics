@@ -33,10 +33,44 @@ const login: RequestHandler = async (req, res, next) => {
           expiresIn: "1h",
         },
       );
-      res.json({ token });
+      res.cookie("token", token, {
+        httpOnly: true, // Empêche l'accès depuis JavaScript
+        secure: process.env.NODE_ENV === "production", // Active HTTPS en prod
+        sameSite: "strict", // Protège contre les attaques CSRF
+        maxAge: 3600000, // Expiration dans 1h
+      });
+      res.sendStatus(200);
     } else {
       res.sendStatus(422);
     }
+  } catch (err) {
+    next(err);
+  }
+};
+
+const me: RequestHandler = (req, res) => {
+  const token = req.cookies.token;
+  // Récupère le cookie contenant le token
+  if (!token) {
+    res.status(401).json({ message: "Non authentifié" });
+  }
+
+  try {
+    const user = jwt.verify(token, process.env.APP_SECRET as string);
+    res.json(user); // Renvoie les infos de l'utilisateur
+  } catch (error) {
+    res.status(401).json({ message: "Token invalide" });
+  }
+};
+
+const logout: RequestHandler = async (req, res, next) => {
+  try {
+    res.clearCookie("token", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+    });
+    res.status(200).json({ message: "Deconnected" });
   } catch (err) {
     next(err);
   }
@@ -65,28 +99,19 @@ const hashPassword: RequestHandler = async (req, res, next) => {
 };
 
 const verifyToken: RequestHandler = (req, res, next) => {
+  const token = req.cookies.token;
+  if (!token) {
+    res.status(401).json({ message: "You are not alloweds" });
+  }
   try {
-    // Vérifier la présence de l'en-tête "Authorization" dans la requête
-    const authorizationHeader = req.headers.authorization;
-    if (authorizationHeader == null) {
-      throw new Error("Authorization header is missing");
-    }
-
-    // Vérifier que l'en-tête a la forme "Bearer <token>"
-    const [type, token] = authorizationHeader.split(" ");
-
-    if (type !== "Bearer") {
-      throw new Error("Authorization header has not the 'Bearer' type");
-    }
-
     // Vérifier la validité du token (son authenticité et sa date d'expériation)
     // En cas de succès, le payload est extrait et décodé
-    const decodedToken = jwt.verify(
+    const user = jwt.verify(
       token,
       process.env.APP_SECRET as string,
     ) as MyPayload;
 
-    req.auth = decodedToken; // Attacher l'utilisateur à la requête
+    req.user = user; // Attacher l'utilisateur à la requête
     next();
   } catch (err) {
     console.error(err);
@@ -94,4 +119,4 @@ const verifyToken: RequestHandler = (req, res, next) => {
   }
 };
 
-export default { login, hashPassword, verifyToken };
+export default { login, hashPassword, verifyToken, logout, me };

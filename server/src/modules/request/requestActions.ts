@@ -93,7 +93,7 @@ const destroy: RequestHandler = async (req, res, next) => {
 const isPoster: RequestHandler = async (req, res, next) => {
   try {
     const requestId = Number(req.params.id);
-    const userId = Number(req.auth.id);
+    const userId = Number(req.user.id);
     const request = await requestRepository.read(requestId);
     if (request.user_id !== userId) {
       res

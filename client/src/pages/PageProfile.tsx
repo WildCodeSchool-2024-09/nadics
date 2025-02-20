@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import Profile from "../components/ProfileComponent";
-import AuthContext from "../context/authContext";
+import UserContext from "../context/userContext";
 function ProfilePage() {
-  const { auth } = useContext(AuthContext);
-  return <>{auth ? <Profile /> : <h2>You are not connected</h2>}</>;
+  const { user } = useContext(UserContext);
+  return <>{user ? <Profile /> : <h2>You are not connected</h2>}</>;
 }
 export default ProfilePage;

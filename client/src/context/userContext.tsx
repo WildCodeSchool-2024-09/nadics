@@ -1,13 +1,5 @@
-import { jwtDecode } from "jwt-decode";
 import { createContext, useEffect, useState } from "react";
 
-export type UserConnectedType = {
-  id: number;
-  firstname: string;
-  lastname: string;
-  birthday: string;
-  avatar: string;
-};
 export type UserType = {
   id: number;
   firstname: string;
@@ -28,37 +20,41 @@ const defaultValue: UserTypeContext = {
 
 const UserContext = createContext<UserTypeContext>(defaultValue); // creation de context
 
-const getCookie = (name: string) => {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop()?.split(";").shift();
-};
-
 export const UserProvider = ({
   // creation de provider pour passer context
   children,
 }: { children: React.ReactNode }) => {
-  const [userConnected, setUserConnected] = useState<UserConnectedType | null>(
-    null,
-  );
   const [user, setUser] = useState<UserType | null>(null);
+  const [userConnected, setUserConnected] = useState<UserType | null>(null);
 
   useEffect(() => {
-    const authToken = getCookie("authToken");
-    if (authToken) {
-      const decodedToken = jwtDecode<UserConnectedType>(authToken);
-      // Extraire les informations nécessaires
-      setUserConnected(decodedToken);
-    }
+    const checkAuth = async () => {
+      try {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/me`, {
+          method: "GET",
+          credentials: "include",
+        });
+        if (response.status === 200) {
+          const data = await response.json();
+          setUserConnected(data);
+        } else {
+          setUserConnected(null);
+        }
+      } catch (err) {
+        setUserConnected(null);
+      }
+    };
+    checkAuth();
   }, []);
 
   useEffect(() => {
-    if (!userConnected) return; // Vérifie si user est null avant d'exécuter le fetch
-
+    if (!userConnected) return;
     fetch(`${import.meta.env.VITE_API_URL}/api/users/${userConnected.id}`)
       .then((response) => response.json())
-      .then((data) => setUser(data))
-      .catch((error) => console.error("Error of the fetch :", error));
+      .then((data) => {
+        setUser(data);
+      })
+      .catch((error) => console.error("Error while fetching :", error));
   }, [userConnected]);
 
   return (

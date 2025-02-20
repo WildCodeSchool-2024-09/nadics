@@ -1,18 +1,13 @@
 import { Link, useNavigate } from "react-router-dom";
-
 import "./LoginComponent.css";
-import Cookies from "js-cookie";
-import { useContext, useRef } from "react";
+import { useRef } from "react";
 import type { FormEventHandler } from "react";
 import logoDesktop from "../assets/images/logo-removebg.png";
-import AuthContext from "../context/authContext";
-
+import PrimaryButton from "./reuasble-ui/PrimaryButton";
 function LoginComponent() {
   const navigate = useNavigate();
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
-  const { setAuth } = useContext(AuthContext);
-
   const handleSubmit: FormEventHandler = async (
     event: React.FormEvent<HTMLFormElement>,
   ) => {
@@ -22,7 +17,8 @@ function LoginComponent() {
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/api/login`,
         {
-          method: "post",
+          method: "POST",
+          credentials: "include",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             email:
@@ -34,17 +30,8 @@ function LoginComponent() {
           }),
         },
       );
-
       // Redirection vers la page de connexion si la création réussit
       if (response.status === 200) {
-        const data = await response.json();
-        const token = data.token;
-        Cookies.set("authToken", token, {
-          expires: 7,
-          secure: true,
-          sameSite: "Strict",
-        });
-        setAuth(token);
         navigate("/home");
         window.location.reload();
       } else {
@@ -63,7 +50,6 @@ function LoginComponent() {
           <img src={logoDesktop} alt="logo" id="logoImageDesktop_login" />
         </Link>
       </div>
-
       <section className="display">
         <h2 id="loginsubtitle1">Login</h2>
       </section>
@@ -94,9 +80,7 @@ function LoginComponent() {
           </label>
         </section>
         <section className="display">
-          <button id="submitbutton" type="submit">
-            Submit
-          </button>
+          <PrimaryButton id="submitbutton" type="submit" label="Submit" />
         </section>
       </form>
       <section className="display">
@@ -112,5 +96,4 @@ function LoginComponent() {
     </section>
   );
 }
-
 export default LoginComponent;
