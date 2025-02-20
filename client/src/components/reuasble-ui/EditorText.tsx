@@ -20,7 +20,7 @@ export default function EditorText({
   );
 }
 const EditorTextStyled = styled.div`
-  width: 80vw;
+  width: 60vw;
   height: auto;
   min-height: 150px;
   background: #FFF;
@@ -34,7 +34,7 @@ const EditorTextStyled = styled.div`
 .ql-container {
   min-height: 200px;
   background: #FFF;
-  width: 80vw;
+  width: 60vw;
 }
 .ql-editor.ql-blank::before {
   font-size: 1.2rem;

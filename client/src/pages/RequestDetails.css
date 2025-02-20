@@ -44,6 +44,7 @@
 #edit_save_bouton_cantainer {
   display: flex;
   align-items: center;
+  gap: 1rem;
 }
 /* En-têtes des sections ec les tags */
 .mobile-header-tags,
@@ -116,7 +117,7 @@
 details {
   margin-bottom: 15px;
   background-color: #fff;
-  padding: 30px;
+  padding: 10px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -134,6 +135,7 @@ summary {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 1rem;
   }
   .details-and-table {
     flex-direction: column;
