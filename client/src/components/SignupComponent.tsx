@@ -34,6 +34,7 @@ function SignupComponent() {
           body: JSON.stringify(userData),
         },
       );
+
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message || "Failed to create user");
