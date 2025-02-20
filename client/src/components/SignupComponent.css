@@ -3,7 +3,8 @@
   flex-direction: column;
   align-content: center;
   align-items: center;
-  height: 100vh;
+  /* height: 100vh; */
+  min-height: calc(100vh - 80px);
   background: linear-gradient(
       rgba(255, 255, 255, 0.5) /* Couleur blanche avec une opacité de 50% */,
       rgba(255, 255, 255, 0.5)
@@ -75,7 +76,7 @@
   display: flex;
   width: 163px;
   height: 48px;
-  margin: 2rem;
+  margin: 1rem;
   font-size: 1.1rem;
   justify-content: center;
   align-items: center;
@@ -165,11 +166,5 @@
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-@media (max-width: 414px) {
-  .checkbox-container {
-    margin-top: 30px; /* Déplace l'ensemble de la ligne (case à cocher et texte) un peu plus bas */
   }
 }
