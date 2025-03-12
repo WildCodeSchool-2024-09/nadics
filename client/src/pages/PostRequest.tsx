@@ -58,22 +58,31 @@ export default function PostRequest() {
       <hr />
       <div id="tag_choix">
         <div className="tag_select">
-          <label htmlFor="choix">Select primary tag (required):</label>
+          <label htmlFor="choix">Select a primary tag (required):</label>
           <select id="choix" name="tag1">
-            <option value="Sport">Sport</option>
-            <option value="Eat">Eat</option>
-            <option value="Drink">Drink</option>
-            <option value="Sex">Sex</option>
+            <option value="" disabled selected>
+              Select a category
+            </option>
+            <option value="Environment">Environment</option>
+            <option value="Projects">Projects</option>
+            <option value="Transportation">Transportation</option>
+            <option value="Improvements">Improvements</option>
+            <option value="Issues">Issues</option>
+            <option value="Security">Security</option>
           </select>
         </div>
         <div className="tag_select">
-          <label htmlFor="choix">Select second tag (not required):</label>
+          <label htmlFor="choix">Select a secondary tag (optional):</label>
           <select id="choix" name="tag2">
-            <option value="Sport">---</option>
-            <option value="Sport">Sport</option>
-            <option value="Eat">Eat</option>
-            <option value="Drink">Drink</option>
-            <option value="Sex">Sex</option>
+            <option value="" disabled selected>
+              Select a category
+            </option>
+            <option value="Environment">Environment</option>
+            <option value="Projects">Projects</option>
+            <option value="Transportation">Transportation</option>
+            <option value="Improvements">Improvements</option>
+            <option value="Issues">Issues</option>
+            <option value="Security">Security</option>
           </select>
         </div>
       </div>

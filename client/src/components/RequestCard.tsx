@@ -34,9 +34,7 @@ function RequestCard(): JSX.Element {
             <div className="card" key={request.id}>
               <div className="tags">
                 {request.tag1 && <span className="tag-1">{request.tag1}</span>}
-                {request.tag2 && request.tag2 !== "---" && (
-                  <span className="tag-2">{request.tag2}</span>
-                )}
+                {request.tag2 && <span className="tag-2">{request.tag2}</span>}
               </div>
               <h2 className="title-card">{request.title}</h2>
               {request.details && <p>{request.details}</p>}

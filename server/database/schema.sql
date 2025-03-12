@@ -56,17 +56,17 @@ values
   ("admin"),
   ("visiteur");
 
-insert into user(firstname, lastname,birthday, email, hashed_password, role_id)
-values
-  ("Toto", "Tutu", "1994-02-05" , "toto.tutu@mail.com", "123456", 1),
-  ("Tata", "Titi", "2000.01.02","tata.titi@mail.com", "78910", 2);
+-- insert into user(firstname, lastname,birthday, email, hashed_password, role_id)
+-- values
+--   ("Toto", "Tutu", "1994-02-05" , "toto.tutu@mail.com", "123456", 1),
+--   ("Tata", "Titi", "2000.01.02","tata.titi@mail.com", "78910", 2);
 
-insert into request(`date`,title, tag1, details1, user_id)
-values 
-  ("1994.12.24","titre1", "Sport", "bcp de details1", 1),
-  ("1994.11.24","titre2", "Tech", "bcp de details2", 2);
+-- insert into request(`date`,title, tag1, details1, user_id)
+-- values 
+--   ("1994.12.24","titre1", "Sport", "bcp de details1", 1),
+--   ("1994.11.24","titre2", "Tech", "bcp de details2", 2);
 
-insert into comment(details, `date`, user_id, request_id)
-values 
-  ("jesuispasdaccord", NOW(), 1, 1),
-  ("jesuisdaccord", NOW(), 2, 2);
+-- insert into comment(details, `date`, user_id, request_id)
+-- values 
+--   ("jesuispasdaccord", NOW(), 1, 1),
+--   ("jesuisdaccord", NOW(), 2, 2);

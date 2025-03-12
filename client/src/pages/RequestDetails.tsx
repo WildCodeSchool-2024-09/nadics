@@ -94,17 +94,22 @@ function RequestDetails() {
           <div className="mobile-header-tags">
             {isEditing ? (
               <div className="tag_select">
-                <label htmlFor="choix">Select primary tag (required):</label>
+                <label htmlFor="choix">Select a primary tag (required): </label>
                 <select
                   id="choix"
                   name="tag1"
                   value={editedRequest.tag1 || ""}
                   onChange={handleInputChange}
                 >
-                  <option value="Sport">Sport</option>
-                  <option value="Eat">Eat</option>
-                  <option value="Drink">Drink</option>
-                  <option value="Sex">Sex</option>
+                  <option value="" disabled selected>
+                    Select a category
+                  </option>
+                  <option value="Environment">Environment</option>
+                  <option value="Projects">Projects</option>
+                  <option value="Transportation">Transportation</option>
+                  <option value="Improvements">Improvements</option>
+                  <option value="Issues">Issues</option>
+                  <option value="Security">Security</option>
                 </select>
               </div>
             ) : (
@@ -112,17 +117,24 @@ function RequestDetails() {
             )}
             {isEditing ? (
               <div className="tag_select">
-                <label htmlFor="choix">Select primary tag (required):</label>
+                <label htmlFor="choix">
+                  Select a secondary tag (optional):
+                </label>
                 <select
                   id="choix"
                   name="tag2"
                   value={editedRequest.tag2 || ""}
                   onChange={handleInputChange}
                 >
-                  <option value="Sport">Sport</option>
-                  <option value="Eat">Eat</option>
-                  <option value="Drink">Drink</option>
-                  <option value="Sex">Sex</option>
+                  <option value="" disabled selected>
+                    Select a category
+                  </option>
+                  <option value="Environment">Environment</option>
+                  <option value="Projects">Projects</option>
+                  <option value="Transportation">Transportation</option>
+                  <option value="Improvements">Improvements</option>
+                  <option value="Issues">Issues</option>
+                  <option value="Security">Security</option>
                 </select>
               </div>
             ) : (
