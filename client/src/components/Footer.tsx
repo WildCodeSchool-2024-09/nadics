@@ -1,46 +1,85 @@
-import "./Footer.css";
+import styled from "styled-components";
 import facebook from "../assets/images/logo-Facebook.svg";
 import instagram from "../assets/images/logo-Instagram.svg";
 import x from "../assets/images/logo-X.svg";
 
 function Footer() {
   return (
-    <div className="footer-container">
-      <div className="footer-text">
-        <p>All rights reserved ©</p>
-      </div>
-      <div>
-        <div className="footer-logos">
-          <a
-            href="https://www.instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            //(noopener) améliore la sécurité en empêchant un nouvel onglet d'accéder à la page d'origine
-            //(noreferrer) protège la confidentialité en masquant l'URL de référence
-            aria-label="Instagram"
-          >
-            <img src={instagram} alt="logo-instagram" className="footer-logo" />
-          </a>
-          <a
-            href="https://www.x.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="X"
-          >
-            <img src={x} alt="logo-x" className="footer-logo" />
-          </a>
-          <a
-            href="https://www.facebook.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Facebook"
-          >
-            <img src={facebook} alt="logo-facebook" className="footer-logo" />
-          </a>
-        </div>
-      </div>
-    </div>
+    <FooterContainer>
+      <FooterText>All rights reserved ©</FooterText>
+      <FooterLogos aria-label="Réseaux sociaux">
+        <a
+          href="https://www.instagram.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram"
+        >
+          <FooterLogo src={instagram} alt="logo-instagram" />
+        </a>
+        <a
+          href="https://www.x.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="X"
+        >
+          <FooterLogo src={x} alt="logo-x" />
+        </a>
+        <a
+          href="https://www.facebook.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Facebook"
+        >
+          <FooterLogo src={facebook} alt="logo-facebook" />
+        </a>
+      </FooterLogos>
+    </FooterContainer>
   );
 }
+
+const FooterContainer = styled.footer`
+  display: flex;
+  padding-bottom: 1rem;
+  padding-top: 0.5rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: auto; /* Cette ligne garantit que le footer reste en bas */
+
+  @media (min-width: 431px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+`;
+
+const FooterText = styled.p`
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  font-style: normal;
+  margin: 0;
+
+  @media (min-width: 431px) {
+    text-align: left;
+    margin-left: 1rem;
+  }
+`;
+
+const FooterLogos = styled.nav`
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+
+  @media (min-width: 431px) {
+    justify-content: flex-end;
+    margin-right: 1rem;
+  }
+`;
+
+const FooterLogo = styled.img`
+  width: 2.3rem;
+`;
 
 export default Footer;

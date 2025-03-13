@@ -1,4 +1,4 @@
-.footer-container {
+/* .footer-container {
   display: flex;
   padding-bottom: 1rem;
   padding-top: 0.5rem;
@@ -6,7 +6,7 @@
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  margin-top: auto; /* Cette ligne garantit que le footer reste en bas */
+  margin-top: auto;
 }
 
 .footer-text {
@@ -25,7 +25,8 @@
 .footer-logo {
   width: 2.3rem;
 }
-/* Media Query pour la version mobile */
+
+
 @media (min-width: 431px) {
   .footer-container {
     flex-direction: row;
@@ -42,4 +43,4 @@
     justify-content: flex-end;
     margin-right: 1rem;
   }
-}
+} */
