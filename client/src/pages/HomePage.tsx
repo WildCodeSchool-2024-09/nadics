@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./HomePage.css";
 import RequestCard from "../components/RequestCard";
 import "./HomePage.css";
@@ -7,7 +7,6 @@ import PrimaryButton from "../components/reuasble-ui/PrimaryButton";
 import UserContext from "../context/userContext";
 function HomePage() {
   const { user } = useContext(UserContext);
-  const { id } = useParams();
   return (
     <>
       {user ? (
@@ -19,9 +18,9 @@ function HomePage() {
             <section id="ongoing-requests">
               <h3>Ongoing Requests</h3>
               <div className="cards-container">
-                <Link to={`/request-details/${id}`} className="grid-card">
+                <div className="grid-card">
                   <RequestCard />
-                </Link>
+                </div>
               </div>
             </section>
           </main>

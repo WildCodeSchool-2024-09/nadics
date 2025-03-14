@@ -69,12 +69,8 @@ const router = createBrowserRouter([
         element: <PasswordRecovery />,
       },
       {
-        path: "request-details/:id", // Utilisez cette route pour afficher les détails de la demande
+        path: "request-details/:id",
         element: <RequestDetails />,
-      },
-      {
-        path: "/users/:id/edit",
-        element: <ProfileEditComponent />,
       },
       {
         path: "post_request",
@@ -83,6 +79,10 @@ const router = createBrowserRouter([
       {
         path: "profile",
         element: <ProfilePage />,
+      },
+      {
+        path: "/users/:id/edit",
+        element: <ProfileEditComponent />,
       },
       {
         path: "comments",
