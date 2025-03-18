@@ -10,9 +10,9 @@ import defaultAvatar from "../assets/images/avatar.jpg";
 import DeleteRequest from "../components/RequestDelete";
 import RequestEdit from "../components/RequestEdit";
 import EditorText from "../components/reuasble-ui/EditorText";
+import PrimaryButton from "../components/reuasble-ui/PrimaryButton";
 import UserContext from "../context/userContext";
 import type { UserTypeContext } from "../context/userContext";
-
 export interface CommentType {
   id: number;
   date: string;
@@ -23,7 +23,6 @@ export interface CommentType {
   lastname: string;
   avatar: string;
 }
-
 export interface RequestUser {
   id: number;
   title: string;
@@ -38,7 +37,6 @@ export interface RequestUser {
   lastname: string;
   avatar: string;
 }
-
 function RequestDetails() {
   const { user } = useContext<UserTypeContext>(UserContext);
   const { id } = useParams<string>();
@@ -49,7 +47,6 @@ function RequestDetails() {
   const [editedComment, setEditedComment] = useState<Partial<CommentType>>({});
   const [isEditing, setIsEditing] = useState<boolean>(false); //etat pour modifier request
   const [isEditingComment, setIsEditingComment] = useState<boolean>(false); //etat pour modifier comment
-
   useEffect(() => {
     if (!id) return; // Vérifie si user est null avant d'exécuter le fetch
     const requestId = Number(id);
@@ -61,32 +58,26 @@ function RequestDetails() {
       })
       .catch((error) => console.error("Error while fetching :", error));
   }, [id]);
-
   useEffect(() => {
     if (!user) return; // Vérifie si user est null avant d'exécuter le fetch
     if (!request) return;
-
     fetch(`${import.meta.env.VITE_API_URL}/api/comments/request/${request.id}`)
       .then((response) => response.json())
       .then((data) => setComments(data))
       .catch((error) => console.error("Error while fetching :", error));
   }, [user, request]);
-
   const handleInputChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
     const { name, value } = event.target;
     setEditedRequest((prev) => ({ ...prev, [name]: value }));
   };
-
   const handleEditorChange = (name: string, value: string) => {
     setEditedRequest((prev) => ({ ...prev, [name]: value }));
   };
-
   const handleInputChangeComment = (value: string) => {
     setEditedComment((prev) => ({ ...prev, details: value }));
   };
-
   return (
     <>
       {request && (
@@ -139,7 +130,6 @@ function RequestDetails() {
               <span className="mobile-tag1">{request.tag2}</span>
             )}
           </div>
-
           <div id="user_info">
             <img
               src={
@@ -244,16 +234,13 @@ function RequestDetails() {
                 </div>
               )}
             </div>
-
             <div className="right-details">
               <div className="button-container">
-                <button
+                <PrimaryButton
                   type="button"
-                  className="home-button"
                   onClick={() => setIsModalOpen(true)}
-                >
-                  Give my opinion
-                </button>
+                  label="Give my opinion"
+                />
               </div>
               <RequestDetailCard requestId={request.id} />
             </div>
@@ -274,5 +261,4 @@ function RequestDetails() {
     </>
   );
 }
-
 export default RequestDetails;

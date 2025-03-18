@@ -11,11 +11,11 @@ CREATE TABLE `user` (
     avatar VARCHAR(255),
     email VARCHAR(50) NOT NULL UNIQUE,
     hashed_password VARCHAR(255) NOT NULL,
-    role_id INT DEFAULT 2,     
-    CONSTRAINT fk_user_role  
+    role_id INT DEFAULT 2,
+    CONSTRAINT fk_user_role
 	      FOREIGN KEY (role_id) 
         REFERENCES role(id)
-        ON DELETE SET NULL 
+        ON DELETE SET NULL
 );
 
 CREATE TABLE request (

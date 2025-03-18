@@ -1,4 +1,5 @@
 import type { RequestUser } from "../pages/RequestDetails";
+import "../pages/RequestDetails.css";
 
 interface EditProps {
   request: RequestUser;

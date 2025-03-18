@@ -1,36 +1,32 @@
 import { useContext, useState } from "react";
 import "react-quill/dist/quill.snow.css";
 import "./CommentAdd.css";
+import ReactQuill from "react-quill";
 import UserContext from "../context/userContext";
-import EditorText from "./reuasble-ui/EditorText";
+// import EditorText from "./reuasble-ui/EditorText";
+import PrimaryButton from "./reuasble-ui/PrimaryButton";
 interface ComponentAddProps {
   onClose: () => void;
   requestId: number | null;
 }
-
 function ComponentAdd({ onClose, requestId }: ComponentAddProps) {
   const [editorContent, setEditorContent] = useState("");
   const [tempContent, setTempContent] = useState("");
   const handleSave = () => {
     setEditorContent(tempContent);
   };
-
   const handleCancel = () => {
     setTempContent(editorContent);
   };
   const { user } = useContext(UserContext);
-
   // Fonction pour récupérer uniquement le texte sans balises HTML
-
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
     const commentData = {
       details: tempContent,
       user_id: user ? user.id : null,
       request_id: requestId,
     };
-
     try {
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/api/comments/`,
@@ -56,20 +52,20 @@ function ComponentAdd({ onClose, requestId }: ComponentAddProps) {
       alert("An error occurred, please try again");
     }
   };
-
   return (
     <div className="modal-overlay">
-      <div className="modal-content">
+      <div className="modal-form">
         <form className="opinion-form" onSubmit={handleSubmit}>
           <div className="editor-section">
             <label htmlFor="editor">Your opinion:</label>
-            <EditorText
+            {/* <EditorText
               value={tempContent}
               onChange={setTempContent}
               placeholder="Write your comment here ..."
-            />
-          </div>
+            /> */}
 
+            <ReactQuill value={tempContent} onChange={setTempContent} />
+          </div>
           <div className="modal-buttons">
             <button type="submit" className="save-button" onClick={handleSave}>
               Save
@@ -82,13 +78,15 @@ function ComponentAdd({ onClose, requestId }: ComponentAddProps) {
               Delete my comment
             </button>
           </div>
-          <button type="button" className="exit-button" onClick={onClose}>
-            Exit
-          </button>
+          <PrimaryButton
+            className="button-exit"
+            type="button"
+            onClick={onClose}
+            label="Exit"
+          />
         </form>
       </div>
     </div>
   );
 }
-
 export default ComponentAdd;

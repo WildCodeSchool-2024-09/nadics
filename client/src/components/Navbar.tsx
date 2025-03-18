@@ -48,9 +48,6 @@ function Navbar() {
       if (!response.ok) {
         throw new Error("Erreur lors de la déconnexion");
       }
-
-      // Redirection après logout (ex: vers la page de connexion)
-      window.location.href = "/login";
     } catch (error) {
       console.error("Erreur de déconnexion :", error);
     }
@@ -75,7 +72,7 @@ function Navbar() {
             Create a request
           </Link>
 
-          <Link to="/login" className="navBarLinks" onClick={handleLogout}>
+          <Link to="/" className="navBarLinks" onClick={handleLogout}>
             Logout
           </Link>
         </nav>
