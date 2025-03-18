@@ -124,52 +124,6 @@ td {
 }
 
 /* Ajout du display flex pour right-detail et details-and-table */
-.right-detail {
-  display: flex;
-}
-
-.details-and-table {
-  display: flex;
-}
-
-.details-wrapper {
-  display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
-  width: 100%;
-  gap: 20px;
-}
-
-.details-and-table {
-  flex: 1;
-}
-
-.right-details {
-  flex: 0.4;
-  display: flex;
-  flex-direction: column-reverse;
-  align-items: center;
-}
-
-#user_info {
-  display: flex;
-  width: inherit;
-  gap: 20px;
-  margin: 20px 0;
-}
-
-.name_user {
-  display: flex;
-  align-items: center;
-  font-size: 1.2rem;
-}
-
-summary {
-  display: flex;
-  justify-content: left;
-  gap: 10px;
-  padding-left: 40px;
-}
 
 /* Médiation pour les écrans plus petits */
 @media (max-width: 768px) {
