@@ -1,22 +1,30 @@
 import { useEffect, useState } from "react";
 import "./RequestDetailCard.css";
-import type { UserType } from "../context/userContext";
 
 interface PropsType {
-  impacted_personId: number;
+  requestId: number;
+}
+interface Impacted_personType {
+  id: number;
+  firstname: string;
+  lasttname: string;
+  avatar: string;
 }
 
-function RequestDetailCard({ impacted_personId }: PropsType) {
-  const [impactedPerson, setImpactedPerson] = useState<UserType | null>(null);
+function RequestDetailCard({ requestId }: PropsType) {
+  const [impactedPersons, setImpactedPersons] = useState<
+    Impacted_personType[] | null
+  >([]);
+
   useEffect(() => {
-    if (!impacted_personId) return;
-    fetch(`${import.meta.env.VITE_API_URL}/api/users/${impacted_personId}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setImpactedPerson(data);
-      })
-      .catch((error) => console.error("Error while fetching :", error));
-  }, [impacted_personId]);
+    if (requestId)
+      fetch(`${import.meta.env.VITE_API_URL}/api/impacted_person/${requestId}`)
+        .then((response) => response.json())
+        .then((data) => {
+          setImpactedPersons(data);
+        })
+        .catch((error) => console.error("Error while fetching :", error));
+  }, [requestId]);
 
   return (
     <div className="request-detail-card">
@@ -70,7 +78,26 @@ function RequestDetailCard({ impacted_personId }: PropsType) {
           </tbody> */}
         </table>
       </div>
+
       <div className="impact-sections">
+        <div>
+          <h2>Impacted Person</h2>
+          <div className="impact-person">
+            {impactedPersons?.map((impactedPerson) => (
+              <div key={impactedPerson.id}>
+                <div className="avatar">
+                  {" "}
+                  <img
+                    className="avatar"
+                    src={`${import.meta.env.VITE_API_URL}/${impactedPerson.avatar}`}
+                    alt=""
+                  />
+                </div>
+                <p className="user-name">{impactedPerson.firstname}</p>
+              </div>
+            ))}
+          </div>
+        </div>
         <div className="impact-person">
           <h2>Impacting Person</h2>
           <div className="impact-person">
@@ -78,25 +105,11 @@ function RequestDetailCard({ impacted_personId }: PropsType) {
               {" "}
               <img
                 className="avatar"
-                src={`${import.meta.env.VITE_API_URL}/${impactedPerson?.avatar}`}
+                src={`${import.meta.env.VITE_API_URL}/}`}
                 alt=""
               />
             </div>
-            <p>{impactedPerson?.firstname}</p>
-          </div>
-        </div>
-        <div className="impact-person">
-          <h2>Impacted Person</h2>
-          <div className="impact-person">
-            <div className="avatar">
-              {" "}
-              <img
-                className="avatar"
-                src={`${import.meta.env.VITE_API_URL}/${impactedPerson?.avatar}`}
-                alt=""
-              />
-            </div>
-            <p>{impactedPerson?.firstname}</p>
+            <p>t</p>
           </div>
         </div>
       </div>

@@ -255,7 +255,7 @@ function RequestDetails() {
                   Give my opinion
                 </button>
               </div>
-              <RequestDetailCard impacted_personId={request.impacted_person} />
+              <RequestDetailCard requestId={request.id} />
             </div>
           </div>
           {isModalOpen && (

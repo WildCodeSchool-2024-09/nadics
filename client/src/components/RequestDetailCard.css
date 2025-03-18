@@ -1,91 +1,6 @@
 * {
   font-family: "Roboto", sans-serif;
 }
-
-/* Styles pour l'en-tête mobile avec les tags */
-.mobile-header-tags {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
-  width: 100%; /* Modification ici pour rendre la largeur flexible */
-  flex-wrap: wrap; /* Permet à l'en-tête de s'ajuster en fonction de l'écran */
-}
-
-.mobile-tag1 {
-  background-color: #87e522;
-  color: rgb(22, 21, 21);
-  width: 145px;
-  height: 44px;
-  padding: 4px 12px;
-  flex-shrink: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 12px;
-  max-width: 100%; /* Permet à chaque tag de s'ajuster à la largeur disponible */
-  box-sizing: border-box;
-  /* Correction de la valeur manquante dans la hauteur, à ajuster sur mobile */
-}
-.mobile-tag2 {
-  background-color: #f590da;
-  color: rgb(22, 21, 21);
-  width: 145px;
-  height: 44px;
-  padding: 4px 12px;
-  flex-shrink: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 12px;
-  max-width: 100%; /* Permet à chaque tag de s'ajuster à la largeur disponible */
-  box-sizing: border-box;
-  /* Correction de la valeur manquante dans la hauteur, à ajuster sur mobile */
-}
-/* Container principal */
-.request-id {
-  width: 100%;
-  text-align: center;
-  font-size: 1.2rem;
-  margin-bottom: 20px;
-  font-weight: bold;
-}
-
-.request-details-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px;
-  box-sizing: border-box;
-  width: 100%;
-}
-
-.details-container {
-  width: 100%;
-  text-align: left;
-}
-
-.details-container summary {
-  display: flex;
-  justify-content: left;
-  width: 100%;
-  padding-left: 40px;
-  padding-bottom: 10px;
-  text-align: initial;
-  padding-top: 13px;
-}
-
-.details-container summary::before {
-  content: "▶";
-  font-size: 1rem;
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  margin-left: 10px;
-}
-
 /* Styling pour RequestDetailCard */
 .request-detail-card {
   display: flex;
@@ -168,9 +83,9 @@ td {
   text-align: center;
   align-items: center;
 }
-.impacted-person {
-  display: flex;
-  flex-direction: column;
+.impact-person {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
   width: 100%;
   max-width: 500px;
@@ -178,48 +93,6 @@ td {
   padding: 20px;
   border-radius: 10px;
   margin-bottom: 25px;
-}
-/* Style du bouton d'opinion */
-.home-button {
-  background-color: #000000;
-  border: 1px solid transparent;
-  display: inline-flex;
-  min-width: 1rem;
-  min-height: 3.875rem;
-  margin: 1rem 1rem;
-  padding: 1.25rem 1.5rem;
-  justify-content: center;
-  align-items: center;
-  gap: 0.625rem;
-  border-radius: 0.3125rem;
-  box-shadow: 0.625rem 0.625rem 0.875rem rgba(0, 0, 0, 0.25);
-  margin-bottom: 1.875rem;
-  color: #fff;
-  text-align: center;
-  font-size: 1.25rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #fff;
-    color: #000;
-    border: 1px solid #000;
-    transition: all 200ms ease-out;
-  }
-
-  &:active {
-    background-color: #000;
-    color: #fff;
-  }
-}
-/* Conteneur bouton */
-.button-container {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  margin-top: 20px;
 }
 
 /* Utilisateur info */
@@ -243,13 +116,6 @@ td {
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  margin-left: 53px;
-}
-div.avatar {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  margin-left: 53px;
 }
 .user-name {
   font-size: 1rem;

@@ -1,4 +1,5 @@
 import { type NextFunction, type RequestHandler, request } from "express";
+import impacted_personRepository from "./impacted_personRepository";
 import requestRepository from "./requestRepository";
 
 const browse: RequestHandler = async (req, res, next) => {
@@ -57,7 +58,6 @@ const edit: RequestHandler = async (req, res, next) => {
 // The A of BREAD - Add (Create) operation
 const add: RequestHandler = async (req, res, next) => {
   try {
-    console.info("body_request", req.body);
     const newRequest = {
       date: req.body.date,
       title: req.body.title,
@@ -66,18 +66,24 @@ const add: RequestHandler = async (req, res, next) => {
       details1: req.body.details1,
       details2: req.body.details2,
       details3: req.body.details3,
-      impacted_person: req.body.impacted_person,
       user_id: req.body.user_id,
     };
 
     // Create the user
     const insertId = await requestRepository.create(newRequest);
 
+    const impactedPersonIds = req.body.impactedPersonIds;
+
+    const insertImpactId = await impacted_personRepository.create(
+      insertId,
+      impactedPersonIds,
+    );
+
     if (!insertId) {
       throw new Error("Failed to create program.");
     }
     // Respond with HTTP 201 (Created) and the ID of the newly inserted user
-    res.status(201).json({ insertId });
+    res.status(201).json({ insertId, insertImpactId });
   } catch (err) {
     // Pass any errors to the error-handling middleware
     next(err);

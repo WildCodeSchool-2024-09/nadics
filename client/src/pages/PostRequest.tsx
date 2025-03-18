@@ -12,7 +12,7 @@ export default function PostRequest() {
   const [tempContent1, setTempContent1] = useState("");
   const [tempContent2, setTempContent2] = useState("");
   const [tempContent3, setTempContent3] = useState("");
-  const [impactedPersonId, setImpactedPersonId] = useState<number | null>(null);
+  const [impactedPersonIds, setImpactedPersonIds] = useState<number[]>([]);
 
   const navigate = useNavigate();
 
@@ -28,8 +28,8 @@ export default function PostRequest() {
       details1: tempContent1,
       details2: tempContent2,
       details3: tempContent3,
-      impacted_person: impactedPersonId,
       user_id: user ? user.id : null,
+      impactedPersonIds: impactedPersonIds,
     };
 
     try {
@@ -113,8 +113,8 @@ export default function PostRequest() {
       </div>
       <div className="block">
         <ImpactedPerson
-          impactedPersonId={impactedPersonId}
-          setImpactedPersonId={setImpactedPersonId}
+          impactedPersonIds={impactedPersonIds}
+          setImpactedPersonIds={setImpactedPersonIds}
         />
       </div>
       <button type="submit" className="buttonSubmit">

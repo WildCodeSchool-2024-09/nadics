@@ -18,7 +18,6 @@ interface RequestAdd {
   details1: string;
   details2: string;
   details3: string;
-  impacted_person: number;
   user_id: number;
 }
 
@@ -39,7 +38,7 @@ class RequestRepository {
   async create(request: Omit<RequestAdd, "id">) {
     // Execute the SQL INSERT query to add a new request to the "request" table
     const [result] = await databaseClient.query<Result>(
-      "insert into request (title,tag1,tag2,details1,details2,details3,impacted_person,user_id) values ( ?, ?, ?, ?, ?, ?, ?, ?)",
+      "insert into request (title,tag1,tag2,details1,details2,details3,user_id) values ( ?, ?, ?, ?, ?, ?, ?)",
       [
         request.title,
         request.tag1,
@@ -47,7 +46,6 @@ class RequestRepository {
         request.details1,
         request.details2,
         request.details3,
-        request.impacted_person,
         request.user_id,
       ],
     );

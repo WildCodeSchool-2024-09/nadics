@@ -1,16 +1,17 @@
 import { useContext, useState } from "react";
 import UserContext from "../context/userContext";
-import type { UserType } from "../context/userContext";
 
 interface PropsType {
-  impactedPersonId: number | null; // L'état qui contient id de la personne  impactée
-  setImpactedPersonId: React.Dispatch<React.SetStateAction<number | null>>;
+  impactedPersonIds: number[]; // L'état qui contient id de la personne  impactée
+  setImpactedPersonIds: React.Dispatch<React.SetStateAction<number[]>>;
 }
 
-function ImpactedPerson({ setImpactedPersonId }: PropsType) {
+function ImpactedPerson({
+  impactedPersonIds,
+  setImpactedPersonIds,
+}: PropsType) {
   const { allUsers } = useContext(UserContext);
   const [search, setSearch] = useState(""); // État pour gérer la recherche
-  const [tempUsers, setTempUsers] = useState<UserType[]>([]); // Liste des utilisateurs sélectionnés
 
   // Fonction pour gérer la recherche
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,18 +28,15 @@ function ImpactedPerson({ setImpactedPersonId }: PropsType) {
   );
 
   // Fonction pour gérer le changement de sélection des utilisateurs
-  const handleTempUserChange = (user: UserType) => {
-    setTempUsers((prevUsers) => {
-      if (prevUsers.includes(user)) {
-        return prevUsers.filter((u) => u !== user); // Retire l'utilisateur de tempUsers s'il est déjà sélectionné
-      }
-      return [...prevUsers, user]; // Ajoute l'utilisateur à tempUsers s'il n'est pas encore sélectionné
-    });
-  };
-
-  // Fonction pour mettre à jour la personne impactée dans les props
   const handleImpactedPersonChange = (id: number) => {
-    setImpactedPersonId(id); // Met à jour l'état de la personne impactée dans le parent
+    setImpactedPersonIds((prevIds) => {
+      if (prevIds.includes(id)) {
+        // Si l'utilisateur est déjà sélectionné, le retirer
+        return prevIds.filter((userId) => userId !== id);
+      }
+      // Sinon, l'ajouter à la sélection
+      return [...prevIds, id];
+    });
   };
 
   return (
@@ -60,9 +58,8 @@ function ImpactedPerson({ setImpactedPersonId }: PropsType) {
                 <input
                   type="checkbox"
                   id={user.firstname}
-                  checked={tempUsers.includes(user)}
+                  checked={impactedPersonIds.includes(user.id)}
                   onChange={() => {
-                    handleTempUserChange(user);
                     handleImpactedPersonChange(user.id); // Met à jour impactedPerson lorsqu'un utilisateur est sélectionné
                   }}
                 />
