@@ -223,7 +223,7 @@ Pour contribuer au projet :
 2. **Clone** votre fork sur votre machine locale
 3. Créez une nouvelle branche pour votre fonctionnalité (`git switch -c feature/votre-fonctionnalite`)
 4. **Commit** vos modifications (`git commit -m 'Ajout de fonctionnalité'`)
-5. **Push** vers votre branche (`git push origin feature/votre-fonctionnalite`)
+5. **Push** vers votre branche (`git push origin feature/votre-fonctionnalite`) 
 6. Créez une **Pull Request** sur le dépôt principal
 
 **Bonnes pratiques** :
