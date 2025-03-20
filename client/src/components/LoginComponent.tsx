@@ -6,8 +6,12 @@ import logoDesktop from "../assets/images/logo-removebg.png";
 import PrimaryButton from "./reuasble-ui/PrimaryButton";
 function LoginComponent() {
   const navigate = useNavigate();
+
+  // Références pour récupérer les valeurs des champs email et mot de passe
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
+
+  // Fonction qui gère la soumission du formulaire
   const handleSubmit: FormEventHandler = async (
     event: React.FormEvent<HTMLFormElement>,
   ) => {
@@ -18,29 +22,26 @@ function LoginComponent() {
         `${import.meta.env.VITE_API_URL}/api/login`,
         {
           method: "POST",
-          credentials: "include",
+          credentials: "include", // Permet d'inclure cookie dans la requète
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            email:
-              /* rendering process ensures the ref is defined before the form is submitted */
-              (emailRef.current as HTMLInputElement).value,
-            password:
-              /* rendering process ensures the ref is defined before the form is submitted */
-              (passwordRef.current as HTMLInputElement).value,
+            email: (emailRef.current as HTMLInputElement).value, // Récupère la valeur de champs email
+            password: (passwordRef.current as HTMLInputElement).value, // Récupère la valeur de champs password
           }),
         },
       );
       // Redirection vers la page de connexion si la création réussit
       if (response.status === 200) {
         navigate("/home");
-        window.location.reload();
+        window.location.reload(); // Recharge la page pour actualiser l'état d'utilisateur
       } else {
-        // Log des détails de la réponse en cas d'échec
-        console.info(response);
+        // Affiche une alerte en cas d'identifiants incorrects
+        alert("Email or password incorrect");
       }
     } catch (err) {
       // Log des erreurs possibles
       console.error(err);
+      alert("An error occurred please try again");
     }
   };
   return (
@@ -58,7 +59,7 @@ function LoginComponent() {
           <label htmlFor="email">
             <input
               type="text"
-              id="loginusername"
+              className="login_username_password"
               ref={emailRef}
               placeholder="email"
               required
@@ -69,10 +70,10 @@ function LoginComponent() {
           <h2 id="loginsubtitle2">Password</h2>
         </section>
         <section className="display">
-          <label htmlFor="loginpassword">
+          <label htmlFor="password">
             <input
               type="password"
-              id="loginpassword"
+              className="login_username_password"
               ref={passwordRef}
               placeholder="Password"
               required

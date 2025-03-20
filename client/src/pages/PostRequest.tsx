@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import backgroundImage from "../assets/images/background.png";
 import ImpactedPerson from "../components/impactedPerson";
+import ImpactingPerson from "../components/impactingPerson";
 import EditorText from "../components/reuasble-ui/EditorText";
 import PrimaryButton from "../components/reuasble-ui/PrimaryButton";
 import UserContext from "../context/userContext";
@@ -12,6 +13,7 @@ export default function PostRequest() {
   const [tempContent2, setTempContent2] = useState("");
   const [tempContent3, setTempContent3] = useState("");
   const [impactedPersonIds, setImpactedPersonIds] = useState<number[]>([]);
+  const [impactingPersonIds, setImpactingPersonIds] = useState<number[]>([]);
 
   const navigate = useNavigate();
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -26,6 +28,7 @@ export default function PostRequest() {
       details3: tempContent3,
       user_id: user ? user.id : null,
       impactedPersonIds: impactedPersonIds,
+      impactingPersonIds: impactingPersonIds,
     };
     try {
       const response = await fetch(
@@ -111,9 +114,12 @@ export default function PostRequest() {
           setImpactedPersonIds={setImpactedPersonIds}
         />
       </div>
-      <button type="submit" className="buttonSubmit">
-        Submit your request
-      </button>
+      <div className="block">
+        <ImpactingPerson
+          impactingPersonIds={impactingPersonIds}
+          setImpactingPersonIds={setImpactingPersonIds}
+        />
+      </div>
       <PrimaryButton type="submit" label="Submit your request" />
     </PostRequestStyled>
   );
@@ -200,6 +206,10 @@ p {
   font-weight: 500;
   line-height: normal;
 }
+.block {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  }
 @media screen and (min-width: 431px) {
   width: 100vw;
   .tag_select{

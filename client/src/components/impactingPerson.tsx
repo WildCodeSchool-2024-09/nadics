@@ -1,14 +1,15 @@
 import { useContext, useState } from "react";
 import UserContext from "../context/userContext";
 import "./RequestDetailCard.css";
+
 interface PropsType {
-  impactedPersonIds: number[]; // L'état qui contient id de la personne  impactée
-  setImpactedPersonIds: React.Dispatch<React.SetStateAction<number[]>>;
+  impactingPersonIds: number[]; // L'état qui contient id de la personne  impactée
+  setImpactingPersonIds: React.Dispatch<React.SetStateAction<number[]>>;
 }
 
-function ImpactedPerson({
-  impactedPersonIds,
-  setImpactedPersonIds,
+function ImpactingPerson({
+  impactingPersonIds,
+  setImpactingPersonIds,
 }: PropsType) {
   const { allUsers } = useContext(UserContext);
   const [search, setSearch] = useState(""); // État pour gérer la recherche
@@ -28,8 +29,8 @@ function ImpactedPerson({
   );
 
   // Fonction pour gérer le changement de sélection des utilisateurs
-  const handleImpactedPersonChange = (id: number) => {
-    setImpactedPersonIds((prevIds) => {
+  const handleImpactingPersonChange = (id: number) => {
+    setImpactingPersonIds((prevIds) => {
       if (prevIds.includes(id)) {
         // Si l'utilisateur est déjà sélectionné, le retirer
         return prevIds.filter((userId) => userId !== id);
@@ -42,12 +43,12 @@ function ImpactedPerson({
   return (
     <>
       {/* Champ de recherche */}
-      <h2 id="titre_impact">Impacted person</h2>
+      <h2>Impacting person</h2>
       <input
         type="text"
         value={search}
         onChange={handleSearchChange}
-        placeholder="Search impacted users..."
+        placeholder="Search impacting users..."
       />
 
       {/* Liste filtrée des utilisateurs (n'affiche que si l'utilisateur a commencé à chercher) */}
@@ -59,12 +60,12 @@ function ImpactedPerson({
                   <input
                     type="checkbox"
                     id="checkBox"
-                    checked={impactedPersonIds.includes(user.id)}
+                    checked={impactingPersonIds.includes(user.id)}
                     onChange={() => {
-                      handleImpactedPersonChange(user.id); // Met à jour impactedPerson lorsqu'un utilisateur est sélectionné
+                      handleImpactingPersonChange(user.id); // Met à jour impactedPerson lorsqu'un utilisateur est sélectionné
                     }}
                   />
-                  <label className="name_label" htmlFor={user.firstname}>
+                  <label htmlFor={user.firstname}>
                     {user.firstname} {user.lastname}
                   </label>
                 </div>
@@ -76,4 +77,4 @@ function ImpactedPerson({
   );
 }
 
-export default ImpactedPerson;
+export default ImpactingPerson;

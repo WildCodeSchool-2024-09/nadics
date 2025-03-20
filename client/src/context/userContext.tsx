@@ -9,10 +9,10 @@ export type UserType = {
 };
 
 export type UserTypeContext = {
-  user: UserType | null; // Permet d'avoir un utilisateur ou null au départ
-  setUser: React.Dispatch<React.SetStateAction<UserType | null>>; // Typage correct pour setUser
-  allUsers: UserType[]; // Permet d'avoir un utilisateur ou null au départ
-  setAllUsers: React.Dispatch<React.SetStateAction<UserType[]>>; // Typage correct pour setUser
+  user: UserType | null;
+  setUser: React.Dispatch<React.SetStateAction<UserType | null>>;
+  allUsers: UserType[];
+  setAllUsers: React.Dispatch<React.SetStateAction<UserType[]>>;
 };
 
 const defaultValue: UserTypeContext = {

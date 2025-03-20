@@ -1,5 +1,6 @@
 import { type NextFunction, type RequestHandler, request } from "express";
 import impacted_personRepository from "./impacted_personRepository";
+import impacting_personRepository from "./impacting_personRepository";
 import requestRepository from "./requestRepository";
 
 const browse: RequestHandler = async (req, res, next) => {
@@ -28,8 +29,6 @@ const read: RequestHandler = async (req, res, next) => {
 const edit: RequestHandler = async (req, res, next) => {
   try {
     // Update a specific category based on the provided ID
-    console.info("couocu");
-    console.info(req.body);
     const request = {
       id: Number(req.params.id),
       title: req.body.title,
@@ -42,8 +41,6 @@ const edit: RequestHandler = async (req, res, next) => {
 
     const affectedRows = await requestRepository.update(request);
 
-    // If the category is not found, respond with HTTP 404 (Not Found)
-    // Otherwise, respond with the category in JSON format
     if (affectedRows === 0) {
       res.sendStatus(404);
     } else {
@@ -78,12 +75,18 @@ const add: RequestHandler = async (req, res, next) => {
       insertId,
       impactedPersonIds,
     );
+    const impactingPersonIds = req.body.impactingPersonIds;
+
+    const insertImpactingId = await impacting_personRepository.create(
+      insertId,
+      impactingPersonIds,
+    );
 
     if (!insertId) {
       throw new Error("Failed to create program.");
     }
     // Respond with HTTP 201 (Created) and the ID of the newly inserted user
-    res.status(201).json({ insertId, insertImpactId });
+    res.status(201).json({ insertId, insertImpactId, insertImpactingId });
   } catch (err) {
     // Pass any errors to the error-handling middleware
     next(err);

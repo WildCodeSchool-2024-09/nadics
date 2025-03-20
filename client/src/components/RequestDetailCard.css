@@ -160,3 +160,25 @@ td {
     padding: 8px; /* Réduction du padding dans le tableau */
   }
 }
+
+/* CSS por impacted et impacting person*/
+#titre_impact {
+  margin-bottom: 1rem;
+}
+#filtre_container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.listeFiltre {
+  display: flex;
+}
+
+#checkBox {
+  height: 2rem;
+  width: 3rem;
+}
+
+.name_label {
+  height: 2rem;
+}

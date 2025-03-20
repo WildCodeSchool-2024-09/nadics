@@ -15,6 +15,9 @@ function RequestDetailCard({ requestId }: PropsType) {
   const [impactedPersons, setImpactedPersons] = useState<
     Impacted_personType[] | null
   >([]);
+  const [impactingPersons, setImpactingPersons] = useState<
+    Impacted_personType[] | null
+  >([]);
 
   useEffect(() => {
     if (requestId)
@@ -22,6 +25,16 @@ function RequestDetailCard({ requestId }: PropsType) {
         .then((response) => response.json())
         .then((data) => {
           setImpactedPersons(data);
+        })
+        .catch((error) => console.error("Error while fetching :", error));
+  }, [requestId]);
+
+  useEffect(() => {
+    if (requestId)
+      fetch(`${import.meta.env.VITE_API_URL}/api/impacting_person/${requestId}`)
+        .then((response) => response.json())
+        .then((data) => {
+          setImpactingPersons(data);
         })
         .catch((error) => console.error("Error while fetching :", error));
   }, [requestId]);
@@ -98,18 +111,22 @@ function RequestDetailCard({ requestId }: PropsType) {
             ))}
           </div>
         </div>
-        <div className="impact-person">
+        <div>
           <h2>Impacting Person</h2>
           <div className="impact-person">
-            <div className="avatar">
-              {" "}
-              <img
-                className="avatar"
-                src={`${import.meta.env.VITE_API_URL}/}`}
-                alt=""
-              />
-            </div>
-            <p>t</p>
+            {impactingPersons?.map((impactingPerson) => (
+              <div key={impactingPerson.id}>
+                <div className="avatar">
+                  {" "}
+                  <img
+                    className="avatar"
+                    src={`${import.meta.env.VITE_API_URL}/${impactingPerson.avatar}`}
+                    alt=""
+                  />
+                </div>
+                <p className="user-name">{impactingPerson.firstname}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
