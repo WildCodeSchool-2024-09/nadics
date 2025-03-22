@@ -1,8 +1,3 @@
-CREATE TABLE role (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    rolename VARCHAR(50) NOT NULL
-);
-
 CREATE TABLE `user` (
     id INT PRIMARY KEY AUTO_INCREMENT,
     firstname VARCHAR(50) NOT NULL,
@@ -11,11 +6,6 @@ CREATE TABLE `user` (
     avatar VARCHAR(255),
     email VARCHAR(50) NOT NULL UNIQUE,
     hashed_password VARCHAR(255) NOT NULL,
-    role_id INT DEFAULT 2,
-    CONSTRAINT fk_user_role
-	      FOREIGN KEY (role_id) 
-        REFERENCES role(id)
-        ON DELETE SET NULL
 );
 
 CREATE TABLE request (
@@ -31,8 +21,7 @@ CREATE TABLE request (
     CONSTRAINT fk_request_user
         FOREIGN KEY (user_id)
         REFERENCES `user`(id)
-        ON DELETE CASCADE
-        
+        ON DELETE CASCADE      
 );
 
 CREATE TABLE comment (
@@ -51,15 +40,10 @@ CREATE TABLE comment (
         ON DELETE CASCADE
 );
 
-insert into `role`(rolename)
-values 
-  ("admin"),
-  ("visiteur");
-
-insert into user(firstname, lastname,birthday, email, hashed_password, role_id)
+insert into user(firstname, lastname,birthday, email, hashed_password)
 values
-  ("Toto", "Tutu", "1994-02-05" , "toto.tutu@mail.com", "123456", 1),
-  ("Tata", "Titi", "2000.01.02","tata.titi@mail.com", "78910", 2);
+  ("Toto", "Tutu", "1994-02-05" , "toto.tutu@mail.com", "123456"),
+  ("Tata", "Titi", "2000.01.02","tata.titi@mail.com", "78910");
 
 insert into request(`date`,title, tag1, details1, user_id)
 values 
