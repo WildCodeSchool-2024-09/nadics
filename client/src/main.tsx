@@ -69,7 +69,7 @@ const router = createBrowserRouter([
         element: <PasswordRecovery />,
       },
       {
-        path: "request-details/:id", // Utilisez cette route pour afficher les détails de la demande
+        path: "request-details/:id",
         element: <RequestDetails />,
       },
       {

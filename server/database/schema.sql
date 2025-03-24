@@ -51,22 +51,22 @@ CREATE TABLE comment (
         ON DELETE CASCADE
 );
 
-insert into `role`(rolename)
-values 
+INSERT INTO `role`(rolename)
+VALUES 
   ("admin"),
-  ("visiteur");
+  ("visitor");
 
--- insert into user(firstname, lastname,birthday, email, hashed_password, role_id)
--- values
---   ("Toto", "Tutu", "1994-02-05" , "toto.tutu@mail.com", "123456", 1),
---   ("Tata", "Titi", "2000.01.02","tata.titi@mail.com", "78910", 2);
+INSERT INTO user(firstname, lastname, birthday, email, hashed_password, role_id)
+VALUES
+  ("Alice", "Ramez", "1990-06-15", "alice.ramez@example.com", "hashed_pwd_1", 1),
+  ("Sami", "Toumi", "1985-09-22", "sami.toumi@example.com", "hashed_pwd_2", 2);
 
--- insert into request(`date`,title, tag1, details1, user_id)
--- values 
---   ("1994.12.24","titre1", "Sport", "bcp de details1", 1),
---   ("1994.11.24","titre2", "Tech", "bcp de details2", 2);
+INSERT INTO request(`date`, title, tag1, details1, user_id)
+VALUES 
+  ("2024-03-15", "Improve Mobile Accessibility", "Accessibility", "The current mobile UI is not user-friendly. We need to redesign it.", 1),
+  ("2024-03-18", "Add Dark Mode", "UI", "Several users have requested a dark mode option for better readability at night.", 2);
 
--- insert into comment(details, `date`, user_id, request_id)
--- values 
---   ("jesuispasdaccord", NOW(), 1, 1),
---   ("jesuisdaccord", NOW(), 2, 2);
+INSERT INTO comment(details, `date`, user_id, request_id)
+VALUES 
+  ("I completely agree. The mobile experience needs improvement.", NOW(), 2, 1),
+  ("Dark mode would be a great addition for sure.", NOW(), 1, 2);

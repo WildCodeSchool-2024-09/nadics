@@ -82,6 +82,7 @@ const hashingOptions = {
   timeCost: 2,
   parallelism: 1,
 };
+
 const hashPassword: RequestHandler = async (req, res, next) => {
   try {
     // Extraction du mot de passe de la requête
