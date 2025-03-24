@@ -2,7 +2,7 @@ import "./Navbar.css";
 import { useContext, useState } from "react";
 import type { SetStateAction } from "react";
 import { Link } from "react-router-dom";
-import defaultAvatar from "../assets/images/avatar.jpg";
+import defaultAvatar from "../assets/images/avatar.png";
 import logoDesktop from "../assets/images/logo-removebg.png";
 import logoMobile from "../assets/images/logo favicon.png";
 import UserContext from "../context/userContext";

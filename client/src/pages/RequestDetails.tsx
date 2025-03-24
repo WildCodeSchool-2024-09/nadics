@@ -6,7 +6,7 @@ import CommentEdit from "../components/CommentEdit";
 import RequestDetailCard from "../components/RequestDetailCard";
 import "./RequestDetails.css";
 import parse from "html-react-parser";
-import defaultAvatar from "../assets/images/avatar.jpg";
+import defaultAvatar from "../assets/images/avatar.png";
 import DeleteRequest from "../components/RequestDelete";
 import RequestEdit from "../components/RequestEdit";
 import EditorText from "../components/reuasble-ui/EditorText";
