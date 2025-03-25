@@ -175,12 +175,13 @@ label{
 }
 input {
   width: 360px;
-  height: 64px;
-  border-radius: 10px;
+  height: 54px;
+  border-radius: 5px;
   fill: #F5F5F5;
   filter: drop-shadow(10px 10px 14px rgba(0, 0, 0, 0.25));
   font-size: 1.2rem;
   margin-bottom: 1rem;
+  margin-top: 1rem;
   font-size: 1em;
   padding:1rem;
   font-weight: 400;
@@ -217,6 +218,19 @@ p {
   margin-bottom: 2rem;
   padding-left:8rem;
   gap:1rem;
+}
+input {
+  width: 460px;
+  height: 44px;
+  border-radius: 5px;
+  fill: #F5F5F5;
+  filter: drop-shadow(10px 10px 14px rgba(0, 0, 0, 0.25));
+  font-size: 1.2rem;
+  margin-bottom: 0rem;
+  margin-top: 0rem;
+  font-size: 1em;
+  padding:1rem;
+  font-weight: 400;
 }
 }
 `;
