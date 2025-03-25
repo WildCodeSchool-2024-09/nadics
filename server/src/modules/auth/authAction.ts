@@ -100,21 +100,27 @@ const hashPassword: RequestHandler = async (req, res, next) => {
 };
 
 const verifyToken: RequestHandler = (req, res, next) => {
-  const token = req.cookies.token;
+  const token = req.cookies.token; // On récupère le token JWT stocké dans les cookies
+
+  // Si aucun token n'est présent, on refuse l'accès avec une erreur 401 (non autorisé)
   if (!token) {
-    res.status(401).json({ message: "You are not alloweds" });
+    res.status(401).json({ message: "You are not allowed" });
+    return;
   }
+
   try {
-    // Vérifier la validité du token (son authenticité et sa date d'expériation)
-    // En cas de succès, le payload est extrait et décodé
+    // On vérifie la validité du token (signature + expiration)
+    // Si le token est valide, on récupère les infos de l'utilisateur (payload)
     const user = jwt.verify(
       token,
       process.env.APP_SECRET as string,
     ) as MyPayload;
 
-    req.user = user; // Attacher l'utilisateur à la requête
-    next();
+    // On attache ces infos à la requête pour qu'elles soient accessibles dans les middlewares suivants
+    req.user = user;
+    next(); // On passe au middleware suivant
   } catch (err) {
+    // En cas d'erreur (token invalide ou expiré), on log l'erreur et on renvoie une 401
     console.error(err);
     res.sendStatus(401);
   }

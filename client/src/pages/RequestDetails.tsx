@@ -13,6 +13,7 @@ import EditorText from "../components/reuasble-ui/EditorText";
 import PrimaryButton from "../components/reuasble-ui/PrimaryButton";
 import UserContext from "../context/userContext";
 import type { UserTypeContext } from "../context/userContext";
+
 export interface CommentType {
   id: number;
   date: string;
@@ -23,6 +24,7 @@ export interface CommentType {
   lastname: string;
   avatar: string;
 }
+
 export interface RequestUser {
   id: number;
   title: string;
@@ -32,10 +34,12 @@ export interface RequestUser {
   details1: string;
   details2: string;
   details3: string;
+  user_id: number;
   firstname: string;
   lastname: string;
   avatar: string;
 }
+
 function RequestDetails() {
   const { user } = useContext<UserTypeContext>(UserContext);
   const { id } = useParams<string>();
@@ -43,40 +47,50 @@ function RequestDetails() {
   const [comments, setComments] = useState<CommentType[]>([]);
   const [request, setRequest] = useState<RequestUser | null>(null);
   const [editedRequest, setEditedRequest] = useState<Partial<RequestUser>>({});
-  const [editedComment, setEditedComment] = useState<Partial<CommentType>>({});
   const [isEditing, setIsEditing] = useState<boolean>(false); //etat pour modifier request
+  const [editedComment, setEditedComment] = useState<Partial<CommentType>>({});
   const [isEditingComment, setIsEditingComment] = useState<boolean>(false); //etat pour modifier comment
+
   useEffect(() => {
-    if (!id) return; // Vérifie si user est null avant d'exécuter le fetch
+    if (!id) return; // Si aucun ID n’est présent dans l’URL, on arrête le traitement
     const requestId = Number(id);
     fetch(`${import.meta.env.VITE_API_URL}/api/request/${requestId}`)
       .then((response) => response.json())
       .then((data) => {
         setRequest(data);
-        setEditedRequest({ ...data }); // au rechargement du composant editedRequest va garder sa valeur précédente grâce à {... data}
+        setEditedRequest({ ...data }); // On copie les infos de la Request pour les modifier sans toucher à l’originale
       })
       .catch((error) => console.error("Error while fetching :", error));
   }, [id]);
+
   useEffect(() => {
-    if (!user) return; // Vérifie si user est null avant d'exécuter le fetch
+    // Si aucun utilisateur n’est connecté ou si aucune request n’est encore chargée, on arrête le traitement
+    if (!user) return;
     if (!request) return;
+
+    // Une fois que l'utilisateur et la request sont disponibles,
+    // on envoie une requête GET pour récupérer tous les commentaires associés à cette request
     fetch(`${import.meta.env.VITE_API_URL}/api/comments/request/${request.id}`)
       .then((response) => response.json())
-      .then((data) => setComments(data))
-      .catch((error) => console.error("Error while fetching :", error));
-  }, [user, request]);
+      .then((data) => setComments(data)) // On stocke les commentaires dans le state local
+      .catch((error) => console.error("Error while fetching :", error)); // En cas d’erreur, on log le problème
+  }, [user, request]); // Le hook se déclenche à chaque fois que l’utilisateur ou la request change
+
   const handleInputChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
     const { name, value } = event.target;
     setEditedRequest((prev) => ({ ...prev, [name]: value }));
   };
+
   const handleEditorChange = (name: string, value: string) => {
     setEditedRequest((prev) => ({ ...prev, [name]: value }));
   };
+
   const handleInputChangeComment = (value: string) => {
     setEditedComment((prev) => ({ ...prev, details: value }));
   };
+
   return (
     <>
       {request && (
@@ -273,7 +287,9 @@ function RequestDetails() {
               </div>
             </div>
           )}
-          <DeleteRequest id={request.id} />
+          {user && user.id === request.user_id && (
+            <DeleteRequest id={request.id} />
+          )}
         </div>
       )}
     </>

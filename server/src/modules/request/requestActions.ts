@@ -91,22 +91,26 @@ const destroy: RequestHandler = async (req, res, next) => {
     next(err);
   }
 };
+
 const isPoster: RequestHandler = async (req, res, next) => {
   try {
-    const requestId = Number(req.params.id);
-    const userId = Number(req.user.id);
-    const request = await requestRepository.read(requestId);
+    const requestId = Number(req.params.id); // Récupère l’ID de la Request dans l’URL
+    const userId = Number(req.user.id); // Récupère l’ID de l’utilisateur connecté (injecté par verifyToken)
+
+    const request = await requestRepository.read(requestId); // Récupère la Request dans la base de données
+
+    // Compare l’ID de l’utilisateur avec celui qui a posté la Request
     if (request.user_id !== userId) {
+      // Si ce n’est pas le bon auteur, on bloque la requête avec une erreur 403
       res
         .status(403)
         .json({ message: "Forbidden: You are not the owner of this request" });
       return;
     }
 
-    // Si tout est ok, passe au middleware suivant
-    next();
+    next(); // Si l'utilisateur est bien l’auteur, on laisse passer vers le contrôleur
   } catch (err) {
-    next(err); // En cas d'erreur, passe l'erreur au middleware d'erreur
+    next(err); // En cas d’erreur inattendue, on la transmet au middleware de gestion des erreurs
   }
 };
 

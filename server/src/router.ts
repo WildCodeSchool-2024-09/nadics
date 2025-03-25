@@ -54,11 +54,12 @@ router.get(
     res.status(200).json({ message: "You are the owner of this request" });
   },
 );
+
 router.put(
   "/api/request/:id",
-  authAction.verifyToken,
-  requestActions.isPoster,
-  requestActions.edit,
+  authAction.verifyToken, // Vérifie que l’utilisateur est connecté
+  requestActions.isPoster, // Vérifie qu’il est bien l’auteur de la Request
+  requestActions.edit, // Si tout est OK, on exécute la mise à jour
 );
 
 router.delete(
