@@ -65,8 +65,7 @@ function RequestDetails() {
 
   useEffect(() => {
     // Si aucun utilisateur n’est connecté ou si aucune request n’est encore chargée, on arrête le traitement
-    if (!user) return;
-    if (!request) return;
+    if (!user || !request) return;
 
     // Une fois que l'utilisateur et la request sont disponibles,
     // on envoie une requête GET pour récupérer tous les commentaires associés à cette request
