@@ -4,6 +4,20 @@ Une plateforme web collaborative conçue pour faciliter la prise de décision co
 Elle permet aux utilisateurs de soumettre des propositions, de les commenter et de suivre leur évolution dans un espace structuré et sécurisé.  
 Projet réalisé dans le cadre de la formation DWWM à la Wild Code School, en équipe et selon une méthodologie Agile avec sprints hebdomadaires.
 
+## Flux de navigation de l'application :
+
+<div align="center">
+  <img src="client/src/assets/images/Arborescnece projet.png" alt="Flux de navigation de l'application" width="600">
+</div>
+
+Grâce à cette architecture modulaire et sécurisée, Smart Choice Hub assure une gestion efficace des données, une communication fluide entre le front-end et le back-end, et une évolutivité facilitée pour de futures améliorations.
+
+## Schéma visuel de l'architecture du projet (MVC) 
+
+<div align="center">
+  <img src="client/src/assets/images/architecture_projet.png" alt="Schéma visuel de l'architecture du projet (MVC)" width="600">
+</div>
+
 ## Stack
 
 - Client : React + TypeScript + Vite
