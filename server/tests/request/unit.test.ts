@@ -26,7 +26,7 @@ describe("requestRepository", () => {
         user_id: 1,
       };
 
-      // Configurer le mock pour retourner les données attendues
+      // Configurer le mock pour retourner les données attendues =>  Mock de la requête SELECT
       // @ts-ignore - Ignorer l'erreur de type pour le test
       databaseClient.query.mockResolvedValueOnce([[mockRequest], []]);
 

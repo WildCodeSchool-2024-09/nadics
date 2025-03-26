@@ -200,7 +200,11 @@ Pour contribuer au projet :
 
 
 -----
-# p3
+
+
+# Readme original du Monorepo JS de Wild Code School
+
+# P3
 
 Ce projet est un monorepo JS, suivant l'architecture React-Express-MySQL telle qu'enseignée à la Wild Code School (v7.1.7) :
 
