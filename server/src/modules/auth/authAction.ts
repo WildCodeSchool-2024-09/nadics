@@ -49,7 +49,10 @@ const login: RequestHandler = async (req, res, next) => {
 };
 
 const me: RequestHandler = (req, res) => {
-  const token = req.cookies.token;
+  const token =
+    req.cookies.token || // Auth classique
+    req.headers.authorization?.split(" ")[1];
+
   // Récupère le cookie contenant le token
   if (!token) {
     res.status(401).json({ message: "Non authentifié" });
@@ -100,7 +103,9 @@ const hashPassword: RequestHandler = async (req, res, next) => {
 };
 
 const verifyToken: RequestHandler = (req, res, next) => {
-  const token = req.cookies.token; // On récupère le token JWT stocké dans les cookies
+  const token =
+    req.cookies.token || // On récupère le token JWT stocké dans les cookies, Auth via cookie (navigateur)
+    req.headers.authorization?.split(" ")[1]; // Auth via header (test / API)
 
   // Si aucun token n'est présent, on refuse l'accès avec une erreur 401 (non autorisé)
   if (!token) {
