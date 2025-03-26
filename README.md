@@ -1,3 +1,161 @@
+# Smart Choice Hub
+
+Une plateforme web collaborative conçue pour faciliter la prise de décision collective au sein d'un groupe ou d'une organisation.  
+Elle permet aux utilisateurs de soumettre des propositions, de les commenter et de suivre leur évolution dans un espace structuré et sécurisé.  
+Projet réalisé dans le cadre de la formation DWWM à la Wild Code School, en équipe et selon une méthodologie Agile avec sprints hebdomadaires.
+
+## Stack
+
+- Client : React + TypeScript + Vite
+- Serveur : Node.js + Express + MySQL
+- Authentification sécurisée via JWT
+- CSS3 : Styling avec Styled-components
+- Upload de photo de profil (ou avatar par défaut) via multer
+- Hébergement (API & base de données) : Railway
+
+## Fonctionnalités principales
+
+- Authentification sécurisée avec gestion de session
+- Création, consultation, modification et suppression de décisions
+- Système de commentaires lié à chaque décision
+- Accès restreint à l'application aux seuls utilisateurs connectés
+- Interface responsive adaptée aux écrans mobile et desktop
+- Affichage de la photo de profil ou d'un avatar par défaut
+
+## Démarrer le projet
+
+1. Cloner le dépôt :
+   ```bash
+   git clone <url-du-repo>
+   cd smart-choice-hub
+   ```
+
+2. Installer les dépendances :
+   ```bash
+   npm install
+   ```
+
+3. Configurer les fichiers `.env` :
+   * `client/.env`
+     ```
+     VITE_API_URL=http://localhost:3310/api
+     ```
+   
+   * `server/.env`
+     ```
+     DB_HOST=localhost
+     DB_USER=root
+     DB_PASSWORD=motdepasse
+     DB_NAME=smart_choice
+     JWT_SECRET=supersecretkey
+     FRONT_URL=http://localhost:5173
+     ```
+
+4. Lancer le projet :
+   ```bash
+   npm run dev
+   ```
+
+## Arborescence du projet (monorepo)
+
+```
+smart-choice-hub/
+├── client/
+│   ├── public/
+│   └── src/
+│       ├── assets/
+│       ├── components/
+│       ├── context/
+│       ├── pages/
+│       ├── services/
+│       └── types/
+│   ├── App.tsx
+│   ├── main.tsx
+│   ├── vite.config.ts
+│   └── tsconfig.json
+│
+├── server/
+│   ├── bin/
+│   ├── database/
+│   │   ├── fixtures/
+│   │   ├── client.ts
+│   │   └── schema.sql
+│   ├── public/
+│   │   ├── assets/
+│   │   └── uploads/
+│   ├── src/
+│   │   ├── modules/
+│   │   │   ├── auth/
+│   │   │   ├── comment/
+│   │   │   ├── item/
+│   │   │   ├── request/
+│   │   │   └── users/
+│   │   ├── types/
+│   │   ├── app.ts
+│   │   ├── main.ts
+│   │   └── router.ts
+│   ├── tests/
+│   ├── jest.config.js
+│   └── tsconfig.json
+```
+
+## Routes principales de l'API
+
+| Méthode | Route | Description |
+|---------|-------|-------------|
+| POST | `/api/login/` | Connexion utilisateur |
+| GET | `/api/me/` | Récupération du profil connecté |
+| POST | `/api/logout/` | Déconnexion utilisateur |
+| GET | `/api/users` | Récupération de tous les utilisateurs |
+| GET | `/api/users/:id` | Récupération d'un utilisateur par ID |
+| POST | `/api/users/` | Création d'un utilisateur avec hachage du mot de passe |
+| PUT | `/api/users/:id` | Modification d'un utilisateur |
+| DELETE | `/api/users/:id` | Suppression d'un utilisateur |
+| POST | `/upload-avatar/:id` | Upload d'un avatar utilisateur |
+| GET | `/api/comments/request/:request_id` | Tous les commentaires liés à une Request |
+| GET | `/api/comments/:id` | Un commentaire spécifique |
+| POST | `/api/comments/` | Création d'un commentaire |
+| PUT | `/api/comments/:id` | Modification d'un commentaire |
+| DELETE | `/api/comments/:id` | Suppression d'un commentaire |
+| GET | `/api/request` | Liste des demandes (Requests) |
+| GET | `/api/request/:id` | Détail d'une Request |
+| POST | `/api/request/` | Création d'une Request |
+| GET | `/api/request/:id/isPoster` | Vérification : l'utilisateur est-il l'auteur ? |
+| PUT | `/api/request/:id` | Édition d'une Request (auth + ownership requis) |
+| DELETE | `/api/request/:id` | Suppression d'une Request (auth + ownership requis) |
+
+## Variables d'environnement
+
+### client/.env
+```
+VITE_API_URL=http://localhost:3310/api
+```
+
+### server/.env
+```
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=root
+DB_NAME=smart_choice
+JWT_SECRET=monSuperSecret
+FRONT_URL=http://localhost:5173
+```
+
+## Sécurité
+
+* Authentification par JWT, stocké en cookie `httpOnly` avec `SameSite=Strict`
+* Middleware `verifyToken` pour protéger les routes sensibles
+* Vérification de l'auteur via `isPoster` avant modification ou suppression
+* Validation des champs côté client et serveur
+* Requêtes SQL préparées via `mysql2/promise` pour éviter les injections
+
+## Auteur
+
+Projet réalisé par Nadir AMMI SAID dans le cadre de la formation Développeur Web et Web Mobile à la Wild Code School (promotion 2025).
+
+
+
+-----
 # p3
 
 Ce projet est un monorepo JS, suivant l'architecture React-Express-MySQL telle qu'enseignée à la Wild Code School (v7.1.7) :

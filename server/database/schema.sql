@@ -58,7 +58,7 @@ VALUES
 
 INSERT INTO user(firstname, lastname, birthday, email, hashed_password, role_id)
 VALUES
-  ("Alice", "Ramez", "1990-06-15", "alice.ramez@example.com", "hashed_pwd_1", 1),
+  ("Alice", "Ramez", "1990-06-15", "alice.ramez@example.com", "hashed_pwd_1", 2),
   ("Sami", "Toumi", "1985-09-22", "sami.toumi@example.com", "hashed_pwd_2", 2);
 
 INSERT INTO request(`date`, title, tag1, tag2, details1, details2, details3, user_id)
