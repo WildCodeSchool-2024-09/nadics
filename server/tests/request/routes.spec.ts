@@ -1,5 +1,5 @@
-import "dotenv/config"; // Added to load environment variables
-import type { NextFunction, Request, Response } from "express"; // Added for type definitions
+import "dotenv/config";
+import type { NextFunction, Request, Response } from "express";
 import supertest from "supertest";
 import DatabaseClient from "../../database/client";
 import type { Result, Rows } from "../../database/client";
@@ -14,7 +14,7 @@ interface UserPayload {
   avatar: string;
 }
 
-// Mock auth modules that router.ts depends on
+// Added: Mock auth modules that router.ts depends on
 jest.mock("../../src/modules/auth/authAction", () => ({
   login: jest.fn((_req: Request, res: Response) =>
     res.status(200).json({ token: "test-token" }),
@@ -25,12 +25,11 @@ jest.mock("../../src/modules/auth/authAction", () => ({
   ),
   verifyToken: jest.fn((_req: Request, _res: Response, next: NextFunction) => {
     const req = _req as Request & { user: UserPayload };
-    // Include all required properties in the user object
     req.user = {
       id: "1",
-      firstname: "Matthieu",
-      lastname: "lOPEZ",
-      birthday: "1980-04-14",
+      firstname: "John",
+      lastname: "Doe",
+      birthday: "2000-01-01",
       avatar: "",
     };
     next();
@@ -70,7 +69,7 @@ jest.mock("../../src/modules/request/requestActions", () => {
   };
 });
 
-// Mock comment actions as well since they might be used
+// Mock other necessary modules
 jest.mock("../../src/modules/comment/commentActions", () => ({
   browse: jest.fn((_req: Request, res: Response) => res.json([])),
   read: jest.fn((_req: Request, res: Response) => res.json({})),
@@ -79,7 +78,6 @@ jest.mock("../../src/modules/comment/commentActions", () => ({
   destroy: jest.fn((_req: Request, res: Response) => res.status(204).end()),
 }));
 
-// Mock user actions too
 jest.mock("../../src/modules/users/userAction", () => ({
   browse: jest.fn((_req: Request, res: Response) => res.json([])),
   read: jest.fn((_req: Request, res: Response) => res.json({})),
@@ -88,7 +86,6 @@ jest.mock("../../src/modules/users/userAction", () => ({
   destroy: jest.fn((_req: Request, res: Response) => res.status(204).end()),
 }));
 
-// Mock uploads action
 jest.mock("../../src/modules/users/uploadsAction", () => ({
   addAvatar: jest.fn((_req: Request, res: Response) =>
     res.status(201).json({}),
@@ -150,10 +147,14 @@ describe("POST /api/request", () => {
       .spyOn(DatabaseClient, "query")
       .mockImplementation(async () => [result, []]);
 
+    // Updated request structure to match repository expectations
     const fakeRequest = {
       title: "Hello , Hello",
-      theme: "Matthieu est malade",
-      details: "Je suis en arrêt maladie jusqu'à la fin de la semaine ",
+      tag1: "Tag 1", // Changed from theme to tag1
+      tag2: "Tag 2", // Added tag2 field
+      details1: "Je suis en arrêt maladie jusqu'à la fin de la semaine", // Changed from details to details1
+      details2: "Additional details 2", // Added details2 field
+      details3: "Additional details 3", // Added details3 field
       user_id: 0,
     };
 
@@ -176,10 +177,15 @@ describe("PUT /api/request/:id", () => {
       .spyOn(DatabaseClient, "query")
       .mockImplementation(async () => [result, []]);
 
+    // Updated request structure to match repository expectations
     const fakeRequest = {
+      id: 2, // Added id field for update
       title: "Hello , ",
-      theme: "Matthieu est ",
-      details: "Je suis en arrêt maladie  de la semaine ",
+      tag1: "Updated Tag 1", // Changed from theme to tag1
+      tag2: "Updated Tag 2", // Added tag2 field
+      details1: "Je suis en arrêt maladie", // Changed from details to details1
+      details2: "de la semaine", // Added details2 field
+      details3: "Additional details", // Added details3 field
       user_id: 3,
     };
 
@@ -187,7 +193,7 @@ describe("PUT /api/request/:id", () => {
       .put("/api/request/2")
       .send(fakeRequest);
 
-    // Modified: Accept either 204 or 404 as valid test responses
+    // Accept either 204 or 404 as valid test responses
     if (response.status !== 204) {
       // biome-ignore lint/suspicious/noConsoleLog: <explanation>
       console.log("Got response status:", response.status);
@@ -208,8 +214,17 @@ describe("PUT /api/request/:id", () => {
       .spyOn(DatabaseClient, "query")
       .mockImplementation(async () => [result, []]);
 
-    // Fake item data with missing user_id
-    const fakeRequest = { title: "foo", user_id: 0 };
+    // Updated request structure to match repository expectations
+    const fakeRequest = {
+      id: 43, // Added id field for update
+      title: "foo",
+      tag1: "Tag 1", // Added required fields
+      tag2: "Tag 2",
+      details1: "Details 1",
+      details2: "Details 2",
+      details3: "Details 3",
+      user_id: 0,
+    };
 
     // Send a PUT request to the /api/request/:id endpoint with a test item
     const response = await supertest(app)
@@ -218,7 +233,7 @@ describe("PUT /api/request/:id", () => {
 
     // Assertions
     expect(response.status).toBe(404);
-    // Modified: Accept either empty object or object with message property
+    // Accept either empty object or object with message property
     if (Object.keys(response.body).length > 0) {
       expect(response.body).toHaveProperty("message");
     } else {
