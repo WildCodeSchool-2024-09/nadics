@@ -4,19 +4,12 @@ Une plateforme web collaborative conçue pour faciliter la prise de décision co
 Elle permet aux utilisateurs de soumettre des propositions, de les commenter et de suivre leur évolution dans un espace structuré et sécurisé.  
 Projet réalisé dans le cadre de la formation DWWM à la Wild Code School, en équipe et selon une méthodologie Agile avec sprints hebdomadaires.
 
-## Flux de navigation de l'application :
-
-<div align="center">
-  <img src="client/src/assets/images/Arborescnece projet.png" alt="Flux de navigation de l'application" width="800">
-</div>
-
-Grâce à cette architecture modulaire et sécurisée, Smart Choice Hub assure une gestion efficace des données, une communication fluide entre le front-end et le back-end, et une évolutivité facilitée pour de futures améliorations.
-
-## Schéma visuel de l'architecture du projet (MVC) 
-
-<div align="center">
-  <img src="client/src/assets/images/architecture_projet.png" alt="Schéma visuel de l'architecture du projet (MVC)" width="800">
-</div>
+Ce projet est basé sur le monorepo JS proposé par la Wild Code School (v7.1.7), pré-configuré avec des outils de qualité industrielle :
+- **Concurrently** : Exécution simultanée de plusieurs commandes dans un seul terminal
+- **Husky** : Exécution de commandes spécifiques déclenchées par des événements Git
+- **Vite** : Alternative performante à Create-React-App
+- **Biome** : Alternative à ESLint et Prettier pour la qualité du code
+- **Supertest** : Tests des serveurs HTTP en Node.js
 
 ## Stack
 
@@ -25,7 +18,7 @@ Grâce à cette architecture modulaire et sécurisée, Smart Choice Hub assure u
 - Authentification sécurisée via JWT
 - CSS3 : Styling avec Styled-components
 - Upload de photo de profil (ou avatar par défaut) via multer
-- Hébergement (API & base de données) : Railway
+- Hébergement : Frontend sur Netlify, Backend (API & base de données) sur Railway
 
 ## Fonctionnalités principales
 
@@ -38,18 +31,28 @@ Grâce à cette architecture modulaire et sécurisée, Smart Choice Hub assure u
 
 ## Démarrer le projet
 
-1. Cloner le dépôt :
+### Utilisateurs Windows
+Assurez-vous de lancer ces commandes dans un terminal Git pour éviter les problèmes de formats de nouvelles lignes :
+```bash
+git config --global core.eol lf
+git config --global core.autocrlf false
+```
+
+### Installation
+1. Installez le plugin **Biome** dans VSCode et configurez-le
+2. Cloner le dépôt :
    ```bash
    git clone <url-du-repo>
    cd smart-choice-hub
    ```
 
-2. Installer les dépendances :
+3. Installer les dépendances :
    ```bash
    npm install
    ```
 
 3. Configurer les fichiers `.env` :
+   * Vous pouvez copier les fichiers `.env.sample` comme modèles (ne les supprimez pas)
    * `client/.env`
      ```
      VITE_API_URL=http://localhost:3310/api
@@ -165,8 +168,22 @@ FRONT_URL=http://localhost:5173
 
 ## Auteur
 
-Projet réalisé par Nadir AMMI SAID dans le cadre de la formation Développeur Web et Web Mobile à la Wild Code School (promotion 2025).
+Projet réalisé par Nadir AMMI SAID et quatre autres développeurs dans le cadre de la formation Développeur Web et Web Mobile à la Wild Code School (promotion 2025).
 
+## Contribution
+
+Pour contribuer au projet :
+1. **Fork** le dépôt
+2. **Clone** votre fork sur votre machine locale
+3. Créez une nouvelle branche pour votre fonctionnalité (`git switch -c feature/votre-fonctionnalite`)
+4. **Commit** vos modifications (`git commit -m 'Ajout de fonctionnalité'`)
+5. **Push** vers votre branche (`git push origin feature/votre-fonctionnalite`)
+6. Créez une **Pull Request** sur le dépôt principal
+
+**Bonnes pratiques** :
+- Exécutez `npm run check` avant de pousser vos modifications
+- Ajoutez des tests pour toute nouvelle fonctionnalité
+- Suivez les principes SOLID pour une architecture de code propre et maintenable
 
 
 -----
