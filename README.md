@@ -7,7 +7,7 @@ Projet réalisé dans le cadre de la formation DWWM à la Wild Code School, en �
 ## Flux de navigation de l'application :
 
 <div align="center">
-  <img src="client/src/assets/images/Arborescnece projet.png" alt="Flux de navigation de l'application" width="600">
+  <img src="client/src/assets/images/Arborescnece projet.png" alt="Flux de navigation de l'application" width="800">
 </div>
 
 Grâce à cette architecture modulaire et sécurisée, Smart Choice Hub assure une gestion efficace des données, une communication fluide entre le front-end et le back-end, et une évolutivité facilitée pour de futures améliorations.
@@ -15,7 +15,7 @@ Grâce à cette architecture modulaire et sécurisée, Smart Choice Hub assure u
 ## Schéma visuel de l'architecture du projet (MVC) 
 
 <div align="center">
-  <img src="client/src/assets/images/architecture_projet.png" alt="Schéma visuel de l'architecture du projet (MVC)" width="600">
+  <img src="client/src/assets/images/architecture_projet.png" alt="Schéma visuel de l'architecture du projet (MVC)" width="800">
 </div>
 
 ## Stack
