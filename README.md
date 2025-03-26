@@ -199,7 +199,10 @@ Pour contribuer au projet :
 - Suivez les principes SOLID pour une architecture de code propre et maintenable
 
 
------
+
+---------------
+---------------
+
 
 
 # Readme original du Monorepo JS de Wild Code School
