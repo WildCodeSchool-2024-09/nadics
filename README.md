@@ -203,7 +203,7 @@ Pour contribuer au projet :
 ---------------
 ---------------
 
-
+<!--  Readme original du Monorepo JS de Wild Code School
 
 # Readme original du Monorepo JS de Wild Code School
 
@@ -573,3 +573,5 @@ Nous accueillons avec plaisir les contributions ! Veuillez suivre ces étapes po
 - Assurez-vous que votre code respecte les standards de codage en exécutant `npm run check` avant de pousser vos modifications.
 - Ajoutez des tests pour toute nouvelle fonctionnalité ou correction de bug.
 - Documentez clairement vos modifications dans la description de la pull request.
+
+-->
