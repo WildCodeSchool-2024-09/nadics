@@ -5,6 +5,8 @@ import path from "node:path";
 import multer from "multer";
 import authAction from "./modules/auth/authAction";
 import commentActions from "./modules/comment/commentActions";
+import impacted_personActions from "./modules/request/impacted_personActions";
+import impacting_personActions from "./modules/request/impacting_personActions";
 import requestActions from "./modules/request/requestActions";
 import uploads from "./modules/users/uploadsAction";
 import userActions from "./modules/users/userAction";
@@ -68,6 +70,9 @@ router.use(
   express.static(path.join(__dirname, "public", "uploads")),
 );
 router.post("/upload-avatar/:id", upload.single("avatar"), uploads.addAvatar);
+
+router.get("/api/impacted_person/:requestId", impacted_personActions.read);
+router.get("/api/impacting_person/:requestId", impacting_personActions.read);
 
 /*authAction.verifyToken middleware  à ajouter qpres correction
 

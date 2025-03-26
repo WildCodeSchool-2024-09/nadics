@@ -35,6 +35,33 @@ CREATE TABLE request (
         
 );
 
+CREATE TABLE impacted_person (
+    request_id INT NOT NULL,
+    user_id INT NOT NULL,
+    PRIMARY KEY (request_id, user_id),
+    CONSTRAINT fk_impacted_person_request
+        FOREIGN KEY (request_id)
+        REFERENCES request(id)
+        ON DELETE CASCADE,
+    CONSTRAINT fk_impacted_person__user
+        FOREIGN KEY (user_id)
+        REFERENCES user(id)
+        ON DELETE CASCADE
+);
+CREATE TABLE impacting_person (
+    request_id INT NOT NULL,
+    user_id INT NOT NULL,
+    PRIMARY KEY (request_id, user_id),
+    CONSTRAINT fk_impacting_person_request
+        FOREIGN KEY (request_id)
+        REFERENCES request(id)
+        ON DELETE CASCADE,
+    CONSTRAINT fk_impacting_person__user
+        FOREIGN KEY (user_id)
+        REFERENCES user(id)
+        ON DELETE CASCADE
+);
+
 CREATE TABLE comment (
     id INT PRIMARY KEY AUTO_INCREMENT,
     details TEXT NOT NULL,
@@ -61,12 +88,3 @@ values
   ("Toto", "Tutu", "1994-02-05" , "toto.tutu@mail.com", "123456", 1),
   ("Tata", "Titi", "2000.01.02","tata.titi@mail.com", "78910", 2);
 
-insert into request(`date`,title, tag1, details1, user_id)
-values 
-  ("1994.12.24","titre1", "Sport", "bcp de details1", 1),
-  ("1994.11.24","titre2", "Tech", "bcp de details2", 2);
-
-insert into comment(details, `date`, user_id, request_id)
-values 
-  ("jesuispasdaccord", NOW(), 1, 1),
-  ("jesuisdaccord", NOW(), 2, 2);

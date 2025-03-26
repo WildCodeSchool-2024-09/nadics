@@ -9,13 +9,17 @@ export type UserType = {
 };
 
 export type UserTypeContext = {
-  user: UserType | null; // Permet d'avoir un utilisateur ou null au départ
-  setUser: React.Dispatch<React.SetStateAction<UserType | null>>; // Typage correct pour setUser
+  user: UserType | null;
+  setUser: React.Dispatch<React.SetStateAction<UserType | null>>;
+  allUsers: UserType[];
+  setAllUsers: React.Dispatch<React.SetStateAction<UserType[]>>;
 };
 
 const defaultValue: UserTypeContext = {
   user: null, // Pas d'utilisateur par défaut
   setUser: () => {}, // Valeur par défaut temporaire
+  allUsers: [],
+  setAllUsers: () => [], // Valeur par défaut temporaire
 };
 
 const UserContext = createContext<UserTypeContext>(defaultValue); // creation de context
@@ -26,6 +30,7 @@ export const UserProvider = ({
 }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<UserType | null>(null);
   const [userConnected, setUserConnected] = useState<UserType | null>(null);
+  const [allUsers, setAllUsers] = useState<UserType[]>([]);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -57,11 +62,21 @@ export const UserProvider = ({
       .catch((error) => console.error("Error while fetching :", error));
   }, [userConnected]);
 
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_URL}/api/users`)
+      .then((response) => response.json())
+      .then((data) => {
+        setAllUsers(data);
+      })
+      .catch((error) => console.error("Error while fetching :", error));
+  }, []);
   return (
     <UserContext.Provider
       value={{
         user,
         setUser,
+        allUsers,
+        setAllUsers,
       }}
     >
       {children}
