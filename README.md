@@ -11,13 +11,25 @@ Ce projet est basé sur le monorepo JS proposé par la Wild Code School (v7.1.7)
 - **Biome** : Alternative à ESLint et Prettier pour la qualité du code
 - **Supertest** : Tests des serveurs HTTP en Node.js
 
+## Schéma visuel de l'architecture du projet (MVC) 
+
+<div align="center">
+  <img src="client/src/assets/images/architecture_projet.png" alt="Schéma visuel de l'architecture du projet (MVC)" width="800">
+</div>
+
+## Flux de navigation de l'application
+
+<div align="center">
+  <img src="client/src/assets/images/Arborescnece projet.png" alt="Flux de navigation de l'application" width="800">
+</div>
+Grâce à cette architecture modulaire et sécurisée, Smart Choice Hub assure une gestion efficace des données, une communication fluide entre le front-end et le back-end, et une évolutivité facilitée pour de futures améliorations.
+
 ## Stack
 
 - Client : React + TypeScript + Vite
 - Serveur : Node.js + Express + MySQL
-- Authentification sécurisée via JWT
+- Authentification sécurisée via JWT et hashage argon2
 - CSS3 : Styling avec Styled-components
-- Upload de photo de profil (ou avatar par défaut) via multer
 - Hébergement : Frontend sur Netlify, Backend (API & base de données) sur Railway
 
 ## Fonctionnalités principales
@@ -161,6 +173,7 @@ FRONT_URL=http://localhost:5173
 ## Sécurité
 
 * Authentification par JWT, stocké en cookie `httpOnly` avec `SameSite=Strict`
+* Hashage sécurisé des mots de passe avec argon2
 * Middleware `verifyToken` pour protéger les routes sensibles
 * Vérification de l'auteur via `isPoster` avant modification ou suppression
 * Validation des champs côté client et serveur
