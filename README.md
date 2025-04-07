@@ -54,7 +54,7 @@ git config --global core.autocrlf false
 1. Installez le plugin **Biome** dans VSCode et configurez-le
 2. Cloner le dépôt :
    ```bash
-   git clone <url-du-repo>
+   git clone -b dev https://github.com/nadir-ammisaid/Smart-Choice-Hub.git
    cd smart-choice-hub
    ```
 
