@@ -106,7 +106,8 @@ const isPoster: RequestHandler = async (req, res, next): Promise<void> => {
     const requestId = Number(req.params.id); // Get request ID from URL
 
     // Use proper property name (check if it's id or user_id)
-    const userId = Number(req.user.id || req.user.user_id);
+    const userId = Number(req.user.id);
+    // const userId = Number(req.user.id || req.user.user_id);
 
     if (Number.isNaN(userId)) {
       res.status(401).json({ message: "Unauthorized: Invalid user ID" });
