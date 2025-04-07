@@ -5,15 +5,21 @@ import backgroundImage from "../assets/images/background.png";
 import EditorText from "../components/reuasble-ui/EditorText";
 import PrimaryButton from "../components/reuasble-ui/PrimaryButton";
 import UserContext from "../context/userContext";
+
 export default function PostRequest() {
   const { user } = useContext(UserContext);
+
   const [tempContent1, setTempContent1] = useState("");
   const [tempContent2, setTempContent2] = useState("");
   const [tempContent3, setTempContent3] = useState("");
+
   const navigate = useNavigate();
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     const formData = new FormData(event.currentTarget);
+
     const requestData = {
       title: formData.get("title") as string,
       tag1: formData.get("tag1") as string,
@@ -23,6 +29,7 @@ export default function PostRequest() {
       details3: tempContent3,
       user_id: user ? user.id : null,
     };
+
     try {
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/api/request`,
@@ -35,19 +42,20 @@ export default function PostRequest() {
           body: JSON.stringify(requestData),
         },
       );
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "request updated cancel");
-      }
+
       if (response.status === 201) {
         alert("Request submitted! Redirecting...");
         navigate("/home");
+      } else {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Failed to create request");
       }
     } catch (error) {
-      console.error("Error creating request");
-      alert("An error please try again");
+      console.error("Error creating request:", error);
+      alert("An error occurred, please try again.");
     }
   };
+
   return (
     <PostRequestStyled onSubmit={handleSubmit}>
       <h1>Request creation</h1>
@@ -58,22 +66,31 @@ export default function PostRequest() {
       <hr />
       <div id="tag_choix">
         <div className="tag_select">
-          <label htmlFor="choix">Select primary tag (required):</label>
+          <label htmlFor="choix">Select a primary tag (required):</label>
           <select id="choix" name="tag1">
-            <option value="Sport">Sport</option>
-            <option value="Eat">Eat</option>
-            <option value="Drink">Drink</option>
-            <option value="Sex">Sex</option>
+            <option value="" disabled selected>
+              Select a category
+            </option>
+            <option value="Environment">Environment</option>
+            <option value="Projects">Projects</option>
+            <option value="Transportation">Transportation</option>
+            <option value="Improvements">Improvements</option>
+            <option value="Issues">Issues</option>
+            <option value="Security">Security</option>
           </select>
         </div>
         <div className="tag_select">
-          <label htmlFor="choix">Select second tag (not required):</label>
+          <label htmlFor="choix">Select a secondary tag (optional):</label>
           <select id="choix" name="tag2">
-            <option value="Sport">---</option>
-            <option value="Sport">Sport</option>
-            <option value="Eat">Eat</option>
-            <option value="Drink">Drink</option>
-            <option value="Sex">Sex</option>
+            <option value="" disabled selected>
+              Select a category
+            </option>
+            <option value="Environment">Environment</option>
+            <option value="Projects">Projects</option>
+            <option value="Transportation">Transportation</option>
+            <option value="Improvements">Improvements</option>
+            <option value="Issues">Issues</option>
+            <option value="Security">Security</option>
           </select>
         </div>
       </div>
@@ -158,12 +175,13 @@ label{
 }
 input {
   width: 360px;
-  height: 64px;
-  border-radius: 10px;
+  height: 54px;
+  border-radius: 5px;
   fill: #F5F5F5;
   filter: drop-shadow(10px 10px 14px rgba(0, 0, 0, 0.25));
   font-size: 1.2rem;
   margin-bottom: 1rem;
+  margin-top: 1rem;
   font-size: 1em;
   padding:1rem;
   font-weight: 400;
@@ -200,6 +218,19 @@ p {
   margin-bottom: 2rem;
   padding-left:8rem;
   gap:1rem;
+}
+input {
+  width: 460px;
+  height: 44px;
+  border-radius: 5px;
+  fill: #F5F5F5;
+  filter: drop-shadow(10px 10px 14px rgba(0, 0, 0, 0.25));
+  font-size: 1.2rem;
+  margin-bottom: 0rem;
+  margin-top: 0rem;
+  font-size: 1em;
+  padding:1rem;
+  font-weight: 400;
 }
 }
 `;

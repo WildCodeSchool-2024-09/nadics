@@ -18,12 +18,9 @@ const defaultValue: UserTypeContext = {
   setUser: () => {}, // Valeur par défaut temporaire
 };
 
-const UserContext = createContext<UserTypeContext>(defaultValue); // creation de context
+const UserContext = createContext<UserTypeContext>(defaultValue);
 
-export const UserProvider = ({
-  // creation de provider pour passer context
-  children,
-}: { children: React.ReactNode }) => {
+export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<UserType | null>(null);
   const [userConnected, setUserConnected] = useState<UserType | null>(null);
 

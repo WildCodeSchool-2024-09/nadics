@@ -19,22 +19,27 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage });
+router.use(
+  "/uploads",
+  express.static(path.join(__dirname, "public", "uploads")),
+);
+router.post("/upload-avatar/:id", upload.single("avatar"), uploads.addAvatar);
+
+router.post("/api/login/", authAction.login);
+router.get("/api/me/", authAction.me);
+router.post("/api/logout/", authAction.logout);
+
+router.get("/api/users", userActions.browse);
+router.get("/api/users/:id", userActions.read);
+router.post("/api/users/", authAction.hashPassword, userActions.add);
+router.put("/api/users/:id", userActions.edit);
+router.delete("/api/users/:id", userActions.destroy);
 
 router.get("/api/comments/request/:request_id", commentActions.browse);
 router.get("/api/comments/:id", commentActions.read);
 router.post("/api/comments/", commentActions.add);
 router.put("/api/comments/:id", commentActions.edit);
 router.delete("/api/comments/:id", commentActions.destroy);
-
-router.get("/api/users", userActions.browse);
-router.get("/api/users/:id", userActions.read);
-
-router.post("/api/login/", authAction.login);
-router.get("/api/me/", authAction.me);
-router.post("/api/logout/", authAction.logout);
-router.post("/api/users/", authAction.hashPassword, userActions.add);
-router.delete("/api/users/:id", userActions.destroy);
-router.put("/api/users/:id", userActions.edit);
 
 router.get("/api/request", requestActions.browse);
 router.get("/api/request/:id", requestActions.read);
@@ -49,11 +54,12 @@ router.get(
     res.status(200).json({ message: "You are the owner of this request" });
   },
 );
+
 router.put(
   "/api/request/:id",
-  authAction.verifyToken,
-  requestActions.isPoster,
-  requestActions.edit,
+  authAction.verifyToken, // Vérifie que l’utilisateur est connecté
+  requestActions.isPoster, // Vérifie qu’il est bien l’auteur de la Request
+  requestActions.edit, // Si tout est OK, on exécute la mise à jour
 );
 
 router.delete(
@@ -62,14 +68,6 @@ router.delete(
   requestActions.isPoster,
   requestActions.destroy,
 );
-
-router.use(
-  "/uploads",
-  express.static(path.join(__dirname, "public", "uploads")),
-);
-router.post("/upload-avatar/:id", upload.single("avatar"), uploads.addAvatar);
-
-/*authAction.verifyToken middleware  à ajouter qpres correction
 
 /* ************************************************************************* */
 export default router;

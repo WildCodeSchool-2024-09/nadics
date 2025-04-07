@@ -7,6 +7,7 @@ interface PropsType {
 }
 function DeleteRequest({ id }: PropsType) {
   const navigate = useNavigate();
+
   const { user } = useContext(UserContext);
 
   const [showModal, setShowModal] = useState(false);
@@ -15,7 +16,13 @@ function DeleteRequest({ id }: PropsType) {
     fetch(`${import.meta.env.VITE_API_URL}/api/request/${id}`, {
       method: "delete",
       credentials: "include",
-      body: JSON.stringify({ userId: user?.id, requestId: id }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userId: user?.id, // On passe aussi l'ID de l'utilisateur connecté
+        requestId: id, // L'ID de la Request à supprimer
+      }),
     }).then((response) => {
       if (response.status === 403) {
         alert("You are not owner of this request ");

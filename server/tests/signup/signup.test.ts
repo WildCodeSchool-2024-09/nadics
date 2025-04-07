@@ -16,7 +16,7 @@ describe("Test pour création d utilisateur", () => {
       lastname: faker.person.lastName(),
       // On utilise cette syntaxe pour avoir un format de date YYYY-MM-DD
       birthday: faker.date.birthdate().toISOString().split("T")[0],
-      hashed_password: faker.internet.password(),
+      password: faker.internet.password(),
     };
 
     const response = await request(app).post("/api/users/").send(newUser);
