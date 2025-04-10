@@ -46,6 +46,7 @@ function RequestDetails() {
   const [editedComment, setEditedComment] = useState<Partial<CommentType>>({});
   const [isEditing, setIsEditing] = useState<boolean>(false); //etat pour modifier request
   const [isEditingComment, setIsEditingComment] = useState<boolean>(false); //etat pour modifier comment
+
   useEffect(() => {
     if (!id) return; // Vérifie si user est null avant d'exécuter le fetch
     const requestId = Number(id);
@@ -57,6 +58,7 @@ function RequestDetails() {
       })
       .catch((error) => console.error("Error while fetching :", error));
   }, [id]);
+
   useEffect(() => {
     if (!user) return; // Vérifie si user est null avant d'exécuter le fetch
     if (!request) return;
@@ -65,18 +67,22 @@ function RequestDetails() {
       .then((data) => setComments(data))
       .catch((error) => console.error("Error while fetching :", error));
   }, [user, request]);
+
   const handleInputChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
     const { name, value } = event.target;
     setEditedRequest((prev) => ({ ...prev, [name]: value }));
   };
+
   const handleEditorChange = (name: string, value: string) => {
     setEditedRequest((prev) => ({ ...prev, [name]: value }));
   };
+
   const handleInputChangeComment = (value: string) => {
     setEditedComment((prev) => ({ ...prev, details: value }));
   };
+  
   return (
     <>
       {request && (

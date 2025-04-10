@@ -3,7 +3,6 @@
   flex-direction: column;
   align-content: center;
   align-items: center;
-  /* height: 100vh; */
   min-height: calc(100vh - 80px);
   background: linear-gradient(
       rgba(255, 255, 255, 0.5) /* Couleur blanche avec une opacité de 50% */,
