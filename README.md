@@ -63,7 +63,7 @@ git config --global core.autocrlf false
    npm install
    ```
 
-3. Configurer les fichiers `.env` :
+4. Configurer les fichiers `.env` :
    * Vous pouvez copier les fichiers `.env.sample` comme modèles (ne les supprimez pas)
    * `client/.env`
      ```
@@ -80,7 +80,7 @@ git config --global core.autocrlf false
      FRONT_URL=http://localhost:5173
      ```
 
-4. Lancer le projet :
+5. Lancer le projet :
    ```bash
    npm run dev
    ```
@@ -166,8 +166,8 @@ DB_HOST=localhost
 DB_USER=root
 DB_PASSWORD=root
 DB_NAME=smart_choice
-JWT_SECRET=monSuperSecret
-FRONT_URL=http://localhost:5173
+JWT_SECRET=supersecretkey
+CLIENT_URL=http://localhost:3000
 ```
 
 ## Sécurité
@@ -268,7 +268,7 @@ git config --global core.autocrlf false
    npm install
    ```
 
-3. Configure `.env` files:
+4. Configure `.env` files:
    * You can copy the `.env.sample` files as templates (do not delete them)
    * `client/.env`
      ```
@@ -285,7 +285,7 @@ git config --global core.autocrlf false
      FRONT_URL=http://localhost:5173
      ```
 
-4. Launch the project:
+5. Launch the project:
    ```bash
    npm run dev
    ```
@@ -371,7 +371,7 @@ DB_HOST=localhost
 DB_USER=root
 DB_PASSWORD=root
 DB_NAME=smart_choice
-JWT_SECRET=mySuperSecret
+JWT_SECRET=supersecretkey
 FRONT_URL=http://localhost:5173
 ```
 
