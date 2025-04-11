@@ -20,6 +20,7 @@ export default function PostRequest() {
 
     if (!user) {
       alert("Please login to post a request");
+      navigate("/");
       return;
     }
 
