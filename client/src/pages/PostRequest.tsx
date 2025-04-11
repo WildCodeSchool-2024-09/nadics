@@ -18,6 +18,11 @@ export default function PostRequest() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    if (!user) {
+      alert("Vous devez être connecté pour poster une demande.");
+      return;
+    }
+
     const formData = new FormData(event.currentTarget);
 
     const requestData = {
@@ -27,7 +32,7 @@ export default function PostRequest() {
       details1: tempContent1,
       details2: tempContent2,
       details3: tempContent3,
-      user_id: user ? user.id : null,
+      user_id: user.id,
     };
 
     try {
