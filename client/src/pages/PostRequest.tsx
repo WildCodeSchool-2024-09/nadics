@@ -19,7 +19,7 @@ export default function PostRequest() {
     event.preventDefault();
 
     if (!user) {
-      alert("Vous devez être connecté pour poster une demande.");
+      alert("Please login to post a request");
       return;
     }
 
