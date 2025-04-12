@@ -73,7 +73,7 @@ export default function PostRequest() {
       <div id="tag_choix">
         <div className="tag_select">
           <label htmlFor="choix">Select a primary tag (required):</label>
-          <select id="choix" name="tag1">
+          <select id="choix" name="tag1" required>
             <option value="" disabled selected>
               Select a category
             </option>

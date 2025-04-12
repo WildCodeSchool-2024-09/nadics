@@ -14,7 +14,7 @@ interface Request {
   tag2?: string;
 }
 
-function RequestCard(): JSX.Element {
+function RequestCard() {
   const [requests, setRequests] = useState<Request[]>([]);
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/request/`)
