@@ -6,7 +6,7 @@ import CommentEdit from "../components/CommentEdit";
 import RequestDetailCard from "../components/RequestDetailCard";
 import "./RequestDetails.css";
 import parse from "html-react-parser";
-import defaultAvatar from "../assets/images/avatar.jpg";
+import defaultAvatar from "../assets/images/avatar.png";
 import DeleteRequest from "../components/RequestDelete";
 import RequestEdit from "../components/RequestEdit";
 import EditorText from "../components/reuasble-ui/EditorText";
@@ -102,10 +102,15 @@ function RequestDetails() {
                   value={editedRequest.tag1 || ""}
                   onChange={handleInputChange}
                 >
-                  <option value="Sport">Sport</option>
-                  <option value="Eat">Eat</option>
-                  <option value="Drink">Drink</option>
-                  <option value="Sex">Sex</option>
+                  <option value="Finance">Finance</option>
+                  <option value="HR">Human Resources</option>
+                  <option value="Strategy">Strategy</option>
+                  <option value="Marketing">Marketing</option>
+                  <option value="Product">Product</option>
+                  <option value="Tech">Technology</option>
+                  <option value="Customer">Customer Relations</option>
+                  <option value="Operations">Operations</option>
+                  <option value="Operations">Other</option>
                 </select>
               </div>
             ) : (
@@ -120,14 +125,22 @@ function RequestDetails() {
                   value={editedRequest.tag2 || ""}
                   onChange={handleInputChange}
                 >
-                  <option value="Sport">Sport</option>
-                  <option value="Eat">Eat</option>
-                  <option value="Drink">Drink</option>
-                  <option value="Sex">Sex</option>
+                  <option value="Finance">Finance</option>
+                  <option value="HR">Human Resources</option>
+                  <option value="Strategy">Strategy</option>
+                  <option value="Marketing">Marketing</option>
+                  <option value="Product">Product</option>
+                  <option value="Tech">Technology</option>
+                  <option value="Customer">Customer Relations</option>
+                  <option value="Operations">Operations</option>
+                  <option value="Operations">Other</option>
                 </select>
               </div>
             ) : (
-              <span className="mobile-tag1">{request.tag2}</span>
+              request.tag2 &&
+              request.tag2 !== "---" && (
+                <span className="mobile-tag1">{request.tag2}</span>
+              )
             )}
           </div>
           <div id="user_info">

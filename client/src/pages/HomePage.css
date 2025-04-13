@@ -59,3 +59,19 @@ a {
     text-align: left;
   }
 }
+
+@media (max-width: 1306px) {
+  .grid-card {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 963px) {
+  .grid-card {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 632px) {
+  .grid-card {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

@@ -63,29 +63,23 @@ const add: RequestHandler = async (req, res, next) => {
       details1: req.body.details1,
       details2: req.body.details2,
       details3: req.body.details3,
-      user_id: req.body.user_id,
+      user_id: Number(req.user.id),
     };
 
-    // Create the user
     const insertId = await requestRepository.create(newRequest);
-
-    const impactedPersonIds = req.body.impactedPersonIds;
 
     const insertImpactId = await impacted_personRepository.create(
       insertId,
-      impactedPersonIds,
+      req.body.impactedPersonIds,
     );
-    const impactingPersonIds = req.body.impactingPersonIds;
 
     const insertImpactingId = await impacting_personRepository.create(
       insertId,
-      impactingPersonIds,
+      req.body.impactingPersonIds,
     );
-
     if (!insertId) {
-      throw new Error("Failed to create program.");
+      throw new Error("Failed to create request.");
     }
-    // Respond with HTTP 201 (Created) and the ID of the newly inserted user
     res.status(201).json({ insertId, insertImpactId, insertImpactingId });
   } catch (err) {
     // Pass any errors to the error-handling middleware

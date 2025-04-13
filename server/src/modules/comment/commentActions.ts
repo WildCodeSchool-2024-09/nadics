@@ -39,7 +39,7 @@ const add: RequestHandler = async (req, res, next) => {
   try {
     const newComment = {
       details: req.body.details,
-      user_id: Number(req.body.user_id),
+      user_id: Number(req.user.id),
       request_id: Number(req.body.request_id),
     };
 

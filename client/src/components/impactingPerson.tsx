@@ -1,7 +1,6 @@
 import { useContext, useState } from "react";
+import defaultAvatar from "../assets/images/avatar.png";
 import UserContext from "../context/userContext";
-import "./RequestDetailCard.css";
-
 interface PropsType {
   impactingPersonIds: number[]; // L'état qui contient id de la personne  impactée
   setImpactingPersonIds: React.Dispatch<React.SetStateAction<number[]>>;
@@ -45,6 +44,7 @@ function ImpactingPerson({
       {/* Champ de recherche */}
       <h2>Impacting person</h2>
       <input
+        className="input_create"
         type="text"
         value={search}
         onChange={handleSearchChange}
@@ -65,7 +65,19 @@ function ImpactingPerson({
                       handleImpactingPersonChange(user.id); // Met à jour impactedPerson lorsqu'un utilisateur est sélectionné
                     }}
                   />
-                  <label htmlFor={user.firstname}>
+                  <label
+                    className="search_user"
+                    htmlFor={`checkbox-${user.id}`}
+                  >
+                    <img
+                      src={
+                        user.avatar
+                          ? `${import.meta.env.VITE_API_URL}/${user.avatar}`
+                          : defaultAvatar
+                      }
+                      alt="avatar pic"
+                      className="avatar_search"
+                    />
                     {user.firstname} {user.lastname}
                   </label>
                 </div>

@@ -19,7 +19,7 @@ const defaultValue: UserTypeContext = {
   user: null, // Pas d'utilisateur par défaut
   setUser: () => {}, // Valeur par défaut temporaire
   allUsers: [],
-  setAllUsers: () => [], // Valeur par défaut temporaire
+  setAllUsers: () => [],
 };
 
 const UserContext = createContext<UserTypeContext>(defaultValue); // creation de context

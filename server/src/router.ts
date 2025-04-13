@@ -1,6 +1,5 @@
 import express from "express";
 const router = express.Router();
-import { verify } from "node:crypto";
 import path from "node:path";
 import multer from "multer";
 import authAction from "./modules/auth/authAction";
@@ -8,23 +7,32 @@ import commentActions from "./modules/comment/commentActions";
 import impacted_personActions from "./modules/request/impacted_personActions";
 import impacting_personActions from "./modules/request/impacting_personActions";
 import requestActions from "./modules/request/requestActions";
-import uploads from "./modules/users/uploadsAction";
 import userActions from "./modules/users/userAction";
+
+// Fonction de nettoyage du nom du fichier
+const sanitizeFilename = (filename: string) => {
+  return filename
+    .replace(/[^a-zA-Z0-9.-]/g, "_") // Remplace les caractères spéciaux par "_"
+    .toLowerCase(); // Convertit tout en minuscules
+};
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, path.join(__dirname, "../public/uploads"));
   },
   filename: (req, file, cb) => {
-    cb(null, `${Date.now()}-${file.originalname}`);
+    const ext = path.extname(file.originalname); // Récupère l'extension du fichier
+    const baseName = path.basename(file.originalname, ext); // Récupère le nom sans extension
+    const safeFilename = sanitizeFilename(baseName); // Nettoie le nom
+    cb(null, `${Date.now()}-${safeFilename}${ext}`); // Construit un nom sûr
   },
 });
 
-const upload = multer({ storage });
+const upload = multer({ storage, limits: { fileSize: 2 * 1024 * 1024 } });
 
 router.get("/api/comments/request/:request_id", commentActions.browse);
 router.get("/api/comments/:id", commentActions.read);
-router.post("/api/comments/", commentActions.add);
+router.post("/api/comments/", authAction.verifyToken, commentActions.add);
 router.put("/api/comments/:id", commentActions.edit);
 router.delete("/api/comments/:id", commentActions.destroy);
 
@@ -40,7 +48,7 @@ router.put("/api/users/:id", userActions.edit);
 
 router.get("/api/request", requestActions.browse);
 router.get("/api/request/:id", requestActions.read);
-router.post("/api/request/", requestActions.add);
+router.post("/api/request/", authAction.verifyToken, requestActions.add);
 
 router.get(
   "/api/request/:id/isPoster",
@@ -69,7 +77,12 @@ router.use(
   "/uploads",
   express.static(path.join(__dirname, "public", "uploads")),
 );
-router.post("/upload-avatar/:id", upload.single("avatar"), uploads.addAvatar);
+router.post(
+  "/upload-avatar/:id",
+  upload.single("avatar"),
+  userActions.fileFilter,
+  userActions.addAvatar,
+);
 
 router.get("/api/impacted_person/:requestId", impacted_personActions.read);
 router.get("/api/impacting_person/:requestId", impacting_personActions.read);

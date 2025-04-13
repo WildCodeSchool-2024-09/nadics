@@ -16,8 +16,6 @@ const login: RequestHandler = async (req, res, next) => {
       req.body.password,
     );
     if (verified) {
-      const { hashed_password, ...userWithoutHashedPassword } = user;
-
       const myPayload: MyPayload = {
         id: user.id.toString(),
         firstname: user.firstname,

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import defaultAvatar from "../assets/images/avatar.jpg";
+import defaultAvatar from "../assets/images/avatar.png";
 import "./RequestCard.css";
 
 // Définir un type pour les données de chaque demande date`,title, theme, details, user_id

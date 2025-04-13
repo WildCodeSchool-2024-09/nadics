@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import defaultAvatar from "../assets/images/avatar.jpg";
+import defaultAvatar from "../assets/images/avatar.png";
 import editIcon from "../assets/images/edit-icon.png";
 import "../components/ProfileComponent.css";
 
@@ -28,7 +28,6 @@ function Profile() {
       setAvatarFile(file);
     }
   };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -39,7 +38,6 @@ function Profile() {
 
     const formData = new FormData();
     formData.append("avatar", avatarFile);
-
     try {
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/upload-avatar/${user.id}`,
@@ -48,7 +46,6 @@ function Profile() {
           body: formData,
         },
       );
-
       const data = await response.json();
       if (response.ok) {
         setUser((prevUser) =>
@@ -57,11 +54,11 @@ function Profile() {
         setAvatarFile(null); // Réinitialise avatarFile pour cacher le bouton
         alert("Avatar updated");
       } else {
-        alert(data.message || "Une erreur s'est produite.");
+        alert(data.message);
       }
     } catch (error) {
       console.error("An error occurred while uploading avatar", error);
-      alert("Erreur de connexion au serveur.");
+      alert("An error occurred while uploading avatar");
     }
   };
 

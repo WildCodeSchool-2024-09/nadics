@@ -125,6 +125,10 @@ nav {
     color: black;
     font-weight: bold;
   }
+  .navBarLinks:hover {
+    color: #666518;
+    font-size: 1.5em;
+  }
 
   #navbarLinksDesktop {
     display: flex;

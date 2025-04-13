@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import backgroundImage from "../assets/images/background.png";
@@ -6,9 +6,7 @@ import ImpactedPerson from "../components/impactedPerson";
 import ImpactingPerson from "../components/impactingPerson";
 import EditorText from "../components/reuasble-ui/EditorText";
 import PrimaryButton from "../components/reuasble-ui/PrimaryButton";
-import UserContext from "../context/userContext";
 export default function PostRequest() {
-  const { user } = useContext(UserContext);
   const [tempContent1, setTempContent1] = useState("");
   const [tempContent2, setTempContent2] = useState("");
   const [tempContent3, setTempContent3] = useState("");
@@ -26,7 +24,6 @@ export default function PostRequest() {
       details1: tempContent1,
       details2: tempContent2,
       details3: tempContent3,
-      user_id: user ? user.id : null,
       impactedPersonIds: impactedPersonIds,
       impactingPersonIds: impactingPersonIds,
     };
@@ -60,27 +57,43 @@ export default function PostRequest() {
       <h1>Request creation</h1>
       <div className="block">
         <label htmlFor="">Request title</label>
-        <input type="text" name="title" placeholder="Title" />
+        <input
+          className="input_create"
+          type="text"
+          name="title"
+          placeholder="Title"
+        />
       </div>
       <hr />
       <div id="tag_choix">
         <div className="tag_select">
           <label htmlFor="choix">Select primary tag (required):</label>
           <select id="choix" name="tag1">
-            <option value="Sport">Sport</option>
-            <option value="Eat">Eat</option>
-            <option value="Drink">Drink</option>
-            <option value="Sex">Sex</option>
+            <option value="">-- Please choose a tag --</option>
+            <option value="Finance">Finance</option>
+            <option value="HR">Human Resources</option>
+            <option value="Strategy">Strategy</option>
+            <option value="Marketing">Marketing</option>
+            <option value="Product">Product</option>
+            <option value="Tech">Technology</option>
+            <option value="Customer">Customer Relations</option>
+            <option value="Operations">Operations</option>
+            <option value="Operations">Other</option>
           </select>
         </div>
         <div className="tag_select">
-          <label htmlFor="choix">Select second tag (not required):</label>
+          <label htmlFor="choix">Select second tag (Optional):</label>
           <select id="choix" name="tag2">
-            <option value="Sport">---</option>
-            <option value="Sport">Sport</option>
-            <option value="Eat">Eat</option>
-            <option value="Drink">Drink</option>
-            <option value="Sex">Sex</option>
+            <option value="">--Optional--</option>
+            <option value="Finance">Finance</option>
+            <option value="HR">Human Resources</option>
+            <option value="Strategy">Strategy</option>
+            <option value="Marketing">Marketing</option>
+            <option value="Product">Product</option>
+            <option value="Tech">Technology</option>
+            <option value="Customer">Customer Relations</option>
+            <option value="Operations">Operations</option>
+            <option value="Operations">Other</option>
           </select>
         </div>
       </div>
@@ -175,9 +188,9 @@ label{
   font-weight: 700;
   line-height: normal;
 }
-input {
-  width: 360px;
-  height: 64px;
+.input_create {
+  width: 10rem;
+  height: 3rem;
   border-radius: 10px;
   fill: #F5F5F5;
   filter: drop-shadow(10px 10px 14px rgba(0, 0, 0, 0.25));
@@ -210,6 +223,9 @@ p {
   margin-top: 1rem;
   margin-bottom: 1rem;
   }
+  #filtre_container {
+  grid-template-columns: 1fr 1fr;
+}
 @media screen and (min-width: 431px) {
   width: 100vw;
   .tag_select{
@@ -223,6 +239,30 @@ p {
   margin-bottom: 2rem;
   padding-left:8rem;
   gap:1rem;
+}
+  #filtre_container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 1rem;
+}
+  #titre_impact {
+  margin-bottom: 1rem;
+}
+
+.listeFiltre {
+  display: flex;
+}
+
+#checkBox {
+  height: 2rem;
+  width: 3rem;
+}
+
+.name_label {
+  height: 2rem;
+}
+.avatar_search {
+  height: 2rem;
 }
 }
 `;
