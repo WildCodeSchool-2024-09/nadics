@@ -22,7 +22,6 @@ interface RequestAdd {
 }
 
 class RequestRepository {
-
   async create(request: Omit<RequestAdd, "id">) {
     // Execute the SQL INSERT query to add a new request to the "request" table
     const [result] = await databaseClient.query<Result>(

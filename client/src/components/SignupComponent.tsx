@@ -10,7 +10,7 @@ function SignupComponent() {
     email: "",
     firstname: "",
     lastname: "",
-    password: "",
+    password: "", 
     confirmPassword: "",
   });
 

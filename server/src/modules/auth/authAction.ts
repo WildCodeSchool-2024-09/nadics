@@ -81,7 +81,7 @@ const hashingOptions = {
   memoryCost: 19 * 2 ** 10 /* 19 Mio en kio (19 * 1024 kio) */,
   timeCost: 2,
   parallelism: 1,
-}; 
+};
 
 const hashPassword: RequestHandler = async (req, res, next) => {
   try {

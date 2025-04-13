@@ -82,7 +82,7 @@ function RequestDetails() {
   const handleInputChangeComment = (value: string) => {
     setEditedComment((prev) => ({ ...prev, details: value }));
   };
-  
+
   return (
     <>
       {request && (
