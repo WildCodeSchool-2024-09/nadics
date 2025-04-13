@@ -1,10 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
 import "./LoginComponent.css";
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import type { FormEventHandler } from "react";
 import logoDesktop from "../assets/images/logo-removebg.png";
+import UserContext from "../context/userContext";
 import PrimaryButton from "./reuasble-ui/PrimaryButton";
 function LoginComponent() {
+  const { setUserConnected } = useContext(UserContext);
   const navigate = useNavigate();
 
   // Références pour récupérer les valeurs des champs email et mot de passe
@@ -30,18 +32,26 @@ function LoginComponent() {
           }),
         },
       );
-      // Redirection vers la page de connexion si la création réussit
       if (response.status === 200) {
-        navigate("/home");
-        window.location.reload(); // Recharge la page pour actualiser l'état d'utilisateur
+        // Ensuite une deuxième requête pour récupérer l’utilisateur
+        const userRes = await fetch(`${import.meta.env.VITE_API_URL}/api/me`, {
+          method: "GET",
+          credentials: "include",
+        });
+
+        if (userRes.ok) {
+          const user = await userRes.json();
+          setUserConnected(user);
+          navigate("/home");
+        } else {
+          alert("Unable to fetch user after login.");
+        }
       } else {
-        // Affiche une alerte en cas d'identifiants incorrects
         alert("Email or password incorrect");
       }
     } catch (err) {
-      // Log des erreurs possibles
       console.error(err);
-      alert("An error occurred please try again");
+      alert("An error occurred, please try again.");
     }
   };
   return (

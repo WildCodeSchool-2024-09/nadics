@@ -1,34 +1,13 @@
 import express from "express";
 const router = express.Router();
 import path from "node:path";
-import multer from "multer";
 import authAction from "./modules/auth/authAction";
 import commentActions from "./modules/comment/commentActions";
 import impacted_personActions from "./modules/request/impacted_personActions";
 import impacting_personActions from "./modules/request/impacting_personActions";
 import requestActions from "./modules/request/requestActions";
+import uploadAction from "./modules/users/uploadAction";
 import userActions from "./modules/users/userAction";
-
-// Fonction de nettoyage du nom du fichier
-const sanitizeFilename = (filename: string) => {
-  return filename
-    .replace(/[^a-zA-Z0-9.-]/g, "_") // Remplace les caractères spéciaux par "_"
-    .toLowerCase(); // Convertit tout en minuscules
-};
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, "../public/uploads"));
-  },
-  filename: (req, file, cb) => {
-    const ext = path.extname(file.originalname); // Récupère l'extension du fichier
-    const baseName = path.basename(file.originalname, ext); // Récupère le nom sans extension
-    const safeFilename = sanitizeFilename(baseName); // Nettoie le nom
-    cb(null, `${Date.now()}-${safeFilename}${ext}`); // Construit un nom sûr
-  },
-});
-
-const upload = multer({ storage, limits: { fileSize: 2 * 1024 * 1024 } });
 
 router.get("/api/comments/request/:request_id", commentActions.browse);
 router.get("/api/comments/:id", commentActions.read);
@@ -79,9 +58,8 @@ router.use(
 );
 router.post(
   "/upload-avatar/:id",
-  upload.single("avatar"),
-  userActions.fileFilter,
-  userActions.addAvatar,
+  uploadAction.upload.single("avatar"),
+  uploadAction.addAvatar,
 );
 
 router.get("/api/impacted_person/:requestId", impacted_personActions.read);

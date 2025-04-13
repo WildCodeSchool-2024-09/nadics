@@ -23,10 +23,25 @@ function Profile() {
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files ? e.target.files[0] : null;
-    if (file) {
-      setAvatarFile(file);
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const allowedTypes = [
+      "image/jpeg",
+      "image/jpg",
+      "image/png",
+      "image/webp",
+      "image/bmp",
+      "image/gif",
+    ];
+    if (!allowedTypes.includes(file.type)) {
+      alert("Only image files are allowed (jpg, png, gif, etc.)");
+      return;
     }
+    if (file.size > 2 * 1024 * 1024) {
+      alert("File is too large. Max size is 2MB.");
+      return;
+    }
+    setAvatarFile(file);
   };
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,7 +50,6 @@ function Profile() {
       alert("File not selected");
       return;
     }
-
     const formData = new FormData();
     formData.append("avatar", avatarFile);
     try {

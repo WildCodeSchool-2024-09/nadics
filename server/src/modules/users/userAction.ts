@@ -101,48 +101,6 @@ const destroy: RequestHandler = async (req, res, next) => {
   }
 };
 
-const addAvatar: RequestHandler = async (req, res, next) => {
-  const userId = Number(req.params.id);
-  // Vérifier si un fichier est bien reçu
-  if (!req.file) {
-    res.status(400).json({ message: "Aucun fichier reçu" });
-  }
-
-  const file = req.file as Express.Multer.File;
-  const avatarPath = `uploads/${file.filename}`;
-
-  try {
-    // Appeler le repository pour mettre à jour l'avatar dans la base de données
-    await userRepository.createAvatar(userId, avatarPath);
-    // Réponse après mise à jour de l'avatar
-    res.json({
-      message: "Avatar uploaded succecfully",
-      avatar: avatarPath,
-    });
-  } catch (err) {
-    // En cas d'erreur, utiliser next() pour transmettre l'erreur au middleware global
-    console.error(err);
-    next(err); // Ceci transfère l'erreur au middleware d'erreur global
-  }
-};
-const fileFilter: RequestHandler = async (req, res, next) => {
-  const file = req.file; // Le fichier est attaché à la requête par Multer
-  const allowedTypes = [
-    "image/jpeg",
-    "image/jpg",
-    "image/png",
-    "image/webp",
-    "image/bmp",
-    "image/gif",
-  ];
-  // Vérification si le fichier existe et si son type MIME est autorisé
-  if (!file || !allowedTypes.includes(file.mimetype)) {
-    res.status(400).json({ message: "Only image files are accepted" }); // Si ce n'est pas une image, renvoyer une erreur
-  }
-
-  next(); // Si le fichier est valide, passer au middleware suivant (addAvatar)
-};
-
-export default { browse, read, edit, add, destroy, addAvatar, fileFilter };
+export default { browse, read, edit, add, destroy };
 
 ///test
