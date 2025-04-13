@@ -101,7 +101,7 @@ export default function PostRequest() {
         </div>
       </div>
       <div className="block">
-        <label htmlFor="">Reason of the request</label>
+        <label htmlFor="Reason of the request">Reason of the request</label>
         <EditorText
           value={tempContent1}
           onChange={setTempContent1}
@@ -109,7 +109,7 @@ export default function PostRequest() {
         />
       </div>
       <div className="block">
-        <label htmlFor="">How to do it</label>
+        <label htmlFor="How to do it">How to do it</label>
         <EditorText
           value={tempContent2}
           onChange={setTempContent2}
@@ -117,7 +117,7 @@ export default function PostRequest() {
         />
       </div>
       <div className="block">
-        <label htmlFor="">Why to do it</label>
+        <label htmlFor="Why to do it">Why to do it</label>
         <EditorText
           value={tempContent3}
           onChange={setTempContent3}
