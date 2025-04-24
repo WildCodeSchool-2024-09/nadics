@@ -55,8 +55,16 @@ function Navbar() {
   return (
     <header id="navbarContainer">
       <Link to="/home">
-        <img src={logoMobile} alt="logo" id="logoImageMobile" />
-        <img src={logoDesktop} alt="logo" id="logoImageDesktop" />
+        <img
+          src={logoMobile}
+          alt="logo Smart Choice Hub Mobile"
+          id="logoImageMobile"
+        />
+        <img
+          src={logoDesktop}
+          alt="logo Smart Choice Hub Desktop"
+          id="logoImageDesktop"
+        />
       </Link>
       <section id="LinksAndProfileDesktop">
         <nav id="navbarLinksDesktop">

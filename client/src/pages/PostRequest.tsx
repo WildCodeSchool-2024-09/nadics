@@ -18,6 +18,12 @@ export default function PostRequest() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    if (!user) {
+      alert("Please login to post a request");
+      navigate("/");
+      return;
+    }
+
     const formData = new FormData(event.currentTarget);
 
     const requestData = {
@@ -27,7 +33,7 @@ export default function PostRequest() {
       details1: tempContent1,
       details2: tempContent2,
       details3: tempContent3,
-      user_id: user ? user.id : null,
+      user_id: user.id,
     };
 
     try {
@@ -67,7 +73,7 @@ export default function PostRequest() {
       <div id="tag_choix">
         <div className="tag_select">
           <label htmlFor="choix">Select a primary tag (required):</label>
-          <select id="choix" name="tag1">
+          <select id="choix" name="tag1" required>
             <option value="" disabled selected>
               Select a category
             </option>
@@ -95,7 +101,7 @@ export default function PostRequest() {
         </div>
       </div>
       <div className="block">
-        <label htmlFor="">Reason of the request</label>
+        <label htmlFor="Reason of the request">Reason of the request</label>
         <EditorText
           value={tempContent1}
           onChange={setTempContent1}
@@ -103,7 +109,7 @@ export default function PostRequest() {
         />
       </div>
       <div className="block">
-        <label htmlFor="">How to do it</label>
+        <label htmlFor="How to do it">How to do it</label>
         <EditorText
           value={tempContent2}
           onChange={setTempContent2}
@@ -111,7 +117,7 @@ export default function PostRequest() {
         />
       </div>
       <div className="block">
-        <label htmlFor="">Why to do it</label>
+        <label htmlFor="Why to do it">Why to do it</label>
         <EditorText
           value={tempContent3}
           onChange={setTempContent3}
