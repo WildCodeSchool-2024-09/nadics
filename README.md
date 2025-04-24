@@ -13,10 +13,43 @@ Ce projet est basé sur le monorepo JS proposé par la Wild Code School (v7.1.7)
 
 ## Schéma visuel de l'architecture du projet (MVC) 
 
+```mermaid
+sequenceDiagram
+    box Web Client
+    participant React as React
+    participant Fetcher as Fetcher
+    end
+    box Web Server
+    participant Express as Express
+    participant Module as Module
+    end
+    box DB Server
+    participant DB as MySQL Server
+    end
+
+    React-)Fetcher: event
+    activate Fetcher
+    Fetcher-)Express: requête (HTTP)
+    activate Express
+    Express-)Module: appel
+    activate Module
+    Module-)DB: requête SQL
+    activate DB
+    DB--)Module: données
+    deactivate DB
+    Module--)Express: json
+    deactivate Module
+    Express--)Fetcher: réponse HTTP
+    deactivate Express
+    Fetcher--)React: render
+    deactivate Fetcher
+```
+
+<!--
 <div align="center">
   <img src="client/src/assets/images/architecture_projet.png" alt="Schéma visuel de l'architecture du projet (MVC)" width="800">
 </div>
-
+-->
 ## Flux de navigation de l'application
 
 <div align="center">
@@ -218,9 +251,43 @@ This project is based on the JS monorepo proposed by Wild Code School (v7.1.7), 
 
 ## Visual diagram of the project architecture (MVC)
 
+```mermaid
+sequenceDiagram
+    box Web Client
+    participant React as React
+    participant Fetcher as Fetcher
+    end
+    box Web Server
+    participant Express as Express
+    participant Module as Module
+    end
+    box DB Server
+    participant DB as MySQL Server
+    end
+
+    React-)Fetcher: event
+    activate Fetcher
+    Fetcher-)Express: requête (HTTP)
+    activate Express
+    Express-)Module: appel
+    activate Module
+    Module-)DB: requête SQL
+    activate DB
+    DB--)Module: données
+    deactivate DB
+    Module--)Express: json
+    deactivate Module
+    Express--)Fetcher: réponse HTTP
+    deactivate Express
+    Fetcher--)React: render
+    deactivate Fetcher
+```
+
+<!--
 <div align="center">
   <img src="client/src/assets/images/architecture_projet.png" alt="Visual diagram of the project architecture (MVC)" width="800">
 </div>
+-->
 
 ## Application navigation flow
 
