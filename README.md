@@ -1,4 +1,485 @@
-# p3
+# Smart Choice Hub
+
+Une plateforme web collaborative conçue pour faciliter la prise de décision collective au sein d'un groupe ou d'une organisation.  
+Elle permet aux utilisateurs de soumettre des propositions, de les commenter et de suivre leur évolution dans un espace structuré et sécurisé.  
+Projet réalisé dans le cadre de la formation DWWM à la Wild Code School, en équipe et selon une méthodologie Agile avec sprints hebdomadaires.
+
+Ce projet est basé sur le monorepo JS proposé par la Wild Code School (v7.1.7), pré-configuré avec des outils de qualité industrielle :
+- **Concurrently** : Exécution simultanée de plusieurs commandes dans un seul terminal
+- **Husky** : Exécution de commandes spécifiques déclenchées par des événements Git
+- **Vite** : Alternative performante à Create-React-App
+- **Biome** : Alternative à ESLint et Prettier pour la qualité du code
+- **Supertest** : Tests des serveurs HTTP en Node.js
+
+## Schéma visuel de l'architecture du projet (MVC) 
+
+```mermaid
+sequenceDiagram
+    box Web Client
+    participant React as React
+    participant Fetcher as Fetcher
+    end
+    box Web Server
+    participant Express as Express
+    participant Module as Module
+    end
+    box DB Server
+    participant DB as MySQL Server
+    end
+
+    React-)Fetcher: event
+    activate Fetcher
+    Fetcher-)Express: requête (HTTP)
+    activate Express
+    Express-)Module: appel
+    activate Module
+    Module-)DB: requête SQL
+    activate DB
+    DB--)Module: données
+    deactivate DB
+    Module--)Express: json
+    deactivate Module
+    Express--)Fetcher: réponse HTTP
+    deactivate Express
+    Fetcher--)React: render
+    deactivate Fetcher
+```
+
+<!--
+<div align="center">
+  <img src="client/src/assets/images/architecture_projet.png" alt="Schéma visuel de l'architecture du projet (MVC)" width="800">
+</div>
+-->
+## Flux de navigation de l'application
+
+<div align="center">
+  <img src="client/src/assets/images/Arborescnece projet.png" alt="Flux de navigation de l'application" width="800">
+</div>
+Grâce à cette architecture modulaire et sécurisée, Smart Choice Hub assure une gestion efficace des données, une communication fluide entre le front-end et le back-end, et une évolutivité facilitée pour de futures améliorations.
+
+## Stack
+
+- Client : React + TypeScript + Vite
+- Serveur : Node.js + Express + MySQL
+- Authentification sécurisée via JWT et hashage argon2
+- CSS3 : Styling avec Styled-components
+- Hébergement : Frontend sur Netlify, Backend (API & base de données) sur Railway
+
+## Fonctionnalités principales
+
+- Authentification sécurisée avec gestion de session
+- Création, consultation, modification et suppression de décisions
+- Système de commentaires lié à chaque décision
+- Accès restreint à l'application aux seuls utilisateurs connectés
+- Interface responsive adaptée aux écrans mobile et desktop
+- Affichage de la photo de profil ou d'un avatar par défaut
+
+## Démarrer le projet
+
+### Utilisateurs Windows
+Assurez-vous de lancer ces commandes dans un terminal Git pour éviter les problèmes de formats de nouvelles lignes :
+```bash
+git config --global core.eol lf
+git config --global core.autocrlf false
+```
+
+### Installation
+1. Installez le plugin **Biome** dans VSCode et configurez-le
+2. Cloner le dépôt :
+   ```bash
+   git clone -b dev https://github.com/nadir-ammisaid/Smart-Choice-Hub.git
+   cd smart-choice-hub
+   ```
+
+3. Installer les dépendances :
+   ```bash
+   npm install
+   ```
+
+4. Configurer les fichiers `.env` :
+   * Vous pouvez copier les fichiers `.env.sample` comme modèles (ne les supprimez pas)
+   * `client/.env`
+     ```
+     VITE_API_URL=http://localhost:3310/api
+     ```
+   
+   * `server/.env`
+     ```
+     DB_HOST=localhost
+     DB_USER=root
+     DB_PASSWORD=motdepasse
+     DB_NAME=smart_choice
+     JWT_SECRET=supersecretkey
+     FRONT_URL=http://localhost:5173
+     ```
+
+5. Lancer le projet :
+   ```bash
+   npm run dev
+   ```
+
+## Arborescence du projet (monorepo)
+
+```
+smart-choice-hub/
+├── client/
+│   ├── public/
+│   └── src/
+│       ├── assets/
+│       ├── components/
+│       ├── context/
+│       ├── pages/
+│       ├── services/
+│       └── types/
+│   ├── App.tsx
+│   ├── main.tsx
+│   ├── vite.config.ts
+│   └── tsconfig.json
+│
+├── server/
+│   ├── bin/
+│   ├── database/
+│   │   ├── fixtures/
+│   │   ├── client.ts
+│   │   └── schema.sql
+│   ├── public/
+│   │   ├── assets/
+│   │   └── uploads/
+│   ├── src/
+│   │   ├── modules/
+│   │   │   ├── auth/
+│   │   │   ├── comment/
+│   │   │   ├── item/
+│   │   │   ├── request/
+│   │   │   └── users/
+│   │   ├── types/
+│   │   ├── app.ts
+│   │   ├── main.ts
+│   │   └── router.ts
+│   ├── tests/
+│   ├── jest.config.js
+│   └── tsconfig.json
+```
+
+## Routes principales de l'API
+
+| Méthode | Route | Description |
+|---------|-------|-------------|
+| POST | `/api/login/` | Connexion utilisateur |
+| GET | `/api/me/` | Récupération du profil connecté |
+| POST | `/api/logout/` | Déconnexion utilisateur |
+| GET | `/api/users` | Récupération de tous les utilisateurs |
+| GET | `/api/users/:id` | Récupération d'un utilisateur par ID |
+| POST | `/api/users/` | Création d'un utilisateur avec hachage du mot de passe |
+| PUT | `/api/users/:id` | Modification d'un utilisateur |
+| DELETE | `/api/users/:id` | Suppression d'un utilisateur |
+| POST | `/upload-avatar/:id` | Upload d'un avatar utilisateur |
+| GET | `/api/comments/request/:request_id` | Tous les commentaires liés à une Request |
+| GET | `/api/comments/:id` | Un commentaire spécifique |
+| POST | `/api/comments/` | Création d'un commentaire |
+| PUT | `/api/comments/:id` | Modification d'un commentaire |
+| DELETE | `/api/comments/:id` | Suppression d'un commentaire |
+| GET | `/api/request` | Liste des demandes (Requests) |
+| GET | `/api/request/:id` | Détail d'une Request |
+| POST | `/api/request/` | Création d'une Request |
+| GET | `/api/request/:id/isPoster` | Vérification : l'utilisateur est-il l'auteur ? |
+| PUT | `/api/request/:id` | Édition d'une Request (auth + ownership requis) |
+| DELETE | `/api/request/:id` | Suppression d'une Request (auth + ownership requis) |
+
+## Variables d'environnement
+
+### client/.env
+```
+VITE_API_URL=http://localhost:3310/api
+```
+
+### server/.env
+```
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=root
+DB_NAME=smart_choice
+JWT_SECRET=supersecretkey
+CLIENT_URL=http://localhost:3000
+```
+
+## Sécurité
+
+* Authentification par JWT, stocké en cookie `httpOnly` avec `SameSite=Strict`
+* Hashage sécurisé des mots de passe avec argon2
+* Middleware `verifyToken` pour protéger les routes sensibles
+* Vérification de l'auteur via `isPoster` avant modification ou suppression
+* Validation des champs côté client et serveur
+* Requêtes SQL préparées via `mysql2/promise` pour éviter les injections
+
+## Auteur
+
+Projet réalisé par Nadir AMMI SAID et quatre autres développeurs dans le cadre de la formation Développeur Web et Web Mobile à la Wild Code School (promotion 2025).
+
+## Contribution
+
+Pour contribuer au projet :
+1. **Fork** le dépôt
+2. **Clone** votre fork sur votre machine locale
+3. Créez une nouvelle branche pour votre fonctionnalité (`git switch -c feature/votre-fonctionnalite`)
+4. **Commit** vos modifications (`git commit -m 'Ajout de fonctionnalité'`)
+5. **Push** vers votre branche (`git push origin feature/votre-fonctionnalite`) 
+6. Créez une **Pull Request** sur le dépôt principal
+
+**Bonnes pratiques** :
+- Exécutez `npm run check` avant de pousser vos modifications
+- Ajoutez des tests pour toute nouvelle fonctionnalité
+- Suivez les principes SOLID pour une architecture de code propre et maintenable
+
+
+---------------
+---------------
+
+
+# Smart Choice Hub
+
+A collaborative web platform designed to facilitate collective decision-making within a group or organization.  
+It allows users to submit proposals, comment on them, and track their evolution in a structured and secure space.  
+Project carried out as part of the DWWM training at Wild Code School, in a team following an Agile methodology with weekly sprints.
+
+This project is based on the JS monorepo proposed by Wild Code School (v7.1.7), pre-configured with industrial quality tools:
+- **Concurrently**: Simultaneous execution of multiple commands in a single terminal
+- **Husky**: Execution of specific commands triggered by Git events
+- **Vite**: High-performance alternative to Create-React-App
+- **Biome**: Alternative to ESLint and Prettier for code quality
+- **Supertest**: Testing of HTTP servers in Node.js
+
+## Visual diagram of the project architecture (MVC)
+
+```mermaid
+sequenceDiagram
+    box Web Client
+    participant React as React
+    participant Fetcher as Fetcher
+    end
+    box Web Server
+    participant Express as Express
+    participant Module as Module
+    end
+    box DB Server
+    participant DB as MySQL Server
+    end
+
+    React-)Fetcher: event
+    activate Fetcher
+    Fetcher-)Express: requête (HTTP)
+    activate Express
+    Express-)Module: appel
+    activate Module
+    Module-)DB: requête SQL
+    activate DB
+    DB--)Module: données
+    deactivate DB
+    Module--)Express: json
+    deactivate Module
+    Express--)Fetcher: réponse HTTP
+    deactivate Express
+    Fetcher--)React: render
+    deactivate Fetcher
+```
+
+<!--
+<div align="center">
+  <img src="client/src/assets/images/architecture_projet.png" alt="Visual diagram of the project architecture (MVC)" width="800">
+</div>
+-->
+
+## Application navigation flow
+
+<div align="center">
+  <img src="client/src/assets/images/Arborescnece projet.png" alt="Application navigation flow" width="800">
+</div>
+Thanks to this modular and secure architecture, Smart Choice Hub ensures efficient data management, smooth communication between the front-end and back-end, and facilitated scalability for future improvements.
+
+## Stack
+
+- Client: React + TypeScript + Vite
+- Server: Node.js + Express + MySQL
+- Secure authentication via JWT and argon2 hashing
+- CSS3: Styling with Styled-components
+- Hosting: Frontend on Netlify, Backend (API & database) on Railway
+
+## Main features
+
+- Secure authentication with session management
+- Creation, consultation, modification, and deletion of decisions
+- Comment system linked to each decision
+- Restricted access to the application for connected users only
+- Responsive interface adapted to mobile and desktop screens
+- Display of profile picture or default avatar
+
+## Starting the project
+
+### Windows users
+Make sure to run these commands in a Git terminal to avoid newline format issues:
+```bash
+git config --global core.eol lf
+git config --global core.autocrlf false
+```
+
+### Installation
+1. Install the **Biome** plugin in VSCode and configure it
+2. Clone the repository:
+   ```bash
+   git clone <repo-url>
+   cd smart-choice-hub
+   ```
+
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+4. Configure `.env` files:
+   * You can copy the `.env.sample` files as templates (do not delete them)
+   * `client/.env`
+     ```
+     VITE_API_URL=http://localhost:3310/api
+     ```
+   
+   * `server/.env`
+     ```
+     DB_HOST=localhost
+     DB_USER=root
+     DB_PASSWORD=password
+     DB_NAME=smart_choice
+     JWT_SECRET=supersecretkey
+     FRONT_URL=http://localhost:5173
+     ```
+
+5. Launch the project:
+   ```bash
+   npm run dev
+   ```
+
+## Project structure (monorepo)
+
+```
+smart-choice-hub/
+├── client/
+│   ├── public/
+│   └── src/
+│       ├── assets/
+│       ├── components/
+│       ├── context/
+│       ├── pages/
+│       ├── services/
+│       └── types/
+│   ├── App.tsx
+│   ├── main.tsx
+│   ├── vite.config.ts
+│   └── tsconfig.json
+│
+├── server/
+│   ├── bin/
+│   ├── database/
+│   │   ├── fixtures/
+│   │   ├── client.ts
+│   │   └── schema.sql
+│   ├── public/
+│   │   ├── assets/
+│   │   └── uploads/
+│   ├── src/
+│   │   ├── modules/
+│   │   │   ├── auth/
+│   │   │   ├── comment/
+│   │   │   ├── item/
+│   │   │   ├── request/
+│   │   │   └── users/
+│   │   ├── types/
+│   │   ├── app.ts
+│   │   ├── main.ts
+│   │   └── router.ts
+│   ├── tests/
+│   ├── jest.config.js
+│   └── tsconfig.json
+```
+
+## Main API routes
+
+| Method | Route | Description |
+|---------|-------|-------------|
+| POST | `/api/login/` | User login |
+| GET | `/api/me/` | Retrieve connected profile |
+| POST | `/api/logout/` | User logout |
+| GET | `/api/users` | Retrieve all users |
+| GET | `/api/users/:id` | Retrieve a user by ID |
+| POST | `/api/users/` | Create a user with password hashing |
+| PUT | `/api/users/:id` | Modify a user |
+| DELETE | `/api/users/:id` | Delete a user |
+| POST | `/upload-avatar/:id` | Upload a user avatar |
+| GET | `/api/comments/request/:request_id` | All comments linked to a Request |
+| GET | `/api/comments/:id` | A specific comment |
+| POST | `/api/comments/` | Create a comment |
+| PUT | `/api/comments/:id` | Modify a comment |
+| DELETE | `/api/comments/:id` | Delete a comment |
+| GET | `/api/request` | List of Requests |
+| GET | `/api/request/:id` | Request details |
+| POST | `/api/request/` | Create a Request |
+| GET | `/api/request/:id/isPoster` | Verification: is the user the author? |
+| PUT | `/api/request/:id` | Edit a Request (auth + ownership required) |
+| DELETE | `/api/request/:id` | Delete a Request (auth + ownership required) |
+
+## Environment variables
+
+### client/.env
+```
+VITE_API_URL=http://localhost:3310/api
+```
+
+### server/.env
+```
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=root
+DB_NAME=smart_choice
+JWT_SECRET=supersecretkey
+FRONT_URL=http://localhost:5173
+```
+
+## Security
+
+* JWT authentication, stored in an `httpOnly` cookie with `SameSite=Strict`
+* Secure password hashing with argon2
+* `verifyToken` middleware to protect sensitive routes
+* Author verification via `isPoster` before modification or deletion
+* Field validation on client and server sides
+* Prepared SQL queries via `mysql2/promise` to prevent injections
+
+## Author
+
+Project created by Nadir AMMI SAID and four other developers as part of the Web and Mobile Web Developer training at Wild Code School (2025 cohort).
+
+## Contribution
+
+To contribute to the project:
+1. **Fork** the repository
+2. **Clone** your fork to your local machine
+3. Create a new branch for your feature (`git switch -c feature/your-feature`)
+4. **Commit** your changes (`git commit -m 'Add feature'`)
+5. **Push** to your branch (`git push origin feature/your-feature`)
+6. Create a **Pull Request** on the main repository
+
+**Best practices**:
+- Run `npm run check` before pushing your changes
+- Add tests for any new feature
+- Follow SOLID principles for clean and maintainable code architecture
+
+
+---------------
+---------------
+
+
+<!--  Readme original du Monorepo JS de Wild Code School
+
+# Readme original du Monorepo JS de Wild Code School
+
+# P3
 
 Ce projet est un monorepo JS, suivant l'architecture React-Express-MySQL telle qu'enseignée à la Wild Code School (v7.1.7) :
 
@@ -364,3 +845,5 @@ Nous accueillons avec plaisir les contributions ! Veuillez suivre ces étapes po
 - Assurez-vous que votre code respecte les standards de codage en exécutant `npm run check` avant de pousser vos modifications.
 - Ajoutez des tests pour toute nouvelle fonctionnalité ou correction de bug.
 - Documentez clairement vos modifications dans la description de la pull request.
+
+-->

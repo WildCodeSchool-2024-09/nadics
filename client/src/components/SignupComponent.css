@@ -1,0 +1,170 @@
+#displaycolumn {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  /* height: 100vh; */
+  min-height: calc(100vh - 80px);
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.5) /* Couleur blanche avec une opacité de 50% */,
+      rgba(255, 255, 255, 0.5)
+    ), url("../assets/images/background.png");
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: lighten;
+  z-index: -1;
+}
+
+.signupform {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#logoImageDesktop_signup {
+  width: 15rem;
+}
+
+#logo-section-signup-page {
+  display: flex;
+  justify-content: center;
+}
+
+#signuptitle {
+  color: #000;
+  font-family: "Roboto", sans-serif;
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-transform: uppercase;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  display: inline;
+}
+
+#signupsubtitle1 {
+  color: #000;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-bottom: 2rem;
+}
+
+#email,
+#firstname,
+#surname,
+#date-of-birth,
+#password,
+#confirm-password {
+  width: 326px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #f5f5f5;
+  box-shadow: 10px 10px 14px 0px rgba(0, 0, 0, 0.25);
+  fill: #f5f5f5;
+  filter: drop-shadow(10px 10px 14px rgba(0, 0, 0, 0.25));
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+#signupbutton {
+  display: flex;
+  width: 163px;
+  height: 48px;
+  margin: 1rem;
+  font-size: 1.1rem;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  border-radius: 0.3125rem;
+  background: #000;
+  color: #f5f5f5;
+}
+
+#alreadyaccount {
+  margin-bottom: 2rem;
+}
+
+#displaycolumn input {
+  padding-left: 1rem;
+}
+.checkbox-container {
+  display: flex; /* Utilisation de flexbox pour aligner les éléments en ligne */
+  align-items: center; /* Aligner la case à cocher et le texte verticalement */
+  justify-content: center; /* Centrer le contenu horizontalement */
+}
+/* Appliquer un espacement à droite de la case à cocher */
+.checkbox-input {
+  display: flex;
+  align-items: center;
+  margin-right: 10px; /* Espace entre la case et le texte */
+}
+
+.signupform label {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.signupform input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 4px; /* Small space between input and error message */
+}
+
+.signupform input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+/* Style for error messages */
+.error-message {
+  color: #dc3545;
+  font-size: 0.8rem;
+  margin-top: 4px;
+  padding-left: 4px;
+  text-align: left;
+  min-height: 20px; /* Fixed height to prevent layout shifts */
+}
+
+/* Add red border to inputs with errors */
+.signupform input.has-error {
+  border-color: #dc3545;
+  border-width: 1px;
+}
+
+/* Special styling for the checkbox container to keep it inline */
+.checkbox-container {
+  flex-direction: row !important;
+  align-items: center;
+  gap: 8px;
+}
+
+.checkbox-input {
+  width: auto !important;
+  margin: 0 !important;
+}
+
+/* Animation for error messages */
+.error-message {
+  opacity: 0;
+  transform: translateY(-5px);
+  animation: slideDown 0.2s ease forwards;
+}
+
+@keyframes slideDown {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

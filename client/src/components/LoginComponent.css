@@ -1,0 +1,138 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#entirepage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  height: 100vh;
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.5) /* Couleur blanche avec une opacité de 50% */,
+      rgba(255, 255, 255, 0.5)
+    ), url("../assets/images/background.png");
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: lighten;
+  z-index: -1;
+  min-height: 92vh;
+}
+
+#logoImageDesktop_login {
+  width: 15rem;
+}
+
+#logo-section-login-page {
+  display: flex;
+  justify-content: center;
+}
+
+#displaylogintitle {
+  display: flex;
+  justify-content: center;
+}
+
+.display {
+  display: flex;
+  justify-content: center;
+}
+
+.logintitle {
+  color: #000;
+  font-family: "Roboto", sans-serif;
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-transform: uppercase;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+  display: inline;
+}
+
+#loginsubtitle1 {
+  color: #000;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin: 2rem;
+}
+
+#loginsubtitle2 {
+  color: #000;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin: 2rem;
+}
+
+#loginusername {
+  width: 326px;
+  height: 64px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #f5f5f5;
+  box-shadow: 10px 10px 14px 0px rgba(0, 0, 0, 0.25);
+  fill: #f5f5f5;
+  filter: drop-shadow(10px 10px 14px rgba(0, 0, 0, 0.25));
+  font-size: 1.2rem;
+}
+
+#loginpassword {
+  width: 326px;
+  height: 64px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #f5f5f5;
+  box-shadow: 10px 10px 14px 0px rgba(0, 0, 0, 0.25);
+  fill: #f5f5f5;
+  filter: drop-shadow(10px 10px 14px rgba(0, 0, 0, 0.25));
+  font-size: 1.2rem;
+}
+
+#submitbutton {
+  display: flex;
+  width: 326px;
+  height: 64px;
+  margin: 2rem;
+  font-size: 1.1rem;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  border-radius: 0.3125rem;
+  background: #000;
+  color: #f5f5f5;
+}
+
+#signup {
+  color: #000;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+#passwordforgotten {
+  color: #000;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin: 0.5rem;
+}
+
+#entirepage input {
+  padding-left: 1rem;
+}

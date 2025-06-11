@@ -1,0 +1,45 @@
+.footer-container {
+  display: flex;
+  padding-bottom: 1rem;
+  padding-top: 0.5rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: auto; /* Cette ligne garantit que le footer reste en bas */
+}
+
+.footer-text {
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  font-style: normal;
+}
+
+.footer-logos {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.footer-logo {
+  width: 2.3rem;
+}
+/* Media Query pour la version mobile */
+@media (min-width: 431px) {
+  .footer-container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-text {
+    text-align: left;
+    margin-left: 1rem;
+  }
+
+  .footer-logos {
+    justify-content: flex-end;
+    margin-right: 1rem;
+  }
+}
